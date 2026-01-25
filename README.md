@@ -1,50 +1,72 @@
-# Welcome to your Expo app 👋
+# TrotroApp 🚌💨
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**TrotroApp** is a high-performance React Native application designed for efficient smart city commuting. It provides real-time routing, community-driven updates, and a seamless travel experience for commuters.
 
-## Get started
+## ✨ Features
 
-1. Install dependencies
+### 📍 Real-Time Routing & Navigation
+
+- **Dynamic Route Calculation**: Uses OSRM (Open Source Routing Machine) to calculate the best paths for driving, walking, or cycling.
+- **Live Location Tracking**: Continuously tracks the user's position to guide them through their journey.
+- **Bus Stop Integration**: Automatically finds and displays the nearest bus stops along your route.
+
+### 🕒 Ride History & Smart Re-Search
+
+- **Journey Logs**: Automatically saves completed trips with origins, destinations, price estimates, and duration.
+- **"Search Again"**: Re-initiate previous searches instantly. The app stores geographic coordinates for historical rides to ensure precise route re-calculation without manual input.
+
+### 🔔 Community Notifications & Updates
+
+- **Latest Updates Swiper**: Fixed news items and dynamic community reports displayed directly on the Home screen.
+- **Unread Indicators**: Visual "blue dot" notifications for new community posts and news updates.
+- **Auto-Expiry**: Community reports are automatically removed after 24 hours to keep information fresh and relevant.
+- **Manual Management**: Users can delete their own reports with a confirmation safety check.
+
+## 🚀 Performance Optimizations
+
+To ensure a smooth experience even on lower-end devices:
+
+- **Intelligent Caching**: Implemented in-memory caching for OSRM routes and bus stop lookups to minimize API latency and data usage.
+- **Adaptive Re-calculation**: The app uses a 200m movement threshold for route refreshes, preventing excessive battery drain and unnecessary API calls.
+- **Optimized UI**: Efficient state management and flat list rendering for history and notifications.
+
+## 🛡️ Security & Moderation
+
+We prioritize a respectful community:
+
+- **Profanity Filter**: Robust blocking of abusive, insulting, or inappropriate language.
+- **Anti-Spam**: Automatic blocking of links and URLs in community posts.
+- **Rate Limiting**: Users are limited to one post every 5 minutes to prevent spamming.
+
+## 🛠️ Technical Stack
+
+- **Framework**: [Expo](https://expo.dev) / [React Native](https://reactnative.dev)
+- **Navigation**: Expo Router (File-based routing)
+- **Map Engine**: [React Native Maps](https://github.com/react-native-maps/react-native-maps) with OpenStreetMap integration
+- **Authentication**: [Clerk](https://clerk.com)
+- **Routing API**: Open Source Routing Machine (OSRM)
+- **Geocoding**: Nominatim API
+- **State Management**: React Hooks & Centralized Notification Observer Service
+- **Persistence**: AsyncStorage & SecureStore
+
+## 🏗️ Getting Started
+
+1. **Install Dependencies**:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. **Start the App**:
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. **Development Build**:
+   Follow the prompts to run on Android (press `a`) or iOS (press `i`).
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+_Built for better, smarter, and safer commuting._
+"# trotroApp---myTroskiGo" 
