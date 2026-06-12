@@ -42,8 +42,8 @@ import { NotificationBanner } from "@/components/NotificationBanner";
 
 /* Polyfill setImmediate for web compatibility (fixes react-native-swiper error) */
 if (Platform.OS === "web") {
-  if (typeof (global as any).setImmediate === "undefined") {
-    (global as any).setImmediate = function (fn: any) {
+  if (typeof globalThis !== "undefined" && typeof (globalThis as any).setImmediate === "undefined") {
+    (globalThis as any).setImmediate = function (fn: any) {
       return setTimeout(fn, 0);
     };
   }
