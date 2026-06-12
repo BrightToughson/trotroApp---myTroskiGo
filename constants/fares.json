@@ -1,0 +1,2442 @@
+[
+  {
+    "origin": "Kasoa",
+    "destination": "Accra CMB",
+    "minPrice": 25.5,
+    "maxPrice": 29.5,
+    "region": "GHANA",
+    "town": "Accra CMB"
+  },
+  {
+    "origin": "Kufour Station",
+    "destination": "Ministries",
+    "minPrice": 30,
+    "maxPrice": 34.5,
+    "region": "GHANA",
+    "town": "Ministries"
+  },
+  {
+    "origin": "Ayikuma",
+    "destination": "Ministries",
+    "minPrice": 47.5,
+    "maxPrice": 54.5,
+    "region": "GHANA",
+    "town": "Ministries"
+  },
+  {
+    "origin": "Ayi Mensah",
+    "destination": "Ministries",
+    "minPrice": 17.5,
+    "maxPrice": 20,
+    "region": "GHANA",
+    "town": "Ministries"
+  },
+  {
+    "origin": "Ministries",
+    "destination": "Ayi Mensah Route",
+    "minPrice": 17.5,
+    "maxPrice": 20,
+    "region": "GHANA",
+    "town": "Ayi Mensah Route"
+  },
+  {
+    "origin": "Rex",
+    "destination": "Sagboville",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Sagboville"
+  },
+  {
+    "origin": "Segbe",
+    "destination": "Bia",
+    "minPrice": 21.5,
+    "maxPrice": 24.5,
+    "region": "GHANA",
+    "town": "Bia"
+  },
+  {
+    "origin": "Bia Assigame",
+    "destination": "Segbe",
+    "minPrice": 24,
+    "maxPrice": 27.5,
+    "region": "GHANA",
+    "town": "Segbe"
+  },
+  {
+    "origin": "Rex",
+    "destination": "Adetikope",
+    "minPrice": 14,
+    "maxPrice": 16,
+    "region": "GHANA",
+    "town": "Adetikope"
+  },
+  {
+    "origin": "Bia",
+    "destination": "Zanguera",
+    "minPrice": 34.5,
+    "maxPrice": 39.5,
+    "region": "GHANA",
+    "town": "Zanguera"
+  },
+  {
+    "origin": "TERMINUS CAMPUS NORD",
+    "destination": "Carrefour Akodessèwa Kpota",
+    "minPrice": 13.5,
+    "maxPrice": 15.5,
+    "region": "GHANA",
+    "town": "Carrefour Akodessèwa Kpota"
+  },
+  {
+    "origin": "Eglise des AD Adakpamé",
+    "destination": "TERMINUS CAMPUS NORD",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "TERMINUS CAMPUS NORD"
+  },
+  {
+    "origin": "Poste de Police",
+    "destination": "TERMINUS CAMPUS NORD",
+    "minPrice": 15.5,
+    "maxPrice": 18,
+    "region": "GHANA",
+    "town": "TERMINUS CAMPUS NORD"
+  },
+  {
+    "origin": "TERMINUS CAMPUS NORD",
+    "destination": "Marché Agoè Assiyéyé",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Marché Agoè Assiyéyé"
+  },
+  {
+    "origin": "TERMINUS CAMPUS NORD",
+    "destination": "Adjololo",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Adjololo"
+  },
+  {
+    "origin": "TERMINUS CAMPUS NORD",
+    "destination": "Atigangomé",
+    "minPrice": 30,
+    "maxPrice": 34.5,
+    "region": "GHANA",
+    "town": "Atigangomé"
+  },
+  {
+    "origin": "TERMINUS CAMPUS NORD",
+    "destination": "Fucec Adétikopé",
+    "minPrice": 14,
+    "maxPrice": 16,
+    "region": "GHANA",
+    "town": "Fucec Adétikopé"
+  },
+  {
+    "origin": "Attiégou",
+    "destination": "REX",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "REX"
+  },
+  {
+    "origin": "REX",
+    "destination": "Station taxi",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Station taxi"
+  },
+  {
+    "origin": "REX",
+    "destination": "Eglise des AD Adakpamé",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Eglise des AD Adakpamé"
+  },
+  {
+    "origin": "Sainte Cathérine",
+    "destination": "BIA",
+    "minPrice": 40,
+    "maxPrice": 46,
+    "region": "GHANA",
+    "town": "BIA"
+  },
+  {
+    "origin": "BIA",
+    "destination": "Entreprise de l'Union",
+    "minPrice": 15,
+    "maxPrice": 17.5,
+    "region": "GHANA",
+    "town": "Entreprise de l'Union"
+  },
+  {
+    "origin": "Pokuase Junction",
+    "destination": "Madina",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Madina"
+  },
+  {
+    "origin": "Bia",
+    "destination": "Kpogan",
+    "minPrice": 13.5,
+    "maxPrice": 15.5,
+    "region": "GHANA",
+    "town": "Kpogan"
+  },
+  {
+    "origin": "Bia",
+    "destination": "Marché Agoe Assiyeye",
+    "minPrice": 13.5,
+    "maxPrice": 15.5,
+    "region": "GHANA",
+    "town": "Marché Agoe Assiyeye"
+  },
+  {
+    "origin": "Rex",
+    "destination": "Dva",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Dva"
+  },
+  {
+    "origin": "Marché Agoè Assiyéyé",
+    "destination": "BIA",
+    "minPrice": 11,
+    "maxPrice": 12.5,
+    "region": "GHANA",
+    "town": "BIA"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Mateytse",
+    "minPrice": 24,
+    "maxPrice": 27.5,
+    "region": "GHANA",
+    "town": "Mateytse"
+  },
+  {
+    "origin": "Madina",
+    "destination": "Sowutuom",
+    "minPrice": 23,
+    "maxPrice": 26.5,
+    "region": "GHANA",
+    "town": "Sowutuom"
+  },
+  {
+    "origin": "Madina",
+    "destination": "St. Johns",
+    "minPrice": 19,
+    "maxPrice": 22,
+    "region": "GHANA",
+    "town": "St. Johns"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Nsawam",
+    "minPrice": 22.5,
+    "maxPrice": 26,
+    "region": "GHANA",
+    "town": "Nsawam"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Adenta Station",
+    "minPrice": 13,
+    "maxPrice": 15,
+    "region": "GHANA",
+    "town": "Adenta Station"
+  },
+  {
+    "origin": "Orgle Street",
+    "destination": "Kaneshie",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Kaneshie"
+  },
+  {
+    "origin": "Odorna",
+    "destination": "Nungua",
+    "minPrice": 12.5,
+    "maxPrice": 14.5,
+    "region": "GHANA",
+    "town": "Nungua"
+  },
+  {
+    "origin": "Accra CMB",
+    "destination": "Ablekuma",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Ablekuma"
+  },
+  {
+    "origin": "Circle Lido",
+    "destination": "Abeka Lapaz",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Abeka Lapaz"
+  },
+  {
+    "origin": "Nima-Mamobi",
+    "destination": "Sukura",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Sukura"
+  },
+  {
+    "origin": "Accra Rawlings Park",
+    "destination": "Sakaman Blue Lagoon",
+    "minPrice": 14,
+    "maxPrice": 16,
+    "region": "GHANA",
+    "town": "Sakaman Blue Lagoon"
+  },
+  {
+    "origin": "Odorkor",
+    "destination": "Accra New Tema Station",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Accra New Tema Station"
+  },
+  {
+    "origin": "Odorkor",
+    "destination": "South Odorkor",
+    "minPrice": 4.5,
+    "maxPrice": 5,
+    "region": "GHANA",
+    "town": "South Odorkor"
+  },
+  {
+    "origin": "Nima Station",
+    "destination": "Accra New Tema Station",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Accra New Tema Station"
+  },
+  {
+    "origin": "Nima Station",
+    "destination": "Agbogbloshie",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Agbogbloshie"
+  },
+  {
+    "origin": "Nima Overhead",
+    "destination": "Pokuase Amasaman",
+    "minPrice": 16.5,
+    "maxPrice": 19,
+    "region": "GHANA",
+    "town": "Pokuase Amasaman"
+  },
+  {
+    "origin": "Nima Overhead Maamobi",
+    "destination": "Alajo Station",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Alajo Station"
+  },
+  {
+    "origin": "Nima Overhead Maamobi",
+    "destination": "Achimota Terminal",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Achimota Terminal"
+  },
+  {
+    "origin": "Nima",
+    "destination": "Ashaiman",
+    "minPrice": 16.5,
+    "maxPrice": 19,
+    "region": "GHANA",
+    "town": "Ashaiman"
+  },
+  {
+    "origin": "Accra New Town",
+    "destination": "Kasoa",
+    "minPrice": 17.5,
+    "maxPrice": 20,
+    "region": "GHANA",
+    "town": "Kasoa"
+  },
+  {
+    "origin": "New Town",
+    "destination": "Adenta",
+    "minPrice": 15,
+    "maxPrice": 17.5,
+    "region": "GHANA",
+    "town": "Adenta"
+  },
+  {
+    "origin": "Odorkor",
+    "destination": "Anyah",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Anyah"
+  },
+  {
+    "origin": "Agbogbloshie",
+    "destination": "Opetekwei",
+    "minPrice": 11,
+    "maxPrice": 12.5,
+    "region": "GHANA",
+    "town": "Opetekwei"
+  },
+  {
+    "origin": "Nima Overhead",
+    "destination": "Mallam",
+    "minPrice": 13,
+    "maxPrice": 15,
+    "region": "GHANA",
+    "town": "Mallam"
+  },
+  {
+    "origin": "Zongo Junction",
+    "destination": "Korle Bu",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Korle Bu"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Ashaiman Main Station",
+    "minPrice": 18,
+    "maxPrice": 20.5,
+    "region": "GHANA",
+    "town": "Ashaiman Main Station"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Ashongman",
+    "minPrice": 14.5,
+    "maxPrice": 16.5,
+    "region": "GHANA",
+    "town": "Ashongman"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Pigfarm",
+    "minPrice": 11,
+    "maxPrice": 12.5,
+    "region": "GHANA",
+    "town": "Pigfarm"
+  },
+  {
+    "origin": "Bubuashie Ayigbe Town",
+    "destination": "Accra CMB",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Accra CMB"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Abelemkpe",
+    "minPrice": 13,
+    "maxPrice": 15,
+    "region": "GHANA",
+    "town": "Abelemkpe"
+  },
+  {
+    "origin": "New Fadama",
+    "destination": "Accra CMB",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Accra CMB"
+  },
+  {
+    "origin": "Mataheko",
+    "destination": "Kaneshie",
+    "minPrice": 7,
+    "maxPrice": 8,
+    "region": "GHANA",
+    "town": "Kaneshie"
+  },
+  {
+    "origin": "Mallam Attah",
+    "destination": "Kotobabi Down/Polo park",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Kotobabi Down/Polo park"
+  },
+  {
+    "origin": "Kwashieman Junction",
+    "destination": "Rawlings Park",
+    "minPrice": 16,
+    "maxPrice": 18.5,
+    "region": "GHANA",
+    "town": "Rawlings Park"
+  },
+  {
+    "origin": "Kwashieman Junction",
+    "destination": "Santa Maria",
+    "minPrice": 5.5,
+    "maxPrice": 6.5,
+    "region": "GHANA",
+    "town": "Santa Maria"
+  },
+  {
+    "origin": "Kwashieman",
+    "destination": "Madina",
+    "minPrice": 12,
+    "maxPrice": 14,
+    "region": "GHANA",
+    "town": "Madina"
+  },
+  {
+    "origin": "Kwashieman Junction",
+    "destination": "Kwashieman",
+    "minPrice": 12,
+    "maxPrice": 14,
+    "region": "GHANA",
+    "town": "Kwashieman"
+  },
+  {
+    "origin": "Korle Bu",
+    "destination": "Mallam",
+    "minPrice": 11,
+    "maxPrice": 12.5,
+    "region": "GHANA",
+    "town": "Mallam"
+  },
+  {
+    "origin": "Okponglo",
+    "destination": "Christian Centre",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Christian Centre"
+  },
+  {
+    "origin": "Okponglo",
+    "destination": "Bawaleshie",
+    "minPrice": 4,
+    "maxPrice": 4.5,
+    "region": "GHANA",
+    "town": "Bawaleshie"
+  },
+  {
+    "origin": "Opetekwei",
+    "destination": "Circle",
+    "minPrice": 12.5,
+    "maxPrice": 14.5,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "Pigfarm",
+    "destination": "Accra CMB",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Accra CMB"
+  },
+  {
+    "origin": "Okponglo",
+    "destination": "American House",
+    "minPrice": 4.5,
+    "maxPrice": 5,
+    "region": "GHANA",
+    "town": "American House"
+  },
+  {
+    "origin": "Accra Post Office",
+    "destination": "Mamprobi",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Mamprobi"
+  },
+  {
+    "origin": "Accra Rawlings Park",
+    "destination": "La Olympia",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "La Olympia"
+  },
+  {
+    "origin": "Accra Rawlings Park",
+    "destination": "Nungua Authority",
+    "minPrice": 21.5,
+    "maxPrice": 24.5,
+    "region": "GHANA",
+    "town": "Nungua Authority"
+  },
+  {
+    "origin": "Accra Salaga",
+    "destination": "Chemuna",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Chemuna"
+  },
+  {
+    "origin": "Accra Salaga",
+    "destination": "Appiah Danquah",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Appiah Danquah"
+  },
+  {
+    "origin": "Shiabu",
+    "destination": "Agbogbloshie",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Agbogbloshie"
+  },
+  {
+    "origin": "Agbogbloshie",
+    "destination": "Banana Inn/Dansoman",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Banana Inn/Dansoman"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Camara",
+    "minPrice": 11,
+    "maxPrice": 12.5,
+    "region": "GHANA",
+    "town": "Camara"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Chemuna",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Chemuna"
+  },
+  {
+    "origin": "Zambrama Line",
+    "destination": "Arena",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Arena"
+  },
+  {
+    "origin": "Zambrama Line",
+    "destination": "Kaneshie",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Kaneshie"
+  },
+  {
+    "origin": "Zambrama Line",
+    "destination": "Odorna-Circle",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Odorna-Circle"
+  },
+  {
+    "origin": "Zongo Junction",
+    "destination": "Agege",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Agege"
+  },
+  {
+    "origin": "Zongo Junction",
+    "destination": "Chorkor",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Chorkor"
+  },
+  {
+    "origin": "Accra Rawlings Park",
+    "destination": "Chemuna",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Chemuna"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Zamrama Line",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Zamrama Line"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Sowutuom",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Sowutuom"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Tema",
+    "minPrice": 19,
+    "maxPrice": 22,
+    "region": "GHANA",
+    "town": "Tema"
+  },
+  {
+    "origin": "Korle Bu",
+    "destination": "Kwashieman/Santa Maria",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Kwashieman/Santa Maria"
+  },
+  {
+    "origin": "Kokomlemle",
+    "destination": "Dzorwulu",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Dzorwulu"
+  },
+  {
+    "origin": "Abelemkpe",
+    "destination": "Accra",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Accra"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Manhean Afuaman",
+    "minPrice": 11,
+    "maxPrice": 12.5,
+    "region": "GHANA",
+    "town": "Manhean Afuaman"
+  },
+  {
+    "origin": "Abeka Main Market",
+    "destination": "Mallam Atta",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Mallam Atta"
+  },
+  {
+    "origin": "Adjiringanor",
+    "destination": "Accra New Tema Station",
+    "minPrice": 15,
+    "maxPrice": 17.5,
+    "region": "GHANA",
+    "town": "Accra New Tema Station"
+  },
+  {
+    "origin": "Ebenezer",
+    "destination": "Accra Bishop",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Accra Bishop"
+  },
+  {
+    "origin": "Darkuman",
+    "destination": "Accra CMB",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Accra CMB"
+  },
+  {
+    "origin": "Darkuman",
+    "destination": "Agbogbloshie",
+    "minPrice": 11,
+    "maxPrice": 12.5,
+    "region": "GHANA",
+    "town": "Agbogbloshie"
+  },
+  {
+    "origin": "Dansoman",
+    "destination": "Awoshie",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Awoshie"
+  },
+  {
+    "origin": "Dansoman",
+    "destination": "Arena",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Arena"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Orgle Road",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Orgle Road"
+  },
+  {
+    "origin": "Accra CMB",
+    "destination": "Omanjor",
+    "minPrice": 17.5,
+    "maxPrice": 20,
+    "region": "GHANA",
+    "town": "Omanjor"
+  },
+  {
+    "origin": "Accra CMB",
+    "destination": "Odorkor",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Odorkor"
+  },
+  {
+    "origin": "Accra CMB",
+    "destination": "Manhean",
+    "minPrice": 13.5,
+    "maxPrice": 15.5,
+    "region": "GHANA",
+    "town": "Manhean"
+  },
+  {
+    "origin": "Accra CMB",
+    "destination": "Alajo",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Alajo"
+  },
+  {
+    "origin": "Chorkor",
+    "destination": "Agbogbloshie",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Agbogbloshie"
+  },
+  {
+    "origin": "Ashale Botwe School Junction",
+    "destination": "Achimota",
+    "minPrice": 16,
+    "maxPrice": 18.5,
+    "region": "GHANA",
+    "town": "Achimota"
+  },
+  {
+    "origin": "Kwashieman Junction",
+    "destination": "Accra CMB",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Accra CMB"
+  },
+  {
+    "origin": "Kwashieman",
+    "destination": "A Lang",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "A Lang"
+  },
+  {
+    "origin": "Kwashieman",
+    "destination": "Achimota",
+    "minPrice": 7,
+    "maxPrice": 8,
+    "region": "GHANA",
+    "town": "Achimota"
+  },
+  {
+    "origin": "Kwashieman",
+    "destination": "Abeka Lapaz",
+    "minPrice": 4.5,
+    "maxPrice": 5,
+    "region": "GHANA",
+    "town": "Abeka Lapaz"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Chorkor",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Chorkor"
+  },
+  {
+    "origin": "Kotobabi Down",
+    "destination": "Abeka Lapaz",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Abeka Lapaz"
+  },
+  {
+    "origin": "Kotobabi Down",
+    "destination": "37",
+    "minPrice": 7,
+    "maxPrice": 8,
+    "region": "GHANA",
+    "town": "37"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Maamobi",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Maamobi"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Korlebu",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Korlebu"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Good Shepherd",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "Good Shepherd"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Camara",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Camara"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Bubuashie",
+    "minPrice": 4.5,
+    "maxPrice": 5,
+    "region": "GHANA",
+    "town": "Bubuashie"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Appiah Danquah/ Soko",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Appiah Danquah/ Soko"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Afropa",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Afropa"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Sukura",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Sukura"
+  },
+  {
+    "origin": "Dansoman",
+    "destination": "Santa Maria",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Santa Maria"
+  },
+  {
+    "origin": "Dzorwulu",
+    "destination": "Circle",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "East Legon",
+    "destination": "Circle",
+    "minPrice": 13.5,
+    "maxPrice": 15.5,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "Glefe",
+    "destination": "Accra Bishop",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Accra Bishop"
+  },
+  {
+    "origin": "Bubiashie Control (Old Station )",
+    "destination": "Circle",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "Bubiashie-Atico",
+    "destination": "Circle",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "Circle Overhead",
+    "destination": "Madina",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Madina"
+  },
+  {
+    "origin": "Dansoman",
+    "destination": "Nyamekye",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Nyamekye"
+  },
+  {
+    "origin": "Circle Overhead",
+    "destination": "Nima mamobi",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Nima mamobi"
+  },
+  {
+    "origin": "Accra CMB",
+    "destination": "Fan-Milk",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Fan-Milk"
+  },
+  {
+    "origin": "Dansoman",
+    "destination": "Achimota",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Achimota"
+  },
+  {
+    "origin": "Dansoman",
+    "destination": "Circle",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "Circle Overhead",
+    "destination": "Bawaleshie",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Bawaleshie"
+  },
+  {
+    "origin": "Darkuman",
+    "destination": "Accra Post - Office",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Accra Post - Office"
+  },
+  {
+    "origin": "Korle Bu",
+    "destination": "Darkuman",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Darkuman"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Tema",
+    "minPrice": 18.5,
+    "maxPrice": 21.5,
+    "region": "GHANA",
+    "town": "Tema"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Ashaiman",
+    "minPrice": 17,
+    "maxPrice": 19.5,
+    "region": "GHANA",
+    "town": "Ashaiman"
+  },
+  {
+    "origin": "Abossey-Okai",
+    "destination": "Kasoa",
+    "minPrice": 15.5,
+    "maxPrice": 18,
+    "region": "GHANA",
+    "town": "Kasoa"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Dzorwulu",
+    "minPrice": 14,
+    "maxPrice": 16,
+    "region": "GHANA",
+    "town": "Dzorwulu"
+  },
+  {
+    "origin": "Circle Odorna",
+    "destination": "Nungua",
+    "minPrice": 21,
+    "maxPrice": 24,
+    "region": "GHANA",
+    "town": "Nungua"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Adeyman",
+    "minPrice": 23,
+    "maxPrice": 26.5,
+    "region": "GHANA",
+    "town": "Adeyman"
+  },
+  {
+    "origin": "Abeka Main Market",
+    "destination": "Kaneshie",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Kaneshie"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Agbogbloshie",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Agbogbloshie"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Ashiaman",
+    "minPrice": 17,
+    "maxPrice": 19.5,
+    "region": "GHANA",
+    "town": "Ashiaman"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Adjiringanor",
+    "minPrice": 14,
+    "maxPrice": 16,
+    "region": "GHANA",
+    "town": "Adjiringanor"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Akweteman Zongo",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "Akweteman Zongo"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Mayera/Adusa",
+    "minPrice": 15,
+    "maxPrice": 17.5,
+    "region": "GHANA",
+    "town": "Mayera/Adusa"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Medie/Kotoku",
+    "minPrice": 18,
+    "maxPrice": 20.5,
+    "region": "GHANA",
+    "town": "Medie/Kotoku"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Accra New Tema Station",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Accra New Tema Station"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Teshie-Nungua",
+    "minPrice": 22,
+    "maxPrice": 25.5,
+    "region": "GHANA",
+    "town": "Teshie-Nungua"
+  },
+  {
+    "origin": "Alajo Junction",
+    "destination": "Kotobabi Police Station",
+    "minPrice": 7,
+    "maxPrice": 8,
+    "region": "GHANA",
+    "town": "Kotobabi Police Station"
+  },
+  {
+    "origin": "Arena",
+    "destination": "Kaneshie",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "Kaneshie"
+  },
+  {
+    "origin": "Arena",
+    "destination": "Russia",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Russia"
+  },
+  {
+    "origin": "Accra Bishop",
+    "destination": "Cantonment",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Cantonment"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Stadium",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Stadium"
+  },
+  {
+    "origin": "Kwashieman Junction",
+    "destination": "Antie Aku",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Antie Aku"
+  },
+  {
+    "origin": "Kwashieman Junction",
+    "destination": "Sowutuom",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Sowutuom"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Adenta",
+    "minPrice": 12,
+    "maxPrice": 14,
+    "region": "GHANA",
+    "town": "Adenta"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Madina",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Madina"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Omanjor",
+    "minPrice": 12.5,
+    "maxPrice": 14.5,
+    "region": "GHANA",
+    "town": "Omanjor"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Santa Maria",
+    "minPrice": 7,
+    "maxPrice": 8,
+    "region": "GHANA",
+    "town": "Santa Maria"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Agbogbloshie",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "Agbogbloshie"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Awoshie",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "Awoshie"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Haatso",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Haatso"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Yellow House",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Yellow House"
+  },
+  {
+    "origin": "Accra New Town",
+    "destination": "37",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "37"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Tetteh Quarshie",
+    "minPrice": 7,
+    "maxPrice": 8,
+    "region": "GHANA",
+    "town": "Tetteh Quarshie"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Lomnava",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Lomnava"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Alhaji",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Alhaji"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Accra",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Accra"
+  },
+  {
+    "origin": "Nima - Maamobi",
+    "destination": "Circle",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "Kotobabi Down",
+    "destination": "Circle Lido",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "Circle Lido"
+  },
+  {
+    "origin": "Kotobabi Down",
+    "destination": "Accra CMB",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Accra CMB"
+  },
+  {
+    "origin": "Accra CMB",
+    "destination": "Weija",
+    "minPrice": 15.5,
+    "maxPrice": 18,
+    "region": "GHANA",
+    "town": "Weija"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Pigfarm",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Pigfarm"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Kotobabi Down Polo Park",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Kotobabi Down Polo Park"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Immesco Rice",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "Immesco Rice"
+  },
+  {
+    "origin": "Bubiashie Ayigbe Town",
+    "destination": "Circle",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "Banana Inn",
+    "destination": "Accra Post Office",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Accra Post Office"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Taifa",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Taifa"
+  },
+  {
+    "origin": "Mallam Atta",
+    "destination": "Achimota",
+    "minPrice": 12,
+    "maxPrice": 14,
+    "region": "GHANA",
+    "town": "Achimota"
+  },
+  {
+    "origin": "Legon",
+    "destination": "Dome",
+    "minPrice": 12.5,
+    "maxPrice": 14.5,
+    "region": "GHANA",
+    "town": "Dome"
+  },
+  {
+    "origin": "Accra New Town",
+    "destination": "Madina",
+    "minPrice": 14.5,
+    "maxPrice": 16.5,
+    "region": "GHANA",
+    "town": "Madina"
+  },
+  {
+    "origin": "Accra New Town",
+    "destination": "Nima Maamobi",
+    "minPrice": 4.5,
+    "maxPrice": 5,
+    "region": "GHANA",
+    "town": "Nima Maamobi"
+  },
+  {
+    "origin": "Nima",
+    "destination": "Circle",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "Atico",
+    "destination": "Kaneshie",
+    "minPrice": 7,
+    "maxPrice": 8,
+    "region": "GHANA",
+    "town": "Kaneshie"
+  },
+  {
+    "origin": "Apapa",
+    "destination": "Accra New Tema Station",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Accra New Tema Station"
+  },
+  {
+    "origin": "Alajo",
+    "destination": "Circle",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "Akoto Lante",
+    "destination": "Kaneshie",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Kaneshie"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Ashaiman Main Station",
+    "minPrice": 16,
+    "maxPrice": 18.5,
+    "region": "GHANA",
+    "town": "Ashaiman Main Station"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Mallam Attah",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Mallam Attah"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Madina Station",
+    "minPrice": 13,
+    "maxPrice": 15,
+    "region": "GHANA",
+    "town": "Madina Station"
+  },
+  {
+    "origin": "Circle Overhead",
+    "destination": "Abeka Lapaz",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Abeka Lapaz"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Asore Danho",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Asore Danho"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Accra New Tema Station",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Accra New Tema Station"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Legon Station",
+    "minPrice": 12.5,
+    "maxPrice": 14.5,
+    "region": "GHANA",
+    "town": "Legon Station"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Dome /Ashongman Estates",
+    "minPrice": 13.5,
+    "maxPrice": 15.5,
+    "region": "GHANA",
+    "town": "Dome /Ashongman Estates"
+  },
+  {
+    "origin": "Accra",
+    "destination": "Darkuman",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Darkuman"
+  },
+  {
+    "origin": "Ashiaman",
+    "destination": "Nima Mamobi",
+    "minPrice": 22,
+    "maxPrice": 25.5,
+    "region": "GHANA",
+    "town": "Nima Mamobi"
+  },
+  {
+    "origin": "Nima Mamobi",
+    "destination": "Ashaiman",
+    "minPrice": 16.5,
+    "maxPrice": 19,
+    "region": "GHANA",
+    "town": "Ashaiman"
+  },
+  {
+    "origin": "Nima Overhead",
+    "destination": "Israel Lomnava",
+    "minPrice": 13.5,
+    "maxPrice": 15.5,
+    "region": "GHANA",
+    "town": "Israel Lomnava"
+  },
+  {
+    "origin": "Nima Overhead",
+    "destination": "Awoshie Last Stop",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Awoshie Last Stop"
+  },
+  {
+    "origin": "Nima Overhead",
+    "destination": "Dome Railway Crossing",
+    "minPrice": 11,
+    "maxPrice": 12.5,
+    "region": "GHANA",
+    "town": "Dome Railway Crossing"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Teachers Hall",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "Teachers Hall"
+  },
+  {
+    "origin": "Sukura",
+    "destination": "Arena",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Arena"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Ridge Hospital",
+    "minPrice": 5.5,
+    "maxPrice": 6.5,
+    "region": "GHANA",
+    "town": "Ridge Hospital"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Osu RE",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Osu RE"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Osu Presby",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Osu Presby"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Novotel",
+    "minPrice": 5.5,
+    "maxPrice": 6.5,
+    "region": "GHANA",
+    "town": "Novotel"
+  },
+  {
+    "origin": "Circle",
+    "destination": "New Melcom",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "New Melcom"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Fadama Last stop",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Fadama Last stop"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Ofankor",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Ofankor"
+  },
+  {
+    "origin": "Nima Overhead",
+    "destination": "Lapaz-Nii Boi Junction",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Lapaz-Nii Boi Junction"
+  },
+  {
+    "origin": "Nima Overhead",
+    "destination": "Sukura Station",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Sukura Station"
+  },
+  {
+    "origin": "Nima Station",
+    "destination": "Madina",
+    "minPrice": 15.5,
+    "maxPrice": 18,
+    "region": "GHANA",
+    "town": "Madina"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Darkuman",
+    "minPrice": 7,
+    "maxPrice": 8,
+    "region": "GHANA",
+    "town": "Darkuman"
+  },
+  {
+    "origin": "Nima Station",
+    "destination": "Nyaho",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Nyaho"
+  },
+  {
+    "origin": "Accra End of the Motorway",
+    "destination": "American House",
+    "minPrice": 5.5,
+    "maxPrice": 6.5,
+    "region": "GHANA",
+    "town": "American House"
+  },
+  {
+    "origin": "Accra",
+    "destination": "Nima",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Nima"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Cantonments",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Cantonments"
+  },
+  {
+    "origin": "Odorna",
+    "destination": "Agblezah",
+    "minPrice": 14,
+    "maxPrice": 16,
+    "region": "GHANA",
+    "town": "Agblezah"
+  },
+  {
+    "origin": "Odorna",
+    "destination": "Nima Mamobi",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Nima Mamobi"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Legon",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Legon"
+  },
+  {
+    "origin": "Circle Odorna",
+    "destination": "Tsui Bleoo",
+    "minPrice": 12.5,
+    "maxPrice": 14.5,
+    "region": "GHANA",
+    "town": "Tsui Bleoo"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Dansoman",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Dansoman"
+  },
+  {
+    "origin": "Circle Odorna",
+    "destination": "Korle Bu",
+    "minPrice": 7,
+    "maxPrice": 8,
+    "region": "GHANA",
+    "town": "Korle Bu"
+  },
+  {
+    "origin": "Korle Bu",
+    "destination": "Kasoa",
+    "minPrice": 17.5,
+    "maxPrice": 20,
+    "region": "GHANA",
+    "town": "Kasoa"
+  },
+  {
+    "origin": "Odorkor",
+    "destination": "Kasoa",
+    "minPrice": 12.5,
+    "maxPrice": 14.5,
+    "region": "GHANA",
+    "town": "Kasoa"
+  },
+  {
+    "origin": "Kaneshie Takoradi Station",
+    "destination": "Russia Last Stop",
+    "minPrice": 5.5,
+    "maxPrice": 6.5,
+    "region": "GHANA",
+    "town": "Russia Last Stop"
+  },
+  {
+    "origin": "Kaneshie Takoradi Station",
+    "destination": "New Russia Last Stop",
+    "minPrice": 5.5,
+    "maxPrice": 6.5,
+    "region": "GHANA",
+    "town": "New Russia Last Stop"
+  },
+  {
+    "origin": "Odorkor",
+    "destination": "Official Town",
+    "minPrice": 4.5,
+    "maxPrice": 5,
+    "region": "GHANA",
+    "town": "Official Town"
+  },
+  {
+    "origin": "Kaneshie Takoradi Station",
+    "destination": "Mamprobi C Lante",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Mamprobi C Lante"
+  },
+  {
+    "origin": "Opetekwei",
+    "destination": "Accra New Tema Station",
+    "minPrice": 11,
+    "maxPrice": 12.5,
+    "region": "GHANA",
+    "town": "Accra New Tema Station"
+  },
+  {
+    "origin": "Kaneshie Takoradi Station",
+    "destination": "Korle Bu",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Korle Bu"
+  },
+  {
+    "origin": "Kaneshie Takoradi Station",
+    "destination": "Dansoman Last Stop",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Dansoman Last Stop"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Swanlake",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "Swanlake"
+  },
+  {
+    "origin": "Orgle-Road",
+    "destination": "Kaneshie",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Kaneshie"
+  },
+  {
+    "origin": "Kaneshie Market Station",
+    "destination": "North Industrial Area",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "North Industrial Area"
+  },
+  {
+    "origin": "Osu",
+    "destination": "Kaneshie",
+    "minPrice": 9.5,
+    "maxPrice": 11,
+    "region": "GHANA",
+    "town": "Kaneshie"
+  },
+  {
+    "origin": "Kaneshie Market Station",
+    "destination": "New Fadama",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "New Fadama"
+  },
+  {
+    "origin": "Osu",
+    "destination": "Madina",
+    "minPrice": 14,
+    "maxPrice": 16,
+    "region": "GHANA",
+    "town": "Madina"
+  },
+  {
+    "origin": "Kaneshie Market Station",
+    "destination": "Agyapa Ye North Kaneshie",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Agyapa Ye North Kaneshie"
+  },
+  {
+    "origin": "Accra Rawlings Park",
+    "destination": "Osu Penta Hotel",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Osu Penta Hotel"
+  },
+  {
+    "origin": "Accra Salaga",
+    "destination": "Camara",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Camara"
+  },
+  {
+    "origin": "Kaneshie Foot Bridge",
+    "destination": "Makola Tudu",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Makola Tudu"
+  },
+  {
+    "origin": "Soko",
+    "destination": "Accra Post Office",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Accra Post Office"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Osu",
+    "minPrice": 11.5,
+    "maxPrice": 13,
+    "region": "GHANA",
+    "town": "Osu"
+  },
+  {
+    "origin": "Tabora Alhaji",
+    "destination": "Kaneshie Station",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Kaneshie Station"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Mayera",
+    "minPrice": 17.5,
+    "maxPrice": 20,
+    "region": "GHANA",
+    "town": "Mayera"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Sukura",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Sukura"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Trade Fair (La)",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Trade Fair (La)"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Bubiashie",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Bubiashie"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Asofan",
+    "minPrice": 13,
+    "maxPrice": 15,
+    "region": "GHANA",
+    "town": "Asofan"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Banana Inn",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Banana Inn"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Dome Pillar 2",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Dome Pillar 2"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "37",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "37"
+  },
+  {
+    "origin": "Race Course",
+    "destination": "Abeka Lapaz",
+    "minPrice": 5.5,
+    "maxPrice": 6.5,
+    "region": "GHANA",
+    "town": "Abeka Lapaz"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Circle Accra",
+    "minPrice": 6.5,
+    "maxPrice": 7.5,
+    "region": "GHANA",
+    "town": "Circle Accra"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Dome Kwabenya",
+    "minPrice": 13,
+    "maxPrice": 15,
+    "region": "GHANA",
+    "town": "Dome Kwabenya"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Swanlake Last Stop",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Swanlake Last Stop"
+  },
+  {
+    "origin": "Circle",
+    "destination": "Tema (Motorway)",
+    "minPrice": 22.5,
+    "maxPrice": 26,
+    "region": "GHANA",
+    "town": "Tema (Motorway)"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "37",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "37"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Accra UTC",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Accra UTC"
+  },
+  {
+    "origin": "37 Lorry Park",
+    "destination": "Osu (37 Station)",
+    "minPrice": 5.5,
+    "maxPrice": 6.5,
+    "region": "GHANA",
+    "town": "Osu (37 Station)"
+  },
+  {
+    "origin": "Shalom",
+    "destination": "Kaneshie",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Kaneshie"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Kaneshie",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Kaneshie"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Russia",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Russia"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Madina-Adenta",
+    "minPrice": 17.5,
+    "maxPrice": 20,
+    "region": "GHANA",
+    "town": "Madina-Adenta"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Mamponse",
+    "minPrice": 11,
+    "maxPrice": 12.5,
+    "region": "GHANA",
+    "town": "Mamponse"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "Mamprobi Alhaji",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Mamprobi Alhaji"
+  },
+  {
+    "origin": "Kaneshie",
+    "destination": "New town",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "New town"
+  },
+  {
+    "origin": "Circle Overhead",
+    "destination": "Ashaiaman",
+    "minPrice": 20,
+    "maxPrice": 23,
+    "region": "GHANA",
+    "town": "Ashaiaman"
+  },
+  {
+    "origin": "Accra New Town",
+    "destination": "Caprice",
+    "minPrice": 5,
+    "maxPrice": 6,
+    "region": "GHANA",
+    "town": "Caprice"
+  },
+  {
+    "origin": "Dansoman",
+    "destination": "Odorkor",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Odorkor"
+  },
+  {
+    "origin": "Hansonic",
+    "destination": "Dansoman Last Stop",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Dansoman Last Stop"
+  },
+  {
+    "origin": "Osu",
+    "destination": "Circle",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "Accra New Tema Station",
+    "destination": "Kotobabi Down",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Kotobabi Down"
+  },
+  {
+    "origin": "Circle Odorna",
+    "destination": "Madina",
+    "minPrice": 11,
+    "maxPrice": 12.5,
+    "region": "GHANA",
+    "town": "Madina"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Ashaiman Main Station",
+    "minPrice": 17,
+    "maxPrice": 19.5,
+    "region": "GHANA",
+    "town": "Ashaiman Main Station"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Taifa",
+    "minPrice": 9,
+    "maxPrice": 10.5,
+    "region": "GHANA",
+    "town": "Taifa"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Tema Community One Market",
+    "minPrice": 19.5,
+    "maxPrice": 22.5,
+    "region": "GHANA",
+    "town": "Tema Community One Market"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Amasaman",
+    "minPrice": 13,
+    "maxPrice": 15,
+    "region": "GHANA",
+    "town": "Amasaman"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Kasoa",
+    "minPrice": 14.5,
+    "maxPrice": 16.5,
+    "region": "GHANA",
+    "town": "Kasoa"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Kotokuo",
+    "minPrice": 21,
+    "maxPrice": 24,
+    "region": "GHANA",
+    "town": "Kotokuo"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Sapeiman",
+    "minPrice": 16,
+    "maxPrice": 18.5,
+    "region": "GHANA",
+    "town": "Sapeiman"
+  },
+  {
+    "origin": "37 Lorry Park",
+    "destination": "Tse Addo",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Tse Addo"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Dome",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Dome"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Teshie Nungua",
+    "minPrice": 24.5,
+    "maxPrice": 28,
+    "region": "GHANA",
+    "town": "Teshie Nungua"
+  },
+  {
+    "origin": "Abeka Main Market",
+    "destination": "Accra U.T.C",
+    "minPrice": 7,
+    "maxPrice": 8,
+    "region": "GHANA",
+    "town": "Accra U.T.C"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Korle Bu",
+    "minPrice": 12.5,
+    "maxPrice": 14.5,
+    "region": "GHANA",
+    "town": "Korle Bu"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Mallam Gbawe",
+    "minPrice": 10.5,
+    "maxPrice": 12,
+    "region": "GHANA",
+    "town": "Mallam Gbawe"
+  },
+  {
+    "origin": "Abeka Main Market",
+    "destination": "Circle Industrial Area",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Circle Industrial Area"
+  },
+  {
+    "origin": "Circle Indust. Area",
+    "destination": "Abeka Main Market",
+    "minPrice": 7,
+    "maxPrice": 8,
+    "region": "GHANA",
+    "town": "Abeka Main Market"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Agape",
+    "minPrice": 13.5,
+    "maxPrice": 15.5,
+    "region": "GHANA",
+    "town": "Agape"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Six to Six Market",
+    "minPrice": 6,
+    "maxPrice": 7,
+    "region": "GHANA",
+    "town": "Six to Six Market"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Kuntunse/Satelite",
+    "minPrice": 14,
+    "maxPrice": 16,
+    "region": "GHANA",
+    "town": "Kuntunse/Satelite"
+  },
+  {
+    "origin": "Accra End of the Motorway",
+    "destination": "Adjringanor/Otanor",
+    "minPrice": 7.5,
+    "maxPrice": 8.5,
+    "region": "GHANA",
+    "town": "Adjringanor/Otanor"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Asofan",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "Asofan"
+  },
+  {
+    "origin": "WAEC",
+    "destination": "Circle",
+    "minPrice": 4.5,
+    "maxPrice": 5,
+    "region": "GHANA",
+    "town": "Circle"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Adenta Station",
+    "minPrice": 13,
+    "maxPrice": 15,
+    "region": "GHANA",
+    "town": "Adenta Station"
+  },
+  {
+    "origin": "Abeka Lapaz",
+    "destination": "Antie-Eku Pallas Town",
+    "minPrice": 8,
+    "maxPrice": 9,
+    "region": "GHANA",
+    "town": "Antie-Eku Pallas Town"
+  },
+  {
+    "origin": "Zambrama Line",
+    "destination": "Agbogbloshie 2",
+    "minPrice": 8.5,
+    "maxPrice": 10,
+    "region": "GHANA",
+    "town": "Agbogbloshie 2"
+  },
+  {
+    "origin": "Achimota",
+    "destination": "Abeka Lapaz",
+    "minPrice": 5.5,
+    "maxPrice": 6.5,
+    "region": "GHANA",
+    "town": "Abeka Lapaz"
+  },
+  {
+    "origin": "Circle Odorna",
+    "destination": "SSNIT Flats",
+    "minPrice": 10,
+    "maxPrice": 11.5,
+    "region": "GHANA",
+    "town": "SSNIT Flats"
+  }
+]

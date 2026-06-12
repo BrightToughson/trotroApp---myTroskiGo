@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="myTroski Go" />
+    <link rel="apple-touch-icon" href="/logo/mytroskigo.png" />
+    <link rel="apple-touch-startup-image" href="/logo/mytroskigo.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>myTroski Go</title>
+    <style>
+      :root {
+        --sat: env(safe-area-inset-top);
+        --sar: env(safe-area-inset-right);
+        --sab: env(safe-area-inset-bottom);
+        --sal: env(safe-area-inset-left);
+        --primary: #EAB308;
+        --secondary: #0286FF;
+      }
+      html {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #000000; /* Black to blend the bottom safe area */
+        -webkit-tap-highlight-color: transparent;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        height: 100%;
+        width: 100%;
+      }
+      #root {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      /* Premium PWA Splash Screen */
+      #pwa-splash {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #111827;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out, visibility 0.5s;
+      }
+      .splash-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .splash-logo-container {
+        width: 120px;
+        height: 120px;
+        background-color: #1F2937;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        animation: pulse 2.4s infinite ease-in-out;
+      }
+      .splash-logo {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+      }
+      .splash-title {
+        font-weight: 800;
+        font-size: 42px;
+        color: #F9FAFB;
+        margin: 0 0 8px 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+      .splash-subtitle {
+        font-weight: 500;
+        font-size: 16px;
+        color: #9CA3AF;
+        margin: 0;
+        letter-spacing: 0.5px;
+      }
+      .splash-footer {
+        padding-bottom: 60px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .splash-loader-track {
+        width: 200px;
+        height: 4px;
+        background-color: #374151;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .splash-loader-fill {
+        height: 100%;
+        background-color: #F9FAFB;
+        width: 0%;
+        border-radius: 2px;
+        animation: loadProgress 2.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+      }
+      @keyframes fadeUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+      @keyframes loadProgress {
+        to { width: 100%; }
+      }
+      .hide-splash {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    </style>
+    <script>
+      // Automatically hide splash once the app is ready
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var splash = document.getElementById('pwa-splash');
+          if (splash) splash.classList.add('hide-splash');
+        }, 1500); // Small buffer for React hydration
+      });
+
+      // Register Service Worker for PWA
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((reg) => console.log('SW Registered', reg))
+            .catch((err) => console.log('SW Registration Failed', err));
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="pwa-splash">
+      <div class="splash-content">
+        <div class="splash-logo-container">
+          <img src="/logo/mytroskigo.png" class="splash-logo" alt="myTroski Go">
+        </div>
+        <h1 class="splash-title">myTroski Go</h1>
+        <p class="splash-subtitle">Smart Transit for the City</p>
+      </div>
+      <div class="splash-footer">
+        <div class="splash-loader-track">
+          <div class="splash-loader-fill"></div>
+        </div>
+      </div>
+    </div>
+    <div id="root"></div>
+    <div id="clerk-captcha"></div>
+  </body>
+</html>

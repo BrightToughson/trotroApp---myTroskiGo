@@ -30,24 +30,40 @@ To ensure a smooth experience even on lower-end devices:
 - **Adaptive Re-calculation**: The app uses a 200m movement threshold for route refreshes, preventing excessive battery drain and unnecessary API calls.
 - **Optimized UI**: Efficient state management and flat list rendering for history and notifications.
 
-## 🛡️ Security & Moderation
+## 🛡️ Security & Privacy
 
-We prioritize a respectful community:
+We prioritize a respectful and secure community:
 
+- **Privacy Policy**: Location data is used exclusively for real-time routing and live tracking. Personal data is never sold to third parties.
+- **Secure Authentication**: Uses Clerk SDK for industry-standard user authentication and identity management.
 - **Profanity Filter**: Robust blocking of abusive, insulting, or inappropriate language.
 - **Anti-Spam**: Automatic blocking of links and URLs in community posts.
 - **Rate Limiting**: Users are limited to one post every 5 minutes to prevent spamming.
 
+## 🌐 Platform Support & Web Compatibility
+
+The app is fully optimized for **Android, iOS, and Web** (React 19):
+
+- **Hybrid Map Engine**: Implemented a custom `MapViewWrapper` that uses `react-native-maps` on mobile and a robust **Leaflet.js + Iframe bridge** on the web to ensure identical route rendering without version conflicts.
+- **Platform Wrappers**: Created safe wrappers for `SecureStore` (localStorage fallback) and `Notifications` to ensure zero-crash stability across all environments.
+- **Resolution Mastery**: Responsive layouts and polyfills (e.g., `setImmediate`) ensure a perfect pixel-perfect experience on high-density mobile screens and desktop browsers alike.
+
 ## 🛠️ Technical Stack
 
-- **Framework**: [Expo](https://expo.dev) / [React Native](https://reactnative.dev)
+- **Framework**: [Expo](https://expo.dev) (SDK 54) / [React Native](https://reactnative.dev)
+  - Leverages the Expo ecosystem for rapid development and cross-platform consistency. The app uses SDK 54 features like the New Architecture for enhanced performance.
+- **React Version**: 19.1.0
+  - Utilizes the latest React features and concurrent rendering. Compatibility across platforms is maintained through custom polyfills and platform-specific shims.
 - **Navigation**: Expo Router (File-based routing)
-- **Map Engine**: [React Native Maps](https://github.com/react-native-maps/react-native-maps) with OpenStreetMap integration
+  - Implements a modern, URL-friendly navigation system that mirrors the project's file structure, making deep-linking and web navigation seamless.
+- **Map Engine**: React Native Maps (Mobile) & Leaflet.js (Web Bridge)
+  - A hybrid approach that uses Google/Apple Maps on mobile for native performance, and a custom Leaflet.js-powered iframe bridge on web to display identical routes and markers without library conflicts.
 - **Authentication**: [Clerk](https://clerk.com)
+  - Provides enterprise-grade identity management, supporting secure sign-ins, profile management, and token caching across all platforms.
 - **Routing API**: Open Source Routing Machine (OSRM)
-- **Geocoding**: Nominatim API
+  - Powers the core navigation logic by calculating multi-modal routes (walking and transit) with custom heuristics for local city commuting.
 - **State Management**: React Hooks & Centralized Notification Observer Service
-- **Persistence**: AsyncStorage & SecureStore
+  - Uses a lightweight, reactive state system combined with a custom observer service to handle real-time community updates and notification syncing.
 
 ## 🏗️ Getting Started
 
@@ -59,14 +75,10 @@ We prioritize a respectful community:
 
 2. **Start the App**:
 
-   ```bash
-   npx expo start
-   ```
-
-3. **Development Build**:
-   Follow the prompts to run on Android (press `a`) or iOS (press `i`).
+   - **Standard**: `npx expo start`
+   - **Web (Bypass Network)**: `npm run web:offline`
+   - **Mobile**: Press `a` for Android or `i` for iOS in the terminal.
 
 ---
 
 _Built for better, smarter, and safer commuting._
-"# trotroApp---myTroskiGo" 

@@ -1,0 +1,473 @@
+import { CustomButton } from "@/components/customButton";
+import InputField from "@/components/InputField";
+import OAuth from "@/components/OAuth";
+import { ProcessingModal } from "@/components/ProcessingModal";
+import { WebIcon } from "@/components/WebIcon";
+import { useTheme, LightColors } from "@/context/ThemeContext";
+import { useSignUp } from "@clerk/clerk-expo";
+import { LinearGradient } from "expo-linear-gradient";
+import { Link, useRouter } from "expo-router";
+import * as React from "react";
+import {
+  Alert,
+  Image,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import Animated, {
+  FadeInDown,
+  FadeInUp,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
+
+export default function SignUpScreen() {
+  const { t } = useTranslation();
+  const { isLoaded, signUp } = useSignUp();
+  const router = useRouter();
+  const { colors, isDark } = useTheme();
+
+  const logoScale = useSharedValue(0.8);
+  const drift1 = useSharedValue(0);
+  const drift2 = useSharedValue(0);
+  const drift3 = useSharedValue(0);
+  const drift4 = useSharedValue(0);
+
+  React.useEffect(() => {
+    logoScale.value = withSpring(1);
+    drift1.value = withRepeat(withTiming(30, { duration: 8000 }), -1, true);
+    drift2.value = withRepeat(withTiming(-25, { duration: 10000 }), -1, true);
+    drift3.value = withRepeat(withTiming(40, { duration: 12000 }), -1, true);
+    drift4.value = withRepeat(withTiming(-35, { duration: 15000 }), -1, true);
+  }, [logoScale, drift1, drift2, drift3, drift4]);
+
+  const animatedLogoStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: logoScale.value }],
+  }));
+
+  const animatedDrift1 = useAnimatedStyle(() => ({
+    transform: [{ translateX: drift1.value }, { translateY: drift2.value }],
+  }));
+
+  const animatedDrift2 = useAnimatedStyle(() => ({
+    transform: [{ translateX: drift2.value }, { translateY: drift3.value }],
+  }));
+
+  const animatedDrift3 = useAnimatedStyle(() => ({
+    transform: [{ translateX: drift3.value }, { translateY: drift4.value }],
+  }));
+
+  const animatedDrift4 = useAnimatedStyle(() => ({
+    transform: [{ translateX: drift4.value }, { translateY: drift1.value }],
+  }));
+
+  const [form, setForm] = React.useState({
+    username: "",
+    email: "",
+  });
+
+  const [loading, setLoading] = React.useState(false);
+  const [successMessage, setSuccessMessage] = React.useState("");
+  const [isOAuthLoading, setIsOAuthLoading] = React.useState(false);
+
+  const validate = () => {
+    if (!form.email || !form.username) {
+      Alert.alert(
+        t("validation_error", "Validation Error"),
+        t("fill_required_fields", "Please fill out username and email."),
+      );
+      return false;
+    }
+    return true;
+  };
+
+  const onSignUpPress = async () => {
+    if (!isLoaded) return;
+    if (!validate()) return;
+    setLoading(true);
+
+    try {
+      await signUp.create({
+        username: form.username,
+        emailAddress: form.email,
+      });
+
+      // Fire and forget email verification to cut perceived loading time in half
+      signUp
+        .prepareEmailAddressVerification({ strategy: "email_code" })
+        .catch(console.error);
+
+      setSuccessMessage(t('account_created', 'Account Created!'));
+      setTimeout(() => {
+        router.push({
+          pathname: "/(auth)/verify-email",
+          params: { email: form.email },
+        });
+        setLoading(false);
+      }, 100);
+    } catch (err: any) {
+      console.log(JSON.stringify(err, null, 2));
+      const errorCode = err.errors?.[0]?.code;
+
+      if (errorCode === "form_identifier_exists") {
+        const message = t(
+          "email_in_use",
+          "This email is already in use. Would you like to sign in instead?",
+        );
+        if (Platform.OS === "web") {
+          if (window.confirm(message)) {
+            router.replace("/(auth)/sign-in");
+          }
+        } else {
+          Alert.alert(t("account_exists", "Account Exists"), message, [
+            { text: t("cancel", "Cancel") || "Cancel", style: "cancel" },
+            {
+              text: t("sign_in_btn", "Sign In") || "Sign In",
+              onPress: () => router.replace("/(auth)/sign-in"),
+            },
+          ]);
+        }
+      } else if (errorCode === "form_username_invalid_character") {
+        Alert.alert(
+          t("invalid_username", "Invalid Username"),
+          t(
+            "username_invalid_char_msg",
+            "Usernames cannot contain spaces or special characters (like @ or .). Please use only letters, numbers, hyphens (-), or underscores (_).",
+          ),
+        );
+      } else {
+        Alert.alert(
+          t("error", "Error"),
+          err.errors
+            ? err.errors[0].message
+            : t("generic_signup_error", "An error occurred during sign up"),
+        );
+      }
+      setLoading(false);
+    }
+  };
+
+  return (
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <ProcessingModal 
+        visible={loading || isOAuthLoading || !!successMessage} 
+        message={successMessage || t('creating_account', 'Creating Account...')} 
+        isSuccess={!!successMessage} 
+      />
+      <LinearGradient
+        colors={[
+          colors.background,
+          isDark ? "#0f172a" : "#f0f4ff",
+          isDark ? "#020617" : "#e0e7ff",
+        ]}
+        style={StyleSheet.absoluteFill}
+      />
+
+      <View
+        style={[StyleSheet.absoluteFill, { alignItems: "center" }]}
+        pointerEvents="none"
+      >
+        <Animated.View
+          style={[
+            styles.decorativeCircle,
+            animatedDrift1,
+            {
+              backgroundColor: "#0286FF",
+              top: -80,
+              right: -80,
+              width: 400,
+              height: 400,
+              opacity: isDark ? 0.5 : 0.25,
+            },
+          ]}
+        />
+        <Animated.View
+          style={[
+            styles.decorativeCircle,
+            animatedDrift2,
+            {
+              backgroundColor: "#FFD700",
+              bottom: -50,
+              left: -100,
+              width: 350,
+              height: 350,
+              opacity: isDark ? 0.5 : 0.25,
+            },
+          ]}
+        />
+        <Animated.View
+          style={[
+            styles.decorativeCircle,
+            animatedDrift3,
+            {
+              backgroundColor: "#0286FF",
+              top: "30%",
+              right: -100,
+              width: 200,
+              height: 200,
+              opacity: isDark ? 0.5 : 0.25,
+            },
+          ]}
+        />
+        <Animated.View
+          style={[
+            styles.decorativeCircle,
+            animatedDrift4,
+            {
+              backgroundColor: "#FFD700",
+              bottom: "40%",
+              left: -50,
+              width: 150,
+              height: 150,
+              opacity: isDark ? 0.5 : 0.25,
+            },
+          ]}
+        />
+      </View>
+
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
+        {Platform.OS === 'web' && (
+          <TouchableOpacity 
+            style={{ position: 'absolute', top: 40, left: 40, zIndex: 100, flexDirection: 'row', alignItems: 'center' }}
+            onPress={() => router.push('/')}
+          >
+            <WebIcon name="arrow-back" size={24} color={colors.text} />
+            <Text style={{ marginLeft: 8, color: colors.text, fontWeight: '600', fontSize: 16 }}>Back to Website</Text>
+          </TouchableOpacity>
+        )}
+        <Animated.View
+          entering={FadeInDown.duration(1000).springify()}
+          style={styles.header}
+        >
+          <Animated.View
+            style={[
+              styles.logoContainer,
+              {
+                backgroundColor: isDark
+                  ? "rgba(255, 255, 255, 0.03)"
+                  : "rgba(255, 255, 255, 0.6)",
+                borderColor: isDark
+                  ? "rgba(255, 255, 255, 0.08)"
+                  : "rgba(0, 0, 0, 0.05)",
+                borderWidth: 1,
+              },
+              animatedLogoStyle,
+            ]}
+          >
+            <Image
+              source={require("@/assets/logo/mytroski_display.png")}
+              style={styles.logo}
+              resizeMode="cover"
+            />
+          </Animated.View>
+          <Animated.Text
+            entering={FadeInDown.delay(200).duration(1000).springify()}
+            style={[styles.title, { color: colors.text }]}
+          >
+            {t("signUp", "Create Account")}
+          </Animated.Text>
+          <Animated.Text
+            entering={FadeInDown.delay(400).duration(1000).springify()}
+            style={[styles.subtitle, { color: colors.textSecondary }]}
+          >
+            {t(
+              "get_started_nicer",
+              "Join our community and enjoy a seamless travel experience.",
+            )}
+          </Animated.Text>
+        </Animated.View>
+
+        <Animated.View
+          entering={FadeInUp.delay(600).duration(1000).springify()}
+          style={[
+            styles.formCard,
+            {
+              backgroundColor: isDark
+                ? "rgba(255, 255, 255, 0.03)"
+                : "rgba(255, 255, 255, 0.7)",
+              borderColor: isDark
+                ? "rgba(255, 255, 255, 0.05)"
+                : "rgba(0, 0, 0, 0.02)",
+            },
+          ]}
+        >
+          <Animated.View
+            entering={FadeInUp.delay(650).duration(800).springify()}
+            style={{ marginBottom: 16 }}
+          >
+            <InputField
+              label={t("username")}
+              value={form.username}
+              onChangeText={(text) => setForm({ ...form, username: text })}
+              autoCapitalize="none"
+            />
+          </Animated.View>
+
+          <Animated.View
+            entering={FadeInUp.delay(700).duration(800).springify()}
+            style={{ marginBottom: 16 }}
+          >
+            <InputField
+              label={t("email")}
+              value={form.email}
+              onChangeText={(text) => setForm({ ...form, email: text })}
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+          </Animated.View>
+
+          <CustomButton
+            title={t("sign_up_btn")}
+            onPress={onSignUpPress}
+            containerStyle={styles.button}
+            disabled={isOAuthLoading}
+          />
+
+          <View style={styles.dividerContainer}>
+            <View
+              style={[
+                styles.divider,
+                {
+                  backgroundColor: isDark
+                    ? "rgba(255,255,255,0.1)"
+                    : "rgba(0,0,0,0.05)",
+                },
+              ]}
+            />
+            <Text style={[styles.dividerText, { color: colors.textSecondary }]}>
+              {t("continue_with")}
+            </Text>
+            <View
+              style={[
+                styles.divider,
+                {
+                  backgroundColor: isDark
+                    ? "rgba(255,255,255,0.1)"
+                    : "rgba(0,0,0,0.05)",
+                },
+              ]}
+            />
+          </View>
+
+          <OAuth
+            authMode="sign-up"
+            disabled={loading}
+            onOAuthLoading={setIsOAuthLoading}
+          />
+
+          <View style={styles.footer}>
+            <Text style={[styles.footerText, { color: colors.textSecondary }]}>
+              {t("already_have_account")}{" "}
+            </Text>
+            <Link href="/(auth)/sign-in">
+              <Text style={[styles.link, { color: colors.primary }]}>
+                {t("sign_in_btn")}
+              </Text>
+            </Link>
+          </View>
+        </Animated.View>
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    paddingHorizontal: 24,
+    paddingTop: Platform.OS === 'android' ? 60 : 80,
+    paddingBottom: 40,
+  },
+  header: {
+    marginBottom: 40,
+    alignItems: "center",
+  },
+  logoContainer: {
+    width: 200,
+    height: 120,
+    borderRadius: 24,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 24,
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.2,
+    shadowRadius: 20,
+    elevation: 10,
+    overflow: "hidden",
+  },
+  logo: {
+    width: "100%",
+    height: "100%",
+  },
+  title: {
+    fontSize: 38,
+    fontWeight: "800",
+    marginBottom: 10,
+    letterSpacing: -0.5,
+  },
+  subtitle: {
+    fontSize: 18,
+    lineHeight: 24,
+    textAlign: "center",
+    paddingHorizontal: 20,
+  },
+  button: {
+    marginTop: 10,
+    marginBottom: 16,
+  },
+  formCard: {
+    borderRadius: 32,
+    padding: 24,
+    borderWidth: 1,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.1,
+    shadowRadius: 20,
+    elevation: 8,
+  },
+  footer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 8,
+    marginBottom: 0,
+  },
+  footerText: {
+    fontSize: 16,
+  },
+  link: {
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  decorativeCircle: {
+    position: "absolute",
+    width: 300,
+    height: 300,
+    borderRadius: 150,
+  },
+  dividerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 20,
+  },
+  divider: {
+    flex: 1,
+    height: 1,
+  },
+  dividerText: {
+    marginHorizontal: 16,
+    fontSize: 15,
+    fontWeight: "500",
+    textTransform: "uppercase",
+    letterSpacing: 1,
+  }
+});

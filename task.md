@@ -1,0 +1,9 @@
+- `[x]` Implement Dynamic OSRM Slicing in LocationService
+  - `[x]` Fetch full OSRM driving route from start to end
+  - `[x]` Fetch Graph route
+  - `[x]` Extract Transfer Hubs from Graph route
+  - `[x]` Map-Match Transfer Hubs to OSRM path (filter out off-path detours)
+  - `[x]` Slice OSRM path into dynamic TransitLegs
+- `[x]` Verify UI renders the dynamic sliced legs
+- `[x]` Update Walkthrough
+- `[x]` Performance optimization (bounding box spatial indexing for hubs, route coordinate simplification)
