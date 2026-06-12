@@ -7,6 +7,7 @@ import { useTheme, LightColors } from "@/context/ThemeContext";
 import { useSignUp } from "@clerk/clerk-expo";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link, useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 import * as React from "react";
 import {
   Alert,
@@ -239,7 +240,7 @@ export default function SignUpScreen() {
         {Platform.OS === 'web' && (
           <TouchableOpacity 
             style={{ position: 'absolute', top: 40, left: 40, zIndex: 100, flexDirection: 'row', alignItems: 'center' }}
-            onPress={() => router.push('/')}
+            onPress={() => window.location.href = __DEV__ ? 'http://localhost:5173/' : 'https://mytroski-go-website.vercel.app/'}
           >
             <WebIcon name="arrow-back" size={24} color={colors.text} />
             <Text style={{ marginLeft: 8, color: colors.text, fontWeight: '600', fontSize: 16 }}>Back to Website</Text>
