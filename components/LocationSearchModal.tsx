@@ -544,6 +544,15 @@ export const LocationSearchModal = ({
                 {/* Spacer for keyboard */}
                 <View style={{ height: ms(40) }} />
             </KeyboardAvoidingView>
+            
+            <MapPickerModal
+              isVisible={isMapPickerVisible}
+              onClose={() => setIsMapPickerVisible(false)}
+              onSelectLocation={(loc) => {
+                setIsMapPickerVisible(false);
+                handleSelect(loc);
+              }}
+            />
         </Animated.View>
     </View>
   );
