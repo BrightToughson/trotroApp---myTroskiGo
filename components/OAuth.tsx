@@ -1,12 +1,12 @@
 import { useTheme, LightColors } from "../context/ThemeContext";
 import { WebIcon } from "./WebIcon";
 import { useWarmUpBrowser } from "../hooks/useWarmUpBrowser";
-import { useOAuth } from "@clerk/clerk-expo";
+import { useOAuth, useSignIn, useSignUp } from "@clerk/clerk-expo";
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
 import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
-import { Alert, Image, StyleSheet, View } from "react-native";
+import { Alert, Image, StyleSheet, View, Platform } from "react-native";
 import { CustomButton } from "./customButton";
 import { useTranslation } from "react-i18next";
 
@@ -23,6 +23,8 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
   const { t } = useTranslation();
   useWarmUpBrowser();
   const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
+  const { signIn, isLoaded: signInLoaded } = useSignIn();
+  const { signUp, isLoaded: signUpLoaded } = useSignUp();
   const { colors, isDark } = useTheme();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,10 +33,33 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
     try {
       setIsLoading(true);
       onOAuthLoading?.(true);
+
+      if (Platform.OS === 'web') {
+        if (!signInLoaded || !signUpLoaded) return;
+        
+        const redirectUrl = window.location.href; 
+        const redirectUrlComplete = window.location.origin + (authMode === "sign-up" ? "/home?signup=true" : "/home?login=true");
+
+        if (authMode === "sign-in") {
+          await signIn?.authenticateWithRedirect({
+            strategy: "oauth_google",
+            redirectUrl,
+            redirectUrlComplete,
+          });
+        } else {
+          await signUp?.authenticateWithRedirect({
+            strategy: "oauth_google",
+            redirectUrl,
+            redirectUrlComplete,
+          });
+        }
+        return; // Execution stops here because the browser navigates away
+      }
+
       // Create a robust redirect URL that works across all platforms (web, native, pwa)
       const redirectUrl = Linking.createURL("/", { scheme: "trotroapp" });
       
-      const { createdSessionId, setActive, signUp, signIn } =
+      const { createdSessionId, setActive, signUp: su, signIn: si } =
         await startOAuthFlow({
           redirectUrl,
         });
@@ -45,13 +70,13 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
         }
         router.replace({ pathname: "/(root)/(tabs)/home", params: { [authMode === "sign-up" ? "signup" : "login"]: "true" } });
       } else {
-        if (signIn && signIn.status === "complete" && setActive) {
-           await setActive({ session: signIn.createdSessionId });
+        if (si && si.status === "complete" && setActive) {
+           await setActive({ session: si.createdSessionId });
            router.replace({ pathname: "/(root)/(tabs)/home", params: { login: "true" } });
-        } else if (signUp && signUp.status === "complete" && setActive) {
-           await setActive({ session: signUp.createdSessionId });
+        } else if (su && su.status === "complete" && setActive) {
+           await setActive({ session: su.createdSessionId });
            router.replace({ pathname: "/(root)/(tabs)/home", params: { signup: "true" } });
-        } else if (signUp && signUp.status === "missing_requirements") {
+        } else if (su && su.status === "missing_requirements") {
            // We have an incomplete Google Account Creation (missing username)
            
            if (authMode === "sign-in") {
@@ -70,12 +95,12 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
            // We are legitimately trying to Sign Up! Let's fulfill the username requirement natively.
            try {
              // Grab prefix of their email if available, otherwise 'user'
-             const emailAddress = signUp.emailAddress || "user";
+             const emailAddress = su.emailAddress || "user";
              const prefix = emailAddress.split("@")[0].replace(/[^a-zA-Z0-9_\-]/g, "");
              const randomDigits = Math.floor(1000 + Math.random() * 9000);
              const autoUsername = `${prefix}_${randomDigits}`;
 
-             const updatedSignUp = await signUp.update({
+             const updatedSignUp = await su.update({
                 username: autoUsername,
              });
 
@@ -91,7 +116,7 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
            }
 
         } else {
-           Alert.alert("Notice", `OAuth returned but session isn't ready. SignIn Status: ${signIn?.status}, SignUp Status: ${signUp?.status}`);
+           Alert.alert("Notice", `OAuth returned but session isn't ready. SignIn Status: ${si?.status}, SignUp Status: ${su?.status}`);
         }
       }
     } catch (err: any) {
@@ -125,7 +150,7 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       setIsLoading(false);
       onOAuthLoading?.(false);
     }
-  }, [startOAuthFlow, authMode, disabled, onOAuthLoading]);
+  }, [startOAuthFlow, signIn, signUp, signInLoaded, signUpLoaded, authMode, disabled, onOAuthLoading]);
 
   return (
     <View style={styles.groupContainer}>

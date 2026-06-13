@@ -43,10 +43,11 @@ export default function SignUpScreen() {
 
   React.useEffect(() => {
     logoScale.value = withSpring(1);
-    drift1.value = withRepeat(withTiming(30, { duration: 8000 }), -1, true);
-    drift2.value = withRepeat(withTiming(-25, { duration: 10000 }), -1, true);
-    drift3.value = withRepeat(withTiming(40, { duration: 12000 }), -1, true);
-    drift4.value = withRepeat(withTiming(-35, { duration: 15000 }), -1, true);
+    // Disable heavy continuous drift animations to improve mobile performance
+    drift1.value = 0;
+    drift2.value = 0;
+    drift3.value = 0;
+    drift4.value = 0;
   }, [logoScale, drift1, drift2, drift3, drift4]);
 
   const animatedLogoStyle = useAnimatedStyle(() => ({
