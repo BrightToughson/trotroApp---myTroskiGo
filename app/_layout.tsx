@@ -61,11 +61,15 @@ if (Platform.OS !== "web") {
   if (Text.defaultProps == null) Text.defaultProps = {};
   // @ts-ignore
   Text.defaultProps.style = { fontFamily: 'PlusJakartaSans-Regular' };
+  // @ts-ignore
+  Text.defaultProps.allowFontScaling = false;
   
   // @ts-ignore
   if (TextInput.defaultProps == null) TextInput.defaultProps = {};
   // @ts-ignore
   TextInput.defaultProps.style = { fontFamily: 'PlusJakartaSans-Regular' };
+  // @ts-ignore
+  TextInput.defaultProps.allowFontScaling = false;
 }
 
 /* Prevent splash screen from hiding until app is ready */
@@ -108,7 +112,11 @@ function DesktopWrapper({ children }: { children: React.ReactNode }) {
   const insets = useSafeAreaInsets();
   
   if (Platform.OS !== 'web') {
-    return <>{children}</>;
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.background }}>
+        {children}
+      </View>
+    );
   }
 
   const isFullWidth = false;
