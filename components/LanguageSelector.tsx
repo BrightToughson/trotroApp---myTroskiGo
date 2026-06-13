@@ -1,8 +1,10 @@
+import { ms } from '../lib/metrics';
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useTheme, LightColors } from '../context/ThemeContext';
-import { Image } from 'expo-image';
+import { Image } from
+'expo-image';
 
 const LanguageSelector = () => {
   const { i18n } = useTranslation();
@@ -44,26 +46,26 @@ const LanguageSelector = () => {
 const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
-    height: 32,
-    borderRadius: 16,
-    paddingHorizontal: 4,
+    height: ms(32),
+    borderRadius: ms(16),
+    paddingHorizontal: ms(4),
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: ms(4),
     elevation: 3,
-    gap: 3,
+    gap: ms(3),
   },
   flagImage: {
-    width: 14,
-    height: 8,
-    borderRadius: 2,
+    width: ms(14),
+    height: ms(8),
+    borderRadius: ms(2),
   },
   langText: {
-    fontSize: 13,
+    fontSize: ms(13),
     fontWeight: 'bold',
   }
 });

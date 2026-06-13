@@ -1,3 +1,4 @@
+import { ms } from '../../../lib/metrics';
 import { useTheme } from "../../../context/ThemeContext";
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Platform } from "react-native";
@@ -9,7 +10,8 @@ import ContributionModal from "../../../components/ContributionModal";
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/clerk-expo";
 import { ContributionService, Contribution as ContributionType } from "../../../lib/ContributionService";
-import { ActivityIndicator, Alert } from "react-native";
+import { ActivityIndicator, Alert } from
+"react-native";
 
 export default function Contribution() {
   const { colors, isDark } = useTheme();
@@ -209,7 +211,7 @@ export default function Contribution() {
                 <Text style={[styles.emptyStateText, { color: colors.text }]}>Sign in to track your contributions!</Text>
               </View>
             ) : isLoadingHistory ? (
-              <ActivityIndicator size= "large" color={colors.primary} style={{ marginTop: 40 }} />
+              <ActivityIndicator size= "large" color={colors.primary} style={{ marginTop: ms(40) }} />
             ) : submissions.length === 0 ? (
               <View style={styles.emptyState}>
                 <WebIcon name="document-text-outline" size= {48} color={colors.textSecondary} />
@@ -249,16 +251,16 @@ export default function Contribution() {
                     {sub.type === 'stop' && <Text style={[styles.historyDetails, { color: colors.text }]}>{sub.payload?.stop_name} on {sub.payload?.route_name}</Text>}
                     {sub.type === 'general' && <Text style={[styles.historyDetails, { color: colors.text }]} numberOfLines={2}>{sub.payload?.message}</Text>}
                     
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 8 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: ms(8) }}>
                       <Text style={styles.historyDate}>
                         {new Date(sub.created_at).toLocaleDateString()}
                       </Text>
                       
-                      <View style={{ flexDirection: 'row', gap: 12 }}>
-                        <TouchableOpacity onPress={() => handleEdit(sub)} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+                      <View style={{ flexDirection: 'row', gap: ms(12) }}>
+                        <TouchableOpacity onPress={() => handleEdit(sub)} hitSlop={{ top: ms(10), bottom: ms(10), left: ms(10), right: ms(10) }}>
                           <WebIcon name="pencil" size= {18} color={colors.primary} />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => handleDelete(sub)} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+                        <TouchableOpacity onPress={() => handleDelete(sub)} hitSlop={{ top: ms(10), bottom: ms(10), left: ms(10), right: ms(10) }}>
                           <WebIcon name="trash" size= {18} color="#ef4444" />
                         </TouchableOpacity>
                       </View>
@@ -300,170 +302,170 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingHorizontal: 24,
-    paddingBottom: 120,
+    paddingHorizontal: ms(24),
+    paddingBottom: ms(120),
   },
   header: {
-    marginBottom: 32,
+    marginBottom: ms(32),
     alignItems: "center",
   },
   title: {
-    fontSize: 32,
+    fontSize: ms(32),
     fontWeight: "900",
-    marginBottom: 12,
+    marginBottom: ms(12),
     letterSpacing: -0.5,
     textAlign: "center",
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: "500",
-    lineHeight: 24,
+    lineHeight: ms(24),
     textAlign: "center",
-    paddingHorizontal: 16,
+    paddingHorizontal: ms(16),
   },
   cardsContainer: {
-    gap: 16,
+    gap: ms(16),
   },
   card: {
-    borderRadius: 24,
-    padding: 24,
+    borderRadius: ms(24),
+    padding: ms(24),
     borderWidth: 1,
     ...Platform.select({
       ios: {
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 4 },
+        shadowOffset: { width: 0, height: ms(4) },
         shadowOpacity: 0.1,
-        shadowRadius: 12,
+        shadowRadius: ms(12),
       },
       android: {
         elevation: 4,
       },
       web: {
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 4 },
+        shadowOffset: { width: 0, height: ms(4) },
         shadowOpacity: 0.05,
-        shadowRadius: 12,
+        shadowRadius: ms(12),
       }
     })
   },
   cardHeader: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: ms(16),
   },
   iconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 16,
+    width: ms(56),
+    height: ms(56),
+    borderRadius: ms(16),
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 16,
+    marginRight: ms(16),
   },
   cardTitleContainer: {
     flex: 1,
   },
   cardTitle: {
-    fontSize: 20,
+    fontSize: ms(20),
     fontWeight: "800",
     letterSpacing: -0.3,
   },
   cardDescription: {
-    fontSize: 15,
-    lineHeight: 22,
-    marginBottom: 20,
+    fontSize: ms(15),
+    lineHeight: ms(22),
+    marginBottom: ms(20),
   },
   actionButton: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 12,
-    borderRadius: 12,
-    gap: 8,
+    paddingVertical: ms(12),
+    borderRadius: ms(12),
+    gap: ms(8),
   },
   actionButtonText: {
-    fontSize: 15,
+    fontSize: ms(15),
     fontWeight: "800",
     letterSpacing: 0.5,
   },
   footer: {
-    marginTop: 48,
+    marginTop: ms(48),
     alignItems: "center",
-    gap: 12,
+    gap: ms(12),
   },
   footerText: {
-    fontSize: 14,
+    fontSize: ms(14),
     fontWeight: "600",
   },
   tabsContainer: {
     flexDirection: "row",
     backgroundColor: "rgba(100,100,100,0.1)",
-    borderRadius: 12,
-    padding: 4,
-    marginBottom: 24,
+    borderRadius: ms(12),
+    padding: ms(4),
+    marginBottom: ms(24),
   },
   tab: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: ms(12),
     alignItems: "center",
-    borderRadius: 8,
+    borderRadius: ms(8),
   },
   activeTab: {
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: ms(4),
     elevation: 2,
   },
   tabText: {
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: ms(14),
   },
   historyContainer: {
-    minHeight: 300,
+    minHeight: ms(300),
   },
   emptyState: {
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 60,
+    paddingVertical: ms(60),
   },
   emptyStateText: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: "600",
-    marginTop: 16,
+    marginTop: ms(16),
     opacity: 0.8,
   },
   historyCard: {
-    padding: 16,
-    borderRadius: 16,
+    padding: ms(16),
+    borderRadius: ms(16),
     borderWidth: 1,
-    marginBottom: 12,
+    marginBottom: ms(12),
   },
   historyHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 8,
+    marginBottom: ms(8),
   },
   historyType: {
     fontWeight: "800",
-    fontSize: 14,
+    fontSize: ms(14),
   },
   statusBadge: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
+    paddingHorizontal: ms(10),
+    paddingVertical: ms(4),
+    borderRadius: ms(12),
   },
   statusText: {
-    fontSize: 10,
+    fontSize: ms(10),
     fontWeight: "800",
   },
   historyDetails: {
-    fontSize: 15,
+    fontSize: ms(15),
     fontWeight: "500",
-    marginBottom: 8,
+    marginBottom: ms(8),
   },
   historyDate: {
-    fontSize: 12,
+    fontSize: ms(12),
     color: "#888",
     fontWeight: "500",
   }

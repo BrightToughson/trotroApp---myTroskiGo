@@ -1,3 +1,4 @@
+import { ms } from '../../lib/metrics';
 import { useTranslation } from "react-i18next";
 import { WebIcon } from "../../components/WebIcon";
 import { router } from "expo-router";
@@ -10,7 +11,8 @@ import {
     View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useTheme, LightColors } from "../../context/ThemeContext";
+import { useTheme, LightColors } from
+"../../context/ThemeContext";
 
 /**
  * About Screen: Provides information about the app's mission, features, and Privacy Policy.
@@ -99,85 +101,85 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 15,
+    paddingHorizontal: ms(20),
+    paddingVertical: ms(15),
   },
   backButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 14,
+    width: ms(44),
+    height: ms(44),
+    borderRadius: ms(14),
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 15,
+    marginRight: ms(15),
     elevation: 4,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: ms(4),
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: ms(24),
     fontWeight: "800",
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingBottom: 40,
+    paddingHorizontal: ms(20),
+    paddingBottom: ms(40),
   },
   brandingSection: {
     alignItems: "center",
-    marginVertical: 30,
+    marginVertical: ms(30),
   },
   logoPlaceholder: {
-    width: 100,
-    height: 100,
-    borderRadius: 30,
+    width: ms(100),
+    height: ms(100),
+    borderRadius: ms(30),
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: ms(16),
   },
   appName: {
-    fontSize: 28,
+    fontSize: ms(28),
     fontWeight: "900",
     letterSpacing: -0.5,
   },
   version: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: "600",
-    marginTop: 4,
+    marginTop: ms(4),
   },
   sectionCard: {
-    padding: 20,
-    borderRadius: 24,
+    padding: ms(20),
+    borderRadius: ms(24),
     borderWidth: 1,
-    marginBottom: 16,
+    marginBottom: ms(16),
   },
   sectionHeader: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 12,
+    marginBottom: ms(12),
   },
   iconWrapper: {
-    width: 40,
-    height: 40,
-    borderRadius: 12,
+    width: ms(40),
+    height: ms(40),
+    borderRadius: ms(12),
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 12,
+    marginRight: ms(12),
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: ms(20),
     fontWeight: "700",
   },
   sectionContent: {
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: ms(16),
+    lineHeight: ms(22),
   },
   footerInfo: {
     alignItems: "center",
-    marginTop: 20,
+    marginTop: ms(20),
   },
   footerText: {
-    fontSize: 15,
+    fontSize: ms(15),
     fontWeight: "500",
   },
 });

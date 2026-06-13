@@ -1,7 +1,9 @@
+import { ms } from '../lib/metrics';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapboxGL from '@rnmapbox/maps';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from
+'../context/ThemeContext';
 
 const MAPBOX_TOKEN = process.env.EXPO_PUBLIC_MAPBOX_KEY || '';
 MapboxGL.setAccessToken(MAPBOX_TOKEN);
@@ -133,7 +135,7 @@ const MapView = forwardRef((props: any, ref: any) => {
         if (lng > maxLng) maxLng = lng;
       });
       
-      const padding= options?.edgePadding || { top: 50, right: 50, bottom: 50, left: 50 };
+      const padding= options?.edgePadding || { top: ms(50), right: ms(50), bottom: ms(50), left: ms(50) };
       cameraRef.current?.fitBounds(
         [minLng, minLat],
         [maxLng, maxLat],

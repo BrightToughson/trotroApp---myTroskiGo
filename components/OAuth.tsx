@@ -1,3 +1,4 @@
+import { ms } from '../lib/metrics';
 import { useTheme, LightColors } from "../context/ThemeContext";
 import { WebIcon } from "./WebIcon";
 import { useWarmUpBrowser } from "../hooks/useWarmUpBrowser";
@@ -8,7 +9,8 @@ import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { Alert, Image, StyleSheet, View, Platform } from "react-native";
 import { CustomButton } from "./customButton";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from
+"react-i18next";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -183,11 +185,11 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
 const styles = StyleSheet.create({
   groupContainer: {
     width: "100%",
-    paddingHorizontal: 10,
+    paddingHorizontal: ms(10),
   },
   googleButtonContainer: {
     borderWidth: 1,
-    marginBottom: 20,
+    marginBottom: ms(20),
     shadowOpacity: 0.05,
     elevation: 1,
     minWidth: "auto",
@@ -196,9 +198,9 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   googleIcon: {
-    width: 20,
-    height: 20,
-    marginRight: 10,
+    width: ms(20),
+    height: ms(20),
+    marginRight: ms(10),
   },
 });
 

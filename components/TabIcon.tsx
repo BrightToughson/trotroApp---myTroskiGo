@@ -1,6 +1,8 @@
+import { ms } from '../lib/metrics';
 import { WebIcon } from "./WebIcon";
 import React, { useEffect } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text } from
+"react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -70,20 +72,20 @@ const styles = StyleSheet.create({
   },
   badge: {
     position: "absolute",
-    right: -8,
-    top: -4,
+    right: ms(-8),
+    top: ms(-4),
     backgroundColor: "#FF5252",
-    borderRadius: 10,
-    minWidth: 18,
-    height: 18,
+    borderRadius: ms(10),
+    minWidth: ms(18),
+    height: ms(18),
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 1.5,
+    borderWidth: ms(1.5),
     borderColor: "white",
   },
   badgeText: {
     color: "white",
-    fontSize: 12,
+    fontSize: ms(12),
     fontWeight: "800",
   },
 });

@@ -1,3 +1,4 @@
+import { ms } from '../../lib/metrics';
 import { WebIcon } from "../../components/WebIcon";
 import { Location } from "../../constants/types";
 import { router, useLocalSearchParams } from "expo-router";
@@ -17,7 +18,8 @@ import MapView, {
 } from "../../components/MapViewWrapper";
 import { useTheme } from "../../context/ThemeContext";
 import { useRideLogic } from "../../hooks/useRideLogic";
-import { calculateDistance } from "../../lib/LocationService";
+import { calculateDistance } from
+"../../lib/LocationService";
 import Animated, { 
   useAnimatedStyle, 
   useSharedValue, 
@@ -57,25 +59,25 @@ const LocationPill = memo(function LocationPill({ location, title, colors, type,
     >
       {type === 'origin' ? (
         // Premium Start Circle: White ring, emerald core, shadow
-        <View style={{ alignItems: 'center', width: 120 }}>
+        <View style={{ alignItems: 'center', width: ms(120) }}>
           <View style={styles.premiumStartMarker}>
             <View style={[styles.premiumStartInner, { backgroundColor: pinColor }]} />
           </View>
           {title ? (
-            <View style={{ marginTop: 4, backgroundColor: colors.background, paddingHorizontal: 6, paddingVertical: 2, borderRadius: 6, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 2, elevation: 3 }}>
-              <Text style={{ fontSize: 11, fontWeight: '700', color: colors.text, textAlign: 'center' }} numberOfLines={2}>{title}</Text>
+            <View style={{ marginTop: ms(4), backgroundColor: colors.background, paddingHorizontal: ms(6), paddingVertical: ms(2), borderRadius: ms(6), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: ms(2), elevation: 3 }}>
+              <Text style={{ fontSize: ms(11), fontWeight: '700', color: colors.text, textAlign: 'center' }} numberOfLines={2}>{title}</Text>
             </View>
           ) : null}
         </View>
       ) : (
         // Premium Destination Circle (Red Dot): White ring, red core, shadow
-        <View style={{ alignItems: 'center', width: 120 }}>
+        <View style={{ alignItems: 'center', width: ms(120) }}>
           <View style={styles.premiumStartMarker}>
             <View style={[styles.premiumStartInner, { backgroundColor: pinColor }]} />
           </View>
           {title ? (
-            <View style={{ marginTop: 4, backgroundColor: colors.background, paddingHorizontal: 6, paddingVertical: 2, borderRadius: 6, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 2, elevation: 3 }}>
-              <Text style={{ fontSize: 11, fontWeight: '700', color: colors.text, textAlign: 'center' }} numberOfLines={2}>{title}</Text>
+            <View style={{ marginTop: ms(4), backgroundColor: colors.background, paddingHorizontal: ms(6), paddingVertical: ms(2), borderRadius: ms(6), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: ms(2), elevation: 3 }}>
+              <Text style={{ fontSize: ms(11), fontWeight: '700', color: colors.text, textAlign: 'center' }} numberOfLines={2}>{title}</Text>
             </View>
           ) : null}
         </View>
@@ -95,13 +97,13 @@ const TransferMarker = memo(function TransferMarker({ coordinate, name, color, c
         color: color
       } as any)}
     >
-      <View style={{ alignItems: 'center', width: 100 }}>
+      <View style={{ alignItems: 'center', width: ms(100) }}>
         <View style={[styles.transferMarkerContainer, { borderColor: color, backgroundColor: '#ffffff' }]}>
           <View style={[styles.transferMarkerInner, { backgroundColor: color }]} />
         </View>
         {name ? (
-          <View style={{ marginTop: 4, backgroundColor: colors.background, paddingHorizontal: 6, paddingVertical: 2, borderRadius: 6, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 2, elevation: 3 }}>
-            <Text style={{ fontSize: 10, fontWeight: '700', color: colors.text, textAlign: 'center' }} numberOfLines={2}>{name}</Text>
+          <View style={{ marginTop: ms(4), backgroundColor: colors.background, paddingHorizontal: ms(6), paddingVertical: ms(2), borderRadius: ms(6), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: ms(2), elevation: 3 }}>
+            <Text style={{ fontSize: ms(10), fontWeight: '700', color: colors.text, textAlign: 'center' }} numberOfLines={2}>{name}</Text>
           </View>
         ) : null}
       </View>
@@ -175,12 +177,12 @@ const UserLocationMarker = memo(function UserLocationMarker({ location, colors }
       zIndex={100}
       anchor={{ x: 0.5, y: 0.5 }}
     >
-      <View style={{ alignItems: 'center', justifyContent: 'center', width: 50, height: 50 }}>
+      <View style={{ alignItems: 'center', justifyContent: 'center', width: ms(50), height: ms(50) }}>
         {/* Heading Cone */}
         <Animated.View style={[
           {
             position: 'absolute',
-            width: 46, height: 46, alignItems: 'center', justifyContent: 'center',
+            width: ms(46), height: ms(46), alignItems: 'center', justifyContent: 'center',
           },
           animatedHeadingStyle
         ]}>
@@ -196,9 +198,9 @@ const UserLocationMarker = memo(function UserLocationMarker({ location, colors }
         {/* Core Dot */}
         <View style={{
           position: 'absolute',
-          width: 16, height: 16, backgroundColor: '#3b82f6',
-          borderWidth: 2.5, borderColor: 'white', borderRadius: 8,
-          shadowColor: '#000', shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.3, shadowRadius: 3, elevation: 5
+          width: ms(16), height: ms(16), backgroundColor: '#3b82f6',
+          borderWidth: ms(2.5), borderColor: 'white', borderRadius: ms(8),
+          shadowColor: '#000', shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.3, shadowRadius: ms(3), elevation: 5
         }} />
       </View>
     </Marker>
@@ -259,16 +261,16 @@ const NativeNavHeader = memo(function NativeNavHeader({
       {currentInstruction && (
          <View style={styles.navHeaderContent}>
             <WebIcon name={currentInstruction.icon as any} size= {40} color="#fff" />
-            <View style={{ flex: 1, marginLeft: 18, marginRight: 10 }}>
+            <View style={{ flex: 1, marginLeft: ms(18), marginRight: ms(10) }}>
                <Text style={styles.navHeaderText}>{currentInstruction.text}</Text>
                <Text style={styles.navHeaderSubText}>{currentInstruction.tip || t('follow_highlighted')}</Text>
             </View>
             {tripDetails && (
-               <View style={{ backgroundColor: 'rgba(0,0,0,0.2)', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 16, alignItems: 'center' }}>
-                  <Text style={{ color: '#fff', fontWeight: '900', fontSize: 18 }}>
+               <View style={{ backgroundColor: 'rgba(0,0,0,0.2)', paddingHorizontal: ms(12), paddingVertical: ms(6), borderRadius: ms(16), alignItems: 'center' }}>
+                  <Text style={{ color: '#fff', fontWeight: '900', fontSize: ms(18) }}>
                      {tripDetails.travelMins + tripDetails.walkMins1 + tripDetails.walkMins2 + (tripDetails.trafficMins || 0) + (tripDetails.waitTimeMins || 0)}
                   </Text>
-                  <Text style={{ color: 'rgba(255,255,255,0.8)', fontWeight: '700', fontSize: 12, marginTop: -2 }}>
+                  <Text style={{ color: 'rgba(255,255,255,0.8)', fontWeight: '700', fontSize: ms(12), marginTop: ms(-2) }}>
                      {t('min')}
                   </Text>
                </View>
@@ -342,7 +344,7 @@ export default function FindRide() {
       if (destinationLocation?.coordinate) allCoords.push(destinationLocation.coordinate);
       if (allCoords.length > 0) {
         mapRef.current.fitToCoordinates(allCoords, { 
-          edgePadding: { top: insets.top + 80, right: 60, bottom: 350, left: 60 }, 
+          edgePadding: { top: insets.top + 80, right: ms(60), bottom: ms(350), left: ms(60) }, 
           animated: true 
         });
       }
@@ -445,7 +447,7 @@ export default function FindRide() {
   const handleStepPress = (coords: any[]) => {
     if (mapRef.current && coords.length > 0) {
       mapRef.current.fitToCoordinates(coords, {
-        edgePadding: { top: insets.top + 40, right: 20, bottom: 150, left: 20 },
+        edgePadding: { top: insets.top + 40, right: ms(20), bottom: ms(150), left: ms(20) },
         animated: true
       });
     }
@@ -746,18 +748,18 @@ export default function FindRide() {
             <TouchableOpacity 
               style={{
                 position: 'absolute',
-                bottom: 160,
-                left: 20,
+                bottom: ms(160),
+                left: ms(20),
                 backgroundColor: isDark ? "rgba(31, 41, 55, 0.95)" : "#fff",
-                paddingVertical: 10,
-                paddingHorizontal: 16,
-                borderRadius: 24,
+                paddingVertical: ms(10),
+                paddingHorizontal: ms(16),
+                borderRadius: ms(24),
                 flexDirection: 'row',
                 alignItems: 'center',
                 shadowColor: '#000',
-                shadowOffset: { width: 0, height: 2 },
+                shadowOffset: { width: 0, height: ms(2) },
                 shadowOpacity: 0.15,
-                shadowRadius: 8,
+                shadowRadius: ms(8),
                 elevation: 4,
                 zIndex: 90
               }}
@@ -775,7 +777,7 @@ export default function FindRide() {
               }}
             >
               <WebIcon name="navigate" size= {20} color={colors.primary} />
-              <Text style={{ marginLeft: 6, color: colors.primary, fontWeight: '700', fontSize: 15 }}>Re-center</Text>
+              <Text style={{ marginLeft: ms(6), color: colors.primary, fontWeight: '700', fontSize: ms(15) }}>Re-center</Text>
             </TouchableOpacity>
           )}
 
@@ -783,7 +785,7 @@ export default function FindRide() {
           <View 
             style={[
               styles.mapControls, 
-              { bottom: 320 }
+              { bottom: ms(320) }
             ]}
           >
             <TouchableOpacity style={[styles.mapBtn, { backgroundColor: isDark ? "rgba(31, 41, 55, 0.95)" : "#fff", borderColor: colors.border }]} onPress={zoomIn}>
@@ -795,7 +797,7 @@ export default function FindRide() {
             <TouchableOpacity style={[styles.mapBtn, { backgroundColor: isDark ? "rgba(31, 41, 55, 0.95)" : "#fff", borderColor: colors.border }]} onPress={resetMapRotation}>
               <View 
                 style={{
-                  width: 24, height: 24,
+                  width: ms(24), height: ms(24),
                   alignItems: 'center', justifyContent: 'center',
                   transform: [{ rotate: `${-mapBearing}deg` }]
                 }}
@@ -826,7 +828,7 @@ export default function FindRide() {
                 </View>
                 <View style={{
                   position: 'absolute',
-                  width: 3, height: 3, borderRadius: 1.5,
+                  width: ms(3), height: ms(3), borderRadius: ms(1.5),
                   backgroundColor: '#fff',
                   shadowColor: '#000', shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.3, shadowRadius: 1
                 }} />
@@ -851,16 +853,16 @@ export default function FindRide() {
               {currentInstruction && (
                  <View style={styles.navHeaderContent}>
                     <WebIcon name={currentInstruction.icon as any} size= {40} color="#fff" />
-                    <View style={{ flex: 1, marginLeft: 18, marginRight: 10 }}>
+                    <View style={{ flex: 1, marginLeft: ms(18), marginRight: ms(10) }}>
                        <Text style={styles.navHeaderText}>{currentInstruction.text}</Text>
                        <Text style={styles.navHeaderSubText}>{currentInstruction.tip || t('follow_highlighted')}</Text>
                     </View>
                     {tripDetails && (
-                       <View style={{ backgroundColor: 'rgba(0,0,0,0.2)', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 16, alignItems: 'center' }}>
-                          <Text style={{ color: '#fff', fontWeight: '900', fontSize: 18 }}>
+                       <View style={{ backgroundColor: 'rgba(0,0,0,0.2)', paddingHorizontal: ms(12), paddingVertical: ms(6), borderRadius: ms(16), alignItems: 'center' }}>
+                          <Text style={{ color: '#fff', fontWeight: '900', fontSize: ms(18) }}>
                              {tripDetails.travelMins + tripDetails.walkMins1 + tripDetails.walkMins2 + (tripDetails.trafficMins || 0) + (tripDetails.waitTimeMins || 0)}
                           </Text>
-                          <Text style={{ color: 'rgba(255,255,255,0.8)', fontWeight: '700', fontSize: 12, marginTop: -2 }}>
+                          <Text style={{ color: 'rgba(255,255,255,0.8)', fontWeight: '700', fontSize: ms(12), marginTop: ms(-2) }}>
                              {t('min')}
                           </Text>
                        </View>
@@ -907,20 +909,20 @@ export default function FindRide() {
                     top: insets.top + 10,
                     alignSelf: 'center',
                     width: '84%',
-                    maxWidth: 320,
-                    paddingHorizontal: 12,
+                    maxWidth: ms(320),
+                    paddingHorizontal: ms(12),
                   }}
                 >
                   <View style={{
                     backgroundColor: isDark ? "rgba(20, 29, 43, 0.85)" : "rgba(255, 255, 255, 0.95)",
-                    borderRadius: 18,
-                    padding: 13,
+                    borderRadius: ms(18),
+                    padding: ms(13),
                     borderWidth: 1,
                     borderColor: isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.06)",
                     shadowColor: "#000",
-                    shadowOffset: { width: 0, height: 4 },
+                    shadowOffset: { width: 0, height: ms(4) },
                     shadowOpacity: 0.1,
-                    shadowRadius: 10,
+                    shadowRadius: ms(10),
                     elevation: 6,
                     // @ts-ignore
                     backdropFilter: "blur(20px)",
@@ -934,7 +936,7 @@ export default function FindRide() {
                           setStopsExpanded(false);
                         }, 4000);
                       }} 
-                      style={{ paddingVertical: 5, alignItems: 'center' }}
+                      style={{ paddingVertical: ms(5), alignItems: 'center' }}
                     >
                        <View style={{ flexDirection: stopsExpanded ? 'column' : 'row', flexWrap: stopsExpanded ? 'nowrap' : 'wrap', alignItems: stopsExpanded ? 'flex-start' : 'center', justifyContent: stopsExpanded ? 'flex-start' : 'center', rowGap: stopsExpanded ? 0 : 8 }}>
                          {(() => {
@@ -946,15 +948,15 @@ export default function FindRide() {
                            
                            if (stopsExpanded) {
                              return stops.map((stop, i) => (
-                               <View key={`stop-${i}`} style={{ flexDirection: 'row', alignItems: 'center', height: 32 }}>
-                                  <View style={{ width: 16, height: '100%', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
+                               <View key={`stop-${i}`} style={{ flexDirection: 'row', alignItems: 'center', height: ms(32) }}>
+                                  <View style={{ width: ms(16), height: '100%', alignItems: 'center', justifyContent: 'center', marginRight: ms(12) }}>
                                      {i < stops.length - 1 && (
-                                        <View style={{ position: 'absolute', top: '50%', bottom: '-50%', width: 2, backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)', borderRadius: 1, zIndex: 1 }} />
+                                        <View style={{ position: 'absolute', top: '50%', bottom: '-50%', width: ms(2), backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)', borderRadius: 1, zIndex: 1 }} />
                                      )}
-                                     <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: stop.color, borderWidth: 1.5, borderColor: isDark ? '#1e293b' : '#fff', shadowColor: stop.color, shadowOpacity: 0.4, shadowRadius: 2, shadowOffset: { width: 0, height: 1 }, zIndex: 2 }} />
+                                     <View style={{ width: ms(8), height: ms(8), borderRadius: ms(4), backgroundColor: stop.color, borderWidth: ms(1.5), borderColor: isDark ? '#1e293b' : '#fff', shadowColor: stop.color, shadowOpacity: 0.4, shadowRadius: ms(2), shadowOffset: { width: 0, height: 1 }, zIndex: 2 }} />
                                   </View>
                                   <View style={{ flexShrink: 1 }}>
-                                    <Text style={{ fontSize: 16, fontWeight: '800', color: colors.text, letterSpacing: -0.2 }} numberOfLines={2}>
+                                    <Text style={{ fontSize: ms(16), fontWeight: '800', color: colors.text, letterSpacing: -0.2 }} numberOfLines={2}>
                                       {stop.name}
                                     </Text>
                                   </View>
@@ -963,12 +965,12 @@ export default function FindRide() {
                            } else {
                              return stops.map((stop, i) => (
                                <View key={`stop-${i}`} style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                  <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: stop.color, borderWidth: 1.5, borderColor: isDark ? '#1e293b' : '#fff', shadowColor: stop.color, shadowOpacity: 0.4, shadowRadius: 2, shadowOffset: { width: 0, height: 1 }, marginRight: 6 }} />
-                                  <Text style={{ fontSize: 13, fontWeight: '800', color: colors.text, letterSpacing: -0.2 }} numberOfLines={1}>
+                                  <View style={{ width: ms(8), height: ms(8), borderRadius: ms(4), backgroundColor: stop.color, borderWidth: ms(1.5), borderColor: isDark ? '#1e293b' : '#fff', shadowColor: stop.color, shadowOpacity: 0.4, shadowRadius: ms(2), shadowOffset: { width: 0, height: 1 }, marginRight: ms(6) }} />
+                                  <Text style={{ fontSize: ms(13), fontWeight: '800', color: colors.text, letterSpacing: -0.2 }} numberOfLines={1}>
                                     {stop.name.length > 4 ? stop.name.substring(0, 4) + '...' : stop.name}
                                   </Text>
                                   {i < stops.length - 1 && (
-                                     <View style={{ marginHorizontal: 6, opacity: 0.6 }}>
+                                     <View style={{ marginHorizontal: ms(6), opacity: 0.6 }}>
                                         <WebIcon name="chevron-forward" size= {14} color={colors.textSecondary} />
                                      </View>
                                   )}
@@ -1028,164 +1030,164 @@ export default function FindRide() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   overlayContainer: { flex: 1, justifyContent: "space-between", pointerEvents: "box-none" },
-  topBar: { paddingHorizontal: 20, pointerEvents: "box-none", zIndex: 110 },
-  topNavHeader: { position: 'absolute', top: 0, left: 0, right: 0, backgroundColor: '#0f9d58', paddingHorizontal: 20, paddingBottom: 20, borderBottomLeftRadius: 24, borderBottomRightRadius: 24, elevation: 8 },
+  topBar: { paddingHorizontal: ms(20), pointerEvents: "box-none", zIndex: 110 },
+  topNavHeader: { position: 'absolute', top: 0, left: 0, right: 0, backgroundColor: '#0f9d58', paddingHorizontal: ms(20), paddingBottom: ms(20), borderBottomLeftRadius: 24, borderBottomRightRadius: 24, elevation: 8 },
   navHeaderContent: { flexDirection: 'row', alignItems: 'center' },
-  navHeaderText: { color: '#fff', fontSize: 28, fontWeight: '900', lineHeight: 28 },
-  navHeaderSubText: { color: 'rgba(255,255,255,0.9)', fontSize: 16, fontWeight: '700', marginTop: 2 },
-  backButton: { width: 44, height: 44, borderRadius: 22, justifyContent: "center", alignItems: "center", elevation: 4 },
-  navPinContainer: { alignItems: 'center', justifyContent: 'center', width: 60, height: 60 },
-  navPinCircle: { width: 32, height: 32, borderRadius: 16, borderWidth: 3.5, borderColor: '#fff', elevation: 8, justifyContent: 'center', alignItems: 'center' },
-  navPinInnerDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: '#fff' },
-  navPinArrow: { position: 'absolute', top: -14, width: 0, height: 0, borderLeftWidth: 8, borderRightWidth: 8, borderBottomWidth: 16, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: '#fff' },
-  navPinBeaming: { position: 'absolute', width: 44, height: 44, borderRadius: 22 },
-  pillContainer: { flexDirection: "row", alignItems: "center", paddingVertical: 10, paddingHorizontal: 16, borderRadius: 24, borderWidth: 2, elevation: 10, maxWidth: 240 },
-  pillIconWrapper: { width: 24, height: 24, borderRadius: 12, alignItems: "center", justifyContent: "center", marginRight: 12 },
-  pillText: { fontSize: 16, fontWeight: "900" },
-  mapControls: { position: 'absolute', right: 16, gap: 10 },
-  mapBtn: { width: 44, height: 44, borderRadius: 12, justifyContent: 'center', alignItems: 'center', borderWidth: 1, elevation: 4 },
+  navHeaderText: { color: '#fff', fontSize: ms(28), fontWeight: '900', lineHeight: ms(28) },
+  navHeaderSubText: { color: 'rgba(255,255,255,0.9)', fontSize: ms(16), fontWeight: '700', marginTop: ms(2) },
+  backButton: { width: ms(44), height: ms(44), borderRadius: ms(22), justifyContent: "center", alignItems: "center", elevation: 4 },
+  navPinContainer: { alignItems: 'center', justifyContent: 'center', width: ms(60), height: ms(60) },
+  navPinCircle: { width: ms(32), height: ms(32), borderRadius: ms(16), borderWidth: ms(3.5), borderColor: '#fff', elevation: 8, justifyContent: 'center', alignItems: 'center' },
+  navPinInnerDot: { width: ms(6), height: ms(6), borderRadius: ms(3), backgroundColor: '#fff' },
+  navPinArrow: { position: 'absolute', top: ms(-14), width: 0, height: 0, borderLeftWidth: 8, borderRightWidth: 8, borderBottomWidth: 16, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: '#fff' },
+  navPinBeaming: { position: 'absolute', width: ms(44), height: ms(44), borderRadius: ms(22) },
+  pillContainer: { flexDirection: "row", alignItems: "center", paddingVertical: ms(10), paddingHorizontal: ms(16), borderRadius: ms(24), borderWidth: ms(2), elevation: 10, maxWidth: ms(240) },
+  pillIconWrapper: { width: ms(24), height: ms(24), borderRadius: ms(12), alignItems: "center", justifyContent: "center", marginRight: ms(12) },
+  pillText: { fontSize: ms(16), fontWeight: "900" },
+  mapControls: { position: 'absolute', right: ms(16), gap: ms(10) },
+  mapBtn: { width: ms(44), height: ms(44), borderRadius: ms(12), justifyContent: 'center', alignItems: 'center', borderWidth: 1, elevation: 4 },
   transferMarkerContainer: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    borderWidth: 4,
+    width: ms(22),
+    height: ms(22),
+    borderRadius: ms(11),
+    borderWidth: ms(4),
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 4,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.2,
-    shadowRadius: 2,
+    shadowRadius: ms(2),
   },
   transferMarkerInner: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
+    width: ms(8),
+    height: ms(8),
+    borderRadius: ms(4),
   },
-  userMarkerWrapper: { alignItems: 'center', justifyContent: 'center', width: 80, height: 80 },
+  userMarkerWrapper: { alignItems: 'center', justifyContent: 'center', width: ms(80), height: ms(80) },
   userPulseRing: {
     position: 'absolute',
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    width: ms(24),
+    height: ms(24),
+    borderRadius: ms(12),
   },
   userDot: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    borderWidth: 3,
+    width: ms(22),
+    height: ms(22),
+    borderRadius: ms(11),
+    borderWidth: ms(3),
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 8,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.3,
-    shadowRadius: 3,
+    shadowRadius: ms(3),
   },
   userDotCore: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
+    width: ms(6),
+    height: ms(6),
+    borderRadius: ms(3),
     backgroundColor: '#fff',
   },
   mapInstructionBox: {
     position: 'absolute',
-    top: 54, // Below back button
+    top: ms(54), // Below back button
     alignSelf: 'center',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 18,
-    borderRadius: 20,
-    borderWidth: 1.5,
-    gap: 8,
+    paddingVertical: ms(10),
+    paddingHorizontal: ms(18),
+    borderRadius: ms(20),
+    borderWidth: ms(1.5),
+    gap: ms(8),
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: ms(4) },
     shadowOpacity: 0.1,
-    shadowRadius: 8,
+    shadowRadius: ms(8),
     elevation: 5,
   },
   mapInstructionText: {
-    fontSize: 12,
+    fontSize: ms(12),
     fontWeight: '900',
     letterSpacing: 1.2,
   },
   hubMarkerContainer: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    borderWidth: 2.5,
+    width: ms(12),
+    height: ms(12),
+    borderRadius: ms(6),
+    borderWidth: ms(2.5),
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 3,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1.5 },
+    shadowOffset: { width: 0, height: ms(1.5) },
     shadowOpacity: 0.15,
-    shadowRadius: 2,
+    shadowRadius: ms(2),
   },
   hubMarkerInner: {
-    width: 3,
-    height: 3,
-    borderRadius: 1.5,
+    width: ms(3),
+    height: ms(3),
+    borderRadius: ms(1.5),
   },
 
   intermediateStopDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    borderWidth: 2,
+    width: ms(10),
+    height: ms(10),
+    borderRadius: ms(5),
+    borderWidth: ms(2),
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 3,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.15,
-    shadowRadius: 1.5,
+    shadowRadius: ms(1.5),
   },
   intermediateStopInner: {
-    width: 4,
-    height: 4,
-    borderRadius: 2,
+    width: ms(4),
+    height: ms(4),
+    borderRadius: ms(2),
     backgroundColor: '#ffffff',
   },
   premiumStartMarker: {
-    width: 26,
-    height: 26,
-    borderRadius: 13,
+    width: ms(26),
+    height: ms(26),
+    borderRadius: ms(13),
     backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 2,
+    borderWidth: ms(2),
     borderColor: '#ffffff',
     elevation: 8,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.25,
-    shadowRadius: 4,
+    shadowRadius: ms(4),
   },
   premiumStartInner: {
-    width: 14,
-    height: 14,
-    borderRadius: 7,
+    width: ms(14),
+    height: ms(14),
+    borderRadius: ms(7),
   },
   premiumDestMarker: {
     alignItems: 'center',
     justifyContent: 'center',
   },
   premiumDestCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: ms(36),
+    height: ms(36),
+    borderRadius: ms(18),
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 2,
+    borderWidth: ms(2),
     borderColor: '#ffffff',
     elevation: 8,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.25,
-    shadowRadius: 4,
+    shadowRadius: ms(4),
   },
   premiumDestArrow: {
     width: 0,

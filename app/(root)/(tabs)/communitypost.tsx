@@ -1,3 +1,4 @@
+import { ms } from '../../../lib/metrics';
 import { WebIcon } from "../../../components/WebIcon";
 import { LinearGradient } from "expo-linear-gradient";
 import { NotificationsWrapper as Notifications } from "../../../lib/NotificationsWrapper";
@@ -47,7 +48,8 @@ import { translateText } from "../../../lib/translate";
 import SideMenu from "../../../components/SideMenu";
 import TutorialModal from "../../../components/TutorialModal";
 import OfficialAnnouncementsModal from "../../../components/OfficialAnnouncementsModal";
-import LanguageSelector from "../../../components/LanguageSelector";
+import LanguageSelector from
+"../../../components/LanguageSelector";
 
 const TranslatedPostText = React.memo(({ notification, colors, t, i18n }: any) => {
   const { isDark } = useTheme();
@@ -142,7 +144,7 @@ const NotificationItem = React.memo(({
         <View style={styles.tweetRightCol}>
           <View style={styles.tweetHeader}>
             <View style={styles.tweetUserInfo}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: ms(4), flexShrink: 1 }}>
                 <Text style={[styles.tweetName, { color: colors.text, flexShrink: 1 }]} numberOfLines={1}>{item.title}</Text>
                 {item.type === 'official' && (
                   <WebIcon name="shield-checkmark" size= {14} color={colors.primary} />
@@ -155,9 +157,9 @@ const NotificationItem = React.memo(({
               <Text style={[styles.tweetTime, { color: colors.textSecondary }]}>{item.time}</Text>
             </View>
             {item.tag && (
-              <View style={[styles.tweetTag, { backgroundColor: (tagObj?.color || colors.primary) + '15', flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 10, paddingVertical: 4 }]}>
-                <Text style={{ fontSize: 14 }}>{tagObj?.emoji}</Text>
-                <Text style={[styles.tweetTagLabel, { color: tagObj?.color || colors.primary, fontSize: 12, fontWeight: '800' }]}>
+              <View style={[styles.tweetTag, { backgroundColor: (tagObj?.color || colors.primary) + '15', flexDirection: 'row', alignItems: 'center', gap: ms(6), paddingHorizontal: ms(10), paddingVertical: ms(4) }]}>
+                <Text style={{ fontSize: ms(14) }}>{tagObj?.emoji}</Text>
+                <Text style={[styles.tweetTagLabel, { color: tagObj?.color || colors.primary, fontSize: ms(12), fontWeight: '800' }]}>
                   {t(`tag_${item.tag}`, { defaultValue: tagObj?.label || item.tag }).toUpperCase()}
                 </Text>
               </View>
@@ -174,7 +176,7 @@ const NotificationItem = React.memo(({
                     resizeMode={ResizeMode.COVER}
                     shouldPlay={false}
                   />
-                  <View style={[StyleSheet.absoluteFill, { justifyContent: 'center', alignItems: 'center', borderRadius: 16, marginVertical: 12, backgroundColor: 'rgba(0,0,0,0.3)' }]}>
+                  <View style={[StyleSheet.absoluteFill, { justifyContent: 'center', alignItems: 'center', borderRadius: ms(16), marginVertical: ms(12), backgroundColor: 'rgba(0,0,0,0.3)' }]}>
                     <WebIcon name="play-circle" size= {54} color="rgba(255,255,255,0.9)" />
                   </View>
                 </View>
@@ -194,7 +196,7 @@ const NotificationItem = React.memo(({
           <TranslatedPostText notification={item} colors={colors} t={t} i18n={i18n} />
 
           <View style={styles.tweetActions}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: ms(15) }}>
               <TouchableOpacity onPress={() => setActivePostForComments(item)} style={styles.tweetActionBtn}>
                 <WebIcon name="chatbubble-outline" size= {20} color={colors.textSecondary} />
                 {commentsCount > 0 && (
@@ -207,25 +209,25 @@ const NotificationItem = React.memo(({
                 onPress={() => handleReaction(item.id, 'like')} 
                 style={styles.tweetActionBtn}
               >
-                <Animated.Text style={{ fontSize: 20, opacity: hasReacted('like') ? 1 : 0.4 }}>
+                <Animated.Text style={{ fontSize: ms(20), opacity: hasReacted('like') ? 1 : 0.4 }}>
                   {REACTION_TYPES.find(r => r.id === 'like')?.emoji}
                 </Animated.Text>
                 {counts.like > 0 && <Text style={[styles.tweetActionCount, { color: hasReacted('like') ? "#ef4444" : colors.textSecondary }]}>{counts.like}</Text>}
               </TouchableOpacity>
               
               {item.type === 'official' ? (
-                <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.primary + '10', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 6 }}>
-                  <WebIcon name="shield-checkmark" size= {12} color={colors.primary} style={{ marginRight: 4 }} />
-                  <Text style={{ fontSize: 12, color: colors.primary, fontWeight: '800' }}>VERIFIED OFFICIAL</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.primary + '10', paddingHorizontal: ms(8), paddingVertical: ms(4), borderRadius: ms(6) }}>
+                  <WebIcon name="shield-checkmark" size= {12} color={colors.primary} style={{ marginRight: ms(4) }} />
+                  <Text style={{ fontSize: ms(12), color: colors.primary, fontWeight: '800' }}>VERIFIED OFFICIAL</Text>
                 </View>
               ) : (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: ms(15) }}>
                   <TouchableOpacity 
                     activeOpacity={0.7}
                     onPress={() => handleReaction(item.id, 'helpful')} 
                     style={styles.tweetActionBtn}
                   >
-                    <Animated.Text style={{ fontSize: 20, opacity: hasReacted('helpful') ? 1 : 0.4 }}>
+                    <Animated.Text style={{ fontSize: ms(20), opacity: hasReacted('helpful') ? 1 : 0.4 }}>
                       {REACTION_TYPES.find(r => r.id === 'helpful')?.emoji}
                     </Animated.Text>
                     {counts.helpful > 0 && <Text style={[styles.tweetActionCount, { color: hasReacted('helpful') ? "#10b981" : colors.textSecondary }]}>{counts.helpful}</Text>}
@@ -236,7 +238,7 @@ const NotificationItem = React.memo(({
                     onPress={() => handleReaction(item.id, 'alert')} 
                     style={styles.tweetActionBtn}
                   >
-                    <Animated.Text style={{ fontSize: 20, opacity: hasReacted('alert') ? 1 : 0.4 }}>
+                    <Animated.Text style={{ fontSize: ms(20), opacity: hasReacted('alert') ? 1 : 0.4 }}>
                       {REACTION_TYPES.find(r => r.id === 'alert')?.emoji}
                     </Animated.Text>
                     {counts.alert > 0 && <Text style={[styles.tweetActionCount, { color: hasReacted('alert') ? "#f59e0b" : colors.textSecondary }]}>{counts.alert}</Text>}
@@ -892,10 +894,10 @@ export default function NotificationsScreen() {
             animatedDrift1,
             {
               backgroundColor: "#0286FF",
-              top: -80,
-              right: -50,
-              width: 300,
-              height: 300,
+              top: ms(-80),
+              right: ms(-50),
+              width: ms(300),
+              height: ms(300),
               opacity: isDark ? 0.5 : 0.25,
             },
           ]}
@@ -907,9 +909,9 @@ export default function NotificationsScreen() {
             {
               backgroundColor: "#FFD700",
               bottom: "10%",
-              left: -100,
-              width: 250,
-              height: 250,
+              left: ms(-100),
+              width: ms(250),
+              height: ms(250),
               opacity: isDark ? 0.5 : 0.25,
             },
           ]}
@@ -917,12 +919,12 @@ export default function NotificationsScreen() {
       </View>
 
       <View style={{ flex: 1, paddingTop: insets.top }}>
-        <View style={[styles.header, { paddingHorizontal: 20, marginBottom: 15, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }]}>
+        <View style={[styles.header, { paddingHorizontal: ms(20), marginBottom: ms(15), flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }]}>
           <View style={{ flex: 1 }}>
             <Text style={[styles.headerTitle, { color: colors.text }]}>
               {t('community_feed', 'Community')}
             </Text>
-            <Text style={[styles.headerSubtitle, { color: colors.textSecondary, fontSize: 15 }]}>
+            <Text style={[styles.headerSubtitle, { color: colors.textSecondary, fontSize: ms(15) }]}>
               Latest reports & alerts
             </Text>
           </View>
@@ -953,7 +955,7 @@ export default function NotificationsScreen() {
           removeClippedSubviews={Platform.OS === 'android'}
           ListHeaderComponentStyle={{ marginBottom: 0 }}
           ListFooterComponent={
-            <View style={{ height: 100 }} />
+            <View style={{ height: ms(100) }} />
           }
           ListHeaderComponent={
             <View>
@@ -971,7 +973,7 @@ export default function NotificationsScreen() {
 
                   
                     <View style={styles.tagScrollContainer}>
-                      <Text style={[styles.tagSectionLabel, { color: colors.textSecondary, paddingHorizontal: 4 }]}>{t('what_is_happening', 'Select category:')}</Text>
+                      <Text style={[styles.tagSectionLabel, { color: colors.textSecondary, paddingHorizontal: ms(4) }]}>{t('what_is_happening', 'Select category:')}</Text>
                       <ScrollView 
                         horizontal 
                         showsHorizontalScrollIndicator={false} 
@@ -987,28 +989,28 @@ export default function NotificationsScreen() {
                               { 
                                 backgroundColor: postTag === tag.id ? tag.color : (isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)'),
                                 borderColor: postTag === tag.id ? tag.color : (isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'),
-                                marginRight: 10,
+                                marginRight: ms(10),
                               }
                             ]}
                           >
-                            <Text style={{ fontSize: 18 }}>{tag.emoji}</Text>
-                            <Text style={[styles.tagLabel, { color: postTag === tag.id ? '#fff' : colors.text, fontSize: 14 }]}>{t(`tag_${tag.id}`, tag.label)}</Text>
+                            <Text style={{ fontSize: ms(18) }}>{tag.emoji}</Text>
+                            <Text style={[styles.tagLabel, { color: postTag === tag.id ? '#fff' : colors.text, fontSize: ms(14) }]}>{t(`tag_${tag.id}`, tag.label)}</Text>
                           </TouchableOpacity>
                         ))}
                       </ScrollView>
                     </View>
 
                     {isAdmin && (
-                      <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15, paddingHorizontal: 4 }}>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: ms(15), paddingHorizontal: ms(4) }}>
                         <TouchableOpacity 
                           onPress={() => setIsOfficialPost(!isOfficialPost)}
-                          style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
+                          style={{ flexDirection: 'row', alignItems: 'center', gap: ms(8) }}
                         >
                           <View style={{ 
-                            width: 20, 
-                            height: 20, 
-                            borderRadius: 6, 
-                            borderWidth: 2, 
+                            width: ms(20), 
+                            height: ms(20), 
+                            borderRadius: ms(6), 
+                            borderWidth: ms(2), 
                             borderColor: isOfficialPost ? colors.primary : colors.textSecondary,
                             backgroundColor: isOfficialPost ? colors.primary : 'transparent',
                             justifyContent: 'center',
@@ -1016,11 +1018,11 @@ export default function NotificationsScreen() {
                           }}>
                             {isOfficialPost && <WebIcon name="checkmark" size= {14} color="white" />}
                           </View>
-                          <Text style={{ color: isOfficialPost ? colors.primary : colors.textSecondary, fontWeight: '700', fontSize: 15 }}>
+                          <Text style={{ color: isOfficialPost ? colors.primary : colors.textSecondary, fontWeight: '700', fontSize: ms(15) }}>
                             {t('post_as_official', 'Post as Official Update')}
                           </Text>
                         </TouchableOpacity>
-                        <WebIcon name="shield-checkmark" size= {16} color={isOfficialPost ? colors.primary : colors.textSecondary} style={{ marginLeft: 6 }} />
+                        <WebIcon name="shield-checkmark" size= {16} color={isOfficialPost ? colors.primary : colors.textSecondary} style={{ marginLeft: ms(6) }} />
                       </View>
                     )}
 
@@ -1031,9 +1033,9 @@ export default function NotificationsScreen() {
                         backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
                         color: colors.text,
                         borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)',
-                        height: 80,
+                        height: ms(80),
                         textAlignVertical: 'top',
-                        paddingTop: 16,
+                        paddingTop: ms(16),
                       },
                     ]}
                     placeholder={t('report_placeholder')}
@@ -1060,14 +1062,14 @@ export default function NotificationsScreen() {
                   )}
 
                   <View style={[styles.postActions, { flexWrap: 'nowrap' }]}>
-                    <View style={{ flexDirection: 'row', gap: 6, flex: 1 }}>
+                    <View style={{ flexDirection: 'row', gap: ms(6), flex: 1 }}>
                       <TouchableOpacity onPress={() => pickImage()} style={[styles.mediaBtn, { backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.03)', flex: 1, justifyContent: 'center' }]}>
                         <WebIcon name="image-outline" size= {16} color={colors.primary} />
-                        <Text style={[styles.mediaBtnText, { color: colors.textSecondary, fontSize: 14 }]} numberOfLines={1}>{t('photo', 'Photo')}</Text>
+                        <Text style={[styles.mediaBtnText, { color: colors.textSecondary, fontSize: ms(14) }]} numberOfLines={1}>{t('photo', 'Photo')}</Text>
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() => takePhoto()} style={[styles.mediaBtn, { backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.03)', flex: 1, justifyContent: 'center' }]}>
                         <WebIcon name="camera-outline" size= {16} color={colors.primary} />
-                        <Text style={[styles.mediaBtnText, { color: colors.textSecondary, fontSize: 14 }]} numberOfLines={1}>{t('camera', 'Camera')}</Text>
+                        <Text style={[styles.mediaBtnText, { color: colors.textSecondary, fontSize: ms(14) }]} numberOfLines={1}>{t('camera', 'Camera')}</Text>
                       </TouchableOpacity>
                     </View>
 
@@ -1078,25 +1080,25 @@ export default function NotificationsScreen() {
                         styles.postButton,
                         { 
                           backgroundColor: (isUploading || !postText.trim()) ? colors.border : colors.primary,
-                          paddingHorizontal: 12,
-                          height: 36,
-                          borderRadius: 18,
-                          marginLeft: 8,
-                          minWidth: 80,
+                          paddingHorizontal: ms(12),
+                          height: ms(36),
+                          borderRadius: ms(18),
+                          marginLeft: ms(8),
+                          minWidth: ms(80),
                         },
                       ]}
                     >
                       {isUploading ? (
-                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: ms(8) }}>
                           <ActivityIndicator size= "small" color="#fff" />
-                          <Text style={[styles.postButtonText, { fontSize: 13 }]}>{t('uploading', 'Uploading...')}</Text>
+                          <Text style={[styles.postButtonText, { fontSize: ms(13) }]}>{t('uploading', 'Uploading...')}</Text>
                         </View>
                       ) : (
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                          <Text style={[styles.postButtonText, { fontSize: 13 }]}>
+                          <Text style={[styles.postButtonText, { fontSize: ms(13) }]}>
                             {isOfficialPost ? t('post_official', 'Post') : t('community_post_btn', 'Post')}
                           </Text>
-                          <WebIcon name="send" size= {14} color="#fff" style={{ marginLeft: 6 }} />
+                          <WebIcon name="send" size= {14} color="#fff" style={{ marginLeft: ms(6) }} />
                         </View>
                       )}
                     </TouchableOpacity>
@@ -1106,7 +1108,7 @@ export default function NotificationsScreen() {
               {/* Feed Filter Bar */}
                 <View style={[styles.filterBarContainer]}>
                   <View style={styles.filterBarHeader}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, flex: 1 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: ms(6), flex: 1 }}>
               <WebIcon name="funnel-outline" size= {14} color={colors.textSecondary} />
               <Text style={[styles.filterLabel, { color: colors.textSecondary }]}>{t('filter_by', 'Filter by')}</Text>
             </View>
@@ -1137,14 +1139,14 @@ export default function NotificationsScreen() {
                             backgroundColor: tag.color + '15', 
                             borderColor: tag.color + '40',
                             shadowColor: tag.color,
-                            shadowOffset: { width: 0, height: 4 },
+                            shadowOffset: { width: 0, height: ms(4) },
                             shadowOpacity: 0.2,
-                            shadowRadius: 8,
+                            shadowRadius: ms(8),
                             elevation: 4
                           }
                         ]}
                       >
-                        <Text style={{ fontSize: 18 }}>{tag.emoji}</Text>
+                        <Text style={{ fontSize: ms(18) }}>{tag.emoji}</Text>
                         <Text style={[
                           styles.filterChipLabel, 
                           { color: selectedTag === tag.id ? colors.text : colors.textSecondary, fontWeight: selectedTag === tag.id ? '800' : '600' }
@@ -1163,7 +1165,7 @@ export default function NotificationsScreen() {
           ListEmptyComponent={
             <View style={styles.emptyState}>
               <WebIcon name="notifications-off-outline" size= {48} color={colors.textSecondary} />
-              <Text style={{ color: colors.textSecondary, marginTop: 10, fontWeight: '600' }}>
+              <Text style={{ color: colors.textSecondary, marginTop: ms(10), fontWeight: '600' }}>
                 {t('no_community_alerts')}
               </Text>
             </View>
@@ -1214,7 +1216,7 @@ export default function NotificationsScreen() {
                       </View>
                       {(item.userId === user?.id || isAdmin) && (
                         <TouchableOpacity 
-                          style={{ padding: 8, justifyContent: 'center' }}
+                          style={{ padding: ms(8), justifyContent: 'center' }}
                           onPress={() => handleDeleteComment(activePostForComments!.id, item.id)}
                         >
                           <WebIcon name="trash-bin-outline" size= {16} color="#ef4444" />
@@ -1227,7 +1229,7 @@ export default function NotificationsScreen() {
                       {t('no_replies')}
                     </Text>
                   }
-                  contentContainerStyle={{ paddingBottom: 20 }}
+                  contentContainerStyle={{ paddingBottom: ms(20) }}
                 />
                 
                 <View style={[styles.commentInputContainer, { borderTopColor: colors.border }]}>
@@ -1252,41 +1254,48 @@ export default function NotificationsScreen() {
         </Modal>
         
         {/* Full-Screen Image Viewer Modal */}
-        {previewImage !== null && (
-          <View style={[StyleSheet.absoluteFill, { zIndex: 2000, elevation: 20 }]} pointerEvents="box-none">
-            <Animated.View entering={FadeIn} exiting={FadeOut} style={StyleSheet.absoluteFill}>
-              <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.9)', justifyContent: 'center', alignItems: 'center' }}>
-                <Pressable 
-                  style={StyleSheet.absoluteFill} 
-                  onPress={() => setPreviewImage(null)} 
-                />
-                {previewImage.toLowerCase().endsWith('.mp4') ? (
-                  <Video
-                    source={{ uri: previewImage }}
-                    style={{ width: '100%', height: '100%' }}
-                    useNativeControls
-                    resizeMode={ResizeMode.CONTAIN}
-                    shouldPlay
+        <Modal
+          visible={previewImage !== null}
+          transparent={true}
+          animationType="fade"
+          onRequestClose={() => setPreviewImage(null)}
+        >
+          {previewImage !== null && (
+            <View style={[StyleSheet.absoluteFill, { zIndex: 2000, elevation: 20 }]} pointerEvents="box-none">
+              <Animated.View entering={FadeIn} exiting={FadeOut} style={StyleSheet.absoluteFill}>
+                <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.9)', justifyContent: 'center', alignItems: 'center' }}>
+                  <Pressable 
+                    style={StyleSheet.absoluteFill} 
+                    onPress={() => setPreviewImage(null)} 
                   />
-                ) : (
-                  <ExpoImage
-                    source={{ uri: previewImage }}
-                    style={{ width: '100%', height: '100%' }}
-                    contentFit="contain"
-                  />
-                )}
-                
-                {/* Close Button */}
-                <TouchableOpacity 
-                  style={{ position: 'absolute', top: 50, right: 25, backgroundColor: 'rgba(255,255,255,0.2)', padding: 10, borderRadius: 25, zIndex: 3000 }}
-                  onPress={() => setPreviewImage(null)}
-                >
-                  <WebIcon name="close" size= {24} color="white" />
-                </TouchableOpacity>
-              </View>
-            </Animated.View>
-          </View>
-        )}
+                  {previewImage.toLowerCase().endsWith('.mp4') ? (
+                    <Video
+                      source={{ uri: previewImage }}
+                      style={{ width: '100%', height: '100%' }}
+                      useNativeControls
+                      resizeMode={ResizeMode.CONTAIN}
+                      shouldPlay
+                    />
+                  ) : (
+                    <ExpoImage
+                      source={{ uri: previewImage }}
+                      style={{ width: '100%', height: '100%' }}
+                      contentFit="contain"
+                    />
+                  )}
+                  
+                  {/* Close Button */}
+                  <TouchableOpacity 
+                    style={{ position: 'absolute', top: ms(50), right: ms(25), backgroundColor: 'rgba(255,255,255,0.2)', padding: ms(10), borderRadius: ms(25), zIndex: 3000 }}
+                    onPress={() => setPreviewImage(null)}
+                  >
+                    <WebIcon name="close" size={24} color="white" />
+                  </TouchableOpacity>
+                </View>
+              </Animated.View>
+            </View>
+          )}
+        </Modal>
         
         <OfficialAnnouncementsModal 
           isVisible={isOfficialModalVisible} 
@@ -1301,175 +1310,175 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   decorativeCircle: {
     position: "absolute",
-    borderRadius: 999,
+    borderRadius: ms(999),
   },
   header: {
-    paddingHorizontal: 20,
-    paddingVertical: 24,
+    paddingHorizontal: ms(20),
+    paddingVertical: ms(24),
   },
-  headerTitle: { fontSize: 24, fontWeight: "900", marginBottom: 12, letterSpacing: -0.8 },
+  headerTitle: { fontSize: ms(24), fontWeight: "900", marginBottom: ms(12), letterSpacing: -0.8 },
   tabContainer: {
     flexDirection: 'row',
-    borderRadius: 14,
-    padding: 4,
-    marginBottom: 15,
+    borderRadius: ms(14),
+    padding: ms(4),
+    marginBottom: ms(15),
   },
   tab: {
     flex: 1,
-    paddingVertical: 10,
-    borderRadius: 12,
+    paddingVertical: ms(10),
+    borderRadius: ms(12),
     alignItems: 'center',
     justifyContent: 'center',
   },
   tabContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: ms(6),
   },
-  tabText: { fontSize: 15, fontWeight: '800', letterSpacing: 0.2 },
+  tabText: { fontSize: ms(15), fontWeight: '800', letterSpacing: 0.2 },
   tabUnreadDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
+    width: ms(6),
+    height: ms(6),
+    borderRadius: ms(3),
     position: 'absolute',
-    top: -2,
-    right: -8,
+    top: ms(-2),
+    right: ms(-8),
   },
-  listContent: { paddingHorizontal: 24, paddingTop: 10, paddingBottom: 140 },
+  listContent: { paddingHorizontal: ms(24), paddingTop: ms(10), paddingBottom: ms(140) },
   notificationCard: {
     flexDirection: "row",
-    padding: 18,
-    borderRadius: 24,
-    marginBottom: 16,
-    borderWidth: 1.5,
+    padding: ms(18),
+    borderRadius: ms(24),
+    marginBottom: ms(16),
+    borderWidth: ms(1.5),
     alignItems: "center",
     ...Platform.select({
       web: {},
       default: {
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 8 },
+        shadowOffset: { width: 0, height: ms(8) },
         shadowOpacity: 0.05,
-        shadowRadius: 16,
+        shadowRadius: ms(16),
         elevation: 3,
       }
     }),
   },
   iconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: ms(48),
+    height: ms(48),
+    borderRadius: ms(24),
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 14,
+    marginRight: ms(14),
   },
   textContainer: { flex: 1 },
   headerRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 4,
+    marginBottom: ms(4),
     alignItems: 'flex-start'
   },
   timeTagContainer: {
     alignItems: 'flex-end',
-    marginLeft: 8,
+    marginLeft: ms(8),
   },
-  title: { fontSize: 16, fontWeight: "800", marginRight: 5 },
+  title: { fontSize: ms(16), fontWeight: "800", marginRight: ms(5) },
   typeBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 6,
-    marginLeft: 4,
+    paddingHorizontal: ms(6),
+    paddingVertical: ms(2),
+    borderRadius: ms(6),
+    marginLeft: ms(4),
   },
   typeBadgeText: {
-    fontSize: 11,
+    fontSize: ms(11),
     fontWeight: '800',
-    marginLeft: 3,
+    marginLeft: ms(3),
     textTransform: 'uppercase',
   },
   topRightTag: {
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 8,
-    marginBottom: 4,
+    paddingHorizontal: ms(8),
+    paddingVertical: ms(3),
+    borderRadius: ms(8),
+    marginBottom: ms(4),
   },
   topRightTagLabel: {
-    fontSize: 11,
+    fontSize: ms(11),
     fontWeight: '900',
     textTransform: 'uppercase',
   },
-  time: { fontSize: 13, fontWeight: '600' },
-  message: { fontSize: 16, lineHeight: 20, fontWeight: '500' },
+  time: { fontSize: ms(12), fontWeight: '600' },
+  message: { fontSize: ms(15), lineHeight: ms(20), fontWeight: '500' },
   rightActions: {
     alignItems: "center",
     justifyContent: "center",
   },
-  dot: { width: 8, height: 8, borderRadius: 4, marginBottom: 8 },
+  dot: { width: ms(8), height: ms(8), borderRadius: ms(4), marginBottom: ms(8) },
   deleteButton: {
-    padding: 8,
+    padding: ms(8),
   },
   postContainer: {
-    padding: 16,
-    borderRadius: 24,
+    padding: ms(16),
+    borderRadius: ms(24),
     borderWidth: 1,
-    marginBottom: 28,
+    marginBottom: ms(28),
     ...Platform.select({
       web: {},
       default: {
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 10 },
+        shadowOffset: { width: 0, height: ms(10) },
         shadowOpacity: 0.08,
-        shadowRadius: 15,
+        shadowRadius: ms(15),
         elevation: 5,
       }
     }),
   },
-  postLabel: { fontSize: 18, fontWeight: "800", marginBottom: 12 },
+  postLabel: { fontSize: ms(18), fontWeight: "800", marginBottom: ms(12) },
   input: {
-    borderWidth: 1.5,
-    borderRadius: 16,
-    paddingHorizontal: 16,
-    marginBottom: 15,
-    fontSize: 16,
+    borderWidth: ms(1.5),
+    borderRadius: ms(16),
+    paddingHorizontal: ms(16),
+    marginBottom: ms(15),
+    fontSize: ms(16),
     fontWeight: '500',
     outlineStyle: 'none' as any,
   },
   tagScrollContainer: {
-    marginBottom: 18,
+    marginBottom: ms(18),
   },
   tagGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
+    gap: ms(8),
   },
   tagChip: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 20,
+    paddingHorizontal: ms(12),
+    paddingVertical: ms(8),
+    borderRadius: ms(20),
     borderWidth: 1,
   },
   tagHorizontalScroll: {
-    paddingHorizontal: 4,
-    paddingVertical: 2,
+    paddingHorizontal: ms(4),
+    paddingVertical: ms(2),
   },
-  tagLabel: { fontSize: 15, fontWeight: '700', marginLeft: 8, letterSpacing: 0.2 },
-  tagSectionLabel: { fontSize: 13, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8, opacity: 0.7 },
+  tagLabel: { fontSize: ms(15), fontWeight: '700', marginLeft: ms(8), letterSpacing: 0.2 },
+  tagSectionLabel: { fontSize: ms(13), fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: ms(8), opacity: 0.7 },
   filterBarContainer: {
-    paddingVertical: 12,
-    marginBottom: 12,
+    paddingVertical: ms(12),
+    marginBottom: ms(12),
   },
   filterBarHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
-    paddingHorizontal: 20,
-    marginBottom: 12,
+    gap: ms(6),
+    paddingHorizontal: ms(20),
+    marginBottom: ms(12),
   },
   filterLabel: {
-    fontSize: 14,
+    fontSize: ms(14),
     fontWeight: '800',
     textTransform: 'uppercase',
     letterSpacing: 1.5,
@@ -1477,70 +1486,70 @@ const styles = StyleSheet.create({
   adminClearBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 12,
-    gap: 6,
+    paddingHorizontal: ms(12),
+    paddingVertical: ms(6),
+    borderRadius: ms(12),
+    gap: ms(6),
   },
   adminClearText: {
-    fontSize: 15,
+    fontSize: ms(15),
     fontWeight: '900',
     color: '#FF5252',
     letterSpacing: 0.5,
   },
   filterScroll: {
-    paddingHorizontal: 20,
-    paddingRight: 40,
-    gap: 10,
+    paddingHorizontal: ms(20),
+    paddingRight: ms(40),
+    gap: ms(10),
   },
   filterChip: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 20,
+    paddingHorizontal: ms(16),
+    paddingVertical: ms(10),
+    borderRadius: ms(20),
     borderWidth: 1,
     borderColor: 'transparent',
-    gap: 8,
+    gap: ms(8),
     position: 'relative',
   },
   filterChipLabel: {
-    fontSize: 15,
+    fontSize: ms(15),
   },
   activeIndicator: {
-    width: 4,
-    height: 4,
-    borderRadius: 2,
+    width: ms(4),
+    height: ms(4),
+    borderRadius: ms(2),
     position: 'absolute',
-    top: 6,
-    right: 6,
+    top: ms(6),
+    right: ms(6),
   },
   postActions: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 15,
+    marginTop: ms(15),
     flexWrap: 'wrap',
-    gap: 10,
+    gap: ms(10),
   },
   mediaBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderRadius: 12,
-    gap: 4,
+    paddingHorizontal: ms(10),
+    paddingVertical: ms(8),
+    borderRadius: ms(12),
+    gap: ms(4),
   },
   mediaBtnText: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: '700',
   },
   imagePreviewContainer: {
-    marginTop: 15,
+    marginTop: ms(15),
     position: 'relative',
-    borderRadius: 16,
+    borderRadius: ms(16),
     overflow: 'hidden',
-    height: 180,
+    height: ms(180),
     width: '100%',
   },
   imagePreview: {
@@ -1549,32 +1558,32 @@ const styles = StyleSheet.create({
   },
   removeImageBtn: {
     position: 'absolute',
-    top: 10,
-    right: 10,
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    top: ms(10),
+    right: ms(10),
+    width: ms(28),
+    height: ms(28),
+    borderRadius: ms(14),
     backgroundColor: 'rgba(0,0,0,0.5)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   postImage: {
     width: '100%',
-    height: 200,
-    borderRadius: 16,
-    marginVertical: 12,
+    height: ms(160),
+    borderRadius: ms(16),
+    marginVertical: ms(10),
   },
   postButton: {
     flexDirection: "row",
-    height: 52,
-    borderRadius: 14,
+    height: ms(52),
+    borderRadius: ms(14),
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 16,
+    paddingHorizontal: ms(16),
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: { width: 0, height: ms(3) },
     shadowOpacity: 0.12,
-    shadowRadius: 6,
+    shadowRadius: ms(6),
     elevation: 3,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
@@ -1582,105 +1591,105 @@ const styles = StyleSheet.create({
   postButtonText: { 
     color: "white", 
     fontWeight: "800", 
-    fontSize: 14,
+    fontSize: ms(14),
     letterSpacing: 0.2,
   },
   avatarIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: ms(48),
+    height: ms(48),
+    borderRadius: ms(24),
   },
   headerIconBtn: {
-    width: 44,
-    height: 44,
-    borderRadius: 14,
+    width: ms(44),
+    height: ms(44),
+    borderRadius: ms(14),
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.1)",
   },
   avatarContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 15,
-    borderWidth: 2,
-    padding: 2,
+    width: ms(48),
+    height: ms(48),
+    borderRadius: ms(15),
+    borderWidth: ms(2),
+    padding: ms(2),
     overflow: 'hidden',
   },
   avatar: {
     width: '100%',
     height: '100%',
-    borderRadius: 12,
+    borderRadius: ms(12),
   },
   avatarPlaceholder: {
     width: '100%',
     height: '100%',
-    borderRadius: 12,
+    borderRadius: ms(12),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerSubtitle: {
     fontWeight: '600',
-    marginTop: -2,
+    marginTop: ms(-2),
   },
   headerLanguageWrapper: {
-    borderRadius: 12,
-    paddingHorizontal: 4,
-    height: 48,
+    borderRadius: ms(12),
+    paddingHorizontal: ms(4),
+    height: ms(48),
     justifyContent: 'center',
     alignItems: 'center',
   },
   bellBadge: {
     position: 'absolute',
-    top: 6,
-    right: 6,
-    minWidth: 18,
-    height: 18,
-    borderRadius: 9,
+    top: ms(6),
+    right: ms(6),
+    minWidth: ms(18),
+    height: ms(18),
+    borderRadius: ms(9),
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 4,
-    borderWidth: 2,
+    paddingHorizontal: ms(4),
+    borderWidth: ms(2),
     borderColor: 'white',
   },
   bellBadgeText: {
     color: 'white',
-    fontSize: 14,
+    fontSize: ms(14),
     fontWeight: '900',
   },
-  emptyState: { alignItems: 'center', marginTop: 60, opacity: 0.6 },
+  emptyState: { alignItems: 'center', marginTop: ms(60), opacity: 0.6 },
   tweetCard: {
     flexDirection: 'row',
-    padding: 20,
-    borderRadius: 20,
-    marginBottom: 20,
+    padding: ms(16),
+    borderRadius: ms(16),
+    marginBottom: ms(16),
     borderWidth: 1,
     ...Platform.select({
       web: {},
       default: {
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 4 },
+        shadowOffset: { width: 0, height: ms(4) },
         shadowOpacity: 0.05,
-        shadowRadius: 8,
+        shadowRadius: ms(8),
         elevation: 2,
       }
     }),
   },
   tweetLeftCol: {
-    marginRight: 12,
+    marginRight: ms(12),
   },
   tweetAvatarContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: ms(36),
+    height: ms(36),
+    borderRadius: ms(18),
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
   },
   tweetAvatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: ms(36),
+    height: ms(36),
+    borderRadius: ms(18),
   },
   tweetRightCol: {
     flex: 1,
@@ -1691,7 +1700,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 4,
+    marginBottom: ms(4),
   },
   tweetUserInfo: {
     flexDirection: 'row',
@@ -1700,44 +1709,44 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   tweetName: {
-    fontSize: 18,
+    fontSize: ms(16),
     fontWeight: '800',
-    marginRight: 4,
+    marginRight: ms(4),
   },
   tweetHandle: {
-    fontSize: 15,
+    fontSize: ms(14),
     fontWeight: '500',
-    marginRight: 4,
+    marginRight: ms(4),
   },
   tweetDot: {
-    fontSize: 15,
-    marginRight: 4,
+    fontSize: ms(14),
+    marginRight: ms(4),
   },
   tweetTime: {
-    fontSize: 15,
+    fontSize: ms(15),
     fontWeight: '400',
   },
   tweetTag: {
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 10,
+    paddingHorizontal: ms(8),
+    paddingVertical: ms(3),
+    borderRadius: ms(10),
     borderWidth: 1,
     borderColor: 'transparent',
   },
   tweetTagLabel: {
-    fontSize: 15,
+    fontSize: ms(15),
     fontWeight: '900',
     textTransform: 'uppercase',
   },
   messageContainer: {
-    padding: 12,
-    borderRadius: 12,
-    marginBottom: 12,
-    marginTop: 4,
+    padding: ms(12),
+    borderRadius: ms(12),
+    marginBottom: ms(12),
+    marginTop: ms(4),
   },
   tweetMessage: {
-    fontSize: 18,
-    lineHeight: 24,
+    fontSize: ms(15),
+    lineHeight: ms(22),
     fontWeight: '500',
     letterSpacing: 0.2,
   },
@@ -1745,16 +1754,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingRight: 10,
+    paddingRight: ms(10),
   },
   tweetActionBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
-    padding: 4,
+    gap: ms(4),
+    padding: ms(4),
   },
   tweetActionCount: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: '600',
   },
   modalOverlay: {
@@ -1766,31 +1775,31 @@ const styles = StyleSheet.create({
     height: '60%',
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
-    padding: 20,
+    padding: ms(20),
     paddingBottom: Platform.OS === 'ios' ? 40 : 20,
   },
   sheetHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: ms(20),
   },
   sheetTitle: {
-    fontSize: 20,
+    fontSize: ms(20),
     fontWeight: '800',
   },
   commentItem: {
     flexDirection: 'row',
-    marginBottom: 16,
+    marginBottom: ms(16),
   },
   commentAvatar: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: ms(32),
+    height: ms(32),
+    borderRadius: ms(16),
     backgroundColor: 'rgba(0,0,0,0.05)',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 10,
+    marginRight: ms(10),
   },
   commentContent: {
     flex: 1,
@@ -1798,45 +1807,45 @@ const styles = StyleSheet.create({
   commentHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 2,
+    marginBottom: ms(2),
   },
   commentUser: {
-    fontSize: 18,
+    fontSize: ms(18),
     fontWeight: '700',
-    marginRight: 6,
+    marginRight: ms(6),
   },
   commentTime: {
-    fontSize: 14,
+    fontSize: ms(14),
   },
   commentText: {
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: ms(16),
+    lineHeight: ms(22),
     letterSpacing: 0.2,
   },
   emptyComments: {
     textAlign: 'center',
-    marginTop: 40,
-    fontSize: 16,
+    marginTop: ms(40),
+    fontSize: ms(16),
   },
   commentInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 10,
+    paddingTop: ms(10),
     borderTopWidth: 1,
   },
   commentInput: {
     flex: 1,
-    height: 40,
-    borderRadius: 20,
-    paddingHorizontal: 16,
+    height: ms(40),
+    borderRadius: ms(20),
+    paddingHorizontal: ms(16),
     borderWidth: 1,
-    marginRight: 10,
+    marginRight: ms(10),
     outlineStyle: 'none' as any,
   },
   sendCommentBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: ms(40),
+    height: ms(40),
+    borderRadius: ms(20),
     justifyContent: 'center',
     alignItems: 'center',
   },

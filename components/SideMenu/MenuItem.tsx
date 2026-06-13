@@ -1,9 +1,11 @@
+import { ms } from '../../lib/metrics';
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Animated, { FadeInLeft } from "react-native-reanimated";
 import { WebIcon } from "../WebIcon";
-import { styles } from "./styles";
+import { styles } from
+"./styles";
 
 interface MenuItemProps {
   icon?: keyof typeof Ionicons.glyphMap;
@@ -31,7 +33,7 @@ export const MenuItem = React.memo(({
     >
       <View style={styles.menuItemLeft}>
         {iconElement ? (
-          <View style={{ width: 24, alignItems: 'center' }}>{iconElement}</View>
+          <View style={{ width: ms(24), alignItems: 'center' }}>{iconElement}</View>
         ) : (
           <WebIcon name={icon as any} size= {24} color={colors.textSecondary} />
         )}

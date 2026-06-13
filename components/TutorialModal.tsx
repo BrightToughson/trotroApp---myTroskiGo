@@ -1,3 +1,4 @@
+import { ms } from '../lib/metrics';
 import React, { useRef, useState, useEffect } from 'react';
 import { Modal, View, Text, StyleSheet, TouchableOpacity, Platform, ScrollView, Dimensions } from 'react-native';
 import { Image } from 'expo-image';
@@ -20,7 +21,8 @@ import { BlurView } from 'expo-blur';
 import { CustomButton } from './customButton';
 import * as Haptics from 'expo-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import LanguageSelector from './LanguageSelector';
+import LanguageSelector from
+'./LanguageSelector';
 
 type SpotlightFeature = {
   image: any;
@@ -348,10 +350,10 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
               animatedDrift1,
               {
                 backgroundColor: "#2563EB",
-                top: -50,
-                right: -80,
-                width: 300,
-                height: 300,
+                top: ms(-50),
+                right: ms(-80),
+                width: ms(300),
+                height: ms(300),
                 opacity: isDark ? 0.3 : 0.15,
               },
             ]}
@@ -362,10 +364,10 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
               animatedDrift2,
               {
                 backgroundColor: "#FBBF24",
-                bottom: 100,
-                left: -100,
-                width: 350,
-                height: 350,
+                bottom: ms(100),
+                left: ms(-100),
+                width: ms(350),
+                height: ms(350),
                 opacity: isDark ? 0.2 : 0.1,
               },
             ]}
@@ -375,7 +377,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
         <SafeAreaView style={styles.mainContainer}>
           {/* Top Bar Navigation */}
           <View style={styles.topBar}>
-            <Animated.View entering={FadeInLeft.duration(600)} style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+            <Animated.View entering={FadeInLeft.duration(600)} style={{ flexDirection: 'row', alignItems: 'center', gap: ms(12) }}>
               {activeIndex > 0 ? (
                 <TouchableOpacity 
                   onPress={() => swiperRef.current?.scrollBy(-1)}
@@ -384,7 +386,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
                   <WebIcon name="arrow-back" size= {24} color={colors.text} />
                 </TouchableOpacity>
               ) : (
-                <View style={{ width: 44 }} />
+                <View style={{ width: ms(44) }} />
               )}
               <LanguageSelector />
               
@@ -393,7 +395,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
               </View>
             </Animated.View>
 
-            <Animated.View entering={FadeInRight.duration(600)} style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+            <Animated.View entering={FadeInRight.duration(600)} style={{ flexDirection: 'row', alignItems: 'center', gap: ms(12) }}>
               {activeIndex < slides.length - 1 && (
                 <TouchableOpacity 
                   onPress={onClose}
@@ -457,7 +459,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
                     >
                       <ScrollView 
                         style={{ flex: 1 }} 
-                        contentContainerStyle={{ paddingBottom: 15 }}
+                        contentContainerStyle={{ paddingBottom: ms(15) }}
                         showsVerticalScrollIndicator={false} 
                         nestedScrollEnabled={true}
                       >
@@ -516,7 +518,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
                               name={index === slides.length - 1 ? "checkmark-circle" : "arrow-forward"} 
                               size= {20} 
                               color="#fff" 
-                              style={{ marginLeft: 8 }} 
+                              style={{ marginLeft: ms(8) }} 
                             />
                           )}
                         />
@@ -548,13 +550,13 @@ const styles = StyleSheet.create({
   },
   decorativeCircle: {
     position: "absolute",
-    width: 300,
-    height: 300,
-    borderRadius: 150,
+    width: ms(300),
+    height: ms(300),
+    borderRadius: ms(150),
   },
   topBar: {
-    paddingHorizontal: 24,
-    paddingVertical: 10,
+    paddingHorizontal: ms(24),
+    paddingVertical: ms(10),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -562,28 +564,28 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   iconButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: ms(44),
+    height: ms(44),
+    borderRadius: ms(22),
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: ms(4),
     elevation: 3,
   },
   slide: {
     flex: 1,
-    paddingHorizontal: 16,
+    paddingHorizontal: ms(16),
     paddingTop: 0,
-    paddingBottom: 80,
+    paddingBottom: ms(80),
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
   },
   webSlide: {
-    maxWidth: 480,
+    maxWidth: ms(480),
     alignSelf: 'center',
   },
   imageContainer: {
@@ -602,42 +604,42 @@ const styles = StyleSheet.create({
   slideImage: { 
     width: "100%", 
     height: "100%", 
-    maxWidth: 500,
+    maxWidth: ms(500),
   },
   textContainer: {
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingHorizontal: 10,
+    paddingHorizontal: ms(10),
     width: "100%",
-    marginTop: -10,
+    marginTop: ms(-10),
   },
   glassCard: {
-    padding: 16,
-    borderRadius: 24,
+    padding: ms(16),
+    borderRadius: ms(24),
     width: "100%",
-    maxWidth: 460,
+    maxWidth: ms(460),
     alignSelf: 'center',
-    borderWidth: 1.5,
+    borderWidth: ms(1.5),
     overflow: "hidden",
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 15 },
+    shadowOffset: { width: 0, height: ms(15) },
     shadowOpacity: 0.25,
-    shadowRadius: 25,
+    shadowRadius: ms(25),
     elevation: 10,
   },
   slideTitle: {
-    fontSize: 28,
+    fontSize: ms(28),
     fontWeight: "900",
-    marginBottom: 12,
+    marginBottom: ms(12),
     textAlign: "center",
     letterSpacing: -0.5,
   },
   titleSeparator: {
-    width: 80,
-    height: 4,
-    borderRadius: 2,
+    width: ms(80),
+    height: ms(4),
+    borderRadius: ms(2),
     alignSelf: 'center',
-    marginBottom: 15,
+    marginBottom: ms(15),
   },
   featureContainer: {
     width: '100%',
@@ -649,35 +651,35 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   featureImageWrapper: {
-    height: 60,
+    height: ms(60),
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: ms(8),
   },
   featureImage: {
     width: '100%',
     height: '100%',
   },
   featureTitle: {
-    fontSize: 20,
+    fontSize: ms(20),
     fontWeight: '800',
-    marginBottom: 4,
+    marginBottom: ms(4),
     textAlign: 'center',
     letterSpacing: -0.3,
   },
   description: {
-    fontSize: 16,
+    fontSize: ms(16),
     textAlign: "center",
-    lineHeight: 20,
-    paddingHorizontal: 10,
+    lineHeight: ms(20),
+    paddingHorizontal: ms(10),
     fontWeight: "500",
   },
   noFeatureContainer: {
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: ms(20),
   },
   featureControlsRow: {
     flexDirection: 'row',
@@ -686,61 +688,61 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   sideArrowContainer: {
-    width: 44,
-    height: 44,
+    width: ms(44),
+    height: ms(44),
     justifyContent: 'center',
     alignItems: 'center',
   },
   sideArrow: {
-    padding: 10,
+    padding: ms(10),
     zIndex: 10,
   },
   installListContainer: {
     width: '100%',
-    paddingHorizontal: 20,
-    gap: 12,
+    paddingHorizontal: ms(20),
+    gap: ms(12),
   },
   installListText: {
-    fontSize: 20,
+    fontSize: ms(20),
     fontWeight: '600',
-    lineHeight: 24,
+    lineHeight: ms(24),
     textAlign: 'center',
-    marginBottom: 8,
+    marginBottom: ms(8),
   },
   buttonInsideWrapper: {
     width: "100%",
-    marginTop: 15,
+    marginTop: ms(15),
   },
   fullWidthButton: {
     width: "100%",
-    height: 48,
-    borderRadius: 24,
+    height: ms(48),
+    borderRadius: ms(24),
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: ms(4) },
     shadowOpacity: 0.2,
-    shadowRadius: 8,
+    shadowRadius: ms(8),
     elevation: 5,
   },
   stepCounter: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 16,
+    paddingHorizontal: ms(12),
+    paddingVertical: ms(6),
+    borderRadius: ms(16),
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
   },
   stepCounterText: {
-    fontSize: 14,
+    fontSize: ms(14),
     fontWeight: '800',
   },
   skipButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
+    paddingHorizontal: ms(16),
+    paddingVertical: ms(8),
+    borderRadius: ms(20),
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
   },
   skipButtonText: {
-    fontSize: 15,
+    fontSize: ms(15),
     fontWeight: '700',
   },
 

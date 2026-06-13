@@ -1,6 +1,8 @@
+import { ms } from '../lib/metrics';
 import { WebIcon } from './WebIcon';
 import React, { useEffect, useRef } from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
+import { Animated, StyleSheet, View } from
+'react-native';
 
 interface ScrollIndicatorProps {
   color?: string;
@@ -49,18 +51,18 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({ color = '#3b82
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 100,
-    right: 24,
+    bottom: ms(100),
+    right: ms(24),
     backgroundColor: '#ffffff53',
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: ms(44),
+    height: ms(44),
+    borderRadius: ms(22),
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.4,
-    shadowRadius: 2,
+    shadowRadius: ms(2),
     elevation: 5,
     zIndex: 999,
   },

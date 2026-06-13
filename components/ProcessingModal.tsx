@@ -1,8 +1,10 @@
+import { ms } from '../lib/metrics';
 import React from 'react';
 import { Modal, View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeOut } from
+'react-native-reanimated';
 
 interface ProcessingModalProps {
   visible: boolean;
@@ -52,26 +54,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalBox: {
-    width: 240,
-    paddingVertical: 32,
-    paddingHorizontal: 20,
-    borderRadius: 24,
+    width: ms(240),
+    paddingVertical: ms(32),
+    paddingHorizontal: ms(20),
+    borderRadius: ms(24),
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: ms(10) },
     shadowOpacity: 0.25,
-    shadowRadius: 15,
+    shadowRadius: ms(15),
     elevation: 10,
   },
   iconContainer: {
-    marginBottom: 20,
-    height: 50,
+    marginBottom: ms(20),
+    height: ms(50),
     justifyContent: 'center',
     alignItems: 'center',
   },
   message: {
-    fontSize: 17,
+    fontSize: ms(17),
     fontWeight: '600',
     textAlign: 'center',
   }

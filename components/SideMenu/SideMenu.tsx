@@ -1,3 +1,4 @@
+import { ms } from '../../lib/metrics';
 import { WebIcon } from "../WebIcon";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
@@ -28,7 +29,8 @@ import { useTheme } from "../../context/ThemeContext";
 import { styles, width } from "./styles";
 import { MenuItem } from "./MenuItem";
 import { useUser } from "@clerk/clerk-expo";
-import { isAdminUser } from "../../constants/admins";
+import { isAdminUser } from
+"../../constants/admins";
 
 interface SideMenuProps {
   isVisible: boolean;
@@ -145,14 +147,14 @@ const SideMenu: React.FC<SideMenuProps> = ({ isVisible, onClose, onShowTutorial 
                 colors={colors}
               />
               <MenuItem
-                iconElement={<Text style={{ fontSize: 24 }}>{i18n.language === 'en' ? '🇫🇷' : '🇬🇧'}</Text>}
+                iconElement={<Text style={{ fontSize: ms(24) }}>{i18n.language === 'en' ? '🇫🇷' : '🇬🇧'}</Text>}
                 label={i18n.language === 'en' ? t('french') : t('english')}
                 onPress={toggleLanguage}
                 index={3}
                 colors={colors}
                 rightElement={
                   <View style={[styles.langBadge, { backgroundColor: colors.primary + '15' }]}>
-                     <Text style={{ color: colors.primary, fontSize: 12, fontWeight: '900' }}>{i18n.language.toUpperCase()}</Text>
+                     <Text style={{ color: colors.primary, fontSize: ms(12), fontWeight: '900' }}>{i18n.language.toUpperCase()}</Text>
                   </View>
                 }
               />
@@ -180,7 +182,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ isVisible, onClose, onShowTutorial 
                 colors={colors}
                 rightElement={
                   <View style={[styles.langBadge, { backgroundColor: '#10B98120' }]}>
-                     <Text style={{ color: '#10B981', fontSize: 12, fontWeight: '900' }}>APK</Text>
+                     <Text style={{ color: '#10B981', fontSize: ms(12), fontWeight: '900' }}>APK</Text>
                   </View>
                 }
               />

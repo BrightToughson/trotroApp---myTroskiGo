@@ -1,3 +1,4 @@
+import { ms } from '../lib/metrics';
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView, Platform, StatusBar, RefreshControl, Alert, ActivityIndicator } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
@@ -6,7 +7,8 @@ import { WebIcon } from '../components/WebIcon';
 import { CustomButton } from '../components/customButton';
 import { ContributionService, Contribution } from '../lib/ContributionService';
 import ContributionModal from '../components/ContributionModal';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from
+'react-i18next';
 
 export default function ContributionsManager() {
   const { t } = useTranslation();
@@ -125,24 +127,24 @@ export default function ContributionsManager() {
       return (
         <View>
           <Text style={[styles.cardText, { color: colors.text }]}>{p.origin} to {p.destination}</Text>
-          <Text style={[styles.cardText, { color: colors.primary, fontWeight: '700', marginTop: 4, fontSize: 14 }]}>
+          <Text style={[styles.cardText, { color: colors.primary, fontWeight: '700', marginTop: ms(4), fontSize: ms(14) }]}>
             {displayFare ? `GHS ${displayFare} • ` : ''}{p.journey_type === 'transfer' ? t('transfer_req', 'Transfer Required') : t('straight_trotro', 'Straight Trotro')}
           </Text>
           {p.journey_type === 'transfer' && p.transfer_location && !p.trotros && (
-            <Text style={[styles.cardText, { color: colors.textSecondary, fontSize: 13, marginTop: 4 }]}>
+            <Text style={[styles.cardText, { color: colors.textSecondary, fontSize: ms(13), marginTop: ms(4) }]}>
               <WebIcon name="git-commit" size= {12} color={colors.textSecondary} /> Transfer at: {p.transfer_location}
             </Text>
           )}
           {p.trotros && p.trotros.length > 0 && (
-            <View style={{ marginTop: 8, padding: 8, backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', borderRadius: 8, borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
-              <Text style={{ color: colors.textSecondary, fontSize: 12, fontWeight: '700', marginBottom: 4 }}>Multiple Trotros details:</Text>
+            <View style={{ marginTop: ms(8), padding: ms(8), backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', borderRadius: ms(8), borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
+              <Text style={{ color: colors.textSecondary, fontSize: ms(12), fontWeight: '700', marginBottom: ms(4) }}>Multiple Trotros details:</Text>
               {p.trotros.map((trotro: any, idx: number) => (
-                <View key={idx} style={{ marginBottom: 4 }}>
-                  <Text style={{ color: colors.text, fontSize: 13 }}>
+                <View key={idx} style={{ marginBottom: ms(4) }}>
+                  <Text style={{ color: colors.text, fontSize: ms(13) }}>
                     <Text style={{ fontWeight: '600' }}>Trotro {idx + 1}:</Text> {trotro.origin} ➔ {trotro.destination} {trotro.fare > 0 ? `(GHS ${trotro.fare})` : ''}
                   </Text>
                   {trotro.stops && trotro.stops.length > 0 && (
-                    <Text style={{ color: colors.textSecondary, fontSize: 11, fontStyle: 'italic', marginLeft: 8 }}>
+                    <Text style={{ color: colors.textSecondary, fontSize: ms(11), fontStyle: 'italic', marginLeft: ms(8) }}>
                       Via: {trotro.stops.join(', ')}
                     </Text>
                   )}
@@ -151,14 +153,14 @@ export default function ContributionsManager() {
             </View>
           )}
           {p.stops && p.stops.length > 0 && (
-            <Text style={[styles.cardText, { color: colors.textSecondary, fontSize: 13, marginTop: 4 }]}>
+            <Text style={[styles.cardText, { color: colors.textSecondary, fontSize: ms(13), marginTop: ms(4) }]}>
               Via: {p.stops.join(' • ')}
             </Text>
           )}
           {p.tracked_path && (
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: ms(8) }}>
               <WebIcon name="location" size= {14} color={colors.primary} />
-              <Text style={{ color: colors.primary, fontSize: 12, fontWeight: '600', marginLeft: 4 }}>
+              <Text style={{ color: colors.primary, fontSize: ms(12), fontWeight: '600', marginLeft: ms(4) }}>
                 Includes Live GPS Track
               </Text>
             </View>
@@ -226,9 +228,9 @@ export default function ContributionsManager() {
       </ScrollView>
 
       {statusError && (
-        <View style={{ margin: 16, padding: 12, backgroundColor: '#ef444420', borderRadius: 8, borderWidth: 1, borderColor: '#ef444450' }}>
+        <View style={{ margin: ms(16), padding: ms(12), backgroundColor: '#ef444420', borderRadius: ms(8), borderWidth: 1, borderColor: '#ef444450' }}>
           <Text style={{ color: '#ef4444', fontWeight: 'bold' }}>Publish Failed:</Text>
-          <Text style={{ color: '#ef4444', marginTop: 4 }}>{statusError}</Text>
+          <Text style={{ color: '#ef4444', marginTop: ms(4) }}>{statusError}</Text>
         </View>
       )}
 
@@ -239,7 +241,7 @@ export default function ContributionsManager() {
         }
       >
         {isLoading ? (
-          <ActivityIndicator size= "large" color={colors.primary} style={{ marginTop: 40 }} />
+          <ActivityIndicator size= "large" color={colors.primary} style={{ marginTop: ms(40) }} />
         ) : filteredData.length === 0 ? (
           <View style={styles.emptyState}>
             <WebIcon name="checkmark-circle-outline" size= {64} color={colors.textSecondary} />
@@ -251,10 +253,10 @@ export default function ContributionsManager() {
             const groupStyleInfo = getTypeStyle(typeKey);
             
             return (
-              <View key={typeKey} style={{ marginBottom: 24 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16, marginLeft: 4 }}>
+              <View key={typeKey} style={{ marginBottom: ms(24) }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: ms(16), marginLeft: ms(4) }}>
                   <WebIcon name={groupStyleInfo.icon} size= {20} color={groupStyleInfo.color} />
-                  <Text style={{ fontSize: 18, fontWeight: '800', color: colors.text, marginLeft: 8, letterSpacing: -0.5 }}>
+                  <Text style={{ fontSize: ms(18), fontWeight: '800', color: colors.text, marginLeft: ms(8), letterSpacing: -0.5 }}>
                     {groupStyleInfo.label}s ({items.length})
                   </Text>
                 </View>
@@ -269,7 +271,7 @@ export default function ContributionsManager() {
                           <Text style={[styles.typeText, { color: styleInfo.color }]}>{styleInfo.label}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                          <Text style={[styles.dateText, { color: colors.textSecondary, marginRight: 12 }]}>{formatDate(item.created_at)}</Text>
+                          <Text style={[styles.dateText, { color: colors.textSecondary, marginRight: ms(12) }]}>{formatDate(item.created_at)}</Text>
                           <TouchableOpacity onPress={() => handleDelete(item.id, item.type)}>
                             <WebIcon name="trash-outline" size= {18} color="#ef4444" />
                           </TouchableOpacity>
@@ -280,15 +282,15 @@ export default function ContributionsManager() {
                         {renderContent(item)}
                       </View>
 
-                      <View style={[styles.actionRow, { borderTopColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)', gap: 8 }]}>
+                      <View style={[styles.actionRow, { borderTopColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)', gap: ms(8) }]}>
                         {item.status !== 'rejected' && (
                           <View style={{ flex: 1 }}>
                             <CustomButton 
                               title="Reject" 
                               bgVariant="secondary" 
                               textVariant="secondary" 
-                              containerStyle={{ width: '100%', height: 44, minWidth: 0, backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)" }} 
-                              textStyle={{ fontSize: 14 }}
+                              containerStyle={{ width: '100%', height: ms(44), minWidth: 0, backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)" }} 
+                              textStyle={{ fontSize: ms(14) }}
                               onPress={() => handleUpdateStatus(item.id, 'rejected', item.type, item)}
                             />
                           </View>
@@ -298,8 +300,8 @@ export default function ContributionsManager() {
                             title="Edit" 
                             bgVariant="secondary" 
                             textVariant="secondary" 
-                            containerStyle={{ width: '100%', height: 44, minWidth: 0, backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)" }} 
-                            textStyle={{ fontSize: 14, color: colors.primary }}
+                            containerStyle={{ width: '100%', height: ms(44), minWidth: 0, backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)" }} 
+                            textStyle={{ fontSize: ms(14), color: colors.primary }}
                             onPress={() => setEditingItem(item)}
                           />
                         </View>
@@ -307,8 +309,8 @@ export default function ContributionsManager() {
                           <View style={{ flex: 1 }}>
                             <CustomButton 
                               title={item.status === 'rejected' ? 'Republish' : 'Publish'}
-                              containerStyle={{ width: '100%', height: 44, minWidth: 0, backgroundColor: styleInfo.color, shadowColor: styleInfo.color }} 
-                              textStyle={{ fontSize: 14 }}
+                              containerStyle={{ width: '100%', height: ms(44), minWidth: 0, backgroundColor: styleInfo.color, shadowColor: styleInfo.color }} 
+                              textStyle={{ fontSize: ms(14) }}
                               onPress={() => handleUpdateStatus(item.id, 'approved', item.type, item)}
                             />
                           </View>
@@ -346,49 +348,49 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingHorizontal: ms(20),
+    paddingVertical: ms(16),
   },
   backButton: {
-    padding: 8,
-    marginRight: 12,
-    marginLeft: -8,
+    padding: ms(8),
+    marginRight: ms(12),
+    marginLeft: ms(-8),
   },
   title: {
-    fontSize: 24,
+    fontSize: ms(24),
     fontWeight: '800',
   },
   tabsContainer: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
-    marginBottom: 16,
+    paddingHorizontal: ms(20),
+    marginBottom: ms(16),
   },
   tab: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 20,
-    marginRight: 8,
+    paddingVertical: ms(8),
+    paddingHorizontal: ms(16),
+    borderRadius: ms(20),
+    marginRight: ms(8),
     backgroundColor: 'rgba(150,150,150,0.1)',
   },
   activeTab: {
     backgroundColor: '#000',
   },
   tabText: {
-    fontSize: 14,
+    fontSize: ms(14),
     fontWeight: '600',
   },
   typeTabsWrapper: {
-    maxHeight: 40,
-    marginBottom: 16,
+    maxHeight: ms(40),
+    marginBottom: ms(16),
   },
   typeTabsContainer: {
-    paddingHorizontal: 20,
-    gap: 8,
+    paddingHorizontal: ms(20),
+    gap: ms(8),
   },
   typeTab: {
-    paddingVertical: 6,
-    paddingHorizontal: 16,
-    borderRadius: 16,
+    paddingVertical: ms(6),
+    paddingHorizontal: ms(16),
+    borderRadius: ms(16),
     borderWidth: 1,
     borderColor: 'rgba(150,150,150,0.2)',
     justifyContent: 'center',
@@ -398,66 +400,66 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(150,150,150,0.5)',
   },
   typeTabText: {
-    fontSize: 13,
+    fontSize: ms(13),
     fontWeight: '600',
   },
   scrollContent: {
-    padding: 20,
-    paddingBottom: 40,
+    padding: ms(20),
+    paddingBottom: ms(40),
   },
   card: {
-    borderRadius: 16,
-    padding: 16,
-    marginBottom: 16,
+    borderRadius: ms(16),
+    padding: ms(16),
+    marginBottom: ms(16),
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: ms(4) },
     shadowOpacity: 0.05,
-    shadowRadius: 8,
+    shadowRadius: ms(8),
     elevation: 2,
   },
   cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: ms(12),
   },
   typeTag: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'rgba(150,150,150,0.1)',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 12,
+    paddingHorizontal: ms(8),
+    paddingVertical: ms(4),
+    borderRadius: ms(12),
   },
   typeText: {
-    fontSize: 12,
+    fontSize: ms(12),
     fontWeight: '700',
-    marginLeft: 6,
+    marginLeft: ms(6),
   },
   dateText: {
-    fontSize: 12,
+    fontSize: ms(12),
   },
   cardBody: {
-    marginBottom: 16,
+    marginBottom: ms(16),
   },
   cardText: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: '500',
-    lineHeight: 22,
+    lineHeight: ms(22),
   },
   actionRow: {
     flexDirection: 'row',
-    paddingTop: 16,
+    paddingTop: ms(16),
     borderTopWidth: 1,
   },
   emptyState: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 60,
+    paddingTop: ms(60),
   },
   emptyText: {
-    fontSize: 18,
+    fontSize: ms(18),
     fontWeight: '600',
-    marginTop: 16,
+    marginTop: ms(16),
   }
 });

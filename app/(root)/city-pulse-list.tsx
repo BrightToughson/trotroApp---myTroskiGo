@@ -1,3 +1,4 @@
+import { ms } from '../../lib/metrics';
 import React, { useEffect, useState } from "react";
 import { 
   View, 
@@ -16,7 +17,8 @@ import { PulseService, CityPulse } from "../../lib/PulseService";
 import { useTheme } from "../../context/ThemeContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { WebIcon } from "../../components/WebIcon";
-import { router } from "expo-router";
+import { router } from
+"expo-router";
 
 export default function CityPulseList() {
   const { t } = useTranslation();
@@ -52,7 +54,7 @@ export default function CityPulseList() {
       <ImageBackground 
         source={{ uri: item.image_url }} 
         style={styles.thumbnail} 
-        imageStyle={{ borderRadius: 16 }}
+        imageStyle={{ borderRadius: ms(16) }}
       >
         <LinearGradient colors={["transparent", "rgba(0,0,0,0.2)"]} style={StyleSheet.absoluteFill} />
       </ImageBackground>
@@ -68,7 +70,7 @@ export default function CityPulseList() {
         <Text style={[styles.listTitle, { color: colors.text }]} numberOfLines={3}>{item.title}</Text>
         
         <View style={styles.listFooter}>
-          <Text style={{ color: colors.textSecondary, fontSize: 12, fontWeight: '600' }}>{t('news_desk', 'News Desk')}</Text>
+          <Text style={{ color: colors.textSecondary, fontSize: ms(12), fontWeight: '600' }}>{t('news_desk', 'News Desk')}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -81,7 +83,7 @@ export default function CityPulseList() {
           <WebIcon name="arrow-back" size= {24} color={colors.text} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: colors.text }]}>{t('city_pulse', 'City Pulse')}</Text>
-        <View style={{ width: 44 }} />
+        <View style={{ width: ms(44) }} />
       </View>
 
       <FlatList
@@ -107,46 +109,46 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 16,
+    paddingHorizontal: ms(16),
+    paddingVertical: ms(16),
     borderBottomWidth: 1,
   },
   backButton: {
-    width: 44,
-    height: 44,
+    width: ms(44),
+    height: ms(44),
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: ms(20),
     fontWeight: 'bold',
   },
   listContent: {
-    padding: 16,
+    padding: ms(16),
     paddingBottom: Platform.OS === 'ios' ? 40 : 20,
-    gap: 12,
+    gap: ms(12),
   },
   emptyContainer: {
-    padding: 40,
+    padding: ms(40),
     alignItems: 'center',
     justifyContent: 'center',
   },
   listItem: {
     width: '100%',
     flexDirection: 'row',
-    padding: 12,
-    borderRadius: 24,
+    padding: ms(12),
+    borderRadius: ms(24),
     borderWidth: 1,
-    gap: 16,
+    gap: ms(16),
     ...Platform.select({
       web: {},
-      default: { elevation: 2, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 8 }
+      default: { elevation: 2, shadowColor: '#000', shadowOffset: { width: 0, height: ms(2) }, shadowOpacity: 0.05, shadowRadius: ms(8) }
     })
   },
   thumbnail: {
-    width: 100,
-    height: 110,
-    borderRadius: 16,
+    width: ms(100),
+    height: ms(110),
+    borderRadius: ms(16),
     overflow: 'hidden',
   },
   textContent: {
@@ -155,22 +157,22 @@ const styles = StyleSheet.create({
   },
   listTopRow: {
     flexDirection: 'row',
-    marginBottom: 8,
+    marginBottom: ms(8),
   },
   tagPill: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 8,
+    paddingHorizontal: ms(8),
+    paddingVertical: ms(4),
+    borderRadius: ms(8),
   },
-  statusDot: { width: 6, height: 6, borderRadius: 3, marginRight: 4 },
-  tagText: { fontSize: 10, fontWeight: "900", textTransform: "uppercase", letterSpacing: 0.8 },
+  statusDot: { width: ms(6), height: ms(6), borderRadius: ms(3), marginRight: ms(4) },
+  tagText: { fontSize: ms(10), fontWeight: "900", textTransform: "uppercase", letterSpacing: 0.8 },
   listTitle: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: "800",
-    lineHeight: 22,
-    marginBottom: 12,
+    lineHeight: ms(22),
+    marginBottom: ms(12),
     letterSpacing: -0.2,
   },
   listFooter: {

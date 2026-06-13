@@ -1,10 +1,12 @@
+import { ms } from '../lib/metrics';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from 'react-native';
 import { WebIcon } from './WebIcon';
 import MapViewWrapper from './MapViewWrapper';
 import { useTheme } from '../context/ThemeContext';
 import { reverseGeocode, Location } from '../lib/LocationService';
-import { CustomButton } from './customButton';
+import { CustomButton } from
+'./customButton';
 
 interface MapPickerModalProps {
   isVisible: boolean;
@@ -46,7 +48,7 @@ export default function MapPickerModal({ isVisible, onClose, onSelectLocation, i
             <WebIcon name="close" size= {24} color={colors.text} />
           </TouchableOpacity>
           <Text style={[styles.headerTitle, { color: colors.text }]}>Choose on Map</Text>
-          <View style={{ width: 40 }} />
+          <View style={{ width: ms(40) }} />
         </View>
 
         <View style={styles.mapContainer}>
@@ -72,7 +74,7 @@ export default function MapPickerModal({ isVisible, onClose, onSelectLocation, i
             title={isLoading ? "Loading..." : "Confirm Location"} 
             onPress={handleConfirm} 
             disabled={isLoading}
-            containerStyle={{ width: '100%', height: 48 }}
+            containerStyle={{ width: '100%', height: ms(48) }}
           />
         </View>
       </View>
@@ -89,18 +91,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 50,
-    paddingBottom: 16,
-    paddingHorizontal: 16,
+    paddingTop: ms(50),
+    paddingBottom: ms(16),
+    paddingHorizontal: ms(16),
     borderBottomWidth: 1,
   },
   closeBtn: {
-    width: 40,
-    height: 40,
+    width: ms(40),
+    height: ms(40),
     justifyContent: 'center',
   },
   headerTitle: {
-    fontSize: 18,
+    fontSize: ms(18),
     fontWeight: '700',
   },
   mapContainer: {
@@ -111,25 +113,25 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '50%',
     left: '50%',
-    marginLeft: -22,
-    marginTop: -44, // offset by height to point directly at center
+    marginLeft: ms(-22),
+    marginTop: ms(-44), // offset by height to point directly at center
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 10,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.3,
-    shadowRadius: 3,
+    shadowRadius: ms(3),
   },
   footer: {
-    padding: 24,
-    paddingBottom: 40,
+    padding: ms(24),
+    paddingBottom: ms(40),
     borderTopWidth: 1,
     alignItems: 'center',
   },
   coordText: {
-    fontSize: 13,
-    marginBottom: 16,
+    fontSize: ms(13),
+    marginBottom: ms(16),
     fontWeight: '600'
   }
 });

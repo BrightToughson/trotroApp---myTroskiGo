@@ -1,3 +1,4 @@
+import { ms } from '../lib/metrics';
 import * as Haptics from "expo-haptics";
 import React from "react";
 import {
@@ -16,7 +17,8 @@ import Animated, {
     useSharedValue,
     withSpring,
 } from "react-native-reanimated";
-import { useTheme, LightColors } from "../context/ThemeContext";
+import { useTheme, LightColors } from
+"../context/ThemeContext";
 
 interface CustomButtonProps {
   onPress: () => void;
@@ -83,9 +85,9 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
     {
       backgroundColor: getBackgroundColor(),
       shadowColor: colors.primary, // Using theme color safely
-      shadowOffset: { width: 0, height: 4 },
+      shadowOffset: { width: 0, height: ms(4) },
       shadowOpacity: 0.15,
-      shadowRadius: 8,
+      shadowRadius: ms(8),
     },
     bgVariant === "outline" && { borderWidth: 1, borderColor: colors.border },
     disabled && styles.disabledContainer,
@@ -138,13 +140,13 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
 
 const styles = StyleSheet.create({
   baseContainer: {
-    borderRadius: 30,
-    height: 56,
+    borderRadius: ms(30),
+    height: ms(56),
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: ms(20),
     elevation: 2,
-    minWidth: 150,
+    minWidth: ms(150),
   },
   // Layout container for icon and text
   contentContainer: {
@@ -157,7 +159,7 @@ const styles = StyleSheet.create({
   },
   baseText: {
     color: "#fff",
-    fontSize: 20,
+    fontSize: ms(20),
     fontWeight: "bold",
   },
 });

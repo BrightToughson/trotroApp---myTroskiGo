@@ -1,8 +1,9 @@
+import { ms } from '../lib/metrics';
 import { useAuth } from "@clerk/clerk-expo";
 import { Redirect } from "expo-router";
 import { SecureStoreWrapper as SecureStore } from "../lib/SecureStoreWrapper";
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Platform } from "react-native";
+import { View, Text, StyleSheet, Platform, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import Animated, { 
@@ -16,9 +17,10 @@ import Animated, {
   FadeInDown,
 } from "react-native-reanimated";
 import { WebIcon } from "@/components/WebIcon";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from
+"react-i18next";
 
-const SPLASH_MIN_DURATION = 2500;
+const SPLASH_MIN_DURATION = 5000;
 
 /**
  * Index: The initial entry route that handles redirection logic.
@@ -94,9 +96,11 @@ const Index = () => {
       <View style={[styles.container, { backgroundColor: "#111827" }]}>
         <View style={styles.content}>
           <Animated.View style={[styles.iconContainer, animatedIconStyle]}>
-            <View style={styles.iconCircle}>
-              <WebIcon name="bus" size= {60} color="#F9FAFB" />
-            </View>
+            <Image 
+              source={require('../assets/logo/mytroskigo.png')} 
+              style={styles.logoImage} 
+              resizeMode="contain"
+            />
           </Animated.View>
           
           <Animated.View entering={FadeInDown.delay(400).springify().damping(12)}>
@@ -139,53 +143,50 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   iconContainer: {
-    marginBottom: 24,
-    shadowColor: "#000",
+    marginBottom: ms(24),
+    shadowColor: "#FBBF24",
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: ms(10),
     },
-    shadowOpacity: 0.3,
-    shadowRadius: 20,
+    shadowOpacity: 0.2,
+    shadowRadius: ms(30),
     elevation: 15,
   },
-  iconCircle: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    backgroundColor: "#1F2937",
-    justifyContent: "center",
-    alignItems: "center",
+  logoImage: {
+    width: ms(120),
+    height: ms(120),
+    borderRadius: ms(30),
   },
   title: {
     fontFamily: "PlusJakartaSans-ExtraBold",
-    fontSize: 42,
+    fontSize: ms(42),
     color: "#F9FAFB",
     textAlign: "center",
-    marginBottom: 8,
+    marginBottom: ms(8),
   },
   subtitle: {
     fontFamily: "PlusJakartaSans-Medium",
-    fontSize: 16,
+    fontSize: ms(16),
     color: "#9CA3AF",
     textAlign: "center",
     letterSpacing: 0.5,
   },
   footer: {
-    paddingBottom: 60,
+    paddingBottom: ms(60),
     alignItems: "center",
   },
   loaderTrack: {
-    width: 200,
-    height: 4,
+    width: ms(200),
+    height: ms(4),
     backgroundColor: "#374151",
-    borderRadius: 2,
+    borderRadius: ms(2),
     overflow: "hidden",
   },
   loaderFill: {
     height: "100%",
     backgroundColor: "#F9FAFB",
-    borderRadius: 2,
+    borderRadius: ms(2),
   },
 });
 

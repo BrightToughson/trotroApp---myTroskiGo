@@ -1,3 +1,4 @@
+import { ms } from '../../../lib/metrics';
 import { useUser } from "@clerk/clerk-expo";
 
 import { LinearGradient } from "expo-linear-gradient";
@@ -46,7 +47,8 @@ import NetInfo from "@react-native-community/netinfo";
 import { translateText } from "../../../lib/translate";
 import { useInstallPrompt } from "../../../hooks/useInstallPrompt";
 import OfficialAnnouncementsModal from "../../../components/OfficialAnnouncementsModal";
-import { PulseService, CityPulse } from "../../../lib/PulseService";
+import { PulseService, CityPulse } from
+"../../../lib/PulseService";
 
 const MOCK_NEWS = [
   {
@@ -198,7 +200,7 @@ export default function Home() {
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Text style={[styles.greeting, { color: colors.textSecondary }]}>{greetingText}, </Text>
         {Platform.OS === 'web' ? (
-          <Image source={{ uri: 'https://flagcdn.com/w40/gh.png' }} style={{ width: 22, height: 16, marginLeft: 4, borderRadius: 2 }} />
+          <Image source={{ uri: 'https://flagcdn.com/w40/gh.png' }} style={{ width: ms(22), height: ms(16), marginLeft: ms(4), borderRadius: ms(2) }} />
         ) : (
           <Text style={styles.greeting}>🇬🇭</Text>
         )}
@@ -270,8 +272,8 @@ export default function Home() {
       <LinearGradient colors={[colors.background, isDark ? "#0f172a" : "#f0f4ff", isDark ? "#020617" : "#e0e7ff"]} style={StyleSheet.absoluteFill} />
       
       <View style={StyleSheet.absoluteFill} pointerEvents="none">
-        <Animated.View style={[styles.decorativeCircle, animatedDrift1, { backgroundColor: colors.primary, top: -150, right: -50, width: 400, height: 400, opacity: isDark ? 0.3 : 0.15 }]} />
-        <Animated.View style={[styles.decorativeCircle, animatedDrift2, { backgroundColor: "#EAB308", bottom: "10%", left: -100, width: 300, height: 300, opacity: isDark ? 0.2 : 0.1 }]} />
+        <Animated.View style={[styles.decorativeCircle, animatedDrift1, { backgroundColor: colors.primary, top: ms(-150), right: ms(-50), width: ms(400), height: ms(400), opacity: isDark ? 0.3 : 0.15 }]} />
+        <Animated.View style={[styles.decorativeCircle, animatedDrift2, { backgroundColor: "#EAB308", bottom: "10%", left: ms(-100), width: ms(300), height: ms(300), opacity: isDark ? 0.2 : 0.1 }]} />
       </View>
 
       <View style={{ flex: 1, paddingTop: insets.top }}>
@@ -285,18 +287,18 @@ export default function Home() {
           }
         >
           <Animated.View entering={FadeInDown.delay(100).duration(600)} style={[styles.header, { marginBottom: headerMarginBottom }]}>
-            <View style={{ flexDirection: "row", alignItems: "center", flex: 1, paddingRight: 16 }}>
+            <View style={{ flexDirection: "row", alignItems: "center", flex: 1, paddingRight: ms(16) }}>
               <TouchableOpacity onPress={() => setMenuVisible(true)} style={[styles.headerIconBtn, { backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.8)" }]}>
                 <WebIcon name="menu-outline" size= {24} color={colors.text} />
               </TouchableOpacity>
               {showGreeting && (
-                <Animated.View exiting={FadeOut.duration(800)} style={{ marginLeft: 16, flex: 1 }}>
+                <Animated.View exiting={FadeOut.duration(800)} style={{ marginLeft: ms(16), flex: 1 }}>
                   {renderGreetingWithFlag()}
                   <Text style={[styles.userName, { color: colors.text, fontSize: userNameSize }]} numberOfLines={1}>{user?.firstName || t('traveler')} 👋</Text>
                 </Animated.View>
               )}
             </View>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: ms(10) }}>
               <TouchableOpacity 
                 onPress={() => setIsOfficialModalVisible(true)} 
                 style={[styles.headerIconBtn, { backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.8)" }]}
@@ -339,11 +341,11 @@ export default function Home() {
                 }
               ]}
             >
-              <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: "rgba(59, 130, 246, 0.12)", alignItems: "center", justifyContent: "center" }}>
+              <View style={{ width: ms(44), height: ms(44), borderRadius: ms(22), backgroundColor: "rgba(59, 130, 246, 0.12)", alignItems: "center", justifyContent: "center" }}>
                 <WebIcon name="search" size= {22} color="#3b82f6" />
               </View>
-              <View style={{ flex: 1, marginLeft: 16, gap: 4 }}>
-                <Text style={{ fontSize: headingSize, fontWeight: "900", color: colors.text, lineHeight: 22 }}>
+              <View style={{ flex: 1, marginLeft: ms(16), gap: ms(4) }}>
+                <Text style={{ fontSize: headingSize, fontWeight: "900", color: colors.text, lineHeight: ms(22) }}>
                   {t('where_going')}
                 </Text>
                 <Text style={{ fontSize: searchSubSize, fontWeight: '800', color: "#3b82f6", letterSpacing: 0.5 }}>
@@ -356,7 +358,7 @@ export default function Home() {
           {isInstallable && (
             <Animated.View entering={FadeInDown.delay(300).duration(600)} style={[styles.section, { marginTop: sectionMarginTop }]}>
               <TouchableOpacity onPress={handleInstallClick} style={[styles.liveTicker, { backgroundColor: colors.primary + '15', borderColor: colors.primary + '40', paddingVertical: paddingVerticalSmall }]}>
-                <View style={[styles.searchIconBox, { backgroundColor: colors.primary, marginRight: 12 }]}>
+                <View style={[styles.searchIconBox, { backgroundColor: colors.primary, marginRight: ms(12) }]}>
                   <WebIcon name="download-outline" size= {18} color="#fff" />
                 </View>
                 <View style={{ flex: 1 }}>
@@ -377,11 +379,11 @@ export default function Home() {
               <Text style={[styles.sectionTitle, { color: colors.text, fontSize: sectionTitleSize }]}>{t('recent_journey', 'Recent Journey')}</Text>
               {recentRides.length > 0 && (
                 <TouchableOpacity 
-                  style={[styles.viewAllBtn, { backgroundColor: colors.primary + '15', flexDirection: 'row', alignItems: 'center', gap: 4 }]}
+                  style={[styles.viewAllBtn, { backgroundColor: colors.primary + '15', flexDirection: 'row', alignItems: 'center', gap: ms(4) }]}
                   onPress={() => router.push("/(root)/(tabs)/history")}
                 >
                   <WebIcon name="time" size= {16} color={colors.primary} />
-                  <Text style={{ color: colors.primary, fontSize: 12, fontWeight: "800", textTransform: 'uppercase', letterSpacing: 0.5 }}>{t('history')}</Text>
+                  <Text style={{ color: colors.primary, fontSize: ms(12), fontWeight: "800", textTransform: 'uppercase', letterSpacing: 0.5 }}>{t('history')}</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -390,8 +392,8 @@ export default function Home() {
                 onPress={() => router.push({ pathname: "/(root)/find-ride", params: recentRides[0] as Record<string, any> })}
                 style={[styles.liveTicker, { backgroundColor: isDark ? "rgba(30, 41, 59, 0.5)" : "rgba(255, 255, 255, 0.7)", borderColor: colors.primary + '20' }]}
               >
-                <Animated.View style={[styles.pulseDot, { backgroundColor: colors.primary, marginRight: 8 }, animatedPulse]} />
-                <View style={[styles.iconBoxSmall, { backgroundColor: colors.primary + '15', marginRight: 12 }]}>
+                <Animated.View style={[styles.pulseDot, { backgroundColor: colors.primary, marginRight: ms(8) }, animatedPulse]} />
+                <View style={[styles.iconBoxSmall, { backgroundColor: colors.primary + '15', marginRight: ms(12) }]}>
                    <WebIcon name="bus" size= {18} color={colors.primary} />
                 </View>
                 <View style={{ flex: 1 }}>
@@ -435,7 +437,7 @@ export default function Home() {
                 <View style={[styles.iconBoxSmall, { backgroundColor: colors.primary + '20' }]}>
                   <WebIcon name="chatbubble-ellipses" size= {18} color={colors.primary} />
                 </View>
-                <View style={{ flex: 1, marginLeft: 12 }}>
+                <View style={{ flex: 1, marginLeft: ms(12) }}>
                   <Text style={[styles.alertTitle, { color: colors.text }]}>{showInAppAlert.title}</Text>
                   <Text style={[styles.alertMessage, { color: colors.textSecondary }]} numberOfLines={1}>{showInAppAlert.message}</Text>
                 </View>
@@ -450,14 +452,14 @@ export default function Home() {
             <View style={styles.sectionHeader}>
               <View>
                 <Text style={[styles.sectionTitle, { color: colors.text, fontSize: sectionTitleSize }]}>{t('city_pulse')}</Text>
-                <Text style={{ fontSize: 13, color: colors.textSecondary, fontWeight: '600', marginTop: -4 }}>{t('stay_informed_city')}</Text>
+                <Text style={{ fontSize: ms(13), color: colors.textSecondary, fontWeight: '600', marginTop: ms(-4) }}>{t('stay_informed_city')}</Text>
               </View>
               {cityPulses.length > 3 && (
                 <TouchableOpacity 
-                  style={[styles.viewAllBtn, { backgroundColor: colors.primary + '15', flexDirection: 'row', alignItems: 'center', gap: 4 }]}
+                  style={[styles.viewAllBtn, { backgroundColor: colors.primary + '15', flexDirection: 'row', alignItems: 'center', gap: ms(4) }]}
                   onPress={() => router.push("/(root)/city-pulse-list")}
                 >
-                  <Text style={{ color: colors.primary, fontSize: 12, fontWeight: "800", textTransform: 'uppercase', letterSpacing: 0.5 }}>{t('view_all', 'View All')}</Text>
+                  <Text style={{ color: colors.primary, fontSize: ms(12), fontWeight: "800", textTransform: 'uppercase', letterSpacing: 0.5 }}>{t('view_all', 'View All')}</Text>
                   <WebIcon name="chevron-forward" size= {14} color={colors.primary} />
                 </TouchableOpacity>
               )}
@@ -472,9 +474,9 @@ export default function Home() {
                 loop={true}
                 bounces={true}
                 height= {Platform.OS === 'web' ? 300 : 280} 
-                dot={<View style={{ backgroundColor: 'rgba(255,255,255,0.6)', width: 12, height: 6, borderRadius: 3, marginHorizontal: 4, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: 2, elevation: 3 }} />}
-                activeDot={<View style={{ backgroundColor: colors.primary, width: 32, height: 6, borderRadius: 3, marginHorizontal: 4, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: 2, elevation: 3 }} />}
-                paginationStyle={{ top: 16, right: 16, bottom: undefined, left: undefined, alignItems: 'flex-start' }}
+                dot={<View style={{ backgroundColor: 'rgba(255,255,255,0.6)', width: ms(12), height: ms(6), borderRadius: ms(3), marginHorizontal: ms(4), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: ms(2), elevation: 3 }} />}
+                activeDot={<View style={{ backgroundColor: colors.primary, width: ms(32), height: ms(6), borderRadius: ms(3), marginHorizontal: ms(4), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: ms(2), elevation: 3 }} />}
+                paginationStyle={{ top: ms(16), right: ms(16), bottom: undefined, left: undefined, alignItems: 'flex-start' }}
                 removeClippedSubviews={false}
               >
                 {(cityPulses.length > 0 ? cityPulses.slice(0, 3) : (MOCK_NEWS as CityPulse[]).slice(0, 3)).map((item) => (
@@ -559,40 +561,46 @@ export default function Home() {
         <View style={[StyleSheet.absoluteFill, { zIndex: 1000 }]} pointerEvents="box-none">
           <View style={styles.modalOverlay}>
             <Animated.View entering={FadeInUp.springify().damping(15)} style={[styles.welcomeModal, { backgroundColor: colors.surface }]}>
-              <LinearGradient colors={[colors.primary, colors.primary + 'CC']} style={[styles.modalHeaderGradient, { height: 120 }]}>
-                <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: 'rgba(255,255,255,0.2)', justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: 'rgba(255,255,255,0.4)' }}>
+              <LinearGradient colors={[colors.primary, colors.primary + 'CC']} style={[styles.modalHeaderGradient, { height: ms(120) }]}>
+                <View style={{ width: ms(64), height: ms(64), borderRadius: ms(32), backgroundColor: 'rgba(255,255,255,0.2)', justifyContent: 'center', alignItems: 'center', borderWidth: ms(2), borderColor: 'rgba(255,255,255,0.4)' }}>
                   <WebIcon name="share-outline" size= {32} color="#fff" />
                 </View>
               </LinearGradient>
               <View style={styles.modalTextContainer}>
-                <Text style={[styles.modalTitle, { color: colors.text, marginBottom: 16 }]}>{t('install_on_ios', 'Install on iOS')}</Text>
+                <Text style={[styles.modalTitle, { color: colors.text, marginBottom: ms(16) }]}>{t('install_on_ios', 'Install on iOS')}</Text>
                 
-                <View style={{ width: '100%', gap: 12 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', padding: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.border }}>
-                    <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: 12 }}>
-                      <Text style={{ fontSize: 16, fontWeight: '900', color: colors.primary }}>1</Text>
+                <View style={{ width: '100%', gap: ms(12) }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', padding: ms(12), borderRadius: ms(16), borderWidth: 1, borderColor: colors.border }}>
+                    <View style={{ width: ms(40), height: ms(40), borderRadius: ms(12), backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: ms(12) }}>
+                      <Text style={{ fontSize: ms(16), fontWeight: '900', color: colors.primary }}>1</Text>
                     </View>
-                    <Text style={{ flex: 1, fontSize: 15, fontWeight: '600', color: colors.textSecondary }}>
+                    <Text style={{ flex: 1, fontSize: ms(15), fontWeight: '600', color: colors.textSecondary }}>
                       Tap the <Text style={{ fontWeight: '800', color: colors.text }}>Share</Text> icon below
                     </Text>
                     <WebIcon name="share-outline" size= {24} color={colors.primary} />
                   </View>
 
-                  <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', padding: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.border }}>
-                    <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: 12 }}>
-                      <Text style={{ fontSize: 16, fontWeight: '900', color: colors.primary }}>2</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', padding: ms(12), borderRadius: ms(16), borderWidth: 1, borderColor: colors.border }}>
+                    <View style={{ width: ms(40), height: ms(40), borderRadius: ms(12), backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: ms(12) }}>
+                      <Text style={{ fontSize: ms(16), fontWeight: '900', color: colors.primary }}>2</Text>
                     </View>
-                    <Text style={{ flex: 1, fontSize: 15, fontWeight: '600', color: colors.textSecondary }}>
+                    <Text style={{ flex: 1, fontSize: ms(15), fontWeight: '600', color: colors.textSecondary }}>
                       Select <Text style={{ fontWeight: '800', color: colors.text }}>Add to Home Screen</Text>
                     </Text>
                     <WebIcon name="add-square-outline" size= {24} color={colors.primary} />
                   </View>
                 </View>
 
+                <View style={{ marginTop: ms(16), padding: ms(12), backgroundColor: colors.primary + '15', borderRadius: ms(12), width: '100%' }}>
+                  <Text style={{ fontSize: ms(13), color: colors.primary, textAlign: 'center', fontWeight: '600', lineHeight: ms(18) }}>
+                    Note: Due to Apple's privacy policy, you will need to sign in one more time after launching the app from your Home Screen.
+                  </Text>
+                </View>
+
               </View>
               <View style={[styles.modalFooter, { borderTopWidth: 0, paddingTop: 0 }]}>
-                <TouchableOpacity style={[styles.startBtn, { backgroundColor: colors.primary, width: '100%', flex: 1, height: 56, borderRadius: 20 }]} onPress={() => setShowIOSInstall(false)}>
-                  <Text style={[styles.startBtnText, { fontSize: 18 }]}>{t('got_it', 'Got it')}</Text>
+                <TouchableOpacity style={[styles.startBtn, { backgroundColor: colors.primary, width: '100%', flex: 1, height: ms(56), borderRadius: ms(20) }]} onPress={() => setShowIOSInstall(false)}>
+                  <Text style={[styles.startBtnText, { fontSize: ms(18) }]}>{t('got_it', 'Got it')}</Text>
                 </TouchableOpacity>
               </View>
             </Animated.View>
@@ -604,54 +612,60 @@ export default function Home() {
         <View style={[StyleSheet.absoluteFill, { zIndex: 1000 }]} pointerEvents="box-none">
           <View style={styles.modalOverlay}>
             <Animated.View entering={FadeInUp.springify().damping(15)} style={[styles.welcomeModal, { backgroundColor: colors.surface }]}>
-              <LinearGradient colors={[colors.primary, colors.primary + 'CC']} style={[styles.modalHeaderGradient, { height: 120 }]}>
-                <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: 'rgba(255,255,255,0.2)', justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: 'rgba(255,255,255,0.4)' }}>
+              <LinearGradient colors={[colors.primary, colors.primary + 'CC']} style={[styles.modalHeaderGradient, { height: ms(120) }]}>
+                <View style={{ width: ms(64), height: ms(64), borderRadius: ms(32), backgroundColor: 'rgba(255,255,255,0.2)', justifyContent: 'center', alignItems: 'center', borderWidth: ms(2), borderColor: 'rgba(255,255,255,0.4)' }}>
                   <WebIcon name="ellipsis-vertical" size= {32} color="#fff" />
                 </View>
               </LinearGradient>
               <View style={styles.modalTextContainer}>
-                <Text style={[styles.modalTitle, { color: colors.text, marginBottom: 16 }]}>{t('install_on_android', 'Install on Android')}</Text>
+                <Text style={[styles.modalTitle, { color: colors.text, marginBottom: ms(16) }]}>{t('install_on_android', 'Install on Android')}</Text>
                 
-                <View style={{ width: '100%', gap: 12 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', padding: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.border }}>
-                    <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: 12 }}>
-                      <Text style={{ fontSize: 16, fontWeight: '900', color: colors.primary }}>1</Text>
+                <View style={{ width: '100%', gap: ms(12) }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', padding: ms(12), borderRadius: ms(16), borderWidth: 1, borderColor: colors.border }}>
+                    <View style={{ width: ms(40), height: ms(40), borderRadius: ms(12), backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: ms(12) }}>
+                      <Text style={{ fontSize: ms(16), fontWeight: '900', color: colors.primary }}>1</Text>
                     </View>
-                    <Text style={{ flex: 1, fontSize: 15, fontWeight: '600', color: colors.textSecondary }}>
+                    <Text style={{ flex: 1, fontSize: ms(15), fontWeight: '600', color: colors.textSecondary }}>
                       Tap the <Text style={{ fontWeight: '800', color: colors.text }}>Menu</Text> icon above
                     </Text>
                     <WebIcon name="ellipsis-vertical" size= {24} color={colors.primary} />
                   </View>
 
-                  <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', padding: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.border }}>
-                    <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: 12 }}>
-                      <Text style={{ fontSize: 16, fontWeight: '900', color: colors.primary }}>2</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', padding: ms(12), borderRadius: ms(16), borderWidth: 1, borderColor: colors.border }}>
+                    <View style={{ width: ms(40), height: ms(40), borderRadius: ms(12), backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: ms(12) }}>
+                      <Text style={{ fontSize: ms(16), fontWeight: '900', color: colors.primary }}>2</Text>
                     </View>
-                    <Text style={{ flex: 1, fontSize: 15, fontWeight: '600', color: colors.textSecondary }}>
+                    <Text style={{ flex: 1, fontSize: ms(15), fontWeight: '600', color: colors.textSecondary }}>
                       Select <Text style={{ fontWeight: '800', color: colors.text }}>Install app</Text>
                     </Text>
                     <WebIcon name="download-outline" size= {24} color={colors.primary} />
                   </View>
 
-                  <View style={{ marginTop: 8, marginBottom: 4, flexDirection: 'row', alignItems: 'center' }}>
+                  <View style={{ marginTop: ms(8), marginBottom: ms(4), flexDirection: 'row', alignItems: 'center' }}>
                     <View style={{ flex: 1, height: 1, backgroundColor: colors.border }} />
-                    <Text style={{ marginHorizontal: 12, color: colors.textSecondary, fontWeight: '800', fontSize: 13 }}>OR</Text>
+                    <Text style={{ marginHorizontal: ms(12), color: colors.textSecondary, fontWeight: '800', fontSize: ms(13) }}>OR</Text>
                     <View style={{ flex: 1, height: 1, backgroundColor: colors.border }} />
                   </View>
 
                   <TouchableOpacity 
-                    style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#10B981', padding: 16, borderRadius: 16, justifyContent: 'center', gap: 12, elevation: 4 }}
+                    style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#10B981', padding: ms(16), borderRadius: ms(16), justifyContent: 'center', gap: ms(12), elevation: 4 }}
                     onPress={() => Linking.openURL('https://expo.dev/artifacts/eas/PdmETQdkqhniYTf9zvRWRxXUqZ3ltzEgGFQ0zGuSHYE.apk')}
                   >
                     <WebIcon name="logo-android" size= {24} color="#fff" />
-                    <Text style={{ fontSize: 16, fontWeight: '900', color: '#fff' }}>Download native APK</Text>
+                    <Text style={{ fontSize: ms(16), fontWeight: '900', color: '#fff' }}>Download native APK</Text>
                   </TouchableOpacity>
+                </View>
+
+                <View style={{ marginTop: ms(16), padding: ms(12), backgroundColor: colors.primary + '15', borderRadius: ms(12), width: '100%' }}>
+                  <Text style={{ fontSize: ms(13), color: colors.primary, textAlign: 'center', fontWeight: '600', lineHeight: ms(18) }}>
+                    Note: For security reasons, you may need to sign in one more time after launching the app from your Home Screen.
+                  </Text>
                 </View>
 
               </View>
               <View style={[styles.modalFooter, { borderTopWidth: 0, paddingTop: 0 }]}>
-                <TouchableOpacity style={[styles.startBtn, { backgroundColor: colors.primary, width: '100%', flex: 1, height: 56, borderRadius: 20 }]} onPress={() => setShowAndroidInstall(false)}>
-                  <Text style={[styles.startBtnText, { fontSize: 18 }]}>{t('got_it', 'Got it')}</Text>
+                <TouchableOpacity style={[styles.startBtn, { backgroundColor: colors.primary, width: '100%', flex: 1, height: ms(56), borderRadius: ms(20) }]} onPress={() => setShowAndroidInstall(false)}>
+                  <Text style={[styles.startBtnText, { fontSize: ms(18) }]}>{t('got_it', 'Got it')}</Text>
                 </TouchableOpacity>
               </View>
             </Animated.View>
@@ -664,131 +678,131 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  scrollContent: { paddingHorizontal: 20, paddingTop: 32, paddingBottom: 120 },
-  header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 32, marginTop: 8 },
-  greeting: { fontSize: 11, fontWeight: "800", textTransform: "uppercase", letterSpacing: 1.5, opacity: 0.8 },
-  userName: { fontSize: 16, fontWeight: "900", marginTop: 1, letterSpacing: -0.2 },
-  avatarContainer: { width: 38, height: 38, borderRadius: 19, borderWidth: 2, overflow: "hidden" },
+  scrollContent: { paddingHorizontal: ms(20), paddingTop: ms(32), paddingBottom: ms(120) },
+  header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: ms(32), marginTop: ms(8) },
+  greeting: { fontSize: ms(11), fontWeight: "800", textTransform: "uppercase", letterSpacing: 1.5, opacity: 0.8 },
+  userName: { fontSize: ms(16), fontWeight: "900", marginTop: 1, letterSpacing: -0.2 },
+  avatarContainer: { width: ms(38), height: ms(38), borderRadius: ms(19), borderWidth: ms(2), overflow: "hidden" },
   avatar: { width: "100%", height: "100%" },
   avatarPlaceholder: { flex: 1, justifyContent: "center", alignItems: "center" },
-  headerIconBtn: { width: 38, height: 38, borderRadius: 12, justifyContent: "center", alignItems: "center", elevation: 4 },
-  searchTrigger: { flexDirection: "row", alignItems: "center", minHeight: 64, paddingVertical: 10, paddingHorizontal: 16, borderRadius: 20, borderWidth: 1.5, ...Platform.select({ web: {}, default: { elevation: 8, shadowColor: "#3b82f6", shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.04, shadowRadius: 12 } }) },
-  searchDivider: { width: 1, height: 20, backgroundColor: 'rgba(0,0,0,0.1)', marginHorizontal: 12 },
-  searchPlaceholder: { fontSize: 16, fontWeight: "600", flex: 1 },
-  section: { marginTop: 20 },
-  sectionHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 12 },
-  sectionTitle: { fontSize: 20, fontWeight: "bold", marginBottom: 4 },
-  emptyRides: { padding: 30, borderRadius: 24, borderStyle: "dashed", borderWidth: 1.5, justifyContent: "center", alignItems: "center" },
-  searchContainer: { marginBottom: 24 },
-  searchIconBox: { width: 40, height: 40, borderRadius: 12, justifyContent: "center", alignItems: "center" },
-  swiperContainer: { marginTop: 8 },
-  newsCard: { flex: 1, borderRadius: 24, overflow: "hidden", borderWidth: 1, ...Platform.select({ web: {}, default: { elevation: 12, shadowColor: '#000', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.3, shadowRadius: 20 } }) },
-  newsTopRow: { flexDirection: 'row', justifyContent: 'space-between', padding: 16 },
-  newsGlassTag: { paddingHorizontal: 8, paddingVertical: 4, borderRadius: 6, borderWidth: 1, flexDirection: 'row', alignItems: 'center' },
-  liveTicker: { flexDirection: 'row', alignItems: 'center', padding: 12, borderRadius: 16, borderWidth: 1, marginHorizontal: 2 },
-  pulseDot: { width: 6, height: 6, borderRadius: 3, marginRight: 10 },
-  liveLabel: { fontSize: 13, fontWeight: '900', letterSpacing: 1.2, marginBottom: 2 },
-  liveText: { fontSize: 15, fontWeight: '600' },
-  newsTagText: { color: "#fff", fontSize: 10, fontWeight: "900", letterSpacing: 1.2, textTransform: "uppercase" },
-  newsContentOverlay: { paddingVertical: 16, paddingHorizontal: Platform.OS === 'web' ? 48 : 20, paddingBottom: 24, marginTop: "auto" },
-  newsTitlePremium: { fontSize: 18, fontWeight: "900", color: "#fff", letterSpacing: -0.2, lineHeight: 24, textShadowColor: 'rgba(0,0,0,0.4)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 6 },
-  newsExcerptPremium: { color: "rgba(255,255,255,0.85)", fontSize: 13, fontWeight: "500", marginTop: 8, lineHeight: 18, textShadowColor: 'rgba(0,0,0,0.3)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 4 },
-  newsFooter: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 20 },
-  newsAuthorRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  authorAvatar: { width: 20, height: 20, borderRadius: 10, justifyContent: 'center', alignItems: 'center' },
-  authorInitial: { color: '#fff', fontSize: 12, fontWeight: '900' },
-  authorName: { color: 'rgba(255,255,255,0.7)', fontSize: 15, fontWeight: '700' },
-  readMorePill: { backgroundColor: 'rgba(255,255,255,0.2)', paddingHorizontal: 16, paddingVertical: 10, borderRadius: 24, flexDirection: 'row', alignItems: 'center', gap: 6 },
-  readMorePillText: { color: '#fff', fontSize: 16, fontWeight: '900' },
-  viewAllBtn: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12 },
-  newsMetaRow: { flexDirection: "row", alignItems: "center", marginTop: 8 },
-  newsTimeText: { color: "rgba(255,255,255,0.85)", fontSize: 15, fontWeight: "600" },
-  newsReadBtn: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12, gap: 6, elevation: 5 },
-  newsReadText: { color: '#fff', fontSize: 14, fontWeight: '800' },
-  scrollIndicator: { alignItems: "center", marginTop: 20, marginBottom: 10 },
-  scrollText: { fontSize: 12, fontWeight: "800", textTransform: "uppercase", letterSpacing: 1.8, marginBottom: 2, opacity: 0.5 },
-  networkStatus: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 10, marginTop: 4, alignSelf: 'flex-start' },
-  statusDot: { width: 5, height: 5, borderRadius: 2.5, marginRight: 4 },
-  statusText: { fontSize: 15, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1 },
-  headerLanguageWrapper: { borderRadius: 14, paddingHorizontal: 4, height: 44, justifyContent: 'center', alignItems: 'center' },
-  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
-  welcomeModal: { width: '100%', maxWidth: 340, borderRadius: 32, overflow: 'hidden', elevation: 25 },
-  modalHeaderGradient: { height: 120, justifyContent: 'center', alignItems: 'center' },
-  modalTextContainer: { padding: 24, alignItems: 'center' },
-  modalTitle: { fontSize: 26, fontWeight: '900', textAlign: 'center', marginBottom: 8, letterSpacing: -0.5 },
-  modalDesc: { fontSize: 16, textAlign: 'center', lineHeight: 24, letterSpacing: 0.2 },
-  modalFooter: { flexDirection: 'row', padding: 20, gap: 12, borderTopWidth: 1, borderTopColor: 'rgba(0,0,0,0.05)' },
-  skipBtn: { flex: 1, height: 50, borderRadius: 16, justifyContent: 'center', alignItems: 'center', borderWidth: 1 },
-  skipBtnText: { fontSize: 16, fontWeight: '700' },
-  startBtn: { flex: 2, height: 50, borderRadius: 16, justifyContent: 'center', alignItems: 'center', elevation: 4 },
-  startBtnText: { color: '#fff', fontSize: 16, fontWeight: '900' },
+  headerIconBtn: { width: ms(38), height: ms(38), borderRadius: ms(12), justifyContent: "center", alignItems: "center", elevation: 4 },
+  searchTrigger: { flexDirection: "row", alignItems: "center", minHeight: ms(64), paddingVertical: ms(10), paddingHorizontal: ms(16), borderRadius: ms(20), borderWidth: ms(1.5), ...Platform.select({ web: {}, default: { elevation: 8, shadowColor: "#3b82f6", shadowOffset: { width: 0, height: ms(6) }, shadowOpacity: 0.04, shadowRadius: ms(12) } }) },
+  searchDivider: { width: 1, height: ms(20), backgroundColor: 'rgba(0,0,0,0.1)', marginHorizontal: ms(12) },
+  searchPlaceholder: { fontSize: ms(16), fontWeight: "600", flex: 1 },
+  section: { marginTop: ms(20) },
+  sectionHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: ms(12) },
+  sectionTitle: { fontSize: ms(20), fontWeight: "bold", marginBottom: ms(4) },
+  emptyRides: { padding: ms(30), borderRadius: ms(24), borderStyle: "dashed", borderWidth: ms(1.5), justifyContent: "center", alignItems: "center" },
+  searchContainer: { marginBottom: ms(24) },
+  searchIconBox: { width: ms(40), height: ms(40), borderRadius: ms(12), justifyContent: "center", alignItems: "center" },
+  swiperContainer: { marginTop: ms(8) },
+  newsCard: { flex: 1, borderRadius: ms(24), overflow: "hidden", borderWidth: 1, ...Platform.select({ web: {}, default: { elevation: 12, shadowColor: '#000', shadowOffset: { width: 0, height: ms(10) }, shadowOpacity: 0.3, shadowRadius: ms(20) } }) },
+  newsTopRow: { flexDirection: 'row', justifyContent: 'space-between', padding: ms(16) },
+  newsGlassTag: { paddingHorizontal: ms(8), paddingVertical: ms(4), borderRadius: ms(6), borderWidth: 1, flexDirection: 'row', alignItems: 'center' },
+  liveTicker: { flexDirection: 'row', alignItems: 'center', padding: ms(12), borderRadius: ms(16), borderWidth: 1, marginHorizontal: ms(2) },
+  pulseDot: { width: ms(6), height: ms(6), borderRadius: ms(3), marginRight: ms(10) },
+  liveLabel: { fontSize: ms(13), fontWeight: '900', letterSpacing: 1.2, marginBottom: ms(2) },
+  liveText: { fontSize: ms(15), fontWeight: '600' },
+  newsTagText: { color: "#fff", fontSize: ms(10), fontWeight: "900", letterSpacing: 1.2, textTransform: "uppercase" },
+  newsContentOverlay: { paddingVertical: ms(16), paddingHorizontal: Platform.OS === 'web' ? 48 : 20, paddingBottom: ms(24), marginTop: "auto" },
+  newsTitlePremium: { fontSize: ms(18), fontWeight: "900", color: "#fff", letterSpacing: -0.2, lineHeight: ms(24), textShadowColor: 'rgba(0,0,0,0.4)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 6 },
+  newsExcerptPremium: { color: "rgba(255,255,255,0.85)", fontSize: ms(13), fontWeight: "500", marginTop: ms(8), lineHeight: ms(18), textShadowColor: 'rgba(0,0,0,0.3)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 4 },
+  newsFooter: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: ms(20) },
+  newsAuthorRow: { flexDirection: 'row', alignItems: 'center', gap: ms(8) },
+  authorAvatar: { width: ms(20), height: ms(20), borderRadius: ms(10), justifyContent: 'center', alignItems: 'center' },
+  authorInitial: { color: '#fff', fontSize: ms(12), fontWeight: '900' },
+  authorName: { color: 'rgba(255,255,255,0.7)', fontSize: ms(15), fontWeight: '700' },
+  readMorePill: { backgroundColor: 'rgba(255,255,255,0.2)', paddingHorizontal: ms(16), paddingVertical: ms(10), borderRadius: ms(24), flexDirection: 'row', alignItems: 'center', gap: ms(6) },
+  readMorePillText: { color: '#fff', fontSize: ms(16), fontWeight: '900' },
+  viewAllBtn: { paddingHorizontal: ms(12), paddingVertical: ms(6), borderRadius: ms(12) },
+  newsMetaRow: { flexDirection: "row", alignItems: "center", marginTop: ms(8) },
+  newsTimeText: { color: "rgba(255,255,255,0.85)", fontSize: ms(15), fontWeight: "600" },
+  newsReadBtn: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: ms(12), paddingVertical: ms(8), borderRadius: ms(12), gap: ms(6), elevation: 5 },
+  newsReadText: { color: '#fff', fontSize: ms(14), fontWeight: '800' },
+  scrollIndicator: { alignItems: "center", marginTop: ms(20), marginBottom: ms(10) },
+  scrollText: { fontSize: ms(12), fontWeight: "800", textTransform: "uppercase", letterSpacing: 1.8, marginBottom: ms(2), opacity: 0.5 },
+  networkStatus: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: ms(6), paddingVertical: ms(2), borderRadius: ms(10), marginTop: ms(4), alignSelf: 'flex-start' },
+  statusDot: { width: ms(5), height: ms(5), borderRadius: ms(2.5), marginRight: ms(4) },
+  statusText: { fontSize: ms(15), fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1 },
+  headerLanguageWrapper: { borderRadius: ms(14), paddingHorizontal: ms(4), height: ms(44), justifyContent: 'center', alignItems: 'center' },
+  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: ms(20) },
+  welcomeModal: { width: '100%', maxWidth: ms(340), borderRadius: ms(32), overflow: 'hidden', elevation: 25 },
+  modalHeaderGradient: { height: ms(120), justifyContent: 'center', alignItems: 'center' },
+  modalTextContainer: { padding: ms(24), alignItems: 'center' },
+  modalTitle: { fontSize: ms(26), fontWeight: '900', textAlign: 'center', marginBottom: ms(8), letterSpacing: -0.5 },
+  modalDesc: { fontSize: ms(16), textAlign: 'center', lineHeight: ms(24), letterSpacing: 0.2 },
+  modalFooter: { flexDirection: 'row', padding: ms(20), gap: ms(12), borderTopWidth: 1, borderTopColor: 'rgba(0,0,0,0.05)' },
+  skipBtn: { flex: 1, height: ms(50), borderRadius: ms(16), justifyContent: 'center', alignItems: 'center', borderWidth: 1 },
+  skipBtnText: { fontSize: ms(16), fontWeight: '700' },
+  startBtn: { flex: 2, height: ms(50), borderRadius: ms(16), justifyContent: 'center', alignItems: 'center', elevation: 4 },
+  startBtnText: { color: '#fff', fontSize: ms(16), fontWeight: '900' },
 
-  decorativeCircle: { position: "absolute", borderRadius: 999 },
+  decorativeCircle: { position: "absolute", borderRadius: ms(999) },
   bellBadge: {
     position: 'absolute',
-    top: 6,
-    right: 6,
-    minWidth: 16,
-    height: 16,
-    borderRadius: 8,
+    top: ms(6),
+    right: ms(6),
+    minWidth: ms(16),
+    height: ms(16),
+    borderRadius: ms(8),
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 4,
-    borderWidth: 1.5,
+    paddingHorizontal: ms(4),
+    borderWidth: ms(1.5),
     borderColor: '#fff',
   },
   bellBadgeText: {
     color: '#fff',
-    fontSize: 10,
+    fontSize: ms(10),
     fontWeight: '900',
   },
   inAppAlert: {
     position: 'absolute',
-    top: 20,
-    left: 20,
-    right: 20,
+    top: ms(20),
+    left: ms(20),
+    right: ms(20),
     zIndex: 9999,
-    padding: 12,
-    borderRadius: 20,
+    padding: ms(12),
+    borderRadius: ms(20),
     borderWidth: 1,
     elevation: 10,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: ms(4) },
     shadowOpacity: 0.2,
-    shadowRadius: 8,
+    shadowRadius: ms(8),
   },
   inAppAlertContent: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   iconBoxSmall: {
-    width: 44,
-    height: 44,
-    borderRadius: 12,
+    width: ms(44),
+    height: ms(44),
+    borderRadius: ms(12),
     justifyContent: 'center',
     alignItems: 'center',
   },
   alertTitle: {
-    fontSize: 18,
+    fontSize: ms(18),
     fontWeight: '800',
   },
   alertMessage: {
-    fontSize: 14,
+    fontSize: ms(14),
   },
   statusDotBadge: {
     position: 'absolute',
-    bottom: 2,
-    right: 2,
-    width: 14,
-    height: 14,
-    borderRadius: 7,
-    borderWidth: 2.5,
+    bottom: ms(2),
+    right: ms(2),
+    width: ms(14),
+    height: ms(14),
+    borderRadius: ms(7),
+    borderWidth: ms(2.5),
   },
   tagline: {
-    fontSize: 14,
+    fontSize: ms(14),
     fontWeight: '700',
-    marginBottom: 8,
-    marginLeft: 4,
+    marginBottom: ms(8),
+    marginLeft: ms(4),
     textTransform: 'uppercase',
     letterSpacing: 1.5,
     opacity: 0.8,
@@ -796,10 +810,10 @@ const styles = StyleSheet.create({
   liveMeta: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: ms(8),
   },
   liveTime: {
-    fontSize: 12,
+    fontSize: ms(12),
     fontWeight: '700',
   },
 });

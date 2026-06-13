@@ -1,3 +1,4 @@
+import { ms } from '../lib/metrics';
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Platform, Alert, KeyboardAvoidingView } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
@@ -8,7 +9,8 @@ import { isAdminUser } from '../constants/admins';
 import { WebIcon } from '../components/WebIcon';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeInDown, Layout, FadeIn, SlideInDown } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from
+'react-native-safe-area-context';
 
 // Custom Animated Dropdown
 const CustomDropdown = ({ label, value, options, onSelect, onAddCustom, isCustom, setCustomValue, placeholder, colors, isDark }: any) => {
@@ -16,10 +18,10 @@ const CustomDropdown = ({ label, value, options, onSelect, onAddCustom, isCustom
 
   return (
     <View style={{ zIndex: isOpen ? 1000 : 1 }}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: ms(8) }}>
          <Text style={[styles.label, { color: colors.textSecondary }]}>{label}</Text>
          <TouchableOpacity onPress={() => { onAddCustom(!isCustom); setIsOpen(false); }} activeOpacity={0.7}>
-            <Text style={{ color: colors.primary, fontSize: 13, fontWeight: '700' }}>
+            <Text style={{ color: colors.primary, fontSize: ms(13), fontWeight: '700' }}>
               {isCustom ? 'Select Existing' : 'Type New'}
             </Text>
          </TouchableOpacity>
@@ -44,7 +46,7 @@ const CustomDropdown = ({ label, value, options, onSelect, onAddCustom, isCustom
               borderWidth: isOpen ? 1.5 : 1
             }]}
           >
-            <Text style={{ color: value ? colors.text : colors.textSecondary, fontSize: 16, fontWeight: value ? '600' : '400' }}>
+            <Text style={{ color: value ? colors.text : colors.textSecondary, fontSize: ms(16), fontWeight: value ? '600' : '400' }}>
               {value || `Select ${label}...`}
             </Text>
             <WebIcon name={isOpen ? "chevron-up" : "chevron-down"} size= {20} color={colors.textSecondary} />
@@ -58,21 +60,21 @@ const CustomDropdown = ({ label, value, options, onSelect, onAddCustom, isCustom
                 borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'
               }]}
             >
-              <ScrollView nestedScrollEnabled style={{ maxHeight: 200 }}>
+              <ScrollView nestedScrollEnabled style={{ maxHeight: ms(200) }}>
                 {options.map((opt: any) => (
                   <TouchableOpacity 
                     key={opt.value}
                     style={[styles.dropdownItem, value === opt.value && { backgroundColor: colors.primary + '15' }]}
                     onPress={() => { onSelect(opt.value); setIsOpen(false); }}
                   >
-                    <Text style={{ color: value === opt.value ? colors.primary : colors.text, fontSize: 15, fontWeight: value === opt.value ? '700' : '500' }}>
+                    <Text style={{ color: value === opt.value ? colors.primary : colors.text, fontSize: ms(15), fontWeight: value === opt.value ? '700' : '500' }}>
                       {opt.label}
                     </Text>
                     {value === opt.value && <WebIcon name="checkmark" size= {18} color={colors.primary} />}
                   </TouchableOpacity>
                 ))}
                 {options.length === 0 && (
-                   <Text style={{ padding: 15, color: colors.textSecondary, textAlign: 'center' }}>No options available.</Text>
+                   <Text style={{ padding: ms(15), color: colors.textSecondary, textAlign: 'center' }}>No options available.</Text>
                 )}
               </ScrollView>
             </Animated.View>
@@ -224,8 +226,8 @@ export default function FareManager() {
       <View style={[styles.container, { backgroundColor: colors.background, justifyContent: 'center', alignItems: 'center' }]}>
         <Stack.Screen options={{ title: 'Access Denied', headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
         <WebIcon name="lock-closed" size= {64} color={colors.primary} />
-        <Text style={{ color: colors.text, fontSize: 24, fontWeight: '900', marginTop: 20 }}>Access Denied</Text>
-        <Text style={{ color: colors.textSecondary, marginTop: 10, fontSize: 16 }}>Admin privileges required.</Text>
+        <Text style={{ color: colors.text, fontSize: ms(24), fontWeight: '900', marginTop: ms(20) }}>Access Denied</Text>
+        <Text style={{ color: colors.textSecondary, marginTop: ms(10), fontSize: ms(16) }}>Admin privileges required.</Text>
       </View>
     );
   }
@@ -238,22 +240,22 @@ export default function FareManager() {
       <View style={{ zIndex: 10 }}>
         <LinearGradient
            colors={isDark ? ["rgba(15, 23, 42, 0.95)", "rgba(15, 23, 42, 0.8)"] : ["rgba(255, 255, 255, 0.95)", "rgba(255, 255, 255, 0.8)"]}
-           style={{ padding: 20, paddingTop: Platform.OS === 'ios' ? 60 : 30, borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flexDirection: 'row', alignItems: 'center' }}
+           style={{ padding: ms(20), paddingTop: Platform.OS === 'ios' ? 60 : 30, borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flexDirection: 'row', alignItems: 'center' }}
            // @ts-ignore
-           style={[{ padding: 20, paddingTop: Platform.OS === 'ios' ? 60 : 30, borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flexDirection: 'row', alignItems: 'center' }, Platform.OS === 'web' && { backdropFilter: 'blur(20px)' }]}
+           style={[{ padding: ms(20), paddingTop: Platform.OS === 'ios' ? 60 : 30, borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flexDirection: 'row', alignItems: 'center' }, Platform.OS === 'web' && { backdropFilter: 'blur(20px)' }]}
         >
           <TouchableOpacity onPress={() => router.push('/admin')} activeOpacity={0.7} style={[styles.backBtn, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.04)' }]}>
              <WebIcon name="arrow-back" size= {24} color={colors.text} />
           </TouchableOpacity>
-          <View style={{ marginLeft: 16 }}>
-            <Text style={{ fontSize: 24, fontWeight: '900', color: colors.text, letterSpacing: -0.5 }}>Fare Dashboard</Text>
-            <Text style={{ fontSize: 14, color: colors.textSecondary, fontWeight: '600' }}>Manage routes & pricing</Text>
+          <View style={{ marginLeft: ms(16) }}>
+            <Text style={{ fontSize: ms(24), fontWeight: '900', color: colors.text, letterSpacing: -0.5 }}>Fare Dashboard</Text>
+            <Text style={{ fontSize: ms(14), color: colors.textSecondary, fontWeight: '600' }}>Manage routes & pricing</Text>
           </View>
         </LinearGradient>
       </View>
 
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 20, paddingBottom: 100 }} keyboardShouldPersistTaps="handled">
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: ms(20), paddingBottom: ms(100) }} keyboardShouldPersistTaps="handled">
           
           {/* GLASSMORPHISM FORM SECTION */}
           <Animated.View entering={FadeInDown.delay(100).duration(600).springify()} style={{ zIndex: 2 }}>
@@ -261,8 +263,8 @@ export default function FareManager() {
                 backgroundColor: isDark ? 'rgba(30, 41, 59, 0.7)' : 'rgba(255, 255, 255, 0.9)', 
                 borderColor: isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.05)'
             }]}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
-                <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: 12 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: ms(20) }}>
+                <View style={{ width: ms(40), height: ms(40), borderRadius: ms(12), backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: ms(12) }}>
                   <WebIcon name={editingId ? "create" : "add"} size= {22} color={colors.primary} />
                 </View>
                 <Text style={[styles.sectionTitle, { color: colors.text }]}>
@@ -369,9 +371,9 @@ export default function FareManager() {
                 </View>
               </View>
 
-              <View style={[styles.formRow, { marginTop: 10 }]}>
+              <View style={[styles.formRow, { marginTop: ms(10) }]}>
                 {editingId && (
-                  <TouchableOpacity activeOpacity={0.8} style={[styles.button, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flex: 1, marginRight: 12 }]} onPress={handleCancelEdit}>
+                  <TouchableOpacity activeOpacity={0.8} style={[styles.button, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flex: 1, marginRight: ms(12) }]} onPress={handleCancelEdit}>
                     <Text style={[styles.buttonText, { color: colors.text }]}>Cancel</Text>
                   </TouchableOpacity>
                 )}
@@ -382,7 +384,7 @@ export default function FareManager() {
                     end={{ x: 1, y: 0 }}
                     style={styles.saveButton}
                   >
-                    <WebIcon name={editingId ? "save" : "add-circle"} size= {20} color="#fff" style={{ marginRight: 8 }} />
+                    <WebIcon name={editingId ? "save" : "add-circle"} size= {20} color="#fff" style={{ marginRight: ms(8) }} />
                     <Text style={[styles.buttonText, { color: '#fff' }]}>{editingId ? 'Update Fare' : 'Save New Fare'}</Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -391,19 +393,19 @@ export default function FareManager() {
           </Animated.View>
 
           {/* LIST SECTION */}
-          <View style={{ marginTop: 40, zIndex: 1 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+          <View style={{ marginTop: ms(40), zIndex: 1 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: ms(20) }}>
                <Text style={[styles.sectionTitle, { color: colors.text, marginBottom: 0 }]}>Database ({dbFares.length})</Text>
-               <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.primary + '15', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12 }}>
-                 <WebIcon name="server" size= {14} color={colors.primary} style={{ marginRight: 6 }} />
-                 <Text style={{ color: colors.primary, fontWeight: '800', fontSize: 13 }}>Live Sync</Text>
+               <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.primary + '15', paddingHorizontal: ms(12), paddingVertical: ms(6), borderRadius: ms(12) }}>
+                 <WebIcon name="server" size= {14} color={colors.primary} style={{ marginRight: ms(6) }} />
+                 <Text style={{ color: colors.primary, fontWeight: '800', fontSize: ms(13) }}>Live Sync</Text>
                </View>
             </View>
             
             <View style={[styles.searchBox, { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}>
-              <WebIcon name="search" size= {20} color={colors.textSecondary} style={{ marginRight: 12 }} />
+              <WebIcon name="search" size= {20} color={colors.textSecondary} style={{ marginRight: ms(12) }} />
               <TextInput 
-                style={{ flex: 1, color: colors.text, fontSize: 16, fontWeight: '500', height: 50, outlineStyle: 'none' } as any}
+                style={{ flex: 1, color: colors.text, fontSize: ms(16), fontWeight: '500', height: ms(50), outlineStyle: 'none' } as any}
                 placeholder="Search by origin, destination or town..."
                 placeholderTextColor={colors.textSecondary}
                 value={searchQuery}
@@ -417,8 +419,8 @@ export default function FareManager() {
             </View>
 
             {loading ? (
-               <View style={{ padding: 40, alignItems: 'center' }}>
-                 <Text style={{ color: colors.textSecondary, fontSize: 16, fontWeight: '600' }}>Loading routes...</Text>
+               <View style={{ padding: ms(40), alignItems: 'center' }}>
+                 <Text style={{ color: colors.textSecondary, fontSize: ms(16), fontWeight: '600' }}>Loading routes...</Text>
                </View>
             ) : (
                <View>
@@ -429,7 +431,7 @@ export default function FareManager() {
                        borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' 
                      }]}>
                        <View style={{ flex: 1 }}>
-                         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
+                         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: ms(6) }}>
                            <View style={[styles.routeBadge, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : '#f1f5f9' }]}>
                              <WebIcon name="navigate" size= {12} color={colors.textSecondary} />
                            </View>
@@ -439,23 +441,23 @@ export default function FareManager() {
                            </Text>
                          </View>
                          
-                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: ms(12) }}>
                            <View style={[styles.priceBadge, { backgroundColor: '#10b98115' }]}>
                              <WebIcon name="cash" size= {14} color="#10b981" />
-                             <Text style={{ color: '#10b981', fontWeight: '800', marginLeft: 4, fontSize: 14 }}>
+                             <Text style={{ color: '#10b981', fontWeight: '800', marginLeft: ms(4), fontSize: ms(14) }}>
                                GHS {fare.min_price} - {fare.max_price}
                              </Text>
                            </View>
                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                              <WebIcon name="location" size= {12} color={colors.textSecondary} />
-                             <Text style={{ color: colors.textSecondary, fontSize: 13, marginLeft: 4, fontWeight: '600' }}>
+                             <Text style={{ color: colors.textSecondary, fontSize: ms(13), marginLeft: ms(4), fontWeight: '600' }}>
                                {fare.town}, {fare.region}
                              </Text>
                            </View>
                          </View>
                        </View>
 
-                       <View style={{ flexDirection: 'row', gap: 8, paddingLeft: 12, borderLeftWidth: 1, borderLeftColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}>
+                       <View style={{ flexDirection: 'row', gap: ms(8), paddingLeft: ms(12), borderLeftWidth: 1, borderLeftColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}>
                          <TouchableOpacity activeOpacity={0.7} onPress={() => handleEdit(fare)} style={[styles.actionBtn, { backgroundColor: colors.primary + '15' }]}>
                             <WebIcon name="create-outline" size= {18} color={colors.primary} />
                          </TouchableOpacity>
@@ -467,15 +469,15 @@ export default function FareManager() {
                    </Animated.View>
                  ))}
                  {filteredFares.length === 0 && (
-                   <View style={{ padding: 40, alignItems: 'center' }}>
+                   <View style={{ padding: ms(40), alignItems: 'center' }}>
                      <WebIcon name="search-outline" size= {48} color={isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)'} />
-                     <Text style={{ color: colors.textSecondary, fontSize: 16, fontWeight: '600', marginTop: 16 }}>No fares match your search</Text>
+                     <Text style={{ color: colors.textSecondary, fontSize: ms(16), fontWeight: '600', marginTop: ms(16) }}>No fares match your search</Text>
                    </View>
                  )}
                </View>
             )}
             {filteredFares.length > 50 && (
-               <Text style={{ color: colors.textSecondary, textAlign: 'center', marginTop: 20, fontWeight: '600' }}>
+               <Text style={{ color: colors.textSecondary, textAlign: 'center', marginTop: ms(20), fontWeight: '600' }}>
                  Showing 50 of {filteredFares.length} results.
                </Text>
             )}
@@ -491,43 +493,43 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   backBtn: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: ms(44),
+    height: ms(44),
+    borderRadius: ms(22),
     justifyContent: 'center',
     alignItems: 'center',
   },
   glassCard: {
-    padding: 24,
-    borderRadius: 28,
+    padding: ms(24),
+    borderRadius: ms(28),
     borderWidth: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: ms(10) },
     shadowOpacity: 0.1,
-    shadowRadius: 20,
+    shadowRadius: ms(20),
     elevation: 8,
     // @ts-ignore
     backdropFilter: 'blur(20px)',
   },
   sectionTitle: {
-    fontSize: 22,
+    fontSize: ms(22),
     fontWeight: '900',
     letterSpacing: -0.5,
     marginBottom: 0,
   },
   formRow: {
     flexDirection: 'column',
-    gap: 16,
-    marginBottom: 20,
+    gap: ms(16),
+    marginBottom: ms(20),
   },
   inputContainer: {
     flex: 1,
   },
   label: {
-    fontSize: 14,
+    fontSize: ms(14),
     fontWeight: '800',
-    marginBottom: 8,
-    marginLeft: 4,
+    marginBottom: ms(8),
+    marginLeft: ms(4),
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
@@ -538,26 +540,26 @@ const styles = StyleSheet.create({
   },
   inputIcon: {
     position: 'absolute',
-    left: 16,
+    left: ms(16),
     zIndex: 2,
   },
   input: {
     borderWidth: 1,
-    borderRadius: 16,
-    paddingHorizontal: 16,
-    height: 56,
-    fontSize: 16,
+    borderRadius: ms(16),
+    paddingHorizontal: ms(16),
+    height: ms(56),
+    fontSize: ms(16),
     fontWeight: '600',
     outlineStyle: 'none' as any,
   },
   inputWithIcon: {
     flex: 1,
     borderWidth: 1,
-    borderRadius: 16,
-    paddingLeft: 46,
-    paddingRight: 16,
-    height: 56,
-    fontSize: 16,
+    borderRadius: ms(16),
+    paddingLeft: ms(46),
+    paddingRight: ms(16),
+    height: ms(56),
+    fontSize: ms(16),
     fontWeight: '600',
     outlineStyle: 'none' as any,
   },
@@ -565,27 +567,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 56,
-    borderRadius: 16,
-    paddingHorizontal: 16,
+    height: ms(56),
+    borderRadius: ms(16),
+    paddingHorizontal: ms(16),
   },
   dropdownList: {
     position: 'absolute',
-    top: 64,
+    top: ms(64),
     left: 0,
     right: 0,
-    borderRadius: 16,
+    borderRadius: ms(16),
     borderWidth: 1,
     overflow: 'hidden',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: ms(10) },
     shadowOpacity: 0.1,
-    shadowRadius: 20,
+    shadowRadius: ms(20),
     elevation: 10,
     zIndex: 1000,
   },
   dropdownItem: {
-    padding: 16,
+    padding: ms(16),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -593,79 +595,79 @@ const styles = StyleSheet.create({
     borderBottomColor: 'rgba(150,150,150,0.2)'
   },
   button: {
-    height: 56,
-    borderRadius: 16,
+    height: ms(56),
+    borderRadius: ms(16),
     justifyContent: 'center',
     alignItems: 'center',
   },
   saveButton: {
-    height: 56,
-    borderRadius: 16,
+    height: ms(56),
+    borderRadius: ms(16),
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     shadowColor: '#10b981',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: ms(4) },
     shadowOpacity: 0.3,
-    shadowRadius: 8,
+    shadowRadius: ms(8),
     elevation: 5,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: '800',
     letterSpacing: 0.5,
   },
   searchBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    height: 56,
-    borderRadius: 20,
+    paddingHorizontal: ms(16),
+    height: ms(56),
+    borderRadius: ms(20),
     borderWidth: 1,
-    marginBottom: 20,
+    marginBottom: ms(20),
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: ms(4) },
     shadowOpacity: 0.05,
-    shadowRadius: 10,
+    shadowRadius: ms(10),
     elevation: 2,
   },
   fareCard: {
     flexDirection: 'row',
-    padding: 16,
-    borderRadius: 20,
+    padding: ms(16),
+    borderRadius: ms(20),
     borderWidth: 1,
-    marginBottom: 12,
+    marginBottom: ms(12),
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.05,
-    shadowRadius: 8,
+    shadowRadius: ms(8),
     elevation: 2,
   },
   routeBadge: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: ms(28),
+    height: ms(28),
+    borderRadius: ms(14),
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 10,
+    marginRight: ms(10),
   },
   fareRoute: {
-    fontSize: 18,
+    fontSize: ms(18),
     fontWeight: '800',
     flex: 1,
   },
   priceBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    borderRadius: 10,
+    paddingHorizontal: ms(10),
+    paddingVertical: ms(6),
+    borderRadius: ms(10),
   },
   actionBtn: {
-    width: 44,
-    height: 44,
-    borderRadius: 14,
+    width: ms(44),
+    height: ms(44),
+    borderRadius: ms(14),
     justifyContent: 'center',
     alignItems: 'center',
   }

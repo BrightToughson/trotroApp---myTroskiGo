@@ -1,3 +1,4 @@
+import { ms } from '../../../lib/metrics';
 import { WebIcon } from "../../../components/WebIcon";
 import { LinearGradient } from "expo-linear-gradient";
 import { router, useFocusEffect } from "expo-router";
@@ -16,7 +17,8 @@ import Animated, {
 } from "react-native-reanimated";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme, LightColors } from "../../../context/ThemeContext";
-import { HistoryService, Ride } from "../../../lib/HistoryService";
+import { HistoryService, Ride } from
+"../../../lib/HistoryService";
 
 export default function History() {
   const { t } = useTranslation();
@@ -217,10 +219,10 @@ export default function History() {
             animatedDrift1,
             {
               backgroundColor: "#0286FF",
-              top: -80,
-              right: -50,
-              width: 300,
-              height: 300,
+              top: ms(-80),
+              right: ms(-50),
+              width: ms(300),
+              height: ms(300),
               opacity: isDark ? 0.5 : 0.25,
             },
           ]}
@@ -232,9 +234,9 @@ export default function History() {
             {
               backgroundColor: "#FFD700",
               bottom: "10%",
-              left: -100,
-              width: 250,
-              height: 250,
+              left: ms(-100),
+              width: ms(250),
+              height: ms(250),
               opacity: isDark ? 0.5 : 0.25,
             },
           ]}
@@ -250,7 +252,7 @@ export default function History() {
             >
               {t('history_title')}
             </Animated.Text>
-            <Text style={{ fontSize: 13, fontWeight: '600', color: colors.textSecondary, marginTop: 4 }}>
+            <Text style={{ fontSize: ms(13), fontWeight: '600', color: colors.textSecondary, marginTop: ms(4) }}>
                Manage your past journeys and re-plan routes easily.
             </Text>
           </View>
@@ -344,12 +346,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 32,
-    gap: 15,
+    paddingHorizontal: ms(20),
+    paddingVertical: ms(32),
+    gap: ms(15),
   },
   title: {
-    fontSize: 24,
+    fontSize: ms(24),
     fontWeight: "bold",
     letterSpacing: -0.8,
     flex: 1,
@@ -357,80 +359,80 @@ const styles = StyleSheet.create({
   clearBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    height: 40,
-    borderRadius: 12,
-    gap: 6,
+    paddingHorizontal: ms(12),
+    height: ms(40),
+    borderRadius: ms(12),
+    gap: ms(6),
   },
   clearBtnText: {
-    fontSize: 13,
+    fontSize: ms(13),
     fontWeight: '900',
     letterSpacing: 1,
     color: '#3b82f6', // Fallback, usually overridden by theme
   },
   statsContainer: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
-    marginBottom: 16,
-    gap: 12,
+    paddingHorizontal: ms(20),
+    marginBottom: ms(16),
+    gap: ms(12),
   },
   statBox: {
     flex: 1,
-    borderRadius: 16,
-    padding: 12,
+    borderRadius: ms(16),
+    padding: ms(12),
     alignItems: 'center',
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.05,
-    shadowRadius: 8,
+    shadowRadius: ms(8),
     elevation: 2,
     borderWidth: 1,
     borderColor: "rgba(150,150,150,0.05)",
   },
   statIconWrapper: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: ms(36),
+    height: ms(36),
+    borderRadius: ms(18),
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 8,
+    marginBottom: ms(8),
   },
   statValue: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: '800',
-    marginBottom: 2,
+    marginBottom: ms(2),
     textAlign: 'center',
   },
   statLabel: {
-    fontSize: 12,
+    fontSize: ms(12),
     fontWeight: '600',
   },
   listContent: {
-    paddingHorizontal: 24,
-    paddingTop: 10,
-    paddingBottom: 140,
+    paddingHorizontal: ms(24),
+    paddingTop: ms(10),
+    paddingBottom: ms(140),
   },
   card: {
-    borderRadius: 24,
-    padding: 16,
-    marginBottom: 18,
+    borderRadius: ms(24),
+    padding: ms(16),
+    marginBottom: ms(18),
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.05,
-    shadowRadius: 8,
+    shadowRadius: ms(8),
     elevation: 3,
   },
   cardHeader: {
     flexDirection: "row",
-    marginBottom: 12,
+    marginBottom: ms(12),
   },
   iconContainer: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: ms(32),
+    height: ms(32),
+    borderRadius: ms(16),
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 10,
+    marginRight: ms(10),
   },
   headerText: {
     flex: 1,
@@ -439,52 +441,52 @@ const styles = StyleSheet.create({
   timeStatusRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 2,
+    marginTop: ms(2),
   },
   date: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: "700",
     letterSpacing: 0.2,
   },
   time: {
-    fontSize: 14,
+    fontSize: ms(14),
     fontWeight: "500",
   },
   statusBadge: {
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 6,
-    marginLeft: 8,
+    paddingHorizontal: ms(6),
+    paddingVertical: ms(2),
+    borderRadius: ms(6),
+    marginLeft: ms(8),
   },
   statusText: {
-    fontSize: 13,
+    fontSize: ms(13),
     fontWeight: "800",
     letterSpacing: 0.5,
     textTransform: 'uppercase',
   },
   routeContainer: {
-    marginLeft: 6,
-    marginVertical: 12,
+    marginLeft: ms(6),
+    marginVertical: ms(12),
   },
   locationRow: {
     flexDirection: "row",
     alignItems: "center",
   },
   dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginRight: 16,
+    width: ms(8),
+    height: ms(8),
+    borderRadius: ms(4),
+    marginRight: ms(16),
   },
   line: {
-    width: 2,
-    height: 16,
-    marginLeft: 3,
-    marginVertical: 2,
+    width: ms(2),
+    height: ms(16),
+    marginLeft: ms(3),
+    marginVertical: ms(2),
     opacity: 0.3,
   },
   locationText: {
-    fontSize: 15,
+    fontSize: ms(15),
     fontWeight: "600",
     flex: 1,
   },
@@ -493,7 +495,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   price: {
-    fontSize: 18,
+    fontSize: ms(18),
     fontWeight: "800",
     letterSpacing: -0.5,
   },
@@ -501,52 +503,52 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 100,
+    paddingBottom: ms(100),
   },
   emptyIconContainer: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+    width: ms(120),
+    height: ms(120),
+    borderRadius: ms(60),
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: ms(20),
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: ms(4) },
     shadowOpacity: 0.05,
-    shadowRadius: 10,
+    shadowRadius: ms(10),
     elevation: 2,
   },
   emptyText: {
-    fontSize: 20,
+    fontSize: ms(20),
     fontWeight: "bold",
   },
   emptySubtext: {
-    fontSize: 14,
-    marginTop: 8,
+    fontSize: ms(14),
+    marginTop: ms(8),
     textAlign: "center",
     maxWidth: "80%",
-    lineHeight: 22,
+    lineHeight: ms(22),
     letterSpacing: 0.2,
   },
   decorativeCircle: {
     position: "absolute",
-    borderRadius: 999,
+    borderRadius: ms(999),
   },
   cardDivider: {
     height: 1,
-    marginVertical: 12,
+    marginVertical: ms(12),
     opacity: 0.2,
   },
   viewJourneyBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 10,
-    borderRadius: 12,
-    gap: 6,
+    paddingVertical: ms(10),
+    borderRadius: ms(12),
+    gap: ms(6),
   },
   viewJourneyText: {
-    fontSize: 14,
+    fontSize: ms(14),
     fontWeight: '700',
   },
 });

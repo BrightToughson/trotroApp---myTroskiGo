@@ -1,3 +1,4 @@
+import { ms } from '../../lib/metrics';
 import { CustomButton } from "@/components/customButton";
 import InputField from "@/components/InputField";
 import OAuth from "@/components/OAuth";
@@ -8,7 +9,8 @@ import { useSignUp } from "@clerk/clerk-expo";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link, useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
-import * as React from "react";
+import * as React from
+"react";
 import {
   Alert,
   Image,
@@ -108,12 +110,13 @@ export default function SignUpScreen() {
 
       setSuccessMessage(t('account_created', 'Account Created!'));
       setTimeout(() => {
+        setSuccessMessage("");
+        setLoading(false);
         router.push({
           pathname: "/(auth)/verify-email",
           params: { email: form.email },
         });
-        setLoading(false);
-      }, 100);
+      }, 1500);
     } catch (err: any) {
       console.log(JSON.stringify(err, null, 2));
       const errorCode = err.errors?.[0]?.code;
@@ -182,10 +185,10 @@ export default function SignUpScreen() {
             animatedDrift1,
             {
               backgroundColor: "#0286FF",
-              top: -80,
-              right: -80,
-              width: 400,
-              height: 400,
+              top: ms(-80),
+              right: ms(-80),
+              width: ms(400),
+              height: ms(400),
               opacity: isDark ? 0.5 : 0.25,
             },
           ]}
@@ -196,10 +199,10 @@ export default function SignUpScreen() {
             animatedDrift2,
             {
               backgroundColor: "#FFD700",
-              bottom: -50,
-              left: -100,
-              width: 350,
-              height: 350,
+              bottom: ms(-50),
+              left: ms(-100),
+              width: ms(350),
+              height: ms(350),
               opacity: isDark ? 0.5 : 0.25,
             },
           ]}
@@ -211,9 +214,9 @@ export default function SignUpScreen() {
             {
               backgroundColor: "#0286FF",
               top: "30%",
-              right: -100,
-              width: 200,
-              height: 200,
+              right: ms(-100),
+              width: ms(200),
+              height: ms(200),
               opacity: isDark ? 0.5 : 0.25,
             },
           ]}
@@ -225,9 +228,9 @@ export default function SignUpScreen() {
             {
               backgroundColor: "#FFD700",
               bottom: "40%",
-              left: -50,
-              width: 150,
-              height: 150,
+              left: ms(-50),
+              width: ms(150),
+              height: ms(150),
               opacity: isDark ? 0.5 : 0.25,
             },
           ]}
@@ -240,11 +243,11 @@ export default function SignUpScreen() {
       >
         {Platform.OS === 'web' && (
           <TouchableOpacity 
-            style={{ position: 'absolute', top: 40, left: 40, zIndex: 100, flexDirection: 'row', alignItems: 'center' }}
+            style={{ position: 'absolute', top: ms(40), left: ms(40), zIndex: 100, flexDirection: 'row', alignItems: 'center' }}
             onPress={() => window.location.href = __DEV__ ? 'http://localhost:5173/' : 'https://mytroski-go-website.vercel.app/'}
           >
             <WebIcon name="arrow-back" size= {24} color={colors.text} />
-            <Text style={{ marginLeft: 8, color: colors.text, fontWeight: '600', fontSize: 16 }}>Back to Website</Text>
+            <Text style={{ marginLeft: ms(8), color: colors.text, fontWeight: '600', fontSize: ms(16) }}>Back to Website</Text>
           </TouchableOpacity>
         )}
         <Animated.View
@@ -305,7 +308,7 @@ export default function SignUpScreen() {
         >
           <Animated.View
             entering={FadeInUp.delay(650).duration(800).springify()}
-            style={{ marginBottom: 16 }}
+            style={{ marginBottom: ms(16) }}
           >
             <InputField
               label={t("username")}
@@ -317,7 +320,7 @@ export default function SignUpScreen() {
 
           <Animated.View
             entering={FadeInUp.delay(700).duration(800).springify()}
-            style={{ marginBottom: 16 }}
+            style={{ marginBottom: ms(16) }}
           >
             <InputField
               label={t("email")}
@@ -386,24 +389,24 @@ export default function SignUpScreen() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingHorizontal: 24,
+    paddingHorizontal: ms(24),
     paddingTop: Platform.OS === 'android' ? 60 : 80,
-    paddingBottom: 40,
+    paddingBottom: ms(40),
   },
   header: {
-    marginBottom: 40,
+    marginBottom: ms(40),
     alignItems: "center",
   },
   logoContainer: {
-    width: 200,
-    height: 120,
-    borderRadius: 24,
+    width: ms(200),
+    height: ms(120),
+    borderRadius: ms(24),
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 24,
-    shadowOffset: { width: 0, height: 10 },
+    marginBottom: ms(24),
+    shadowOffset: { width: 0, height: ms(10) },
     shadowOpacity: 0.2,
-    shadowRadius: 20,
+    shadowRadius: ms(20),
     elevation: 10,
     overflow: "hidden",
   },
@@ -412,62 +415,62 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   title: {
-    fontSize: 38,
+    fontSize: ms(38),
     fontWeight: "800",
-    marginBottom: 10,
+    marginBottom: ms(10),
     letterSpacing: -0.5,
   },
   subtitle: {
-    fontSize: 18,
-    lineHeight: 24,
+    fontSize: ms(18),
+    lineHeight: ms(24),
     textAlign: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: ms(20),
   },
   button: {
-    marginTop: 10,
-    marginBottom: 16,
+    marginTop: ms(10),
+    marginBottom: ms(16),
   },
   formCard: {
-    borderRadius: 32,
-    padding: 24,
+    borderRadius: ms(32),
+    padding: ms(24),
     borderWidth: 1,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: ms(10) },
     shadowOpacity: 0.1,
-    shadowRadius: 20,
+    shadowRadius: ms(20),
     elevation: 8,
   },
   footer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 8,
+    marginTop: ms(8),
     marginBottom: 0,
   },
   footerText: {
-    fontSize: 16,
+    fontSize: ms(16),
   },
   link: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: "600",
   },
   decorativeCircle: {
     position: "absolute",
-    width: 300,
-    height: 300,
-    borderRadius: 150,
+    width: ms(300),
+    height: ms(300),
+    borderRadius: ms(150),
   },
   dividerContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 20,
+    marginVertical: ms(20),
   },
   divider: {
     flex: 1,
     height: 1,
   },
   dividerText: {
-    marginHorizontal: 16,
-    fontSize: 15,
+    marginHorizontal: ms(16),
+    fontSize: ms(15),
     fontWeight: "500",
     textTransform: "uppercase",
     letterSpacing: 1,

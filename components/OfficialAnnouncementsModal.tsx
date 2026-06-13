@@ -1,3 +1,4 @@
+import { ms } from '../lib/metrics';
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   Modal,
@@ -16,7 +17,8 @@ import { Notification, NotificationService } from '../lib/NotificationService';
 import { useTranslation } from 'react-i18next';
 import Animated, { FadeInDown, SlideInDown, SlideOutDown, FadeIn, FadeOut } from 'react-native-reanimated';
 import { translateText } from '../lib/translate';
-import { isAdminUser } from '../constants/admins';
+import { isAdminUser } from
+'../constants/admins';
 
 interface Props {
   isVisible: boolean;
@@ -68,12 +70,12 @@ const OfficialNotificationItem = React.memo(({ item, index, colors, t, i18n, isA
       </View>
 
       <View style={[styles.messageContainer, { backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)' }]}>
-        <Text style={[styles.message, { color: colors.text, lineHeight: 22 }]}>{translated}</Text>
+        <Text style={[styles.message, { color: colors.text, lineHeight: ms(22) }]}>{translated}</Text>
       </View>
 
       <View style={styles.cardFooter}>
         <View style={[styles.badge, { backgroundColor: (item.color || colors.primary) + '10', borderColor: (item.color || colors.primary) + '30' }]}>
-          <WebIcon name="shield-checkmark" size= {12} color={item.color || colors.primary} style={{ marginRight: 4 }} />
+          <WebIcon name="shield-checkmark" size= {12} color={item.color || colors.primary} style={{ marginRight: ms(4) }} />
           <Text style={[styles.badgeText, { color: item.color || colors.primary }]}>
             {t('official_update').toUpperCase()}
           </Text>
@@ -175,7 +177,7 @@ export default function OfficialAnnouncementsModal({ isVisible, onClose }: Props
               <Text style={[styles.headerTitle, { color: colors.text }]}>Official Hub</Text>
               <Text style={[styles.headerSubtitle, { color: colors.textSecondary }]}>Direct updates from myTroski Go</Text>
             </View>
-            <View style={{ flexDirection: 'row', gap: 10 }}>
+            <View style={{ flexDirection: 'row', gap: ms(10) }}>
               {notifications.length > 0 && (
                 <TouchableOpacity onPress={handleDeleteAll} style={[styles.clearBtn, { borderColor: colors.primary + '30' }]}>
                   <WebIcon name="trash-outline" size= {20} color={colors.primary} />
@@ -206,7 +208,7 @@ export default function OfficialAnnouncementsModal({ isVisible, onClose }: Props
             ListEmptyComponent={
               <View style={styles.emptyState}>
                 <WebIcon name="notifications-off-outline" size= {48} color={colors.textSecondary} />
-                <Text style={{ color: colors.textSecondary, marginTop: 10, fontWeight: '600' }}>No official alerts yet.</Text>
+                <Text style={{ color: colors.textSecondary, marginTop: ms(10), fontWeight: '600' }}>No official alerts yet.</Text>
               </View>
             }
           />
@@ -228,80 +230,80 @@ const styles = StyleSheet.create({
     maxWidth: Platform.OS === 'web' ? 480 : '100%',
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
-    padding: 20,
+    padding: ms(20),
     paddingBottom: Platform.OS === 'ios' ? 40 : 20,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 25,
-    paddingHorizontal: 5,
+    marginBottom: ms(25),
+    paddingHorizontal: ms(5),
   },
   headerTitle: {
-    fontSize: 28,
+    fontSize: ms(28),
     fontWeight: '900',
     letterSpacing: -0.5,
   },
   headerSubtitle: {
-    fontSize: 15,
+    fontSize: ms(15),
     fontWeight: '600',
-    marginTop: 2,
+    marginTop: ms(2),
   },
   closeBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: ms(40),
+    height: ms(40),
+    borderRadius: ms(20),
     justifyContent: 'center',
     alignItems: 'center',
   },
   list: {
-    paddingBottom: 20,
+    paddingBottom: ms(20),
   },
   card: {
-    padding: 16,
-    borderRadius: 20,
-    marginBottom: 16,
+    padding: ms(16),
+    borderRadius: ms(20),
+    marginBottom: ms(16),
     borderWidth: 1,
     elevation: 2,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: ms(4) },
     shadowOpacity: 0.1,
-    shadowRadius: 8,
+    shadowRadius: ms(8),
   },
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: ms(12),
   },
   iconContainer: {
-    width: 44,
-    height: 44,
-    borderRadius: 14,
+    width: ms(44),
+    height: ms(44),
+    borderRadius: ms(14),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerText: {
-    marginLeft: 12,
+    marginLeft: ms(12),
     flex: 1,
   },
   title: {
-    fontSize: 18,
+    fontSize: ms(18),
     fontWeight: '800',
   },
   time: {
-    fontSize: 14,
+    fontSize: ms(14),
     fontWeight: '600',
-    marginTop: 2,
+    marginTop: ms(2),
   },
   messageContainer: {
-    padding: 15,
-    borderRadius: 16,
-    marginBottom: 12,
+    padding: ms(15),
+    borderRadius: ms(16),
+    marginBottom: ms(12),
   },
   message: {
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: ms(16),
+    lineHeight: ms(22),
     fontWeight: '500',
   },
   cardFooter: {
@@ -312,30 +314,30 @@ const styles = StyleSheet.create({
   badge: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 8,
+    paddingHorizontal: ms(10),
+    paddingVertical: ms(4),
+    borderRadius: ms(8),
     borderWidth: 1,
   },
   badgeText: {
-    fontSize: 12,
+    fontSize: ms(12),
     fontWeight: '800',
     letterSpacing: 0.5,
   },
   trashBtn: {
-    padding: 4,
+    padding: ms(4),
   },
   emptyState: {
     alignItems: 'center',
-    marginTop: 100,
+    marginTop: ms(100),
     opacity: 0.6,
   },
   clearBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: ms(40),
+    height: ms(40),
+    borderRadius: ms(20),
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1.5,
+    borderWidth: ms(1.5),
   },
 });

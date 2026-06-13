@@ -1,3 +1,4 @@
+import { ms } from '../lib/metrics';
 import React, { useState, useRef } from "react";
 import { Modal, StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, Alert, ScrollView, PanResponder, Dimensions } from "react-native";
 import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
@@ -10,7 +11,8 @@ import { LocationSearchModal } from "./LocationSearchModal";
 import * as ExpoLocation from "expo-location";
 import MapViewWrapper, { Polyline } from "./MapViewWrapper";
 import { useUser } from "@clerk/clerk-expo";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from
+"react-i18next";
 
 interface ContributionModalProps {
   isVisible: boolean;
@@ -341,14 +343,14 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
       case "route":
         return (
           <>
-            <View style={{ marginBottom: 16 }}>
-              <Text style={{ color: colors.textSecondary, marginBottom: 8, fontSize: 14, fontWeight: '600' }}>Journey Type</Text>
-              <View style={{ flexDirection: 'row', gap: 12 }}>
+            <View style={{ marginBottom: ms(16) }}>
+              <Text style={{ color: colors.textSecondary, marginBottom: ms(8), fontSize: ms(14), fontWeight: '600' }}>Journey Type</Text>
+              <View style={{ flexDirection: 'row', gap: ms(12) }}>
                 <TouchableOpacity 
                   style={{ 
                     flex: 1, 
-                    padding: 12, 
-                    borderRadius: 12, 
+                    padding: ms(12), 
+                    borderRadius: ms(12), 
                     borderWidth: 1, 
                     borderColor: journeyType === "straight" ? colors.primary : (isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'),
                     backgroundColor: journeyType === "straight" ? `${colors.primary}15` : colors.surface,
@@ -357,14 +359,14 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                   onPress={() => setJourneyType("straight")}
                 >
                   <WebIcon name="car" size= {24} color={journeyType === "straight" ? colors.primary : colors.textSecondary} />
-                  <Text style={{ marginTop: 4, fontWeight: '600', color: journeyType === "straight" ? colors.primary : colors.textSecondary }}>{t('straight_trotro', 'Straight Trotro')}</Text>
+                  <Text style={{ marginTop: ms(4), fontWeight: '600', color: journeyType === "straight" ? colors.primary : colors.textSecondary }}>{t('straight_trotro', 'Straight Trotro')}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
                   style={{ 
                     flex: 1, 
-                    padding: 12, 
-                    borderRadius: 12, 
+                    padding: ms(12), 
+                    borderRadius: ms(12), 
                     borderWidth: 1, 
                     borderColor: journeyType === "transfer" ? colors.primary : (isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'),
                     backgroundColor: journeyType === "transfer" ? `${colors.primary}15` : colors.surface,
@@ -376,7 +378,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                   }}
                 >
                   <WebIcon name="git-network" size= {24} color={journeyType === "transfer" ? colors.primary : colors.textSecondary} />
-                  <Text style={{ marginTop: 4, fontWeight: '600', color: journeyType === "transfer" ? colors.primary : colors.textSecondary }}>{t('multiple_trotros', 'Multiple Trotros')}</Text>
+                  <Text style={{ marginTop: ms(4), fontWeight: '600', color: journeyType === "transfer" ? colors.primary : colors.textSecondary }}>{t('multiple_trotros', 'Multiple Trotros')}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -391,19 +393,19 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               onIconPress={() => openLocationSearch('origin')}
             />
             
-            <View style={{ alignItems: 'center', marginVertical: -5, zIndex: 10 }}>
+            <View style={{ alignItems: 'center', marginVertical: ms(-5), zIndex: 10 }}>
               <TouchableOpacity 
                 onPress={handleSwapRoute}
                 style={{ 
                   backgroundColor: colors.surface, 
-                  borderRadius: 20, 
-                  padding: 8,
+                  borderRadius: ms(20), 
+                  padding: ms(8),
                   borderWidth: 1,
                   borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
                   shadowColor: "#000",
-                  shadowOffset: { width: 0, height: 2 },
+                  shadowOffset: { width: 0, height: ms(2) },
                   shadowOpacity: 0.1,
-                  shadowRadius: 4,
+                  shadowRadius: ms(4),
                   elevation: 2,
                 }}
               >
@@ -447,10 +449,10 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                 />
                 
                 {/* Intermediate Stops */}
-                <View style={{ marginTop: 16 }}>
-                  <View style={{ marginBottom: 12 }}>
-                    <Text style={{ color: colors.text, fontSize: 16, fontWeight: '600' }}>Option 1: Add Intermediate Stops</Text>
-                    <Text style={{ color: colors.textSecondary, fontSize: 13, marginTop: 2 }}>Manually list the stops if you know them</Text>
+                <View style={{ marginTop: ms(16) }}>
+                  <View style={{ marginBottom: ms(12) }}>
+                    <Text style={{ color: colors.text, fontSize: ms(16), fontWeight: '600' }}>Option 1: Add Intermediate Stops</Text>
+                    <Text style={{ color: colors.textSecondary, fontSize: ms(13), marginTop: ms(2) }}>Manually list the stops if you know them</Text>
                   </View>
                   
                   {routeStops.map((stop, index) => (
@@ -458,17 +460,17 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                       flexDirection: 'row', 
                       alignItems: 'center', 
                       backgroundColor: colors.surface,
-                      padding: 12,
-                      borderRadius: 12,
-                      marginBottom: 8,
+                      padding: ms(12),
+                      borderRadius: ms(12),
+                      marginBottom: ms(8),
                       borderWidth: 1,
                       borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'
                     }}>
-                      <WebIcon name="bus" size= {18} color={colors.primary} style={{ marginRight: 12 }} />
-                      <Text style={{ flex: 1, color: colors.text, fontSize: 15 }}>{stop.name}</Text>
+                      <WebIcon name="bus" size= {18} color={colors.primary} style={{ marginRight: ms(12) }} />
+                      <Text style={{ flex: 1, color: colors.text, fontSize: ms(15) }}>{stop.name}</Text>
                       <TouchableOpacity 
                         onPress={() => setRouteStops(routeStops.filter((_, i) => i !== index))}
-                        style={{ padding: 4 }}
+                        style={{ padding: ms(4) }}
                       >
                         <WebIcon name="close-circle" size= {20} color="#ef4444" />
                       </TouchableOpacity>
@@ -481,42 +483,42 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                       flexDirection: 'row',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      padding: 14,
-                      borderRadius: 12,
+                      padding: ms(14),
+                      borderRadius: ms(12),
                       borderWidth: 1,
                       borderColor: colors.primary,
                       borderStyle: 'dashed',
-                      marginTop: 4,
+                      marginTop: ms(4),
                       backgroundColor: isDark ? 'rgba(59, 130, 246, 0.05)' : 'rgba(59, 130, 246, 0.05)'
                     }}
                   >
-                    <WebIcon name="add-circle-outline" size= {20} color={colors.primary} style={{ marginRight: 8 }} />
-                    <Text style={{ color: colors.primary, fontWeight: '600', fontSize: 15 }}>Add Stop</Text>
+                    <WebIcon name="add-circle-outline" size= {20} color={colors.primary} style={{ marginRight: ms(8) }} />
+                    <Text style={{ color: colors.primary, fontWeight: '600', fontSize: ms(15) }}>Add Stop</Text>
                   </TouchableOpacity>
                 </View>
               </>
             )}
 
             {journeyType === "transfer" && (
-              <View style={{ marginTop: 8 }}>
-                <View style={{ marginBottom: 12 }}>
-                  <Text style={{ color: colors.text, fontSize: 16, fontWeight: '600' }}>{t('option_1_add_details', 'Option 1: Add Details per Trotro')}</Text>
-                  <Text style={{ color: colors.textSecondary, fontSize: 13, marginTop: 2 }}>{t('manually_enter_details', 'Manually enter details for each trotro you take')}</Text>
+              <View style={{ marginTop: ms(8) }}>
+                <View style={{ marginBottom: ms(12) }}>
+                  <Text style={{ color: colors.text, fontSize: ms(16), fontWeight: '600' }}>{t('option_1_add_details', 'Option 1: Add Details per Trotro')}</Text>
+                  <Text style={{ color: colors.textSecondary, fontSize: ms(13), marginTop: ms(2) }}>{t('manually_enter_details', 'Manually enter details for each trotro you take')}</Text>
                 </View>
 
                 {manualLegs.length > 0 && (
-                  <View style={{ marginBottom: 16 }}>
+                  <View style={{ marginBottom: ms(16) }}>
                     {manualLegs.map((leg, idx) => (
-                      <View key={idx} style={{ padding: 12, backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', borderRadius: 8, marginBottom: 8, borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
-                        <Text style={{ color: colors.textSecondary, fontSize: 12, fontWeight: '700', marginBottom: 4 }}>{t('trotro_number', 'Trotro {{number}}', { number: idx + 1 })}</Text>
-                        <Text style={{ color: colors.text, fontSize: 14, fontWeight: '500' }}>{leg.origin} ➔ {leg.destination}</Text>
-                        <Text style={{ color: colors.primary, fontSize: 13, marginTop: 4, fontWeight: '600' }}>Fare: GHS {leg.fare}</Text>
+                      <View key={idx} style={{ padding: ms(12), backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', borderRadius: ms(8), marginBottom: ms(8), borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
+                        <Text style={{ color: colors.textSecondary, fontSize: ms(12), fontWeight: '700', marginBottom: ms(4) }}>{t('trotro_number', 'Trotro {{number}}', { number: idx + 1 })}</Text>
+                        <Text style={{ color: colors.text, fontSize: ms(14), fontWeight: '500' }}>{leg.origin} ➔ {leg.destination}</Text>
+                        <Text style={{ color: colors.primary, fontSize: ms(13), marginTop: ms(4), fontWeight: '600' }}>Fare: GHS {leg.fare}</Text>
                         {leg.stops && leg.stops.length > 0 && (
-                          <Text style={{ color: colors.textSecondary, fontSize: 12, marginTop: 4 }}>Via: {leg.stops.map(s => s.name).join(', ')}</Text>
+                          <Text style={{ color: colors.textSecondary, fontSize: ms(12), marginTop: ms(4) }}>Via: {leg.stops.map(s => s.name).join(', ')}</Text>
                         )}
                         <TouchableOpacity 
                           onPress={() => setManualLegs(manualLegs.filter((_, i) => i !== idx))}
-                          style={{ position: 'absolute', top: 8, right: 8, padding: 4 }}
+                          style={{ position: 'absolute', top: ms(8), right: ms(8), padding: ms(4) }}
                         >
                           <WebIcon name="trash" size= {16} color="#ef4444" />
                         </TouchableOpacity>
@@ -525,8 +527,8 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                   </View>
                 )}
 
-                <View style={{ padding: 12, backgroundColor: colors.surface, borderRadius: 12, borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
-                  <Text style={{ color: colors.textSecondary, fontSize: 14, fontWeight: '600', marginBottom: 8 }}>
+                <View style={{ padding: ms(12), backgroundColor: colors.surface, borderRadius: ms(12), borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
+                  <Text style={{ color: colors.textSecondary, fontSize: ms(14), fontWeight: '600', marginBottom: ms(8) }}>
                     {manualLegs.length > 0 ? t('add_trotro_number', 'Add Trotro {{number}}', { number: manualLegs.length + 1 }) : t('trotro_1', 'Trotro 1')}
                   </Text>
                   <InputField
@@ -549,20 +551,20 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                     placeholder="e.g. 5.50"
                   />
                   
-                  <View style={{ marginTop: 8, marginBottom: 4 }}>
-                    <Text style={{ color: colors.textSecondary, marginBottom: 6, fontSize: 13, fontWeight: '600' }}>Intermediate Stops</Text>
+                  <View style={{ marginTop: ms(8), marginBottom: ms(4) }}>
+                    <Text style={{ color: colors.textSecondary, marginBottom: ms(6), fontSize: ms(13), fontWeight: '600' }}>Intermediate Stops</Text>
                     {routeStops.map((stop, index) => (
-                      <View key={index} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#f8fafc', padding: 8, borderRadius: 8, marginBottom: 6, borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
-                        <WebIcon name="bus" size= {14} color={colors.primary} style={{ marginRight: 8 }} />
-                        <Text style={{ flex: 1, color: colors.text, fontSize: 13 }}>{stop.name}</Text>
-                        <TouchableOpacity onPress={() => setRouteStops(routeStops.filter((_, i) => i !== index))} style={{ padding: 4 }}>
+                      <View key={index} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#f8fafc', padding: ms(8), borderRadius: ms(8), marginBottom: ms(6), borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
+                        <WebIcon name="bus" size= {14} color={colors.primary} style={{ marginRight: ms(8) }} />
+                        <Text style={{ flex: 1, color: colors.text, fontSize: ms(13) }}>{stop.name}</Text>
+                        <TouchableOpacity onPress={() => setRouteStops(routeStops.filter((_, i) => i !== index))} style={{ padding: ms(4) }}>
                           <WebIcon name="close-circle" size= {16} color="#ef4444" />
                         </TouchableOpacity>
                       </View>
                     ))}
-                    <TouchableOpacity onPress={() => openLocationSearch('stop')} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 10, borderRadius: 8, borderWidth: 1, borderColor: colors.primary, borderStyle: 'dashed', backgroundColor: isDark ? 'rgba(59, 130, 246, 0.05)' : 'rgba(59, 130, 246, 0.05)' }}>
-                      <WebIcon name="add-circle-outline" size= {16} color={colors.primary} style={{ marginRight: 6 }} />
-                      <Text style={{ color: colors.primary, fontWeight: '600', fontSize: 13 }}>{t('add_stop_for_trotro', 'Add Stop for this Trotro')}</Text>
+                    <TouchableOpacity onPress={() => openLocationSearch('stop')} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: ms(10), borderRadius: ms(8), borderWidth: 1, borderColor: colors.primary, borderStyle: 'dashed', backgroundColor: isDark ? 'rgba(59, 130, 246, 0.05)' : 'rgba(59, 130, 246, 0.05)' }}>
+                      <WebIcon name="add-circle-outline" size= {16} color={colors.primary} style={{ marginRight: ms(6) }} />
+                      <Text style={{ color: colors.primary, fontWeight: '600', fontSize: ms(13) }}>{t('add_stop_for_trotro', 'Add Stop for this Trotro')}</Text>
                     </TouchableOpacity>
                   </View>
 
@@ -589,8 +591,8 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                       setRouteStops([]); // Clear stops for the next leg
                     }}
                     bgVariant="secondary" textVariant="secondary"
-                    containerStyle={{ marginTop: 8, height: 44, backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)" }}
-                    textStyle={{ fontSize: 14 }}
+                    containerStyle={{ marginTop: ms(8), height: ms(44), backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)" }}
+                    textStyle={{ fontSize: ms(14) }}
                   />
                 </View>
               </View>
@@ -599,14 +601,14 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
 
 
             {/* GPS Tracking UI */}
-            <View style={{ marginTop: 24, padding: 16, backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8fafc', borderRadius: 16, borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                <View style={{ backgroundColor: isTracking ? '#ef444420' : '#10b98120', padding: 8, borderRadius: 8, marginRight: 12 }}>
+            <View style={{ marginTop: ms(24), padding: ms(16), backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8fafc', borderRadius: ms(16), borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: ms(12) }}>
+                <View style={{ backgroundColor: isTracking ? '#ef444420' : '#10b98120', padding: ms(8), borderRadius: ms(8), marginRight: ms(12) }}>
                   <WebIcon name="location" size= {20} color={isTracking ? '#ef4444' : '#10b981'} />
                 </View>
                 <View style={{ flex: 1 }}>
-                  <Text style={{ color: colors.text, fontSize: 16, fontWeight: '600' }}>Option 2: Live GPS Tracking</Text>
-                  <Text style={{ color: colors.textSecondary, fontSize: 13, marginTop: 2 }}>
+                  <Text style={{ color: colors.text, fontSize: ms(16), fontWeight: '600' }}>Option 2: Live GPS Tracking</Text>
+                  <Text style={{ color: colors.textSecondary, fontSize: ms(13), marginTop: ms(2) }}>
                     {isTracking 
                       ? `Recording... (${trackedCoords.length} points)` 
                       : trackedCoords.length > 0 
@@ -617,7 +619,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               </View>
 
               {(isTracking || trackedCoords.length > 0) && (
-                <View style={{ height: 180, borderRadius: 12, overflow: 'hidden', marginBottom: 16, borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
+                <View style={{ height: ms(180), borderRadius: ms(12), overflow: 'hidden', marginBottom: ms(16), borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
                   <MapViewWrapper 
                     showsUserLocation 
                     pitchEnabled={false}
@@ -634,21 +636,21 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                 </View>
               )}
 
-              <View style={{ flexDirection: 'row', gap: 12 }}>
+              <View style={{ flexDirection: 'row', gap: ms(12) }}>
                 <TouchableOpacity
                   onPress={toggleTracking}
                   style={{
                     flex: 1,
                     backgroundColor: isTracking ? '#ef4444' : colors.primary,
-                    paddingVertical: 12,
-                    borderRadius: 12,
+                    paddingVertical: ms(12),
+                    borderRadius: ms(12),
                     alignItems: 'center',
                     flexDirection: 'row',
                     justifyContent: 'center'
                   }}
                 >
-                  <WebIcon name={isTracking ? "stop-circle" : "play-circle"} size= {20} color="#fff" style={{ marginRight: 8 }} />
-                  <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 15 }}>
+                  <WebIcon name={isTracking ? "stop-circle" : "play-circle"} size= {20} color="#fff" style={{ marginRight: ms(8) }} />
+                  <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: ms(15) }}>
                     {isTracking ? "Stop Recording" : trackedCoords.length > 0 ? "Resume" : "Start Tracking"}
                   </Text>
                 </TouchableOpacity>
@@ -666,15 +668,15 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                     style={{
                       flex: 1,
                       backgroundColor: '#f59e0b',
-                      paddingVertical: 12,
-                      borderRadius: 12,
+                      paddingVertical: ms(12),
+                      borderRadius: ms(12),
                       alignItems: 'center',
                       flexDirection: 'row',
                       justifyContent: 'center'
                     }}
                   >
-                    <WebIcon name="git-commit" size= {20} color="#fff" style={{ marginRight: 8 }} />
-                    <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 15 }}>
+                    <WebIcon name="git-commit" size= {20} color="#fff" style={{ marginRight: ms(8) }} />
+                    <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: ms(15) }}>
                       Mark Transfer
                     </Text>
                   </TouchableOpacity>
@@ -682,10 +684,10 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               </View>
 
               {completedLegs.length > 0 && (
-                <View style={{ marginTop: 16 }}>
-                  <Text style={{ color: colors.textSecondary, marginBottom: 8, fontSize: 13, fontWeight: '600' }}>Completed Legs</Text>
+                <View style={{ marginTop: ms(16) }}>
+                  <Text style={{ color: colors.textSecondary, marginBottom: ms(8), fontSize: ms(13), fontWeight: '600' }}>Completed Legs</Text>
                   {completedLegs.map((leg, idx) => (
-                    <Text key={idx} style={{ color: colors.text, fontSize: 13, marginBottom: 4 }}>
+                    <Text key={idx} style={{ color: colors.text, fontSize: ms(13), marginBottom: ms(4) }}>
                       ✓ {leg.origin} to {leg.destination} ({leg.coords.length} points)
                     </Text>
                   ))}
@@ -695,15 +697,15 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               {trackedCoords.length > 0 && !isTracking && !showTransferPrompt && (
                 <TouchableOpacity
                   onPress={() => { setTrackedCoords([]); setCompletedLegs([]); }}
-                  style={{ marginTop: 12, alignItems: 'center' }}
+                  style={{ marginTop: ms(12), alignItems: 'center' }}
                 >
-                  <Text style={{ color: colors.textSecondary, fontSize: 14 }}>Clear All Recording</Text>
+                  <Text style={{ color: colors.textSecondary, fontSize: ms(14) }}>Clear All Recording</Text>
                 </TouchableOpacity>
               )}
 
               {showTransferPrompt && (
-                <View style={{ marginTop: 16, padding: 16, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderRadius: 12, borderWidth: 1, borderColor: colors.primary }}>
-                  <Text style={{ color: colors.text, fontSize: 16, fontWeight: '700', marginBottom: 12 }}>Save Leg & Continue</Text>
+                <View style={{ marginTop: ms(16), padding: ms(16), backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderRadius: ms(12), borderWidth: 1, borderColor: colors.primary }}>
+                  <Text style={{ color: colors.text, fontSize: ms(16), fontWeight: '700', marginBottom: ms(12) }}>Save Leg & Continue</Text>
                   <InputField
                     label="Transfer Station Name"
                     value={tempTransferStop}
@@ -737,15 +739,15 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                       setShowTransferPrompt(false);
                       // Optionally Auto-resume tracking here, but user can just click Start Tracking again
                     }}
-                    containerStyle={{ marginTop: 8, height: 44, backgroundColor: colors.primary }}
-                    textStyle={{ fontSize: 14 }}
+                    containerStyle={{ marginTop: ms(8), height: ms(44), backgroundColor: colors.primary }}
+                    textStyle={{ fontSize: ms(14) }}
                   />
                   <CustomButton 
                     title="Cancel" 
                     onPress={() => setShowTransferPrompt(false)}
                     bgVariant="secondary" textVariant="secondary"
-                    containerStyle={{ marginTop: 8, height: 44 }}
-                    textStyle={{ fontSize: 14 }}
+                    containerStyle={{ marginTop: ms(8), height: ms(44) }}
+                    textStyle={{ fontSize: ms(14) }}
                   />
                 </View>
               )}
@@ -761,8 +763,8 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               onChangeText={setField1}
               placeholder={t('name_of_trotro_stop', 'Name of the trotro stop')}
             />
-            <View style={{ marginTop: 8 }}>
-              <Text style={{ color: colors.textSecondary, marginBottom: 8, fontSize: 14, fontWeight: '600' }}>Which route is this stop on?</Text>
+            <View style={{ marginTop: ms(8) }}>
+              <Text style={{ color: colors.textSecondary, marginBottom: ms(8), fontSize: ms(14), fontWeight: '600' }}>Which route is this stop on?</Text>
               <InputField
                 label="Origin"
                 value={field2}
@@ -791,7 +793,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               onChangeText={setField1}
               placeholder="Tell us what's on your mind..."
               multiline
-              containerStyle={{ minHeight: 120 }}
+              containerStyle={{ minHeight: ms(120) }}
             />
           </>
         );
@@ -802,19 +804,19 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
 
   const renderSuccessState = () => {
     return (
-      <View style={{ alignItems: 'center', justifyContent: 'center', paddingVertical: 40 }}>
-        <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: 'rgba(16, 185, 129, 0.1)', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+      <View style={{ alignItems: 'center', justifyContent: 'center', paddingVertical: ms(40) }}>
+        <View style={{ width: ms(80), height: ms(80), borderRadius: ms(40), backgroundColor: 'rgba(16, 185, 129, 0.1)', alignItems: 'center', justifyContent: 'center', marginBottom: ms(20) }}>
           <WebIcon name="checkmark-circle" size= {48} color="#10b981" />
         </View>
-        <Text style={{ fontSize: 24, fontWeight: '800', color: colors.text, marginBottom: 8 }}>Thank You!</Text>
-        <Text style={{ fontSize: 16, color: colors.textSecondary, textAlign: 'center', marginBottom: 32 }}>
+        <Text style={{ fontSize: ms(24), fontWeight: '800', color: colors.text, marginBottom: ms(8) }}>Thank You!</Text>
+        <Text style={{ fontSize: ms(16), color: colors.textSecondary, textAlign: 'center', marginBottom: ms(32) }}>
           Your contribution has been {initialData ? 'updated' : 'received'}. We appreciate your help in making myTroskiGo better!
         </Text>
         <CustomButton
           title="Done"
           onPress={handleClose}
-          containerStyle={{ width: '100%', height: 56, marginBottom: 12, backgroundColor: colors.primary }}
-          textStyle={{ fontSize: 18, fontWeight: "700" }}
+          containerStyle={{ width: '100%', height: ms(56), marginBottom: ms(12), backgroundColor: colors.primary }}
+          textStyle={{ fontSize: ms(18), fontWeight: "700" }}
         />
         {!initialData && (
           <CustomButton
@@ -828,8 +830,8 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
             }}
             bgVariant="secondary"
             textVariant="secondary"
-            containerStyle={{ width: '100%', height: 56, backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)" }}
-            textStyle={{ fontSize: 16, fontWeight: "600" }}
+            containerStyle={{ width: '100%', height: ms(56), backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)" }}
+            textStyle={{ fontSize: ms(16), fontWeight: "600" }}
           />
         )}
       </View>
@@ -882,12 +884,12 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
             </View>
 
             <ScrollView style={{ maxHeight: Dimensions.get('window').height * 0.85 }} keyboardShouldPersistTaps="handled">
-              <View style={{ padding: 24 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 24 }}>
-                  <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', alignItems: 'center', justifyContent: 'center' }}>
+              <View style={{ padding: ms(24) }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: ms(24) }}>
+                  <View style={{ width: ms(40), height: ms(40), borderRadius: ms(20), backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', alignItems: 'center', justifyContent: 'center' }}>
                     <WebIcon name={header.icon} size= {20} color={header.color} />
                   </View>
-                  <Text style={[styles.title, { color: colors.text, marginLeft: 16 }]}>{header.title}</Text>
+                  <Text style={[styles.title, { color: colors.text, marginLeft: ms(16) }]}>{header.title}</Text>
                 </View>
 
                 {isSuccess ? renderSuccessState() : renderFormContent()}
@@ -897,8 +899,8 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
             {!isSuccess && (
               <View style={styles.footerContainer}>
                 {!!errorMessage && (
-                  <View style={{ backgroundColor: '#ef444420', padding: 12, borderRadius: 8, marginBottom: 16, flexDirection: 'row', alignItems: 'center' }}>
-                    <WebIcon name="alert-circle" size= {20} color="#ef4444" style={{ marginRight: 8 }} />
+                  <View style={{ backgroundColor: '#ef444420', padding: ms(12), borderRadius: ms(8), marginBottom: ms(16), flexDirection: 'row', alignItems: 'center' }}>
+                    <WebIcon name="alert-circle" size= {20} color="#ef4444" style={{ marginRight: ms(8) }} />
                     <Text style={{ color: '#ef4444', fontWeight: '600', flex: 1 }}>{errorMessage}</Text>
                   </View>
                 )}
@@ -906,16 +908,16 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                   title="Submit"
                   onPress={handleSubmit}
                   loading={isLoading}
-                  containerStyle={{ width: '100%', height: 60, marginBottom: 12, backgroundColor: header.color, shadowColor: header.color }}
-                  textStyle={{ fontSize: 18, fontWeight: "700" }}
+                  containerStyle={{ width: '100%', height: ms(60), marginBottom: ms(12), backgroundColor: header.color, shadowColor: header.color }}
+                  textStyle={{ fontSize: ms(18), fontWeight: "700" }}
                 />
                 <CustomButton
                   title="Cancel"
                   onPress={handleClose}
                   bgVariant="secondary"
                   textVariant="secondary"
-                  containerStyle={{ width: '100%', height: 60, backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)" }}
-                  textStyle={{ fontSize: 18, fontWeight: "700" }}
+                  containerStyle={{ width: '100%', height: ms(60), backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)" }}
+                  textStyle={{ fontSize: ms(18), fontWeight: "700" }}
                 />
               </View>
             )}
@@ -950,57 +952,57 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     width: '100%',
-    maxWidth: 480,
+    maxWidth: ms(480),
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    paddingBottom: 40,
+    paddingHorizontal: ms(24),
+    paddingTop: ms(16),
+    paddingBottom: ms(40),
     minHeight: '60%',
     maxHeight: '90%',
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: -10 },
+    shadowOffset: { width: 0, height: ms(-10) },
     shadowOpacity: 0.15,
-    shadowRadius: 20,
+    shadowRadius: ms(20),
     elevation: 20,
   },
   dragHandleContainer: {
-    paddingVertical: 12,
-    paddingHorizontal: 40,
+    paddingVertical: ms(12),
+    paddingHorizontal: ms(40),
     alignSelf: "center",
-    marginTop: -16,
-    marginBottom: 8,
+    marginTop: ms(-16),
+    marginBottom: ms(8),
   },
   dragHandle: {
-    width: 48,
-    height: 5,
-    borderRadius: 2.5,
+    width: ms(48),
+    height: ms(5),
+    borderRadius: ms(2.5),
     backgroundColor: "rgba(150, 150, 150, 0.4)",
   },
   headerContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 32,
+    marginBottom: ms(32),
   },
   iconBox: {
-    width: 52,
-    height: 52,
-    borderRadius: 16,
+    width: ms(52),
+    height: ms(52),
+    borderRadius: ms(16),
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 16,
+    marginRight: ms(16),
   },
   title: {
-    fontSize: 24,
+    fontSize: ms(24),
     fontWeight: "800",
   },
   formScroll: {
-    paddingBottom: 20,
+    paddingBottom: ms(20),
   },
   footerContainer: {
     flexDirection: "column",
-    marginTop: 24,
-    paddingTop: 20,
+    marginTop: ms(24),
+    paddingTop: ms(20),
     borderTopWidth: 1,
     borderColor: "rgba(150,150,150,0.1)",
   }

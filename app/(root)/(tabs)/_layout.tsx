@@ -1,3 +1,4 @@
+import { ms } from '../../../lib/metrics';
 import { Tabs } from "expo-router";
 import { StyleSheet, TouchableOpacity, View, useWindowDimensions, Platform } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -10,7 +11,8 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { TabIcon } from "@/components/TabIcon";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from
+"react-i18next";
 
 /**
  * CustomTabBar: A low-profile, animated floating navigation bar.
@@ -22,15 +24,15 @@ function CustomTabBar({ state, descriptors, navigation, unreadCount }: any) {
   const insets = useSafeAreaInsets();
   
   // Calculate responsive sizes
-  const MAX_WEB_WIDTH = 340;
+  const MAX_WEB_WIDTH = ms(340);
   const TAB_BAR_WIDTH = Platform.OS === 'web' 
-    ? Math.min(width - 40, MAX_WEB_WIDTH)
-    : width - 48;
+    ? Math.min(width - ms(40), MAX_WEB_WIDTH)
+    : width - ms(48);
     
   // Account for 1.5px border on each side (3px total)
-  const INNER_WIDTH = TAB_BAR_WIDTH - 3; 
+  const INNER_WIDTH = TAB_BAR_WIDTH - ms(3); 
   const TAB_WIDTH = INNER_WIDTH / 4;
-  const PILL_WIDTH = TAB_WIDTH - 16;
+  const PILL_WIDTH = TAB_WIDTH - ms(16);
   
   const calculateTranslateX = (index: number) => {
     // Perfect center math: (start of tab) + (half of tab) - (half of pill)
@@ -53,9 +55,9 @@ function CustomTabBar({ state, descriptors, navigation, unreadCount }: any) {
     width: PILL_WIDTH,
     backgroundColor: colors.primary,
     shadowColor: colors.primary,
-    shadowOffset: { width: 0, height: 8 },
+    shadowOffset: { width: 0, height: ms(8) },
     shadowOpacity: 0.4,
-    shadowRadius: 12,
+    shadowRadius: ms(12),
   }));
 
   return (
@@ -163,22 +165,22 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     position: "absolute",
     alignSelf: "center",
-    height: 72,
-    borderRadius: 36,
+    height: ms(64),
+    borderRadius: ms(32),
     alignItems: "center",
-    borderWidth: 1.5,
+    borderWidth: ms(1.5),
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 20 },
+    shadowOffset: { width: 0, height: ms(20) },
     shadowOpacity: 0.2,
-    shadowRadius: 30,
+    shadowRadius: ms(30),
     elevation: 15,
     overflow: 'hidden',
   },
   pill: {
     position: "absolute",
-    height: 56,
-    borderRadius: 28,
-    top: 6.5, // Center vertically (72 container - 3 borders - 56 pill) / 2 = 6.5
+    height: ms(48),
+    borderRadius: ms(24),
+    top: ms(6.5), // Center vertically (64 container - 3 borders - 48 pill) / 2 = 6.5
   },
   tabItem: {
     flex: 1,

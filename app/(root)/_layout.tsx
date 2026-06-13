@@ -35,7 +35,6 @@ const RootLayout = () => {
       <Stack.Screen name="find-ride" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="profile" options={{ headerShown: false, animation: 'slide_from_bottom' }} />
       <Stack.Screen name="about" options={{ headerShown: false, presentation: 'modal' }} />
-      <Stack.Screen name="tutorial" options={{ headerShown: false, presentation: 'transparentModal', animation: 'fade' }} />
     </Stack>
   );
 };

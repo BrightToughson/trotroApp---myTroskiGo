@@ -1,3 +1,4 @@
+import { ms } from '../../lib/metrics';
 import { useAuth, useUser } from "@clerk/clerk-expo";
 import { useTranslation } from "react-i18next";
 import { WebIcon } from "../../components/WebIcon";
@@ -23,7 +24,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "../../context/ThemeContext";
 import InputField from "../../components/InputField";
 import { ProcessingModal } from "../../components/ProcessingModal";
-import Animated, { FadeInDown, FadeInUp, ZoomIn } from "react-native-reanimated";
+import Animated, { FadeInDown, FadeInUp, ZoomIn } from
+"react-native-reanimated";
 
 /**
  * Profile Screen: Optimized for Web, iOS, and Android.
@@ -259,7 +261,7 @@ const Profile = () => {
             <WebIcon name="arrow-back" size= {24} color={colors.text} />
           </TouchableOpacity>
           <Text style={[styles.headerMainTitle, { color: colors.text }]}>{t('account')}</Text>
-          <View style={{ width: 44 }} />
+          <View style={{ width: ms(44) }} />
         </View>
 
         <ProcessingModal 
@@ -272,7 +274,7 @@ const Profile = () => {
 
           <View style={styles.header}>
             <Animated.View entering={ZoomIn.delay(200).duration(800).springify()} style={styles.avatarWrapper}>
-              <Image source={{ uri: user?.imageUrl }} style={[styles.avatar, { borderColor: colors.border, borderWidth: 2 }]} />
+              <Image source={{ uri: user?.imageUrl }} style={[styles.avatar, { borderColor: colors.border, borderWidth: ms(2) }]} />
               <TouchableOpacity style={[styles.editBadge, { backgroundColor: colors.primary }]} onPress={onEditImage}>
                 <WebIcon name="camera" size= {16} color="#FFF" />
               </TouchableOpacity>
@@ -385,30 +387,30 @@ const Profile = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  topNav: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 20 },
-  backButton: { width: 44, height: 44, borderRadius: 12, justifyContent: "center", alignItems: "center" },
-  headerMainTitle: { fontSize: 18, fontWeight: "bold" },
-  header: { alignItems: "center", paddingVertical: 30 },
-  avatarWrapper: { position: "relative", marginBottom: 15 },
-  avatar: { width: 100, height: 100, borderRadius: 50 },
-  editBadge: { position: "absolute", bottom: 0, right: 0, width: 32, height: 32, borderRadius: 16, justifyContent: "center", alignItems: "center", borderWidth: 2, borderColor: "#fff" },
-  userName: { fontSize: 20, fontWeight: "bold" },
-  userEmail: { fontSize: 16, opacity: 0.7 },
-  section: { paddingHorizontal: 20, marginTop: 20 },
-  sectionTitle: { fontSize: 15, fontWeight: "bold", textTransform: "uppercase", marginBottom: 10 },
-  card: { borderRadius: 15, overflow: "hidden", borderWidth: 1 },
-  itemContainer: { flexDirection: "row", alignItems: "center", padding: 15, borderBottomWidth: 1 },
-  iconWrapper: { width: 40, height: 40, borderRadius: 10, justifyContent: "center", alignItems: "center", marginRight: 15 },
+  topNav: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: ms(20) },
+  backButton: { width: ms(44), height: ms(44), borderRadius: ms(12), justifyContent: "center", alignItems: "center" },
+  headerMainTitle: { fontSize: ms(18), fontWeight: "bold" },
+  header: { alignItems: "center", paddingVertical: ms(30) },
+  avatarWrapper: { position: "relative", marginBottom: ms(15) },
+  avatar: { width: ms(100), height: ms(100), borderRadius: ms(50) },
+  editBadge: { position: "absolute", bottom: 0, right: 0, width: ms(32), height: ms(32), borderRadius: ms(16), justifyContent: "center", alignItems: "center", borderWidth: ms(2), borderColor: "#fff" },
+  userName: { fontSize: ms(20), fontWeight: "bold" },
+  userEmail: { fontSize: ms(16), opacity: 0.7 },
+  section: { paddingHorizontal: ms(20), marginTop: ms(20) },
+  sectionTitle: { fontSize: ms(15), fontWeight: "bold", textTransform: "uppercase", marginBottom: ms(10) },
+  card: { borderRadius: ms(15), overflow: "hidden", borderWidth: 1 },
+  itemContainer: { flexDirection: "row", alignItems: "center", padding: ms(15), borderBottomWidth: 1 },
+  iconWrapper: { width: ms(40), height: ms(40), borderRadius: ms(10), justifyContent: "center", alignItems: "center", marginRight: ms(15) },
   textContainer: { flex: 1 },
-  itemLabel: { fontSize: 18, fontWeight: "600" },
-  itemValue: { fontSize: 15, opacity: 0.6 },
-  logoutButton: { flexDirection: "row", alignItems: "center", justifyContent: "center", margin: 20, padding: 15, borderRadius: 15, borderWidth: 1 },
-  logoutText: { marginLeft: 10, color: "#EF4444", fontWeight: "bold" },
-  modalOverlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.5)", justifyContent: "center", padding: 20 },
-  modalContent: { borderRadius: 20, padding: 20, alignItems: "center" },
-  modalTitle: { fontSize: 20, fontWeight: "bold", marginBottom: 15 },
-  modalButtons: { flexDirection: "row", gap: 10, marginTop: 20, width: "100%" },
-  btn: { flex: 1, height: 52, borderRadius: 14, justifyContent: "center", alignItems: "center" },
+  itemLabel: { fontSize: ms(18), fontWeight: "600" },
+  itemValue: { fontSize: ms(15), opacity: 0.6 },
+  logoutButton: { flexDirection: "row", alignItems: "center", justifyContent: "center", margin: ms(20), padding: ms(15), borderRadius: ms(15), borderWidth: 1 },
+  logoutText: { marginLeft: ms(10), color: "#EF4444", fontWeight: "bold" },
+  modalOverlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.5)", justifyContent: "center", padding: ms(20) },
+  modalContent: { borderRadius: ms(20), padding: ms(20), alignItems: "center" },
+  modalTitle: { fontSize: ms(20), fontWeight: "bold", marginBottom: ms(15) },
+  modalButtons: { flexDirection: "row", gap: ms(10), marginTop: ms(20), width: "100%" },
+  btn: { flex: 1, height: ms(52), borderRadius: ms(14), justifyContent: "center", alignItems: "center" },
 });
 
 export default Profile;

@@ -1,3 +1,4 @@
+import { ms } from '../../lib/metrics';
 import { CodeInput } from "@/components/CodeInput";
 import { CustomButton } from "@/components/customButton";
 import { useTheme, LightColors } from "@/context/ThemeContext";
@@ -15,7 +16,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from
+"react-native-safe-area-context";
 import Animated, {
   FadeInDown,
   FadeInUp,
@@ -119,8 +121,8 @@ export default function VerifyEmail() {
             animatedDrift1,
             {
               backgroundColor: "#1A2433",
-              top: -50,
-              right: -50,
+              top: ms(-50),
+              right: ms(-50),
               opacity: isDark ? 0.8 : 0.4,
             },
           ]}
@@ -131,10 +133,10 @@ export default function VerifyEmail() {
             animatedDrift2,
             {
               backgroundColor: "#FFD700",
-              bottom: 100,
-              left: -80,
-              width: 250,
-              height: 250,
+              bottom: ms(100),
+              left: ms(-80),
+              width: ms(250),
+              height: ms(250),
               opacity: isDark ? 0.8 : 0.4,
             },
           ]}
@@ -145,10 +147,10 @@ export default function VerifyEmail() {
             animatedDrift1,
             {
               backgroundColor: "#1A2433",
-              bottom: 50,
-              right: 30,
-              width: 80,
-              height: 80,
+              bottom: ms(50),
+              right: ms(30),
+              width: ms(80),
+              height: ms(80),
               opacity: isDark ? 0.8 : 0.4,
             },
           ]}
@@ -159,10 +161,10 @@ export default function VerifyEmail() {
             animatedDrift2,
             {
               backgroundColor: "#FFD700",
-              top: 250,
-              left: -30,
-              width: 60,
-              height: 60,
+              top: ms(250),
+              left: ms(-30),
+              width: ms(60),
+              height: ms(60),
               opacity: isDark ? 0.8 : 0.4,
             },
           ]}
@@ -173,10 +175,10 @@ export default function VerifyEmail() {
             animatedDrift1,
             {
               backgroundColor: "#1A2433",
-              top: 450,
-              right: -50,
-              width: 150,
-              height: 150,
+              top: ms(450),
+              right: ms(-50),
+              width: ms(150),
+              height: ms(150),
               opacity: isDark ? 0.8 : 0.4,
             },
           ]}
@@ -289,31 +291,31 @@ export default function VerifyEmail() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 24,
+    padding: ms(24),
     justifyContent: "center",
     backgroundColor: "transparent",
   },
   header: {
-    marginBottom: 40,
+    marginBottom: ms(40),
     alignItems: "center",
   },
   closeButton: {
     position: "absolute",
-    right: 16,
+    right: ms(16),
     zIndex: 10,
-    padding: 10,
-    borderRadius: 24,
+    padding: ms(10),
+    borderRadius: ms(24),
   },
   logoContainer: {
-    width: 200,
-    height: 120,
-    borderRadius: 24,
+    width: ms(200),
+    height: ms(120),
+    borderRadius: ms(24),
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 24,
-    shadowOffset: { width: 0, height: 10 },
+    marginBottom: ms(24),
+    shadowOffset: { width: 0, height: ms(10) },
     shadowOpacity: 0.2,
-    shadowRadius: 20,
+    shadowRadius: ms(20),
     elevation: 10,
     overflow: "hidden",
   },
@@ -322,43 +324,43 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   title: {
-    fontSize: 38,
+    fontSize: ms(38),
     fontWeight: "800",
-    marginBottom: 10,
+    marginBottom: ms(10),
     letterSpacing: -0.5,
     textAlign: "center",
   },
   subtitle: {
-    fontSize: 18,
-    lineHeight: 24,
+    fontSize: ms(18),
+    lineHeight: ms(24),
     textAlign: "center",
-    paddingHorizontal: 20,
-    marginBottom: 20,
+    paddingHorizontal: ms(20),
+    marginBottom: ms(20),
   },
   button: {
-    marginTop: 10,
+    marginTop: ms(10),
     marginBottom: 0,
   },
   formCard: {
-    borderRadius: 32,
-    padding: 24,
+    borderRadius: ms(32),
+    padding: ms(24),
     borderWidth: 1,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: ms(10) },
     shadowOpacity: 0.1,
-    shadowRadius: 20,
+    shadowRadius: ms(20),
     elevation: 8,
   },
   decorativeCircle: {
     position: "absolute",
-    width: 300,
-    height: 300,
-    borderRadius: 150,
+    width: ms(300),
+    height: ms(300),
+    borderRadius: ms(150),
   },
   loadingText: {
     textAlign: "center",
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: "600",
-    marginTop: 12,
+    marginTop: ms(12),
   },
 });

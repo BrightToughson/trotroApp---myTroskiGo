@@ -1,3 +1,4 @@
+import { ms } from '../lib/metrics';
 import { WebIcon } from "./WebIcon";
 import { CustomButton } from "./customButton";
 import MapPickerModal from "./MapPickerModal";
@@ -31,7 +32,8 @@ import {
     OSM_STOPS,
     Location,
 } from "../lib/LocationService";
-import { FareService } from "../lib/FareService";
+import { FareService } from
+"../lib/FareService";
 
 
 
@@ -114,7 +116,7 @@ const ResultItem = React.memo(({
                         name={isBusStation ? "business" : (isPickupStation ? "git-branch" : "bus")} 
                         size= {12} 
                         color={isBusStation ? "#10b981" : (isPickupStation ? "#3b82f6" : "#64748b")} 
-                        style={{ marginRight: 4 }} 
+                        style={{ marginRight: ms(4) }} 
                     />
                     <Text style={[styles.verifiedBadgeText, { color: isBusStation ? "#10b981" : (isPickupStation ? "#3b82f6" : "#64748b") }]}>
                         {isBusStation ? "Verified Station" : (isPickupStation ? "Verified Hub" : "Verified Stop")}
@@ -291,14 +293,14 @@ export const LocationSearchModal = ({
                         borderTopLeftRadius: (Platform.OS !== 'web' || width < 600) ? 0 : 32,
                         borderTopRightRadius: (Platform.OS !== 'web' || width < 600) ? 0 : 32,
                     },
-                    Platform.OS === 'web' && width >= 600 && { maxWidth: 600, alignSelf: 'center', width: '100%', borderLeftWidth: 1, borderRightWidth: 1, borderColor: colors.border }
+                    Platform.OS === 'web' && width >= 600 && { maxWidth: ms(600), alignSelf: 'center', width: '100%', borderLeftWidth: 1, borderRightWidth: 1, borderColor: colors.border }
                 ]}
             >
                 {/* Grabber */}
                 <View style={[styles.grabber, { backgroundColor: colors.border }]} />
 
                 {/* Header */}
-                <View style={[styles.header, { backgroundColor: accentColor + '08', paddingHorizontal: 20, paddingVertical: 14, marginHorizontal: -20, marginTop: -20, marginBottom: 15, borderTopLeftRadius: 32, borderTopRightRadius: 32 }]}>
+                <View style={[styles.header, { backgroundColor: accentColor + '08', paddingHorizontal: ms(20), paddingVertical: ms(14), marginHorizontal: ms(-20), marginTop: ms(-20), marginBottom: ms(15), borderTopLeftRadius: 32, borderTopRightRadius: 32 }]}>
                     <View style={{ flex: 1 }}>
                         <View style={styles.titleRow}>
                           <Text style={[styles.title, { color: colors.text }]}>{title}</Text>
@@ -452,7 +454,7 @@ export const LocationSearchModal = ({
                                         <View style={styles.nearbyHeader}>
                                             <WebIcon name="bus" size= {16} color={accentColor} />
                                             <Text style={[styles.nearbyTitle, { color: colors.text }]}>{t('nearby_hubs')}</Text>
-                                            {nearbyLoading && <ActivityIndicator size= "small" color={accentColor} style={{ marginLeft: 8 }} />}
+                                            {nearbyLoading && <ActivityIndicator size= "small" color={accentColor} style={{ marginLeft: ms(8) }} />}
                                         </View>
                                         <View style={styles.nearbyGrid}>
                                             {nearbyStops.map((stop, i) => {
@@ -465,9 +467,9 @@ export const LocationSearchModal = ({
                                                         <Text style={[styles.nearbyChipText, { color: colors.text }]} numberOfLines={1}>
                                                             {(stop?.name || "Unknown").split(' (')[0]}
                                                         </Text>
-                                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4, gap: 6, flexWrap: 'wrap' }}>
+                                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: ms(4), gap: ms(6), flexWrap: 'wrap' }}>
                                                             <View style={[styles.distanceLabel, { backgroundColor: accentColor + '15' }]}>
-                                                                <WebIcon name="navigate-circle" size= {10} color={accentColor} style={{ marginRight: 4 }} />
+                                                                <WebIcon name="navigate-circle" size= {10} color={accentColor} style={{ marginRight: ms(4) }} />
                                                                 <Text style={[styles.distanceLabelText, { color: accentColor }]}>{stop.address?.replace('km away', 'km') || "Nearby"}</Text>
                                                             </View>
                                                         </View>
@@ -488,7 +490,7 @@ export const LocationSearchModal = ({
                                       horizontal 
                                       showsHorizontalScrollIndicator={false} 
                                       style={styles.regionScroll}
-                                      contentContainerStyle={{ paddingRight: 20 }}
+                                      contentContainerStyle={{ paddingRight: ms(20) }}
                                   >
                                       {availableRegions.map(region => {
                                           const isActive = selectedRegion === region;
@@ -522,7 +524,7 @@ export const LocationSearchModal = ({
                         keyExtractor={(item, index) => `${item.name}-${index}`}
                         renderItem={renderResultItem}
                         showsVerticalScrollIndicator={false}
-                        contentContainerStyle={{ paddingBottom: 100 }}
+                        contentContainerStyle={{ paddingBottom: ms(100) }}
                         // PERFORMANCE TUNING: Prevent JS thread congestion
                         maxToRenderPerBatch={10}
                         windowSize={5}
@@ -540,7 +542,7 @@ export const LocationSearchModal = ({
                     />
                 )}
                 {/* Spacer for keyboard */}
-                <View style={{ height: 40 }} />
+                <View style={{ height: ms(40) }} />
             </KeyboardAvoidingView>
         </Animated.View>
     </View>
@@ -559,14 +561,14 @@ const styles = StyleSheet.create({
   modalContent: {
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
-    padding: 20,
+    padding: ms(20),
     elevation: 20,
     ...Platform.select({
         ios: {
             shadowColor: "#000",
-            shadowOffset: { width: 0, height: -10 },
+            shadowOffset: { width: 0, height: ms(-10) },
             shadowOpacity: 0.1,
-            shadowRadius: 20,
+            shadowRadius: ms(20),
         },
         android: {
             elevation: 20,
@@ -574,57 +576,57 @@ const styles = StyleSheet.create({
     })
   },
   grabber: {
-    width: 40,
-    height: 5,
-    borderRadius: 3,
+    width: ms(40),
+    height: ms(5),
+    borderRadius: ms(3),
     alignSelf: 'center',
-    marginBottom: 20,
+    marginBottom: ms(20),
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    marginBottom: 24,
+    marginBottom: ms(24),
   },
   title: {
-    fontSize: 24,
+    fontSize: ms(24),
     fontWeight: "800",
     letterSpacing: -0.5,
   },
   subtitle: {
-    fontSize: 14,
-    marginTop: 2,
+    fontSize: ms(14),
+    marginTop: ms(2),
     opacity: 0.8,
   },
   closeButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: ms(36),
+    height: ms(36),
+    borderRadius: ms(18),
     alignItems: "center",
     justifyContent: "center",
   },
   searchContainer: {
     flexDirection: "row",
     alignItems: "center",
-    height: 52,
-    paddingHorizontal: 14,
-    borderRadius: 14,
-    borderWidth: 1.5,
-    marginHorizontal: 16,
-    marginBottom: 20,
+    height: ms(52),
+    paddingHorizontal: ms(14),
+    borderRadius: ms(14),
+    borderWidth: ms(1.5),
+    marginHorizontal: ms(16),
+    marginBottom: ms(20),
   },
   searchIcon: {
-    marginRight: 12,
+    marginRight: ms(12),
   },
   input: {
     flex: 1,
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: '500',
     padding: 0, // OS Fix
     outlineStyle: 'none' as any,
   },
   clearButton: {
-      padding: 4,
+      padding: ms(4),
   },
   initialContent: {
       // paddingBottom handled dynamically in component
@@ -632,40 +634,40 @@ const styles = StyleSheet.create({
   currentLocationRow: {
       flexDirection: 'row',
       alignItems: 'center',
-      padding: 18,
-      borderRadius: 22,
-      marginBottom: 20,
+      padding: ms(18),
+      borderRadius: ms(22),
+      marginBottom: ms(20),
       borderWidth: 1,
   },
   currentIconBox: {
-      width: 40,
-      height: 40,
-      borderRadius: 20,
+      width: ms(40),
+      height: ms(40),
+      borderRadius: ms(20),
       alignItems: 'center',
       justifyContent: 'center',
-      marginRight: 16,
+      marginRight: ms(16),
   },
   currentLocationText: {
-      fontSize: 18,
+      fontSize: ms(18),
       fontWeight: '800',
   },
   currentLocationSub: {
-      fontSize: 14,
+      fontSize: ms(14),
       fontWeight: '600',
       opacity: 0.8,
   },
   nearbySection: {
-      marginBottom: 24,
+      marginBottom: ms(24),
   },
   nearbyHeader: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: 12,
+      marginBottom: ms(12),
   },
   nearbyTitle: {
-      fontSize: 16,
+      fontSize: ms(16),
       fontWeight: '800',
-      marginLeft: 8,
+      marginLeft: ms(8),
       textTransform: 'uppercase',
       letterSpacing: 0.5,
   },
@@ -677,28 +679,28 @@ const styles = StyleSheet.create({
   nearbyChip: {
       flexDirection: 'column',
       alignItems: 'flex-start',
-      paddingHorizontal: 12,
-      paddingVertical: 12,
-      borderRadius: 18,
-      marginBottom: 8,
+      paddingHorizontal: ms(12),
+      paddingVertical: ms(12),
+      borderRadius: ms(18),
+      marginBottom: ms(8),
       borderWidth: 1,
       width: '48.5%',
-      gap: 6,
+      gap: ms(6),
   },
   nearbyChipText: {
-      fontSize: 16,
+      fontSize: ms(16),
       fontWeight: '800',
       width: '100%',
   },
   distanceLabel: {
       flexDirection: 'row',
       alignItems: 'center',
-      paddingHorizontal: 8,
-      paddingVertical: 4,
-      borderRadius: 8,
+      paddingHorizontal: ms(8),
+      paddingVertical: ms(4),
+      borderRadius: ms(8),
   },
   distanceLabelText: {
-      fontSize: 13,
+      fontSize: ms(13),
       fontWeight: '900',
   },
   
@@ -707,20 +709,20 @@ const styles = StyleSheet.create({
       flex: 1,
   },
   regionScroll: {
-      maxHeight: 50,
-      marginBottom: 20,
+      maxHeight: ms(50),
+      marginBottom: ms(20),
   },
   regionTab: {
-      paddingHorizontal: 16,
-      paddingVertical: 10,
-      borderRadius: 12,
-      marginRight: 10,
+      paddingHorizontal: ms(16),
+      paddingVertical: ms(10),
+      borderRadius: ms(12),
+      marginRight: ms(10),
       justifyContent: 'center',
       alignItems: 'center',
-      height: 40,
+      height: ms(40),
   },
   regionTabText: {
-      fontSize: 15,
+      fontSize: ms(15),
       fontWeight: '700',
       textTransform: 'capitalize',
   },
@@ -728,29 +730,29 @@ const styles = StyleSheet.create({
       flex: 1,
   },
   regionSection: {
-      marginBottom: 30,
+      marginBottom: ms(30),
   },
   regionSectionTitle: {
-      fontSize: 14,
+      fontSize: ms(14),
       fontWeight: '900',
       textTransform: 'uppercase',
       letterSpacing: 1.5,
-      marginBottom: 16,
+      marginBottom: ms(16),
       opacity: 0.8,
   },
   townGroup: {
-      marginBottom: 20,
-      paddingLeft: 4,
+      marginBottom: ms(20),
+      paddingLeft: ms(4),
   },
   townHeader: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: 10,
+      marginBottom: ms(10),
   },
   townName: {
-      fontSize: 16,
+      fontSize: ms(16),
       fontWeight: '700',
-      marginLeft: 6,
+      marginLeft: ms(6),
   },
   stopsGrid: {
       flexDirection: 'row',
@@ -760,15 +762,15 @@ const styles = StyleSheet.create({
   hubChip: {
       flexDirection: 'column',
       alignItems: 'flex-start',
-      paddingHorizontal: 10,
-      paddingVertical: 8,
-      borderRadius: 10,
-      marginBottom: 8,
+      paddingHorizontal: ms(10),
+      paddingVertical: ms(8),
+      borderRadius: ms(10),
+      marginBottom: ms(8),
       borderWidth: 1,
       width: '48.5%',
   },
   hubChipText: {
-      fontSize: 15,
+      fontSize: ms(15),
       fontWeight: '800',
       flex: 1,
   },
@@ -777,20 +779,20 @@ const styles = StyleSheet.create({
       alignItems: 'center',
   },
   chipFareText: {
-      fontSize: 11,
+      fontSize: ms(11),
       fontWeight: '600',
       marginTop: 1,
   },
   miniFareBadge: {
       flexDirection: 'row',
       alignItems: 'center',
-      paddingHorizontal: 6,
-      paddingVertical: 2,
-      borderRadius: 6,
+      paddingHorizontal: ms(6),
+      paddingVertical: ms(2),
+      borderRadius: ms(6),
       alignSelf: 'flex-start',
   },
   miniFareText: {
-      fontSize: 11,
+      fontSize: ms(11),
       fontWeight: '900',
       color: '#10b981',
   },
@@ -798,47 +800,47 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       alignSelf: 'flex-start',
-      paddingHorizontal: 8,
-      paddingVertical: 4,
-      borderRadius: 10,
-      marginTop: 6,
-      gap: 6,
+      paddingHorizontal: ms(8),
+      paddingVertical: ms(4),
+      borderRadius: ms(10),
+      marginTop: ms(6),
+      gap: ms(6),
   },
   inlineFareText: {
       color: '#10b981',
-      fontSize: 12,
+      fontSize: ms(12),
       fontWeight: '800',
       padding: 0,
   },
   verifiedBadge: {
       flexDirection: 'row',
       alignItems: 'center',
-      paddingHorizontal: 8,
-      paddingVertical: 2,
-      borderRadius: 6,
-      marginLeft: 8,
+      paddingHorizontal: ms(8),
+      paddingVertical: ms(2),
+      borderRadius: ms(6),
+      marginLeft: ms(8),
   },
   verifiedBadgeText: {
-      fontSize: 12,
+      fontSize: ms(12),
       fontWeight: '900',
   },
 
   resultItem: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 14,
+    paddingVertical: ms(14),
     borderBottomWidth: StyleSheet.hairlineWidth,
     ...Platform.select({
       web: { cursor: 'pointer' } as any
     })
   },
   iconContainer: {
-    width: 44,
-    height: 44,
-    borderRadius: 14,
+    width: ms(44),
+    height: ms(44),
+    borderRadius: ms(14),
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 14,
+    marginRight: ms(14),
   },
   textContainer: {
     flex: 1,
@@ -846,50 +848,50 @@ const styles = StyleSheet.create({
   nameRow: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: 2,
+      marginBottom: ms(2),
   },
   resultName: {
-    fontSize: 18,
+    fontSize: ms(18),
     fontWeight: "700",
   },
   typeBadge: {
-      paddingHorizontal: 6,
-      paddingVertical: 2,
-      borderRadius: 6,
-      marginLeft: 8,
+      paddingHorizontal: ms(6),
+      paddingVertical: ms(2),
+      borderRadius: ms(6),
+      marginLeft: ms(8),
   },
   typeBadgeText: {
-      fontSize: 11,
+      fontSize: ms(11),
       fontWeight: '900',
   },
   resultAddress: {
-    fontSize: 16,
+    fontSize: ms(16),
   },
   emptyContainer: {
       alignItems: 'center',
-      paddingTop: 60,
+      paddingTop: ms(60),
   },
   emptyText: {
-    fontSize: 18,
+    fontSize: ms(18),
     fontWeight: '700',
-    marginTop: 16,
+    marginTop: ms(16),
   },
   emptySubtext: {
-    fontSize: 16,
-    marginTop: 8,
+    fontSize: ms(16),
+    marginTop: ms(8),
   },
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: ms(12),
   },
   headerBadge: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 8,
+    paddingHorizontal: ms(10),
+    paddingVertical: ms(4),
+    borderRadius: ms(8),
   },
   headerBadgeText: {
-    fontSize: 13,
+    fontSize: ms(13),
     fontWeight: '900',
     letterSpacing: 0.5,
   },

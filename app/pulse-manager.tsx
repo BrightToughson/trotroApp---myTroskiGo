@@ -1,3 +1,4 @@
+import { ms } from '../lib/metrics';
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Platform, Alert, KeyboardAvoidingView, Image } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
@@ -8,7 +9,8 @@ import { WebIcon } from '../components/WebIcon';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeInDown, Layout, SlideInDown } from 'react-native-reanimated';
 import { PulseService, CityPulse } from '../lib/PulseService';
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from
+'expo-image-picker';
 
 const PRESET_COLORS = [
   '#3B82F6', // Blue
@@ -173,8 +175,8 @@ export default function PulseManager() {
       <View style={[styles.container, { backgroundColor: colors.background, justifyContent: 'center', alignItems: 'center' }]}>
         <Stack.Screen options={{ title: 'Access Denied', headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
         <WebIcon name="lock-closed" size= {64} color={colors.primary} />
-        <Text style={{ color: colors.text, fontSize: 24, fontWeight: '900', marginTop: 20 }}>Access Denied</Text>
-        <Text style={{ color: colors.textSecondary, marginTop: 10, fontSize: 16 }}>Admin privileges required.</Text>
+        <Text style={{ color: colors.text, fontSize: ms(24), fontWeight: '900', marginTop: ms(20) }}>Access Denied</Text>
+        <Text style={{ color: colors.textSecondary, marginTop: ms(10), fontSize: ms(16) }}>Admin privileges required.</Text>
       </View>
     );
   }
@@ -187,20 +189,20 @@ export default function PulseManager() {
       <View style={{ zIndex: 10 }}>
         <LinearGradient
            colors={isDark ? ["rgba(15, 23, 42, 0.95)", "rgba(15, 23, 42, 0.8)"] : ["rgba(255, 255, 255, 0.95)", "rgba(255, 255, 255, 0.8)"]}
-           style={[{ padding: 20, paddingTop: Platform.OS === 'ios' ? 60 : 30, borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flexDirection: 'row', alignItems: 'center' }, Platform.OS === 'web' && { backdropFilter: 'blur(20px)' }] as any}
+           style={[{ padding: ms(20), paddingTop: Platform.OS === 'ios' ? 60 : 30, borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flexDirection: 'row', alignItems: 'center' }, Platform.OS === 'web' && { backdropFilter: 'blur(20px)' }] as any}
         >
           <TouchableOpacity onPress={() => router.push('/admin')} activeOpacity={0.7} style={[styles.backBtn, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.04)' }]}>
              <WebIcon name="arrow-back" size= {24} color={colors.text} />
           </TouchableOpacity>
-          <View style={{ marginLeft: 16 }}>
-            <Text style={{ fontSize: 24, fontWeight: '900', color: colors.text, letterSpacing: -0.5 }}>Pulse Dashboard</Text>
-            <Text style={{ fontSize: 14, color: colors.textSecondary, fontWeight: '600' }}>Manage City Pulses (News)</Text>
+          <View style={{ marginLeft: ms(16) }}>
+            <Text style={{ fontSize: ms(24), fontWeight: '900', color: colors.text, letterSpacing: -0.5 }}>Pulse Dashboard</Text>
+            <Text style={{ fontSize: ms(14), color: colors.textSecondary, fontWeight: '600' }}>Manage City Pulses (News)</Text>
           </View>
         </LinearGradient>
       </View>
 
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 20, paddingBottom: 100 }} keyboardShouldPersistTaps="handled">
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: ms(20), paddingBottom: ms(100) }} keyboardShouldPersistTaps="handled">
           
           {/* GLASSMORPHISM FORM SECTION */}
           <Animated.View entering={FadeInDown.delay(100).duration(600).springify()} style={{ zIndex: 2 }}>
@@ -208,8 +210,8 @@ export default function PulseManager() {
                 backgroundColor: isDark ? 'rgba(30, 41, 59, 0.7)' : 'rgba(255, 255, 255, 0.9)', 
                 borderColor: isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.05)'
             }]}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
-                <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: 12 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: ms(20) }}>
+                <View style={{ width: ms(40), height: ms(40), borderRadius: ms(12), backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: ms(12) }}>
                   <WebIcon name={editingId ? "create" : "newspaper"} size= {22} color={colors.primary} />
                 </View>
                 <Text style={[styles.sectionTitle, { color: colors.text }]}>
@@ -250,21 +252,21 @@ export default function PulseManager() {
                 </View>
               </View>
 
-              <View style={[styles.formRow, { marginBottom: 30 }]}>
+              <View style={[styles.formRow, { marginBottom: ms(30) }]}>
                 <View style={styles.inputContainer}>
                   <Text style={[styles.label, { color: colors.textSecondary }]}>Color *</Text>
-                  <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 4 }}>
+                  <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: ms(12), marginTop: ms(4) }}>
                     {PRESET_COLORS.map(color => (
                       <TouchableOpacity
                         key={color}
                         activeOpacity={0.8}
                         onPress={() => setColorHex(color)}
                         style={{
-                          width: 44, height: 44, borderRadius: 22, backgroundColor: color,
+                          width: ms(44), height: ms(44), borderRadius: ms(22), backgroundColor: color,
                           borderWidth: colorHex === color ? 3 : 0,
                           borderColor: isDark ? '#fff' : '#000',
                           justifyContent: 'center', alignItems: 'center',
-                          shadowColor: color, shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 6, elevation: 4
+                          shadowColor: color, shadowOffset: { width: 0, height: ms(4) }, shadowOpacity: 0.3, shadowRadius: ms(6), elevation: 4
                         }}
                       >
                         {colorHex === color && <WebIcon name="checkmark" size= {24} color="#fff" />}
@@ -277,7 +279,7 @@ export default function PulseManager() {
               <View style={styles.formRow}>
                 <View style={styles.inputContainer}>
                   <Text style={[styles.label, { color: colors.textSecondary }]}>Image (URL or Photo) *</Text>
-                  <View style={{ flexDirection: 'row', gap: 12 }}>
+                  <View style={{ flexDirection: 'row', gap: ms(12) }}>
                     <View style={[styles.inputWrapper, { flex: 1 }]}>
                       <WebIcon name="image-outline" size= {18} color={colors.textSecondary} style={styles.inputIcon} />
                       <TextInput style={[styles.inputWithIcon, { color: colors.text, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}
@@ -285,13 +287,13 @@ export default function PulseManager() {
                     </View>
                     <TouchableOpacity 
                       onPress={pickImage} 
-                      style={{ width: 56, height: 56, borderRadius: 16, backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: colors.primary + '30' }}
+                      style={{ width: ms(56), height: ms(56), borderRadius: ms(16), backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: colors.primary + '30' }}
                     >
                       <WebIcon name="camera" size= {24} color={colors.primary} />
                     </TouchableOpacity>
                   </View>
                   {imageUrl ? (
-                    <Animated.View entering={FadeInDown} style={{ marginTop: 12, height: 160, borderRadius: 16, overflow: 'hidden', borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}>
+                    <Animated.View entering={FadeInDown} style={{ marginTop: ms(12), height: ms(160), borderRadius: ms(16), overflow: 'hidden', borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}>
                        <Image source={{ uri: imageUrl }} style={{ width: '100%', height: '100%' }} resizeMode="cover" />
                     </Animated.View>
                   ) : null}
@@ -309,9 +311,9 @@ export default function PulseManager() {
                 </View>
               </View>
 
-              <View style={[styles.formRow, { marginTop: 10 }]}>
+              <View style={[styles.formRow, { marginTop: ms(10) }]}>
                 {editingId && !isSaving && (
-                  <TouchableOpacity activeOpacity={0.8} style={[styles.button, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flex: 1, marginRight: 12 }]} onPress={handleCancelEdit}>
+                  <TouchableOpacity activeOpacity={0.8} style={[styles.button, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flex: 1, marginRight: ms(12) }]} onPress={handleCancelEdit}>
                     <Text style={[styles.buttonText, { color: colors.text }]}>Cancel</Text>
                   </TouchableOpacity>
                 )}
@@ -326,7 +328,7 @@ export default function PulseManager() {
                       <Text style={[styles.buttonText, { color: '#fff' }]}>Uploading...</Text>
                     ) : (
                       <>
-                        <WebIcon name={editingId ? "save" : "add-circle"} size= {20} color="#fff" style={{ marginRight: 8 }} />
+                        <WebIcon name={editingId ? "save" : "add-circle"} size= {20} color="#fff" style={{ marginRight: ms(8) }} />
                         <Text style={[styles.buttonText, { color: '#fff' }]}>{editingId ? 'Update Pulse' : 'Save New Pulse'}</Text>
                       </>
                     )}
@@ -337,19 +339,19 @@ export default function PulseManager() {
           </Animated.View>
 
           {/* LIST SECTION */}
-          <View style={{ marginTop: 40, zIndex: 1 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+          <View style={{ marginTop: ms(40), zIndex: 1 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: ms(20) }}>
                <Text style={[styles.sectionTitle, { color: colors.text, marginBottom: 0 }]}>Database ({dbPulses.length})</Text>
-               <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.primary + '15', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12 }}>
-                 <WebIcon name="server" size= {14} color={colors.primary} style={{ marginRight: 6 }} />
-                 <Text style={{ color: colors.primary, fontWeight: '800', fontSize: 13 }}>Live Sync</Text>
+               <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.primary + '15', paddingHorizontal: ms(12), paddingVertical: ms(6), borderRadius: ms(12) }}>
+                 <WebIcon name="server" size= {14} color={colors.primary} style={{ marginRight: ms(6) }} />
+                 <Text style={{ color: colors.primary, fontWeight: '800', fontSize: ms(13) }}>Live Sync</Text>
                </View>
             </View>
             
             <View style={[styles.searchBox, { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}>
-              <WebIcon name="search" size= {20} color={colors.textSecondary} style={{ marginRight: 12 }} />
+              <WebIcon name="search" size= {20} color={colors.textSecondary} style={{ marginRight: ms(12) }} />
               <TextInput 
-                style={{ flex: 1, color: colors.text, fontSize: 16, fontWeight: '500', height: 50, outlineStyle: 'none' } as any}
+                style={{ flex: 1, color: colors.text, fontSize: ms(16), fontWeight: '500', height: ms(50), outlineStyle: 'none' } as any}
                 placeholder="Search by title or tag..."
                 placeholderTextColor={colors.textSecondary}
                 value={searchQuery}
@@ -363,8 +365,8 @@ export default function PulseManager() {
             </View>
 
             {loading ? (
-               <View style={{ padding: 40, alignItems: 'center' }}>
-                 <Text style={{ color: colors.textSecondary, fontSize: 16, fontWeight: '600' }}>Loading pulses...</Text>
+               <View style={{ padding: ms(40), alignItems: 'center' }}>
+                 <Text style={{ color: colors.textSecondary, fontSize: ms(16), fontWeight: '600' }}>Loading pulses...</Text>
                </View>
             ) : (
                <View>
@@ -375,9 +377,9 @@ export default function PulseManager() {
                        borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' 
                      }]}>
                        <View style={{ flex: 1 }}>
-                         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
+                         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: ms(6) }}>
                            <View style={[styles.tagBadge, { backgroundColor: pulse.color + '33' }]}>
-                             <Text style={{ color: pulse.color, fontWeight: '800', fontSize: 12, textTransform: 'uppercase' }}>
+                             <Text style={{ color: pulse.color, fontWeight: '800', fontSize: ms(12), textTransform: 'uppercase' }}>
                                {pulse.tag}
                              </Text>
                            </View>
@@ -385,12 +387,12 @@ export default function PulseManager() {
                          <Text style={[styles.pulseTitle, { color: colors.text }]} numberOfLines={2}>
                            {pulse.title}
                          </Text>
-                         <Text style={{ color: colors.textSecondary, fontSize: 13, marginTop: 4 }} numberOfLines={1}>
+                         <Text style={{ color: colors.textSecondary, fontSize: ms(13), marginTop: ms(4) }} numberOfLines={1}>
                            {pulse.excerpt}
                          </Text>
                        </View>
 
-                       <View style={{ flexDirection: 'row', gap: 8, paddingLeft: 12, borderLeftWidth: 1, borderLeftColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}>
+                       <View style={{ flexDirection: 'row', gap: ms(8), paddingLeft: ms(12), borderLeftWidth: 1, borderLeftColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}>
                          <TouchableOpacity activeOpacity={0.7} onPress={() => handleEdit(pulse)} style={[styles.actionBtn, { backgroundColor: colors.primary + '15' }]}>
                             <WebIcon name="create-outline" size= {18} color={colors.primary} />
                          </TouchableOpacity>
@@ -402,9 +404,9 @@ export default function PulseManager() {
                    </Animated.View>
                  ))}
                  {filteredPulses.length === 0 && (
-                   <View style={{ padding: 40, alignItems: 'center' }}>
+                   <View style={{ padding: ms(40), alignItems: 'center' }}>
                      <WebIcon name="search-outline" size= {48} color={isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)'} />
-                     <Text style={{ color: colors.textSecondary, fontSize: 16, fontWeight: '600', marginTop: 16 }}>No pulses match your search</Text>
+                     <Text style={{ color: colors.textSecondary, fontSize: ms(16), fontWeight: '600', marginTop: ms(16) }}>No pulses match your search</Text>
                    </View>
                  )}
                </View>
@@ -418,26 +420,26 @@ export default function PulseManager() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  backBtn: { width: 44, height: 44, borderRadius: 22, justifyContent: 'center', alignItems: 'center' },
+  backBtn: { width: ms(44), height: ms(44), borderRadius: ms(22), justifyContent: 'center', alignItems: 'center' },
   glassCard: {
-    padding: 24, borderRadius: 28, borderWidth: 1,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.1, shadowRadius: 20, elevation: 8,
+    padding: ms(24), borderRadius: ms(28), borderWidth: 1,
+    shadowColor: '#000', shadowOffset: { width: 0, height: ms(10) }, shadowOpacity: 0.1, shadowRadius: ms(20), elevation: 8,
     // @ts-ignore
     backdropFilter: 'blur(20px)'
   },
-  sectionTitle: { fontSize: 22, fontWeight: '900', letterSpacing: -0.5, marginBottom: 0 },
-  formRow: { flexDirection: 'column', gap: 16, marginBottom: 20 },
+  sectionTitle: { fontSize: ms(22), fontWeight: '900', letterSpacing: -0.5, marginBottom: 0 },
+  formRow: { flexDirection: 'column', gap: ms(16), marginBottom: ms(20) },
   inputContainer: { flex: 1 },
-  label: { fontSize: 14, fontWeight: '800', marginBottom: 8, marginLeft: 4, textTransform: 'uppercase', letterSpacing: 0.5 },
+  label: { fontSize: ms(14), fontWeight: '800', marginBottom: ms(8), marginLeft: ms(4), textTransform: 'uppercase', letterSpacing: 0.5 },
   inputWrapper: { flexDirection: 'row', alignItems: 'center', position: 'relative' },
-  inputIcon: { position: 'absolute', left: 16, zIndex: 2 },
-  inputWithIcon: { flex: 1, borderWidth: 1, borderRadius: 16, paddingLeft: 46, paddingRight: 16, height: 56, fontSize: 16, fontWeight: '600', outlineStyle: 'none' as any },
-  button: { height: 56, borderRadius: 16, justifyContent: 'center', alignItems: 'center' },
-  saveButton: { height: 56, borderRadius: 16, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', shadowColor: '#10b981', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 8, elevation: 5 },
-  buttonText: { fontSize: 16, fontWeight: '800', letterSpacing: 0.5 },
-  searchBox: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, height: 56, borderRadius: 20, borderWidth: 1, marginBottom: 20, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.05, shadowRadius: 10, elevation: 2 },
-  pulseCard: { flexDirection: 'row', padding: 16, borderRadius: 20, borderWidth: 1, marginBottom: 12, alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 8, elevation: 2 },
-  tagBadge: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: 10, alignSelf: 'flex-start' },
-  pulseTitle: { fontSize: 18, fontWeight: '800', flex: 1 },
-  actionBtn: { width: 44, height: 44, borderRadius: 14, justifyContent: 'center', alignItems: 'center' }
+  inputIcon: { position: 'absolute', left: ms(16), zIndex: 2 },
+  inputWithIcon: { flex: 1, borderWidth: 1, borderRadius: ms(16), paddingLeft: ms(46), paddingRight: ms(16), height: ms(56), fontSize: ms(16), fontWeight: '600', outlineStyle: 'none' as any },
+  button: { height: ms(56), borderRadius: ms(16), justifyContent: 'center', alignItems: 'center' },
+  saveButton: { height: ms(56), borderRadius: ms(16), justifyContent: 'center', alignItems: 'center', flexDirection: 'row', shadowColor: '#10b981', shadowOffset: { width: 0, height: ms(4) }, shadowOpacity: 0.3, shadowRadius: ms(8), elevation: 5 },
+  buttonText: { fontSize: ms(16), fontWeight: '800', letterSpacing: 0.5 },
+  searchBox: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: ms(16), height: ms(56), borderRadius: ms(20), borderWidth: 1, marginBottom: ms(20), shadowColor: '#000', shadowOffset: { width: 0, height: ms(4) }, shadowOpacity: 0.05, shadowRadius: ms(10), elevation: 2 },
+  pulseCard: { flexDirection: 'row', padding: ms(16), borderRadius: ms(20), borderWidth: 1, marginBottom: ms(12), alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: ms(2) }, shadowOpacity: 0.05, shadowRadius: ms(8), elevation: 2 },
+  tagBadge: { paddingHorizontal: ms(10), paddingVertical: ms(4), borderRadius: ms(10), alignSelf: 'flex-start' },
+  pulseTitle: { fontSize: ms(18), fontWeight: '800', flex: 1 },
+  actionBtn: { width: ms(44), height: ms(44), borderRadius: ms(14), justifyContent: 'center', alignItems: 'center' }
 });

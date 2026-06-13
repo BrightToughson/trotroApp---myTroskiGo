@@ -1,3 +1,4 @@
+import { ms } from '../lib/metrics';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Platform } from 'react-native';
 import Animated, { 
@@ -11,7 +12,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NotificationService, Notification } from '@/lib/NotificationService';
 import { WebIcon } from './WebIcon';
 import { useRouter } from 'expo-router';
-import { useTheme } from '@/context/ThemeContext';
+import { useTheme } from
+'@/context/ThemeContext';
 
 export function NotificationBanner() {
   const [activeNotification, setActiveNotification] = useState<Notification | null>(null);
@@ -136,44 +138,44 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 9999,
     alignItems: 'center',
-    paddingHorizontal: 16,
+    paddingHorizontal: ms(16),
   },
   banner: {
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
-    maxWidth: 500,
-    borderRadius: 16,
-    padding: 12,
+    maxWidth: ms(500),
+    borderRadius: ms(16),
+    padding: ms(12),
     borderWidth: 1,
-    shadowOffset: { width: 0, height: 8 },
+    shadowOffset: { width: 0, height: ms(8) },
     shadowOpacity: 0.15,
-    shadowRadius: 12,
+    shadowRadius: ms(12),
     elevation: 8,
   },
   iconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: ms(48),
+    height: ms(48),
+    borderRadius: ms(24),
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 12,
+    marginRight: ms(12),
   },
   textContainer: {
     flex: 1,
     justifyContent: 'center',
   },
   title: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: '700',
-    marginBottom: 4,
+    marginBottom: ms(4),
   },
   message: {
-    fontSize: 14,
-    lineHeight: 20,
+    fontSize: ms(14),
+    lineHeight: ms(20),
   },
   closeButton: {
-    padding: 8,
-    marginLeft: 8,
+    padding: ms(8),
+    marginLeft: ms(8),
   }
 });

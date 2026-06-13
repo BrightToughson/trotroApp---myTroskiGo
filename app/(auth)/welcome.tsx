@@ -1,3 +1,4 @@
+import { ms } from '../../lib/metrics';
 import { WebIcon } from '../../components/WebIcon';
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
@@ -21,7 +22,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Swiper from "react-native-swiper";
 import { CustomButton } from "../../components/customButton";
 import { useTranslation } from "react-i18next";
-import { useTheme, LightColors } from "../../context/ThemeContext";
+import { useTheme, LightColors } from
+"../../context/ThemeContext";
 
 /**
  * Welcome Screen: A premium multi-slide onboarding experience.
@@ -152,10 +154,10 @@ const Welcome = () => {
             animatedDrift1,
             {
               backgroundColor: "#2563EB", // Primary Blue orb
-              top: -80,
-              right: -80,
-              width: 350,
-              height: 350,
+              top: ms(-80),
+              right: ms(-80),
+              width: ms(350),
+              height: ms(350),
               opacity: isDark ? 0.2 : 0.08,
             },
           ]}
@@ -166,10 +168,10 @@ const Welcome = () => {
             animatedDrift2,
             {
               backgroundColor: "#FBBF24", // Warm yellow orb
-              bottom: 100,
-              left: -100,
-              width: 350,
-              height: 350,
+              bottom: ms(100),
+              left: ms(-100),
+              width: ms(350),
+              height: ms(350),
               opacity: isDark ? 0.15 : 0.08,
             },
           ]}
@@ -180,10 +182,10 @@ const Welcome = () => {
             animatedDrift1,
             {
               backgroundColor: "#1A2433",
-              bottom: 50,
-              right: 30,
-              width: 80,
-              height: 80,
+              bottom: ms(50),
+              right: ms(30),
+              width: ms(80),
+              height: ms(80),
               opacity: isDark ? 0.6 : 0.1,
             },
           ]}
@@ -194,10 +196,10 @@ const Welcome = () => {
             animatedDrift2,
             {
               backgroundColor: "#FFD700",
-              top: 150,
-              right: -40,
-              width: 120,
-              height: 120,
+              top: ms(150),
+              right: ms(-40),
+              width: ms(120),
+              height: ms(120),
               opacity: isDark ? 0.3 : 0.1,
             },
           ]}
@@ -285,7 +287,7 @@ const Welcome = () => {
                       }
                     ]}
                   >
-                    <ScrollView style={{ maxHeight: 200 }} showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
+                    <ScrollView style={{ maxHeight: ms(200) }} showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
                       <Animated.Text
                         entering={index === activeIndex ? FadeInLeft.delay(600).duration(1000).springify() : undefined}
                         style={[styles.slideTitle, { color: colors.text }]}
@@ -318,7 +320,7 @@ const Welcome = () => {
                             name={index === slides.length - 1 ? "checkmark-circle" : "arrow-forward"} 
                             size= {20} 
                             color="#fff" 
-                            style={{ marginLeft: 8 }} 
+                            style={{ marginLeft: ms(8) }} 
                           />
                         )}
                       />
@@ -388,8 +390,8 @@ const styles = StyleSheet.create({
   mainContainer: { flex: 1 },
 
   topButtonContainer: {
-    paddingHorizontal: 24,
-    paddingVertical: 16,
+    paddingHorizontal: ms(24),
+    paddingVertical: ms(16),
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -398,55 +400,55 @@ const styles = StyleSheet.create({
   },
 
   backButton: {
-    padding: 8,
-    borderRadius: 20,
+    padding: ms(8),
+    borderRadius: ms(20),
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: ms(2) },
     shadowOpacity: 0.05,
-    shadowRadius: 4,
+    shadowRadius: ms(4),
     elevation: 2,
   },
 
   skipButton: {
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    borderRadius: 20,
+    paddingHorizontal: ms(20),
+    paddingVertical: ms(8),
+    borderRadius: ms(20),
   },
   skipButtonText: {
     fontWeight: "700",
-    fontSize: 18,
+    fontSize: ms(18),
     letterSpacing: 0.5,
   },
 
   dotStyle: {
     backgroundColor: "#CBD5E1",
-    marginHorizontal: 5,
-    width: 10,
-    height: 6,
-    borderRadius: 4,
+    marginHorizontal: ms(5),
+    width: ms(10),
+    height: ms(6),
+    borderRadius: ms(4),
   },
   activeDotStyle: {
-    marginHorizontal: 5,
-    width: 36,
-    height: 6,
-    borderRadius: 4,
+    marginHorizontal: ms(5),
+    width: ms(36),
+    height: ms(6),
+    borderRadius: ms(4),
   },
 
   slide: {
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 24,
-    paddingTop: 10,
-    paddingBottom: 40,
+    paddingHorizontal: ms(24),
+    paddingTop: ms(10),
+    paddingBottom: ms(40),
   },
   imageContainer: {
     flex: 0.45,
     justifyContent: "flex-start",
     alignItems: "center",
     width: "100%",
-    padding: 10,
-    marginTop: -20,
+    padding: ms(10),
+    marginTop: ms(-20),
   },
   imageWrapper: {
     width: "100%",
@@ -457,71 +459,71 @@ const styles = StyleSheet.create({
   slideImage: { 
     width: "100%", 
     height: "100%", 
-    maxWidth: 380,
+    maxWidth: ms(380),
   },
   textContainer: {
     flex: 0.45,
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingHorizontal: 10,
+    paddingHorizontal: ms(10),
     width: "100%",
-    marginTop: 20,
+    marginTop: ms(20),
   },
   glassCard: {
-    padding: 16,
-    borderRadius: 24,
+    padding: ms(16),
+    borderRadius: ms(24),
     width: "100%",
-    maxWidth: 480,
+    maxWidth: ms(480),
     alignSelf: 'center',
     borderWidth: 1,
     overflow: "hidden",
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 8 },
+    shadowOffset: { width: 0, height: ms(8) },
     shadowOpacity: 0.1,
-    shadowRadius: 12,
+    shadowRadius: ms(12),
     elevation: 4,
   },
   slideTitle: {
-    fontSize: 28,
+    fontSize: ms(28),
     fontWeight: "900",
-    marginBottom: 16,
+    marginBottom: ms(16),
     textAlign: "center",
     letterSpacing: -0.5,
   },
   titleSeparator: {
-    width: 200,
-    height: 3,
-    borderRadius: 2,
+    width: ms(200),
+    height: ms(3),
+    borderRadius: ms(2),
     alignSelf: 'center',
-    marginBottom: 16,
+    marginBottom: ms(16),
   },
   slideDescription: {
-    fontSize: 20,
+    fontSize: ms(20),
     textAlign: "center",
-    lineHeight: 26,
-    paddingHorizontal: 10,
+    lineHeight: ms(26),
+    paddingHorizontal: ms(10),
     fontWeight: "500",
   },
 
   buttonInsideWrapper: {
     width: "100%",
-    marginTop: 24,
+    marginTop: ms(24),
   },
   fullWidthButton: {
     width: "100%",
-    height: 48,
-    borderRadius: 24,
+    height: ms(48),
+    borderRadius: ms(24),
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: ms(4) },
     shadowOpacity: 0.2,
-    shadowRadius: 8,
+    shadowRadius: ms(8),
     elevation: 5,
   },
   decorativeCircle: {
     position: "absolute",
-    width: 300,
-    height: 300,
-    borderRadius: 150,
+    width: ms(300),
+    height: ms(300),
+    borderRadius: ms(150),
   },
   modalOverlay: {
     flex: 1,
@@ -531,54 +533,54 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     width: "85%",
-    maxWidth: 400,
-    borderRadius: 32,
-    padding: 30,
+    maxWidth: ms(400),
+    borderRadius: ms(32),
+    padding: ms(30),
     alignItems: "center",
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: ms(10) },
     shadowOpacity: 0.25,
-    shadowRadius: 15,
+    shadowRadius: ms(15),
     elevation: 10,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.1)",
   },
   modalTitle: {
-    fontSize: 28,
+    fontSize: ms(28),
     fontWeight: "800",
-    marginBottom: 8,
+    marginBottom: ms(8),
     textAlign: "center",
   },
   modalSubtitle: {
-    fontSize: 16,
+    fontSize: ms(16),
     textAlign: "center",
-    marginBottom: 30,
-    lineHeight: 20,
+    marginBottom: ms(30),
+    lineHeight: ms(20),
   },
   languageOption: {
     flexDirection: "row",
     alignItems: "center",
     width: "100%",
-    padding: 16,
-    borderRadius: 20,
-    borderWidth: 2,
-    marginBottom: 16,
+    padding: ms(16),
+    borderRadius: ms(20),
+    borderWidth: ms(2),
+    marginBottom: ms(16),
     backgroundColor: "rgba(255,255,255,0.05)",
   },
   flagEmoji: {
-    fontSize: 38,
-    marginRight: 16,
+    fontSize: ms(38),
+    marginRight: ms(16),
   },
   languageTextContainer: {
     flex: 1,
   },
   languageName: {
-    fontSize: 20,
+    fontSize: ms(20),
     fontWeight: "700",
-    marginBottom: 2,
+    marginBottom: ms(2),
   },
   languageRegion: {
-    fontSize: 14,
+    fontSize: ms(14),
   },
 });
 

@@ -1,6 +1,8 @@
+import { ms } from '../lib/metrics';
 import React, { useRef } from 'react';
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Platform } from 'react-native';
-import { useTheme, LightColors } from '@/context/ThemeContext';
+import { useTheme, LightColors } from
+'@/context/ThemeContext';
 
 interface CodeInputProps {
   value: string;
@@ -76,7 +78,7 @@ export function CodeInput({ value, onChangeText, length = 6 }: CodeInputProps) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    marginVertical: 20,
+    marginVertical: ms(20),
     alignItems: 'center',
   },
   inputContainer: {
@@ -85,18 +87,18 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   cell: {
-    width: 48,
-    height: 58,
-    borderRadius: 12,
+    width: ms(48),
+    height: ms(58),
+    borderRadius: ms(12),
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   cellFocused: {
-    borderWidth: 2,
+    borderWidth: ms(2),
   },
   cellText: {
-    fontSize: 28,
+    fontSize: ms(28),
     fontWeight: '600',
     textAlign: 'center',
   },

@@ -1,3 +1,4 @@
+import { ms } from '../lib/metrics';
 import React, { ReactNode } from "react";
 import {
     StyleProp,
@@ -16,7 +17,8 @@ import Animated, {
     useSharedValue,
     withTiming,
 } from "react-native-reanimated";
-import { useTheme, LightColors } from "../context/ThemeContext";
+import { useTheme, LightColors } from
+"../context/ThemeContext";
 
 // Extending TextInputProps allows us to use all standard props like placeholder, secureTextEntry, etc.
 type InputFieldProps = TextInputProps & {
@@ -114,7 +116,7 @@ const InputField: React.FC<InputFieldProps> = ({
           ]}
         >
           {label && (
-            <View pointerEvents="none" style={{ position: "absolute", left: 16, zIndex: 1 }}>
+            <View pointerEvents="none" style={{ position: "absolute", left: ms(16), zIndex: 1 }}>
               <Animated.Text
                 style={[
                   styles.labelText,
@@ -156,33 +158,33 @@ const InputField: React.FC<InputFieldProps> = ({
 const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
-    marginBottom: 20,
+    marginBottom: ms(20),
   },
   inputContainer: {
-    paddingTop: 10,
+    paddingTop: ms(10),
   },
   labelText: {
-    fontSize: 18,
+    fontSize: ms(18),
     fontWeight: "500",
   },
   inputWrapper: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    borderWidth: 1.5,
-    borderRadius: 16,
-    minHeight: 60,
-    paddingHorizontal: 16,
+    borderWidth: ms(1.5),
+    borderRadius: ms(16),
+    minHeight: ms(60),
+    paddingHorizontal: ms(16),
   },
   textInput: {
     flex: 1,
-    fontSize: 18,
+    fontSize: ms(18),
     height: "100%",
-    paddingTop: 12,
+    paddingTop: ms(12),
     outlineStyle: "none" as any,
   },
   iconContainer: {
-    marginLeft: 12,
+    marginLeft: ms(12),
   },
 });
 

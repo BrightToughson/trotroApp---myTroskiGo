@@ -1,10 +1,12 @@
+import { ms } from '../lib/metrics';
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Platform, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../context/ThemeContext';
 import { router } from 'expo-router';
 import { WebIcon } from '../components/WebIcon';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from
+'expo-linear-gradient';
 
 export default function AdminDashboard() {
   const { colors, isDark } = useTheme();
@@ -88,64 +90,64 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingHorizontal: ms(20),
+    paddingVertical: ms(16),
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(150,150,150,0.1)'
   },
   backButton: {
-    padding: 8,
-    marginRight: 12,
-    marginLeft: -8,
+    padding: ms(8),
+    marginRight: ms(12),
+    marginLeft: ms(-8),
   },
   title: {
-    fontSize: 24,
+    fontSize: ms(24),
     fontWeight: '800',
   },
   scrollContent: {
-    padding: 20,
-    paddingBottom: 40,
+    padding: ms(20),
+    paddingBottom: ms(40),
   },
   subtitle: {
-    fontSize: 16,
-    lineHeight: 24,
-    marginBottom: 32,
+    fontSize: ms(16),
+    lineHeight: ms(24),
+    marginBottom: ms(32),
   },
   grid: {
-    gap: 20,
+    gap: ms(20),
   },
   card: {
-    borderRadius: 20,
-    padding: 20,
+    borderRadius: ms(20),
+    padding: ms(20),
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: ms(4) },
     shadowOpacity: 0.05,
-    shadowRadius: 8,
+    shadowRadius: ms(8),
     elevation: 3,
   },
   iconContainer: {
-    width: 46,
-    height: 46,
-    borderRadius: 14,
+    width: ms(46),
+    height: ms(46),
+    borderRadius: ms(14),
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: ms(12),
   },
   cardTitle: {
-    fontSize: 18,
+    fontSize: ms(18),
     fontWeight: '700',
-    marginBottom: 6,
+    marginBottom: ms(6),
   },
   cardDesc: {
-    fontSize: 13,
-    lineHeight: 18,
-    marginBottom: 16,
+    fontSize: ms(13),
+    lineHeight: ms(18),
+    marginBottom: ms(16),
   },
   actionRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 12,
+    paddingTop: ms(12),
     borderTopWidth: 1,
   }
 });
