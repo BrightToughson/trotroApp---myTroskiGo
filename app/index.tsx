@@ -28,32 +28,34 @@ const Index = () => {
   const { t } = useTranslation();
   const { isSignedIn, isLoaded } = useAuth();
   const [hasSeenWelcome, setHasSeenWelcome] = useState<boolean | null>(null);
-  const [splashFinished, setSplashFinished] = useState(false);
+  const [splashFinished, setSplashFinished] = useState(Platform.OS === 'web');
 
   const scale = useSharedValue(0.5);
   const opacity = useSharedValue(0);
   const loaderWidth = useSharedValue(0);
 
   useEffect(() => {
-    // Initial entrance and subsequent infinite pulse for the logo
-    scale.value = withSpring(1, { damping: 12, stiffness: 100 }, () => {
-      scale.value = withRepeat(
-        withSequence(
-          withTiming(1.1, { duration: 1200, easing: Easing.inOut(Easing.ease) }),
-          withTiming(1, { duration: 1200, easing: Easing.inOut(Easing.ease) })
-        ),
-        -1,
-        true
-      );
-    });
+    if (Platform.OS !== 'web') {
+      // Initial entrance and subsequent infinite pulse for the logo
+      scale.value = withSpring(1, { damping: 12, stiffness: 100 }, () => {
+        scale.value = withRepeat(
+          withSequence(
+            withTiming(1.1, { duration: 1200, easing: Easing.inOut(Easing.ease) }),
+            withTiming(1, { duration: 1200, easing: Easing.inOut(Easing.ease) })
+          ),
+          -1,
+          true
+        );
+      });
 
-    opacity.value = withTiming(1, { duration: 800 });
-    
-    // Simulate loading progress bar filling over the duration of the splash
-    loaderWidth.value = withTiming(200, { 
-      duration: SPLASH_MIN_DURATION, 
-      easing: Easing.bezier(0.25, 0.1, 0.25, 1) 
-    });
+      opacity.value = withTiming(1, { duration: 800 });
+      
+      // Simulate loading progress bar filling over the duration of the splash
+      loaderWidth.value = withTiming(200, { 
+        duration: SPLASH_MIN_DURATION, 
+        easing: Easing.bezier(0.25, 0.1, 0.25, 1) 
+      });
+    }
   }, []);
 
   const animatedIconStyle = useAnimatedStyle(() => {
@@ -78,11 +80,12 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setSplashFinished(true);
-    }, SPLASH_MIN_DURATION);
-
-    return () => clearTimeout(timer);
+    if (Platform.OS !== 'web') {
+      const timer = setTimeout(() => {
+        setSplashFinished(true);
+      }, SPLASH_MIN_DURATION);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   // Show splash until all data loads and the minimum splash duration has elapsed
