@@ -174,18 +174,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ isVisible, onClose, onShowTutorial 
                   </View>
                 }
               />
-              <MenuItem
-                icon="logo-android"
-                label={t('download_android_app', 'Download Android App')}
-                onPress={() => { onClose(); Linking.openURL('https://expo.dev/artifacts/eas/PdmETQdkqhniYTf9zvRWRxXUqZ3ltzEgGFQ0zGuSHYE.apk'); }}
-                index={5}
-                colors={colors}
-                rightElement={
-                  <View style={[styles.langBadge, { backgroundColor: '#10B98120' }]}>
-                     <Text style={{ color: '#10B981', fontSize: ms(12), fontWeight: '900' }}>APK</Text>
-                  </View>
-                }
-              />
+
 
               {isAdmin && (
                 <>

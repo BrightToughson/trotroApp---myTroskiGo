@@ -307,18 +307,6 @@ const Profile = () => {
             </View>
           </Animated.View>
 
-          <Animated.View entering={FadeInDown.delay(750).duration(800).springify()} style={styles.section}>
-            <Text style={[styles.sectionTitle, { color: colors.textSecondary }]}>{t('get_app', 'Get Native App')}</Text>
-            <View style={[styles.card, { backgroundColor: isDark ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.8)", borderColor: colors.border }]}>
-               <SettingsItem 
-                  icon="logo-android" 
-                  label={t('download_android_apk', 'Download Android APK')} 
-                  onPress={() => Linking.openURL('https://expo.dev/artifacts/eas/PdmETQdkqhniYTf9zvRWRxXUqZ3ltzEgGFQ0zGuSHYE.apk')} 
-                  color="#10B981"
-               />
-            </View>
-          </Animated.View>
-
           <Animated.View entering={FadeInDown.delay(800).duration(800).springify()} style={styles.section}>
             <Text style={[styles.sectionTitle, { color: colors.textSecondary }]}>{t('app_settings', 'App Settings')}</Text>
             <View style={[styles.card, { backgroundColor: isDark ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.8)", borderColor: colors.border }]}>

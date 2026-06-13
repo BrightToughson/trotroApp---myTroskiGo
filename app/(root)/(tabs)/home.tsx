@@ -641,19 +641,7 @@ export default function Home() {
                     <WebIcon name="download-outline" size= {24} color={colors.primary} />
                   </View>
 
-                  <View style={{ marginTop: ms(8), marginBottom: ms(4), flexDirection: 'row', alignItems: 'center' }}>
-                    <View style={{ flex: 1, height: 1, backgroundColor: colors.border }} />
-                    <Text style={{ marginHorizontal: ms(12), color: colors.textSecondary, fontWeight: '800', fontSize: ms(13) }}>OR</Text>
-                    <View style={{ flex: 1, height: 1, backgroundColor: colors.border }} />
-                  </View>
 
-                  <TouchableOpacity 
-                    style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#10B981', padding: ms(16), borderRadius: ms(16), justifyContent: 'center', gap: ms(12), elevation: 4 }}
-                    onPress={() => Linking.openURL('https://expo.dev/artifacts/eas/PdmETQdkqhniYTf9zvRWRxXUqZ3ltzEgGFQ0zGuSHYE.apk')}
-                  >
-                    <WebIcon name="logo-android" size= {24} color="#fff" />
-                    <Text style={{ fontSize: ms(16), fontWeight: '900', color: '#fff' }}>Download native APK</Text>
-                  </TouchableOpacity>
                 </View>
 
                 <View style={{ marginTop: ms(16), padding: ms(12), backgroundColor: colors.primary + '15', borderRadius: ms(12), width: '100%' }}>
