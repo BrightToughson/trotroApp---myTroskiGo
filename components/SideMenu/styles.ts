@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Platform, Dimensions } from "react-native";
 
 const { width: windowWidth } = Dimensions.get("window");
-export const width = Platform.OS === 'web' ? Math.min(windowWidth, 480) : windowWidth;
+export const width= Platform.OS === 'web' ? Math.min(windowWidth, 480) : windowWidth;
 
 export const styles = StyleSheet.create({
   overlay: { flex: 1, flexDirection: "row", justifyContent: "center" },

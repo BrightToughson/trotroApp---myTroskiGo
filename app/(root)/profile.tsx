@@ -235,13 +235,13 @@ const Profile = () => {
         onPress={onPress}
       >
         <View style={[styles.iconWrapper, { backgroundColor: iconColor + "15" }]}>
-          <WebIcon name={icon} size={22} color={iconColor} />
+          <WebIcon name={icon} size= {22} color={iconColor} />
         </View>
         <View style={styles.textContainer}>
           <Text style={[styles.itemLabel, { color: colors.text }]}>{label}</Text>
           {value && <Text style={[styles.itemValue, { color: colors.textSecondary }]}>{value}</Text>}
         </View>
-        <WebIcon name="chevron-forward" size={18} color={colors.textSecondary} />
+        <WebIcon name="chevron-forward" size= {18} color={colors.textSecondary} />
       </TouchableOpacity>
     );
   };
@@ -256,7 +256,7 @@ const Profile = () => {
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.topNav}>
           <TouchableOpacity onPress={handleBack} style={[styles.backButton, { backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "#fff", borderColor: colors.border, borderWidth: 1 }]}>
-            <WebIcon name="arrow-back" size={24} color={colors.text} />
+            <WebIcon name="arrow-back" size= {24} color={colors.text} />
           </TouchableOpacity>
           <Text style={[styles.headerMainTitle, { color: colors.text }]}>{t('account')}</Text>
           <View style={{ width: 44 }} />
@@ -274,7 +274,7 @@ const Profile = () => {
             <Animated.View entering={ZoomIn.delay(200).duration(800).springify()} style={styles.avatarWrapper}>
               <Image source={{ uri: user?.imageUrl }} style={[styles.avatar, { borderColor: colors.border, borderWidth: 2 }]} />
               <TouchableOpacity style={[styles.editBadge, { backgroundColor: colors.primary }]} onPress={onEditImage}>
-                <WebIcon name="camera" size={16} color="#FFF" />
+                <WebIcon name="camera" size= {16} color="#FFF" />
               </TouchableOpacity>
             </Animated.View>
             <Animated.Text entering={FadeInUp.delay(400).duration(800).springify()} style={[styles.userName, { color: colors.text }]}>{user?.fullName || t('traveler')}</Animated.Text>
@@ -328,7 +328,7 @@ const Profile = () => {
 
           <Animated.View entering={FadeInDown.delay(900).duration(800).springify()}>
             <TouchableOpacity style={[styles.logoutButton, { backgroundColor: isDark ? "rgba(239, 68, 68, 0.1)" : "#fff", borderColor: isDark ? "#ef444433" : "#FEE2E2" }]} onPress={handleLogout}>
-              <WebIcon name="log-out-outline" size={20} color="#EF4444" />
+              <WebIcon name="log-out-outline" size= {20} color="#EF4444" />
               <Text style={styles.logoutText}>{t('logout')}</Text>
             </TouchableOpacity>
           </Animated.View>

@@ -243,7 +243,7 @@ const FeatureSpotlightView = ({ features, isActiveSlide, fallbackDescription }: 
               }} 
               style={styles.sideArrow}
             >
-              <WebIcon name="chevron-back" size={24} color={colors.primary} />
+              <WebIcon name="chevron-back" size= {24} color={colors.primary} />
             </TouchableOpacity>
           )}
         </View>
@@ -271,7 +271,7 @@ const FeatureSpotlightView = ({ features, isActiveSlide, fallbackDescription }: 
               }} 
               style={styles.sideArrow}
             >
-              <WebIcon name="chevron-forward" size={24} color={colors.primary} />
+              <WebIcon name="chevron-forward" size= {24} color={colors.primary} />
             </TouchableOpacity>
           )}
         </View>
@@ -381,7 +381,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
                   onPress={() => swiperRef.current?.scrollBy(-1)}
                   style={[styles.iconButton, { backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.7)" }]}
                 >
-                  <WebIcon name="arrow-back" size={24} color={colors.text} />
+                  <WebIcon name="arrow-back" size= {24} color={colors.text} />
                 </TouchableOpacity>
               ) : (
                 <View style={{ width: 44 }} />
@@ -407,7 +407,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
                 onPress={onClose}
                 style={[styles.iconButton, { backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.7)" }]}
               >
-                <WebIcon name="close" size={24} color={colors.text} />
+                <WebIcon name="close" size= {24} color={colors.text} />
               </TouchableOpacity>
             </Animated.View>
           </View>
@@ -514,7 +514,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
                           IconRight={() => (
                             <WebIcon 
                               name={index === slides.length - 1 ? "checkmark-circle" : "arrow-forward"} 
-                              size={20} 
+                              size= {20} 
                               color="#fff" 
                               style={{ marginLeft: 8 }} 
                             />

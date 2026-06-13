@@ -49,7 +49,7 @@ const OfficialNotificationItem = React.memo(({ item, index, colors, t, i18n, isA
     >
       <View style={styles.cardHeader}>
         <View style={[styles.iconContainer, { backgroundColor: (item.color || colors.primary) + '15' }]}>
-          <WebIcon name={item.icon as any} size={22} color={item.color || colors.primary} />
+          <WebIcon name={item.icon as any} size= {22} color={item.color || colors.primary} />
         </View>
         <View style={styles.headerText}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -59,7 +59,7 @@ const OfficialNotificationItem = React.memo(({ item, index, colors, t, i18n, isA
                 onPress={() => onDelete(item.id)} 
                 style={styles.trashBtn}
               >
-                <WebIcon name="trash-outline" size={16} color="#FF5252" />
+                <WebIcon name="trash-outline" size= {16} color="#FF5252" />
               </TouchableOpacity>
             )}
           </View>
@@ -73,7 +73,7 @@ const OfficialNotificationItem = React.memo(({ item, index, colors, t, i18n, isA
 
       <View style={styles.cardFooter}>
         <View style={[styles.badge, { backgroundColor: (item.color || colors.primary) + '10', borderColor: (item.color || colors.primary) + '30' }]}>
-          <WebIcon name="shield-checkmark" size={12} color={item.color || colors.primary} style={{ marginRight: 4 }} />
+          <WebIcon name="shield-checkmark" size= {12} color={item.color || colors.primary} style={{ marginRight: 4 }} />
           <Text style={[styles.badgeText, { color: item.color || colors.primary }]}>
             {t('official_update').toUpperCase()}
           </Text>
@@ -178,11 +178,11 @@ export default function OfficialAnnouncementsModal({ isVisible, onClose }: Props
             <View style={{ flexDirection: 'row', gap: 10 }}>
               {notifications.length > 0 && (
                 <TouchableOpacity onPress={handleDeleteAll} style={[styles.clearBtn, { borderColor: colors.primary + '30' }]}>
-                  <WebIcon name="trash-outline" size={20} color={colors.primary} />
+                  <WebIcon name="trash-outline" size= {20} color={colors.primary} />
                 </TouchableOpacity>
               )}
               <TouchableOpacity onPress={onClose} style={[styles.closeBtn, { backgroundColor: colors.border + '30' }]}>
-                <WebIcon name="close" size={24} color={colors.text} />
+                <WebIcon name="close" size= {24} color={colors.text} />
               </TouchableOpacity>
             </View>
           </View>
@@ -205,7 +205,7 @@ export default function OfficialAnnouncementsModal({ isVisible, onClose }: Props
             )}
             ListEmptyComponent={
               <View style={styles.emptyState}>
-                <WebIcon name="notifications-off-outline" size={48} color={colors.textSecondary} />
+                <WebIcon name="notifications-off-outline" size= {48} color={colors.textSecondary} />
                 <Text style={{ color: colors.textSecondary, marginTop: 10, fontWeight: '600' }}>No official alerts yet.</Text>
               </View>
             }

@@ -258,7 +258,7 @@ const NativeNavHeader = memo(function NativeNavHeader({
     >
       {currentInstruction && (
          <View style={styles.navHeaderContent}>
-            <WebIcon name={currentInstruction.icon as any} size={40} color="#fff" />
+            <WebIcon name={currentInstruction.icon as any} size= {40} color="#fff" />
             <View style={{ flex: 1, marginLeft: 18, marginRight: 10 }}>
                <Text style={styles.navHeaderText}>{currentInstruction.text}</Text>
                <Text style={styles.navHeaderSubText}>{currentInstruction.tip || t('follow_highlighted')}</Text>
@@ -774,7 +774,7 @@ export default function FindRide() {
                 }
               }}
             >
-              <WebIcon name="navigate" size={20} color={colors.primary} />
+              <WebIcon name="navigate" size= {20} color={colors.primary} />
               <Text style={{ marginLeft: 6, color: colors.primary, fontWeight: '700', fontSize: 15 }}>Re-center</Text>
             </TouchableOpacity>
           )}
@@ -787,10 +787,10 @@ export default function FindRide() {
             ]}
           >
             <TouchableOpacity style={[styles.mapBtn, { backgroundColor: isDark ? "rgba(31, 41, 55, 0.95)" : "#fff", borderColor: colors.border }]} onPress={zoomIn}>
-              <WebIcon name="add" size={22} color={colors.primary} />
+              <WebIcon name="add" size= {22} color={colors.primary} />
             </TouchableOpacity>
             <TouchableOpacity style={[styles.mapBtn, { backgroundColor: isDark ? "rgba(31, 41, 55, 0.95)" : "#fff", borderColor: colors.border }]} onPress={zoomOut}>
-              <WebIcon name="remove" size={22} color={colors.primary} />
+              <WebIcon name="remove" size= {22} color={colors.primary} />
             </TouchableOpacity>
             <TouchableOpacity style={[styles.mapBtn, { backgroundColor: isDark ? "rgba(31, 41, 55, 0.95)" : "#fff", borderColor: colors.border }]} onPress={resetMapRotation}>
               <View 
@@ -850,7 +850,7 @@ export default function FindRide() {
             >
               {currentInstruction && (
                  <View style={styles.navHeaderContent}>
-                    <WebIcon name={currentInstruction.icon as any} size={40} color="#fff" />
+                    <WebIcon name={currentInstruction.icon as any} size= {40} color="#fff" />
                     <View style={{ flex: 1, marginLeft: 18, marginRight: 10 }}>
                        <Text style={styles.navHeaderText}>{currentInstruction.text}</Text>
                        <Text style={styles.navHeaderSubText}>{currentInstruction.tip || t('follow_highlighted')}</Text>
@@ -895,7 +895,7 @@ export default function FindRide() {
                   }
                 }}
               >
-                <WebIcon name="arrow-back" size={24} color={colors.text} />
+                <WebIcon name="arrow-back" size= {24} color={colors.text} />
               </TouchableOpacity>
               
               {/* Premium Route Summary Overlay Card */}
@@ -969,7 +969,7 @@ export default function FindRide() {
                                   </Text>
                                   {i < stops.length - 1 && (
                                      <View style={{ marginHorizontal: 6, opacity: 0.6 }}>
-                                        <WebIcon name="chevron-forward" size={14} color={colors.textSecondary} />
+                                        <WebIcon name="chevron-forward" size= {14} color={colors.textSecondary} />
                                      </View>
                                   )}
                                </View>

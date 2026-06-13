@@ -302,7 +302,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               value={field1}
               onChangeText={setField1}
               placeholder="Where did you board?"
-              icon={<WebIcon name="map-outline" size={20} color={colors.primary} />}
+              icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
               onIconPress={() => openLocationSearch('origin')}
             />
             <InputField
@@ -310,7 +310,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               value={field2}
               onChangeText={setField2}
               placeholder="Where did you alight?"
-              icon={<WebIcon name="map-outline" size={20} color={colors.primary} />}
+              icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
               onIconPress={() => openLocationSearch('destination')}
             />
             <InputField
@@ -356,7 +356,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                   }}
                   onPress={() => setJourneyType("straight")}
                 >
-                  <WebIcon name="car" size={24} color={journeyType === "straight" ? colors.primary : colors.textSecondary} />
+                  <WebIcon name="car" size= {24} color={journeyType === "straight" ? colors.primary : colors.textSecondary} />
                   <Text style={{ marginTop: 4, fontWeight: '600', color: journeyType === "straight" ? colors.primary : colors.textSecondary }}>{t('straight_trotro', 'Straight Trotro')}</Text>
                 </TouchableOpacity>
 
@@ -375,7 +375,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                      if (field1 && !tempManualOrigin) setTempManualOrigin(field1);
                   }}
                 >
-                  <WebIcon name="git-network" size={24} color={journeyType === "transfer" ? colors.primary : colors.textSecondary} />
+                  <WebIcon name="git-network" size= {24} color={journeyType === "transfer" ? colors.primary : colors.textSecondary} />
                   <Text style={{ marginTop: 4, fontWeight: '600', color: journeyType === "transfer" ? colors.primary : colors.textSecondary }}>{t('multiple_trotros', 'Multiple Trotros')}</Text>
                 </TouchableOpacity>
               </View>
@@ -387,7 +387,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               value={field1}
               onChangeText={setField1}
               placeholder="Where does the route start?"
-              icon={<WebIcon name="map-outline" size={20} color={colors.primary} />}
+              icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
               onIconPress={() => openLocationSearch('origin')}
             />
             
@@ -407,7 +407,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                   elevation: 2,
                 }}
               >
-                <WebIcon name="swap-vertical" size={20} color={colors.primary} />
+                <WebIcon name="swap-vertical" size= {20} color={colors.primary} />
               </TouchableOpacity>
             </View>
 
@@ -416,7 +416,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               value={field2}
               onChangeText={setField2}
               placeholder="Where does it end?"
-              icon={<WebIcon name="map-outline" size={20} color={colors.primary} />}
+              icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
               onIconPress={() => openLocationSearch('destination')}
             />
 
@@ -443,7 +443,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                   }}
                   keyboardType="numeric"
                   placeholder="e.g. 8.50"
-                  icon={<WebIcon name="pricetag" size={20} color={colors.primary} />}
+                  icon={<WebIcon name="pricetag" size= {20} color={colors.primary} />}
                 />
                 
                 {/* Intermediate Stops */}
@@ -464,13 +464,13 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                       borderWidth: 1,
                       borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'
                     }}>
-                      <WebIcon name="bus" size={18} color={colors.primary} style={{ marginRight: 12 }} />
+                      <WebIcon name="bus" size= {18} color={colors.primary} style={{ marginRight: 12 }} />
                       <Text style={{ flex: 1, color: colors.text, fontSize: 15 }}>{stop.name}</Text>
                       <TouchableOpacity 
                         onPress={() => setRouteStops(routeStops.filter((_, i) => i !== index))}
                         style={{ padding: 4 }}
                       >
-                        <WebIcon name="close-circle" size={20} color="#ef4444" />
+                        <WebIcon name="close-circle" size= {20} color="#ef4444" />
                       </TouchableOpacity>
                     </View>
                   ))}
@@ -490,7 +490,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                       backgroundColor: isDark ? 'rgba(59, 130, 246, 0.05)' : 'rgba(59, 130, 246, 0.05)'
                     }}
                   >
-                    <WebIcon name="add-circle-outline" size={20} color={colors.primary} style={{ marginRight: 8 }} />
+                    <WebIcon name="add-circle-outline" size= {20} color={colors.primary} style={{ marginRight: 8 }} />
                     <Text style={{ color: colors.primary, fontWeight: '600', fontSize: 15 }}>Add Stop</Text>
                   </TouchableOpacity>
                 </View>
@@ -518,7 +518,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                           onPress={() => setManualLegs(manualLegs.filter((_, i) => i !== idx))}
                           style={{ position: 'absolute', top: 8, right: 8, padding: 4 }}
                         >
-                          <WebIcon name="trash" size={16} color="#ef4444" />
+                          <WebIcon name="trash" size= {16} color="#ef4444" />
                         </TouchableOpacity>
                       </View>
                     ))}
@@ -553,15 +553,15 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                     <Text style={{ color: colors.textSecondary, marginBottom: 6, fontSize: 13, fontWeight: '600' }}>Intermediate Stops</Text>
                     {routeStops.map((stop, index) => (
                       <View key={index} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#f8fafc', padding: 8, borderRadius: 8, marginBottom: 6, borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
-                        <WebIcon name="bus" size={14} color={colors.primary} style={{ marginRight: 8 }} />
+                        <WebIcon name="bus" size= {14} color={colors.primary} style={{ marginRight: 8 }} />
                         <Text style={{ flex: 1, color: colors.text, fontSize: 13 }}>{stop.name}</Text>
                         <TouchableOpacity onPress={() => setRouteStops(routeStops.filter((_, i) => i !== index))} style={{ padding: 4 }}>
-                          <WebIcon name="close-circle" size={16} color="#ef4444" />
+                          <WebIcon name="close-circle" size= {16} color="#ef4444" />
                         </TouchableOpacity>
                       </View>
                     ))}
                     <TouchableOpacity onPress={() => openLocationSearch('stop')} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 10, borderRadius: 8, borderWidth: 1, borderColor: colors.primary, borderStyle: 'dashed', backgroundColor: isDark ? 'rgba(59, 130, 246, 0.05)' : 'rgba(59, 130, 246, 0.05)' }}>
-                      <WebIcon name="add-circle-outline" size={16} color={colors.primary} style={{ marginRight: 6 }} />
+                      <WebIcon name="add-circle-outline" size= {16} color={colors.primary} style={{ marginRight: 6 }} />
                       <Text style={{ color: colors.primary, fontWeight: '600', fontSize: 13 }}>{t('add_stop_for_trotro', 'Add Stop for this Trotro')}</Text>
                     </TouchableOpacity>
                   </View>
@@ -602,7 +602,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
             <View style={{ marginTop: 24, padding: 16, backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8fafc', borderRadius: 16, borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
                 <View style={{ backgroundColor: isTracking ? '#ef444420' : '#10b98120', padding: 8, borderRadius: 8, marginRight: 12 }}>
-                  <WebIcon name="location" size={20} color={isTracking ? '#ef4444' : '#10b981'} />
+                  <WebIcon name="location" size= {20} color={isTracking ? '#ef4444' : '#10b981'} />
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={{ color: colors.text, fontSize: 16, fontWeight: '600' }}>Option 2: Live GPS Tracking</Text>
@@ -647,7 +647,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                     justifyContent: 'center'
                   }}
                 >
-                  <WebIcon name={isTracking ? "stop-circle" : "play-circle"} size={20} color="#fff" style={{ marginRight: 8 }} />
+                  <WebIcon name={isTracking ? "stop-circle" : "play-circle"} size= {20} color="#fff" style={{ marginRight: 8 }} />
                   <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 15 }}>
                     {isTracking ? "Stop Recording" : trackedCoords.length > 0 ? "Resume" : "Start Tracking"}
                   </Text>
@@ -673,7 +673,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                       justifyContent: 'center'
                     }}
                   >
-                    <WebIcon name="git-commit" size={20} color="#fff" style={{ marginRight: 8 }} />
+                    <WebIcon name="git-commit" size= {20} color="#fff" style={{ marginRight: 8 }} />
                     <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 15 }}>
                       Mark Transfer
                     </Text>
@@ -768,7 +768,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                 value={field2}
                 onChangeText={setField2}
                 placeholder="Where does the route start?"
-                icon={<WebIcon name="map-outline" size={20} color={colors.primary} />}
+                icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
                 onIconPress={() => openLocationSearch('origin')}
               />
               <InputField
@@ -776,7 +776,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                 value={field3}
                 onChangeText={setField3}
                 placeholder="Where does it end?"
-                icon={<WebIcon name="map-outline" size={20} color={colors.primary} />}
+                icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
                 onIconPress={() => openLocationSearch('destination')}
               />
             </View>
@@ -804,7 +804,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
     return (
       <View style={{ alignItems: 'center', justifyContent: 'center', paddingVertical: 40 }}>
         <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: 'rgba(16, 185, 129, 0.1)', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
-          <WebIcon name="checkmark-circle" size={48} color="#10b981" />
+          <WebIcon name="checkmark-circle" size= {48} color="#10b981" />
         </View>
         <Text style={{ fontSize: 24, fontWeight: '800', color: colors.text, marginBottom: 8 }}>Thank You!</Text>
         <Text style={{ fontSize: 16, color: colors.textSecondary, textAlign: 'center', marginBottom: 32 }}>
@@ -885,7 +885,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               <View style={{ padding: 24 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 24 }}>
                   <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', alignItems: 'center', justifyContent: 'center' }}>
-                    <WebIcon name={header.icon} size={20} color={header.color} />
+                    <WebIcon name={header.icon} size= {20} color={header.color} />
                   </View>
                   <Text style={[styles.title, { color: colors.text, marginLeft: 16 }]}>{header.title}</Text>
                 </View>
@@ -898,7 +898,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               <View style={styles.footerContainer}>
                 {!!errorMessage && (
                   <View style={{ backgroundColor: '#ef444420', padding: 12, borderRadius: 8, marginBottom: 16, flexDirection: 'row', alignItems: 'center' }}>
-                    <WebIcon name="alert-circle" size={20} color="#ef4444" style={{ marginRight: 8 }} />
+                    <WebIcon name="alert-circle" size= {20} color="#ef4444" style={{ marginRight: 8 }} />
                     <Text style={{ color: '#ef4444', fontWeight: '600', flex: 1 }}>{errorMessage}</Text>
                   </View>
                 )}

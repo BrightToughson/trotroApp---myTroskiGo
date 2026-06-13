@@ -43,7 +43,7 @@ export default function MapPickerModal({ isVisible, onClose, onSelectLocation, i
       <View style={styles.container}>
         <View style={[styles.header, { backgroundColor: colors.surface, borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }]}>
           <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
-            <WebIcon name="close" size={24} color={colors.text} />
+            <WebIcon name="close" size= {24} color={colors.text} />
           </TouchableOpacity>
           <Text style={[styles.headerTitle, { color: colors.text }]}>Choose on Map</Text>
           <View style={{ width: 40 }} />
@@ -60,7 +60,7 @@ export default function MapPickerModal({ isVisible, onClose, onSelectLocation, i
           />
           {/* Absolute centered pin */}
           <View style={styles.centerPin} pointerEvents="none">
-             <WebIcon name="location" size={44} color={colors.primary} />
+             <WebIcon name="location" size= {44} color={colors.primary} />
           </View>
         </View>
 

@@ -133,7 +133,7 @@ const MapView = forwardRef((props: any, ref: any) => {
         if (lng > maxLng) maxLng = lng;
       });
       
-      const padding = options?.edgePadding || { top: 50, right: 50, bottom: 50, left: 50 };
+      const padding= options?.edgePadding || { top: 50, right: 50, bottom: 50, left: 50 };
       cameraRef.current?.fitBounds(
         [minLng, minLat],
         [maxLng, maxLat],

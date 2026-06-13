@@ -111,7 +111,7 @@ export default function History() {
             { backgroundColor: colors.primary + "15" },
           ]}
         >
-          <WebIcon name="bus" size={22} color={colors.primary} />
+          <WebIcon name="bus" size= {22} color={colors.primary} />
         </View>
         <View style={styles.headerText}>
           <Text style={[styles.date, { color: colors.text }]}>
@@ -193,7 +193,7 @@ export default function History() {
         <Text style={[styles.viewJourneyText, { color: colors.primary }]}>
           View Journey
         </Text>
-        <WebIcon name="chevron-forward" size={16} color={colors.primary} />
+        <WebIcon name="chevron-forward" size= {16} color={colors.primary} />
       </TouchableOpacity>
     </Animated.View>
   );
@@ -256,7 +256,7 @@ export default function History() {
           </View>
           {history.length > 0 && (
             <TouchableOpacity onPress={handleClear} style={[styles.clearBtn, { backgroundColor: colors.primary + '10' }]}>
-              <WebIcon name="trash-outline" size={18} color={colors.primary} />
+              <WebIcon name="trash-outline" size= {18} color={colors.primary} />
               <Text style={[styles.clearBtnText, { color: colors.primary }]}>
                 {t('clear', 'CLEAR')}
               </Text>
@@ -271,7 +271,7 @@ export default function History() {
           >
             <View style={[styles.statBox, { backgroundColor: isDark ? "rgba(255,255,255,0.03)" : "#ffffff" }]}>
               <View style={[styles.statIconWrapper, { backgroundColor: colors.primary + '15' }]}>
-                <WebIcon name="car" size={18} color={colors.primary} />
+                <WebIcon name="car" size= {18} color={colors.primary} />
               </View>
               <Text style={[styles.statValue, { color: colors.text }]}>{stats.totalTrips}</Text>
               <Text style={[styles.statLabel, { color: colors.textSecondary }]}>Trips</Text>
@@ -279,7 +279,7 @@ export default function History() {
 
             <View style={[styles.statBox, { backgroundColor: isDark ? "rgba(255,255,255,0.03)" : "#ffffff" }]}>
               <View style={[styles.statIconWrapper, { backgroundColor: '#10b98115' }]}>
-                <WebIcon name="wallet" size={18} color="#10b981" />
+                <WebIcon name="wallet" size= {18} color="#10b981" />
               </View>
               <Text style={[styles.statValue, { color: colors.text }]} numberOfLines={1}>GHS {stats.totalSpent}</Text>
               <Text style={[styles.statLabel, { color: colors.textSecondary }]}>Est. Spent</Text>
@@ -287,7 +287,7 @@ export default function History() {
 
             <View style={[styles.statBox, { backgroundColor: isDark ? "rgba(255,255,255,0.03)" : "#ffffff" }]}>
               <View style={[styles.statIconWrapper, { backgroundColor: '#8b5cf615' }]}>
-                <WebIcon name="location" size={18} color="#8b5cf6" />
+                <WebIcon name="location" size= {18} color="#8b5cf6" />
               </View>
               <Text style={[styles.statValue, { color: colors.text }]} numberOfLines={1}>{stats.topDestination}</Text>
               <Text style={[styles.statLabel, { color: colors.textSecondary }]}>Top Dest</Text>
@@ -308,7 +308,7 @@ export default function History() {
             >
               <WebIcon
                 name="time-outline"
-                size={64}
+                size= {64}
                 color={colors.textSecondary}
               />
             </View>

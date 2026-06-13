@@ -229,7 +229,7 @@ const RouteRibbon = ({
             >
               <WebIcon
                 name={step.icon}
-                size={15}
+                size= {15}
                 color={step.type === "walk" ? colors.text : "#fff"}
               />
             </TouchableOpacity>
@@ -317,7 +317,7 @@ const TransitLegItem = React.memo(
                 elevation: 4,
               }}
             >
-              <WebIcon name="bus" size={22} color="#fff" />
+              <WebIcon name="bus" size= {22} color="#fff" />
             </View>
 
             <View style={{ marginLeft: 12, flex: 1 }}>
@@ -331,14 +331,14 @@ const TransitLegItem = React.memo(
               
               <View style={{ flexDirection: "row", alignItems: "center", marginTop: 8, gap: 10 }}>
                 <View style={{ flexDirection: "row", alignItems: "center", backgroundColor: legColor + "15", paddingHorizontal: 8, paddingVertical: 4, borderRadius: 10 }}>
-                   <WebIcon name="time-outline" size={14} color={legColor} />
+                   <WebIcon name="time-outline" size= {14} color={legColor} />
                    <Text style={{ fontSize: 14, fontWeight: "800", color: legColor, marginLeft: 4 }}>
                      {Math.round(leg.duration)} min
                    </Text>
                 </View>
                 {leg.fare && (
                   <View style={{ flexDirection: "row", alignItems: "center", backgroundColor: "#10b98115", paddingHorizontal: 8, paddingVertical: 4, borderRadius: 10 }}>
-                     <WebIcon name="cash-outline" size={14} color="#10b981" />
+                     <WebIcon name="cash-outline" size= {14} color="#10b981" />
                      <Text style={{ fontSize: 14, fontWeight: "800", color: "#10b981", marginLeft: 4 }}>
                        {leg.fare}
                      </Text>
@@ -363,7 +363,7 @@ const TransitLegItem = React.memo(
               borderWidth: 1,
               borderColor: colors.border
             }}>
-              <WebIcon name={transferWalk?.coordinates?.length > 1 && Math.round(transferWalk.duration) > 0 ? "walk" : "swap-horizontal"} size={14} color={colors.textSecondary} />
+              <WebIcon name={transferWalk?.coordinates?.length > 1 && Math.round(transferWalk.duration) > 0 ? "walk" : "swap-horizontal"} size= {14} color={colors.textSecondary} />
               <Text style={{ fontSize: 14, fontWeight: "800", color: colors.textSecondary, marginLeft: 6 }}>
                 {transferWalk?.coordinates?.length > 1 && Math.round(transferWalk.duration) > 0
                   ? `Walk ${Math.round(transferWalk.duration)} min to next stop`
@@ -585,14 +585,14 @@ export default function JourneyDetails({
                 { backgroundColor: colors.primary + "10", width: 44, height: 44, borderRadius: 22 },
               ]}
             >
-              <WebIcon name="list" size={20} color={colors.primary} />
+              <WebIcon name="list" size= {20} color={colors.primary} />
             </TouchableOpacity>
 
             <TouchableOpacity
               onPress={handleEndJourney}
               style={[styles.navExitBtnCircle, { backgroundColor: "#EF4444", width: 'auto', paddingHorizontal: 16, height: 44, borderRadius: 22, flexDirection: 'row', gap: 6, alignItems: 'center', justifyContent: 'center' }]}
             >
-              <WebIcon name="close" size={20} color="#fff" />
+              <WebIcon name="close" size= {20} color="#fff" />
               <Text style={{ color: '#fff', fontWeight: '900', fontSize: 16 }}>Exit</Text>
             </TouchableOpacity>
           </View>
@@ -669,7 +669,7 @@ export default function JourneyDetails({
                    onPress={resetRide || handleEndJourney} 
                    style={{ flexDirection: "row", alignItems: "center", backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.04)", paddingHorizontal: 12, paddingVertical: 6, borderRadius: 16 }}
                  >
-                   <WebIcon name="arrow-back" size={16} color={colors.textSecondary} />
+                   <WebIcon name="arrow-back" size= {16} color={colors.textSecondary} />
                    <Text style={{ fontSize: 13, fontWeight: "800", color: colors.textSecondary, marginLeft: 4 }}>
                      {t("back_to_search", "Back to search").toUpperCase()}
                    </Text>
@@ -695,7 +695,7 @@ export default function JourneyDetails({
                     }}
                   >
                     <View style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: colors.primary + "15", justifyContent: "center", alignItems: "center" }}>
-                      <WebIcon name="bus" size={32} color={colors.primary} />
+                      <WebIcon name="bus" size= {32} color={colors.primary} />
                     </View>
                     <View style={{ flex: 1, marginLeft: 16 }}>
                       <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
@@ -739,7 +739,7 @@ export default function JourneyDetails({
                         <Text style={{ fontSize: 18, fontWeight: "900", color: "#fff", marginRight: 8, letterSpacing: 1 }}>
                           {t("start_journey").toUpperCase()}
                         </Text>
-                        <WebIcon name="navigate" size={20} color="#fff" />
+                        <WebIcon name="navigate" size= {20} color="#fff" />
                       </LinearGradient>
                     </Animated.View>
                   </TouchableOpacity>
@@ -769,7 +769,7 @@ export default function JourneyDetails({
                   >
                      <View style={{ flexDirection: "row", alignItems: "center", flex: 0.8, paddingRight: 5 }}>
                         <View style={{ width: 36, height: 36, borderRadius: 12, backgroundColor: colors.primary + "15", justifyContent: "center", alignItems: "center", marginRight: 8, transform: [{ rotate: '-5deg' }] }}>
-                           <WebIcon name="time" size={20} color={colors.primary} />
+                           <WebIcon name="time" size= {20} color={colors.primary} />
                         </View>
                         <View style={{ flex: 1 }}>
                            <Text numberOfLines={1} adjustsFontSizeToFit style={{ fontSize: 11, fontWeight: "900", color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 2 }}>Total Time</Text>
@@ -789,7 +789,7 @@ export default function JourneyDetails({
                            </Text>
                         </View>
                         <View style={{ width: 36, height: 36, borderRadius: 12, backgroundColor: "#10b98115", justifyContent: "center", alignItems: "center", marginLeft: 8, transform: [{ rotate: '5deg' }] }}>
-                           <WebIcon name="cash" size={20} color="#10b981" />
+                           <WebIcon name="cash" size= {20} color="#10b981" />
                         </View>
                      </View>
                   </LinearGradient>
@@ -922,7 +922,7 @@ export default function JourneyDetails({
                   borderColor: colors.primary + "20",
                 }}
               >
-                <WebIcon name="sparkles" size={14} color={colors.primary} />
+                <WebIcon name="sparkles" size= {14} color={colors.primary} />
                 <Text
                   style={{
                     fontSize: 11.5,
@@ -1012,7 +1012,7 @@ export default function JourneyDetails({
                         style={{ flexDirection: "row", alignItems: "center", paddingVertical: 16, borderBottomWidth: index === 3 ? 0 : 1, borderBottomColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)" }}
                       >
                         <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: shortcutStyle.bg, alignItems: "center", justifyContent: "center" }}>
-                           <WebIcon name={t.icon || (t.type === "station" ? "bus" : "time")} size={20} color={shortcutStyle.color} />
+                           <WebIcon name={t.icon || (t.type === "station" ? "bus" : "time")} size= {20} color={shortcutStyle.color} />
                         </View>
                         <View style={{ marginLeft: 16, flex: 1 }}>
                            <Text style={{ fontSize: 18, fontWeight: "800", color: colors.text, marginBottom: 4 }}>{t.name}</Text>
@@ -1051,21 +1051,21 @@ export default function JourneyDetails({
                   }}
                 >
                   <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: isDark ? "rgba(14, 165, 233, 0.2)" : "#bae6fd", alignItems: "center", justifyContent: "center", shadowColor: "#0ea5e9", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 8, elevation: 3 }}>
-                    <WebIcon name="walk" size={24} color="#0284c7" />
+                    <WebIcon name="walk" size= {24} color="#0284c7" />
                   </View>
                   <View style={{ marginLeft: 16, flex: 1 }}>
                     <Text style={{ fontSize: 18, fontWeight: "900", color: colors.text, marginBottom: 4 }}>
                       Walk to {activeLegs[0]?.startStop.name || t("boarding")}
                     </Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                      <WebIcon name="time-outline" size={14} color="#0ea5e9" style={{ marginRight: 4 }} />
+                      <WebIcon name="time-outline" size= {14} color="#0ea5e9" style={{ marginRight: 4 }} />
                       <Text style={{ fontSize: 15, fontWeight: "800", color: "#0ea5e9" }}>
                         {tripDetails?.walkMins1 ?? 0} {t("min")} walk
                       </Text>
                     </View>
                   </View>
                   <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)", alignItems: 'center', justifyContent: 'center' }}>
-                    <WebIcon name="chevron-forward" size={18} color={colors.textSecondary} />
+                    <WebIcon name="chevron-forward" size= {18} color={colors.textSecondary} />
                   </View>
                 </TouchableOpacity>
               </Animated.View>
@@ -1104,21 +1104,21 @@ export default function JourneyDetails({
                   }}
                 >
                   <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: isDark ? "rgba(14, 165, 233, 0.2)" : "#bae6fd", alignItems: "center", justifyContent: "center", shadowColor: "#0ea5e9", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 8, elevation: 3 }}>
-                    <WebIcon name="walk" size={24} color="#0284c7" />
+                    <WebIcon name="walk" size= {24} color="#0284c7" />
                   </View>
                   <View style={{ marginLeft: 16, flex: 1 }}>
                     <Text style={{ fontSize: 18, fontWeight: "900", color: colors.text, marginBottom: 4 }}>
                       Walk to {destination || "Destination"}
                     </Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                      <WebIcon name="time-outline" size={14} color="#0ea5e9" style={{ marginRight: 4 }} />
+                      <WebIcon name="time-outline" size= {14} color="#0ea5e9" style={{ marginRight: 4 }} />
                       <Text style={{ fontSize: 15, fontWeight: "800", color: "#0ea5e9" }}>
                         {tripDetails?.walkMins2 ?? 0} {t("min")} walk
                       </Text>
                     </View>
                   </View>
                   <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)", alignItems: 'center', justifyContent: 'center' }}>
-                    <WebIcon name="chevron-forward" size={18} color={colors.textSecondary} />
+                    <WebIcon name="chevron-forward" size= {18} color={colors.textSecondary} />
                   </View>
                 </TouchableOpacity>
               </Animated.View>
@@ -1155,7 +1155,7 @@ export default function JourneyDetails({
                     </Text>
                     <WebIcon
                       name="close-circle"
-                      size={22}
+                      size= {22}
                       color="#fff"
                       style={{ marginLeft: 10 }}
                     />
@@ -1164,7 +1164,7 @@ export default function JourneyDetails({
                   <>
                     <WebIcon
                       name="location-sharp"
-                      size={20}
+                      size= {20}
                       color="#fff"
                       style={{ marginRight: 10 }}
                     />

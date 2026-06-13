@@ -221,7 +221,7 @@ const Welcome = () => {
                 },
               ]}
             >
-              <WebIcon name="arrow-back" size={24} color={colors.text} />
+              <WebIcon name="arrow-back" size= {24} color={colors.text} />
             </TouchableOpacity>
           </Animated.View>
 
@@ -316,7 +316,7 @@ const Welcome = () => {
                         IconRight={() => (
                           <WebIcon 
                             name={index === slides.length - 1 ? "checkmark-circle" : "arrow-forward"} 
-                            size={20} 
+                            size= {20} 
                             color="#fff" 
                             style={{ marginLeft: 8 }} 
                           />
@@ -356,7 +356,7 @@ const Welcome = () => {
                   <Text style={[styles.languageRegion, { color: colors.textSecondary }]}>{t('language_region_global')}</Text>
                 </View>
                 {i18n.language.startsWith('en') && (
-                  <WebIcon name="checkmark-circle" size={24} color={colors.primary} />
+                  <WebIcon name="checkmark-circle" size= {24} color={colors.primary} />
                 )}
               </TouchableOpacity>
 
@@ -373,7 +373,7 @@ const Welcome = () => {
                   <Text style={[styles.languageRegion, { color: colors.textSecondary }]}>{t('language_region_french')}</Text>
                 </View>
                 {i18n.language.startsWith('fr') && (
-                  <WebIcon name="checkmark-circle" size={24} color={colors.primary} />
+                  <WebIcon name="checkmark-circle" size= {24} color={colors.primary} />
                 )}
               </TouchableOpacity>
             </Animated.View>

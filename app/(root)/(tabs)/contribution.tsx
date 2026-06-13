@@ -182,7 +182,7 @@ export default function Contribution() {
                 >
                   <View style={styles.cardHeader}>
                     <View style={[styles.iconContainer, { backgroundColor: `${option.color}15` }]}>
-                      <WebIcon name={option.iconName} size={28} color={option.color} />
+                      <WebIcon name={option.iconName} size= {28} color={option.color} />
                     </View>
                     <View style={styles.cardTitleContainer}>
                       <Text style={[styles.cardTitle, { color: colors.text }]}>{option.title}</Text>
@@ -195,7 +195,7 @@ export default function Contribution() {
 
                   <View style={[styles.actionButton, { backgroundColor: `${option.color}15` }]}>
                     <Text style={[styles.actionButtonText, { color: option.color }]}>{option.actionText}</Text>
-                    <WebIcon name="arrow-forward" size={16} color={option.color} />
+                    <WebIcon name="arrow-forward" size= {16} color={option.color} />
                   </View>
                 </TouchableOpacity>
               </Animated.View>
@@ -205,14 +205,14 @@ export default function Contribution() {
           <View style={styles.historyContainer}>
             {!user ? (
               <View style={styles.emptyState}>
-                <WebIcon name="person-circle-outline" size={48} color={colors.textSecondary} />
+                <WebIcon name="person-circle-outline" size= {48} color={colors.textSecondary} />
                 <Text style={[styles.emptyStateText, { color: colors.text }]}>Sign in to track your contributions!</Text>
               </View>
             ) : isLoadingHistory ? (
-              <ActivityIndicator size="large" color={colors.primary} style={{ marginTop: 40 }} />
+              <ActivityIndicator size= "large" color={colors.primary} style={{ marginTop: 40 }} />
             ) : submissions.length === 0 ? (
               <View style={styles.emptyState}>
-                <WebIcon name="document-text-outline" size={48} color={colors.textSecondary} />
+                <WebIcon name="document-text-outline" size= {48} color={colors.textSecondary} />
                 <Text style={[styles.emptyStateText, { color: colors.text }]}>You have not made any contributions yet.</Text>
               </View>
             ) : (
@@ -256,10 +256,10 @@ export default function Contribution() {
                       
                       <View style={{ flexDirection: 'row', gap: 12 }}>
                         <TouchableOpacity onPress={() => handleEdit(sub)} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-                          <WebIcon name="pencil" size={18} color={colors.primary} />
+                          <WebIcon name="pencil" size= {18} color={colors.primary} />
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => handleDelete(sub)} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-                          <WebIcon name="trash" size={18} color="#ef4444" />
+                          <WebIcon name="trash" size= {18} color="#ef4444" />
                         </TouchableOpacity>
                       </View>
                     </View>
@@ -272,7 +272,7 @@ export default function Contribution() {
 
 
         <View style={styles.footer}>
-          <WebIcon name="people" size={24} color={colors.primary} />
+          <WebIcon name="people" size= {24} color={colors.primary} />
           <Text style={[styles.footerText, { color: colors.textSecondary }]}>
             Powered by the myTroskiGo Community
           </Text>

@@ -50,7 +50,7 @@ const About = () => {
           onPress={() => router.back()}
           style={[styles.backButton, { backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "#fff", borderColor: colors.border, borderWidth: 1 }]}
         >
-          <WebIcon name="arrow-back" size={24} color={colors.text} />
+          <WebIcon name="arrow-back" size= {24} color={colors.text} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: colors.text }]}>{t('about_privacy')}</Text>
       </View>
@@ -61,7 +61,7 @@ const About = () => {
       >
         <View style={styles.brandingSection}>
           <View style={[styles.logoPlaceholder, { backgroundColor: colors.primary + "10" }]}>
-             <WebIcon name="bus" size={60} color={colors.primary} />
+             <WebIcon name="bus" size= {60} color={colors.primary} />
           </View>
           <Text style={[styles.appName, { color: colors.text }]}>myTroski Go</Text>
           <Text style={[styles.version, { color: colors.textSecondary }]}>{t('version')} 1.0.0</Text>
@@ -74,7 +74,7 @@ const About = () => {
           >
             <View style={styles.sectionHeader}>
               <View style={[styles.iconWrapper, { backgroundColor: colors.primary + "15" }]}>
-                <WebIcon name={section.icon as any} size={22} color={colors.primary} />
+                <WebIcon name={section.icon as any} size= {22} color={colors.primary} />
               </View>
               <Text style={[styles.sectionTitle, { color: colors.text }]}>{section.title}</Text>
             </View>

@@ -11,7 +11,7 @@ export default function Root({ children }: PropsWithChildren) {
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
+        <meta name="viewport" content="width= device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
 
         {/* Preconnect to Mapbox CDN to load map tiles up to 400ms faster! */}
         <link rel="preconnect" href="https://api.mapbox.com" crossOrigin="anonymous" />

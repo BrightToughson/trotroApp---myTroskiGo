@@ -46,7 +46,7 @@ export const TabIcon = ({ name, color, focused, badgeCount }: TabIconProps) => {
       <Animated.View style={animatedStyle}>
         <WebIcon 
           name={name || "help-outline"} 
-          size={28} 
+          size= {28} 
           color={color || "#ccc"} 
         />
       </Animated.View>

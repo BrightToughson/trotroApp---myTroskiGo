@@ -162,7 +162,7 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
         IconLeft={() => (
           <WebIcon
             name="logo-google"
-            size={20}
+            size= {20}
             color="#fff" // Color is ignored for the multi-colored logo-google
             style={styles.googleIcon}
           />

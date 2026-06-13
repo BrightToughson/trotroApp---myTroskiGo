@@ -172,7 +172,7 @@ export default function PulseManager() {
     return (
       <View style={[styles.container, { backgroundColor: colors.background, justifyContent: 'center', alignItems: 'center' }]}>
         <Stack.Screen options={{ title: 'Access Denied', headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
-        <WebIcon name="lock-closed" size={64} color={colors.primary} />
+        <WebIcon name="lock-closed" size= {64} color={colors.primary} />
         <Text style={{ color: colors.text, fontSize: 24, fontWeight: '900', marginTop: 20 }}>Access Denied</Text>
         <Text style={{ color: colors.textSecondary, marginTop: 10, fontSize: 16 }}>Admin privileges required.</Text>
       </View>
@@ -190,7 +190,7 @@ export default function PulseManager() {
            style={[{ padding: 20, paddingTop: Platform.OS === 'ios' ? 60 : 30, borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flexDirection: 'row', alignItems: 'center' }, Platform.OS === 'web' && { backdropFilter: 'blur(20px)' }] as any}
         >
           <TouchableOpacity onPress={() => router.push('/admin')} activeOpacity={0.7} style={[styles.backBtn, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.04)' }]}>
-             <WebIcon name="arrow-back" size={24} color={colors.text} />
+             <WebIcon name="arrow-back" size= {24} color={colors.text} />
           </TouchableOpacity>
           <View style={{ marginLeft: 16 }}>
             <Text style={{ fontSize: 24, fontWeight: '900', color: colors.text, letterSpacing: -0.5 }}>Pulse Dashboard</Text>
@@ -210,7 +210,7 @@ export default function PulseManager() {
             }]}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
                 <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: 12 }}>
-                  <WebIcon name={editingId ? "create" : "newspaper"} size={22} color={colors.primary} />
+                  <WebIcon name={editingId ? "create" : "newspaper"} size= {22} color={colors.primary} />
                 </View>
                 <Text style={[styles.sectionTitle, { color: colors.text }]}>
                   {editingId ? 'Edit City Pulse' : 'Add New City Pulse'}
@@ -221,7 +221,7 @@ export default function PulseManager() {
                 <View style={styles.inputContainer}>
                   <Text style={[styles.label, { color: colors.textSecondary }]}>Title *</Text>
                   <View style={styles.inputWrapper}>
-                    <WebIcon name="text-outline" size={18} color={colors.textSecondary} style={styles.inputIcon} />
+                    <WebIcon name="text-outline" size= {18} color={colors.textSecondary} style={styles.inputIcon} />
                     <TextInput style={[styles.inputWithIcon, { color: colors.text, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}
                       value={title} onChangeText={(t) => setTitle(t.toUpperCase())} autoCapitalize="characters" placeholder="e.g. ACCRA-KUMASI HIGHWAY UPDATE" placeholderTextColor={colors.textSecondary} />
                   </View>
@@ -232,7 +232,7 @@ export default function PulseManager() {
                 <View style={styles.inputContainer}>
                   <Text style={[styles.label, { color: colors.textSecondary }]}>Excerpt *</Text>
                   <View style={styles.inputWrapper}>
-                    <WebIcon name="document-text-outline" size={18} color={colors.textSecondary} style={styles.inputIcon} />
+                    <WebIcon name="document-text-outline" size= {18} color={colors.textSecondary} style={styles.inputIcon} />
                     <TextInput style={[styles.inputWithIcon, { color: colors.text, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}
                       value={excerpt} onChangeText={setExcerpt} placeholder="Brief description of the news..." placeholderTextColor={colors.textSecondary} />
                   </View>
@@ -243,7 +243,7 @@ export default function PulseManager() {
                 <View style={styles.inputContainer}>
                   <Text style={[styles.label, { color: colors.textSecondary }]}>Tag *</Text>
                   <View style={styles.inputWrapper}>
-                    <WebIcon name="pricetag-outline" size={18} color={colors.textSecondary} style={styles.inputIcon} />
+                    <WebIcon name="pricetag-outline" size= {18} color={colors.textSecondary} style={styles.inputIcon} />
                     <TextInput style={[styles.inputWithIcon, { color: colors.text, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}
                       value={tag} onChangeText={setTag} placeholder="e.g. highway, safety, fares" placeholderTextColor={colors.textSecondary} />
                   </View>
@@ -267,7 +267,7 @@ export default function PulseManager() {
                           shadowColor: color, shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 6, elevation: 4
                         }}
                       >
-                        {colorHex === color && <WebIcon name="checkmark" size={24} color="#fff" />}
+                        {colorHex === color && <WebIcon name="checkmark" size= {24} color="#fff" />}
                       </TouchableOpacity>
                     ))}
                   </View>
@@ -279,7 +279,7 @@ export default function PulseManager() {
                   <Text style={[styles.label, { color: colors.textSecondary }]}>Image (URL or Photo) *</Text>
                   <View style={{ flexDirection: 'row', gap: 12 }}>
                     <View style={[styles.inputWrapper, { flex: 1 }]}>
-                      <WebIcon name="image-outline" size={18} color={colors.textSecondary} style={styles.inputIcon} />
+                      <WebIcon name="image-outline" size= {18} color={colors.textSecondary} style={styles.inputIcon} />
                       <TextInput style={[styles.inputWithIcon, { color: colors.text, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}
                         value={imageUrl} onChangeText={(t) => { setImageUrl(t); setLocalImageUri(null); }} placeholder="https://... or pick photo ->" placeholderTextColor={colors.textSecondary} />
                     </View>
@@ -287,7 +287,7 @@ export default function PulseManager() {
                       onPress={pickImage} 
                       style={{ width: 56, height: 56, borderRadius: 16, backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: colors.primary + '30' }}
                     >
-                      <WebIcon name="camera" size={24} color={colors.primary} />
+                      <WebIcon name="camera" size= {24} color={colors.primary} />
                     </TouchableOpacity>
                   </View>
                   {imageUrl ? (
@@ -302,7 +302,7 @@ export default function PulseManager() {
                 <View style={styles.inputContainer}>
                   <Text style={[styles.label, { color: colors.textSecondary }]}>Link URL *</Text>
                   <View style={styles.inputWrapper}>
-                    <WebIcon name="link-outline" size={18} color={colors.textSecondary} style={styles.inputIcon} />
+                    <WebIcon name="link-outline" size= {18} color={colors.textSecondary} style={styles.inputIcon} />
                     <TextInput style={[styles.inputWithIcon, { color: colors.text, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}
                       value={linkUrl} onChangeText={setLinkUrl} placeholder="https://..." placeholderTextColor={colors.textSecondary} />
                   </View>
@@ -326,7 +326,7 @@ export default function PulseManager() {
                       <Text style={[styles.buttonText, { color: '#fff' }]}>Uploading...</Text>
                     ) : (
                       <>
-                        <WebIcon name={editingId ? "save" : "add-circle"} size={20} color="#fff" style={{ marginRight: 8 }} />
+                        <WebIcon name={editingId ? "save" : "add-circle"} size= {20} color="#fff" style={{ marginRight: 8 }} />
                         <Text style={[styles.buttonText, { color: '#fff' }]}>{editingId ? 'Update Pulse' : 'Save New Pulse'}</Text>
                       </>
                     )}
@@ -341,13 +341,13 @@ export default function PulseManager() {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
                <Text style={[styles.sectionTitle, { color: colors.text, marginBottom: 0 }]}>Database ({dbPulses.length})</Text>
                <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.primary + '15', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12 }}>
-                 <WebIcon name="server" size={14} color={colors.primary} style={{ marginRight: 6 }} />
+                 <WebIcon name="server" size= {14} color={colors.primary} style={{ marginRight: 6 }} />
                  <Text style={{ color: colors.primary, fontWeight: '800', fontSize: 13 }}>Live Sync</Text>
                </View>
             </View>
             
             <View style={[styles.searchBox, { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}>
-              <WebIcon name="search" size={20} color={colors.textSecondary} style={{ marginRight: 12 }} />
+              <WebIcon name="search" size= {20} color={colors.textSecondary} style={{ marginRight: 12 }} />
               <TextInput 
                 style={{ flex: 1, color: colors.text, fontSize: 16, fontWeight: '500', height: 50, outlineStyle: 'none' } as any}
                 placeholder="Search by title or tag..."
@@ -357,7 +357,7 @@ export default function PulseManager() {
               />
               {searchQuery.length > 0 && (
                 <TouchableOpacity onPress={() => setSearchQuery('')}>
-                  <WebIcon name="close-circle" size={20} color={colors.textSecondary} />
+                  <WebIcon name="close-circle" size= {20} color={colors.textSecondary} />
                 </TouchableOpacity>
               )}
             </View>
@@ -392,10 +392,10 @@ export default function PulseManager() {
 
                        <View style={{ flexDirection: 'row', gap: 8, paddingLeft: 12, borderLeftWidth: 1, borderLeftColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}>
                          <TouchableOpacity activeOpacity={0.7} onPress={() => handleEdit(pulse)} style={[styles.actionBtn, { backgroundColor: colors.primary + '15' }]}>
-                            <WebIcon name="create-outline" size={18} color={colors.primary} />
+                            <WebIcon name="create-outline" size= {18} color={colors.primary} />
                          </TouchableOpacity>
                          <TouchableOpacity activeOpacity={0.7} onPress={() => handleDelete(pulse.id)} style={[styles.actionBtn, { backgroundColor: '#EF444415' }]}>
-                            <WebIcon name="trash-outline" size={18} color="#EF4444" />
+                            <WebIcon name="trash-outline" size= {18} color="#EF4444" />
                          </TouchableOpacity>
                        </View>
                      </View>
@@ -403,7 +403,7 @@ export default function PulseManager() {
                  ))}
                  {filteredPulses.length === 0 && (
                    <View style={{ padding: 40, alignItems: 'center' }}>
-                     <WebIcon name="search-outline" size={48} color={isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)'} />
+                     <WebIcon name="search-outline" size= {48} color={isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)'} />
                      <Text style={{ color: colors.textSecondary, fontSize: 16, fontWeight: '600', marginTop: 16 }}>No pulses match your search</Text>
                    </View>
                  )}

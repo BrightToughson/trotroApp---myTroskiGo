@@ -113,7 +113,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
       >
         {loading ? (
           // Show Activity Indicator when loading
-          <ActivityIndicator color={spinnerColor} size="small" />
+          <ActivityIndicator color={spinnerColor} size= "small" />
         ) : (
           // Wrapper View for horizontal layout of icon and text
           <View style={styles.contentContainer}>

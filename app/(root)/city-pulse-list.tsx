@@ -78,7 +78,7 @@ export default function CityPulseList() {
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={['top']}>
       <View style={[styles.header, { borderBottomColor: colors.border }]}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <WebIcon name="arrow-back" size={24} color={colors.text} />
+          <WebIcon name="arrow-back" size= {24} color={colors.text} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: colors.text }]}>{t('city_pulse', 'City Pulse')}</Text>
         <View style={{ width: 44 }} />

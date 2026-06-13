@@ -134,7 +134,7 @@ const NotificationItem = React.memo(({
             {item.icon.startsWith('http') ? (
               <Image source={{ uri: item.icon }} style={styles.tweetAvatar} />
             ) : (
-              <WebIcon name={item.icon as any} size={20} color={item.color || colors.primary} />
+              <WebIcon name={item.icon as any} size= {20} color={item.color || colors.primary} />
             )}
           </View>
         </View>
@@ -145,7 +145,7 @@ const NotificationItem = React.memo(({
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1 }}>
                 <Text style={[styles.tweetName, { color: colors.text, flexShrink: 1 }]} numberOfLines={1}>{item.title}</Text>
                 {item.type === 'official' && (
-                  <WebIcon name="shield-checkmark" size={14} color={colors.primary} />
+                  <WebIcon name="shield-checkmark" size= {14} color={colors.primary} />
                 )}
               </View>
               <Text style={[styles.tweetHandle, { color: item.type === 'official' ? colors.primary : colors.textSecondary, flexShrink: 1 }]} numberOfLines={1}>
@@ -175,7 +175,7 @@ const NotificationItem = React.memo(({
                     shouldPlay={false}
                   />
                   <View style={[StyleSheet.absoluteFill, { justifyContent: 'center', alignItems: 'center', borderRadius: 16, marginVertical: 12, backgroundColor: 'rgba(0,0,0,0.3)' }]}>
-                    <WebIcon name="play-circle" size={54} color="rgba(255,255,255,0.9)" />
+                    <WebIcon name="play-circle" size= {54} color="rgba(255,255,255,0.9)" />
                   </View>
                 </View>
               </TouchableOpacity>
@@ -196,7 +196,7 @@ const NotificationItem = React.memo(({
           <View style={styles.tweetActions}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>
               <TouchableOpacity onPress={() => setActivePostForComments(item)} style={styles.tweetActionBtn}>
-                <WebIcon name="chatbubble-outline" size={20} color={colors.textSecondary} />
+                <WebIcon name="chatbubble-outline" size= {20} color={colors.textSecondary} />
                 {commentsCount > 0 && (
                   <Text style={[styles.tweetActionCount, { color: colors.textSecondary }]}>{commentsCount}</Text>
                 )}
@@ -215,7 +215,7 @@ const NotificationItem = React.memo(({
               
               {item.type === 'official' ? (
                 <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.primary + '10', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 6 }}>
-                  <WebIcon name="shield-checkmark" size={12} color={colors.primary} style={{ marginRight: 4 }} />
+                  <WebIcon name="shield-checkmark" size= {12} color={colors.primary} style={{ marginRight: 4 }} />
                   <Text style={{ fontSize: 12, color: colors.primary, fontWeight: '800' }}>VERIFIED OFFICIAL</Text>
                 </View>
               ) : (
@@ -247,11 +247,11 @@ const NotificationItem = React.memo(({
 
             {(item.userId === user?.id || isAdmin) ? (
               <TouchableOpacity onPress={() => handleDelete(item.id)} style={[styles.tweetActionBtn, { marginLeft: 'auto' }]}>
-                <WebIcon name="trash-outline" size={20} color="#FF5252" />
+                <WebIcon name="trash-outline" size= {20} color="#FF5252" />
               </TouchableOpacity>
             ) : (
               <TouchableOpacity style={[styles.tweetActionBtn, { marginLeft: 'auto' }]}>
-                <WebIcon name="share-social-outline" size={20} color={colors.textSecondary} />
+                <WebIcon name="share-social-outline" size= {20} color={colors.textSecondary} />
               </TouchableOpacity>
             )}
           </View>
@@ -930,7 +930,7 @@ export default function NotificationsScreen() {
             onPress={() => setIsOfficialModalVisible(true)}
             style={styles.headerIconBtn}
           >
-            <WebIcon name="notifications-outline" size={24} color={colors.text} />
+            <WebIcon name="notifications-outline" size= {24} color={colors.text} />
             {unreadOfficialCount > 0 && (
               <View style={[styles.bellBadge, { backgroundColor: colors.primary }]}>
                 <Text style={styles.bellBadgeText}>
@@ -1014,13 +1014,13 @@ export default function NotificationsScreen() {
                             justifyContent: 'center',
                             alignItems: 'center'
                           }}>
-                            {isOfficialPost && <WebIcon name="checkmark" size={14} color="white" />}
+                            {isOfficialPost && <WebIcon name="checkmark" size= {14} color="white" />}
                           </View>
                           <Text style={{ color: isOfficialPost ? colors.primary : colors.textSecondary, fontWeight: '700', fontSize: 15 }}>
                             {t('post_as_official', 'Post as Official Update')}
                           </Text>
                         </TouchableOpacity>
-                        <WebIcon name="shield-checkmark" size={16} color={isOfficialPost ? colors.primary : colors.textSecondary} style={{ marginLeft: 6 }} />
+                        <WebIcon name="shield-checkmark" size= {16} color={isOfficialPost ? colors.primary : colors.textSecondary} style={{ marginLeft: 6 }} />
                       </View>
                     )}
 
@@ -1054,7 +1054,7 @@ export default function NotificationsScreen() {
                         style={styles.removeImageBtn}
                         onPress={() => setSelectedImage(null)}
                       >
-                        <WebIcon name="close" size={16} color="white" />
+                        <WebIcon name="close" size= {16} color="white" />
                       </TouchableOpacity>
                     </View>
                   )}
@@ -1062,11 +1062,11 @@ export default function NotificationsScreen() {
                   <View style={[styles.postActions, { flexWrap: 'nowrap' }]}>
                     <View style={{ flexDirection: 'row', gap: 6, flex: 1 }}>
                       <TouchableOpacity onPress={() => pickImage()} style={[styles.mediaBtn, { backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.03)', flex: 1, justifyContent: 'center' }]}>
-                        <WebIcon name="image-outline" size={16} color={colors.primary} />
+                        <WebIcon name="image-outline" size= {16} color={colors.primary} />
                         <Text style={[styles.mediaBtnText, { color: colors.textSecondary, fontSize: 14 }]} numberOfLines={1}>{t('photo', 'Photo')}</Text>
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() => takePhoto()} style={[styles.mediaBtn, { backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.03)', flex: 1, justifyContent: 'center' }]}>
-                        <WebIcon name="camera-outline" size={16} color={colors.primary} />
+                        <WebIcon name="camera-outline" size= {16} color={colors.primary} />
                         <Text style={[styles.mediaBtnText, { color: colors.textSecondary, fontSize: 14 }]} numberOfLines={1}>{t('camera', 'Camera')}</Text>
                       </TouchableOpacity>
                     </View>
@@ -1088,7 +1088,7 @@ export default function NotificationsScreen() {
                     >
                       {isUploading ? (
                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                          <ActivityIndicator size="small" color="#fff" />
+                          <ActivityIndicator size= "small" color="#fff" />
                           <Text style={[styles.postButtonText, { fontSize: 13 }]}>{t('uploading', 'Uploading...')}</Text>
                         </View>
                       ) : (
@@ -1096,7 +1096,7 @@ export default function NotificationsScreen() {
                           <Text style={[styles.postButtonText, { fontSize: 13 }]}>
                             {isOfficialPost ? t('post_official', 'Post') : t('community_post_btn', 'Post')}
                           </Text>
-                          <WebIcon name="send" size={14} color="#fff" style={{ marginLeft: 6 }} />
+                          <WebIcon name="send" size= {14} color="#fff" style={{ marginLeft: 6 }} />
                         </View>
                       )}
                     </TouchableOpacity>
@@ -1107,7 +1107,7 @@ export default function NotificationsScreen() {
                 <View style={[styles.filterBarContainer]}>
                   <View style={styles.filterBarHeader}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, flex: 1 }}>
-              <WebIcon name="funnel-outline" size={14} color={colors.textSecondary} />
+              <WebIcon name="funnel-outline" size= {14} color={colors.textSecondary} />
               <Text style={[styles.filterLabel, { color: colors.textSecondary }]}>{t('filter_by', 'Filter by')}</Text>
             </View>
             {isAdmin && (
@@ -1115,7 +1115,7 @@ export default function NotificationsScreen() {
                 onPress={handleClearAllCommunity} 
                 style={[styles.adminClearBtn, { backgroundColor: '#FF525215' }]}
               >
-                <WebIcon name="trash-bin" size={14} color="#FF5252" />
+                <WebIcon name="trash-bin" size= {14} color="#FF5252" />
                 <Text style={styles.adminClearText}>CLEAR ALL</Text>
               </TouchableOpacity>
             )}
@@ -1162,7 +1162,7 @@ export default function NotificationsScreen() {
           }
           ListEmptyComponent={
             <View style={styles.emptyState}>
-              <WebIcon name="notifications-off-outline" size={48} color={colors.textSecondary} />
+              <WebIcon name="notifications-off-outline" size= {48} color={colors.textSecondary} />
               <Text style={{ color: colors.textSecondary, marginTop: 10, fontWeight: '600' }}>
                 {t('no_community_alerts')}
               </Text>
@@ -1193,7 +1193,7 @@ export default function NotificationsScreen() {
                 <View style={styles.sheetHeader}>
                   <Text style={[styles.sheetTitle, { color: colors.text }]}>{t('replies')}</Text>
                   <TouchableOpacity onPress={() => setActivePostForComments(null)}>
-                    <WebIcon name="close" size={24} color={colors.text} />
+                    <WebIcon name="close" size= {24} color={colors.text} />
                   </TouchableOpacity>
                 </View>
                 
@@ -1203,7 +1203,7 @@ export default function NotificationsScreen() {
                   renderItem={({ item }) => (
                     <View style={styles.commentItem}>
                       <View style={styles.commentAvatar}>
-                        <WebIcon name="person" size={16} color={colors.textSecondary} />
+                        <WebIcon name="person" size= {16} color={colors.textSecondary} />
                       </View>
                       <View style={styles.commentContent}>
                         <View style={styles.commentHeader}>
@@ -1217,7 +1217,7 @@ export default function NotificationsScreen() {
                           style={{ padding: 8, justifyContent: 'center' }}
                           onPress={() => handleDeleteComment(activePostForComments!.id, item.id)}
                         >
-                          <WebIcon name="trash-bin-outline" size={16} color="#ef4444" />
+                          <WebIcon name="trash-bin-outline" size= {16} color="#ef4444" />
                         </TouchableOpacity>
                       )}
                     </View>
@@ -1242,7 +1242,7 @@ export default function NotificationsScreen() {
                     style={[styles.sendCommentBtn, { backgroundColor: colors.primary }]}
                     onPress={handleAddComment}
                   >
-                    <WebIcon name="send" size={16} color="white" />
+                    <WebIcon name="send" size= {16} color="white" />
                   </TouchableOpacity>
                 </View>
               </KeyboardAvoidingView>
@@ -1281,7 +1281,7 @@ export default function NotificationsScreen() {
                   style={{ position: 'absolute', top: 50, right: 25, backgroundColor: 'rgba(255,255,255,0.2)', padding: 10, borderRadius: 25, zIndex: 3000 }}
                   onPress={() => setPreviewImage(null)}
                 >
-                  <WebIcon name="close" size={24} color="white" />
+                  <WebIcon name="close" size= {24} color="white" />
                 </TouchableOpacity>
               </View>
             </Animated.View>

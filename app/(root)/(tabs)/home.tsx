@@ -287,7 +287,7 @@ export default function Home() {
           <Animated.View entering={FadeInDown.delay(100).duration(600)} style={[styles.header, { marginBottom: headerMarginBottom }]}>
             <View style={{ flexDirection: "row", alignItems: "center", flex: 1, paddingRight: 16 }}>
               <TouchableOpacity onPress={() => setMenuVisible(true)} style={[styles.headerIconBtn, { backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.8)" }]}>
-                <WebIcon name="menu-outline" size={24} color={colors.text} />
+                <WebIcon name="menu-outline" size= {24} color={colors.text} />
               </TouchableOpacity>
               {showGreeting && (
                 <Animated.View exiting={FadeOut.duration(800)} style={{ marginLeft: 16, flex: 1 }}>
@@ -301,7 +301,7 @@ export default function Home() {
                 onPress={() => setIsOfficialModalVisible(true)} 
                 style={[styles.headerIconBtn, { backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.8)" }]}
               >
-                <WebIcon name="notifications" size={20} color={colors.text} />
+                <WebIcon name="notifications" size= {20} color={colors.text} />
                 {unreadOfficialCount > 0 && (
                   <View style={[styles.bellBadge, { backgroundColor: colors.primary }]}>
                     <Text style={styles.bellBadgeText}>{unreadOfficialCount > 9 ? '9+' : unreadOfficialCount}</Text>
@@ -315,7 +315,7 @@ export default function Home() {
                     <Image source={{ uri: user.imageUrl }} style={styles.avatar} />
                   ) : (
                     <View style={[styles.avatarPlaceholder, { backgroundColor: colors.primary + '20' }]}>
-                      <WebIcon name="person" size={24} color={colors.primary} />
+                      <WebIcon name="person" size= {24} color={colors.primary} />
                     </View>
                   )}
                 </TouchableOpacity>
@@ -340,7 +340,7 @@ export default function Home() {
               ]}
             >
               <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: "rgba(59, 130, 246, 0.12)", alignItems: "center", justifyContent: "center" }}>
-                <WebIcon name="search" size={22} color="#3b82f6" />
+                <WebIcon name="search" size= {22} color="#3b82f6" />
               </View>
               <View style={{ flex: 1, marginLeft: 16, gap: 4 }}>
                 <Text style={{ fontSize: headingSize, fontWeight: "900", color: colors.text, lineHeight: 22 }}>
@@ -357,7 +357,7 @@ export default function Home() {
             <Animated.View entering={FadeInDown.delay(300).duration(600)} style={[styles.section, { marginTop: sectionMarginTop }]}>
               <TouchableOpacity onPress={handleInstallClick} style={[styles.liveTicker, { backgroundColor: colors.primary + '15', borderColor: colors.primary + '40', paddingVertical: paddingVerticalSmall }]}>
                 <View style={[styles.searchIconBox, { backgroundColor: colors.primary, marginRight: 12 }]}>
-                  <WebIcon name="download-outline" size={18} color="#fff" />
+                  <WebIcon name="download-outline" size= {18} color="#fff" />
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={[styles.liveLabel, { color: colors.primary, fontSize: liveLabelSize }]}>{t('install_app')}</Text>
@@ -365,7 +365,7 @@ export default function Home() {
                     {t('install_app_desc')}
                   </Text>
                 </View>
-                <WebIcon name="add-circle" size={24} color={colors.primary} />
+                <WebIcon name="add-circle" size= {24} color={colors.primary} />
               </TouchableOpacity>
             </Animated.View>
           )}
@@ -380,7 +380,7 @@ export default function Home() {
                   style={[styles.viewAllBtn, { backgroundColor: colors.primary + '15', flexDirection: 'row', alignItems: 'center', gap: 4 }]}
                   onPress={() => router.push("/(root)/(tabs)/history")}
                 >
-                  <WebIcon name="time" size={16} color={colors.primary} />
+                  <WebIcon name="time" size= {16} color={colors.primary} />
                   <Text style={{ color: colors.primary, fontSize: 12, fontWeight: "800", textTransform: 'uppercase', letterSpacing: 0.5 }}>{t('history')}</Text>
                 </TouchableOpacity>
               )}
@@ -392,7 +392,7 @@ export default function Home() {
               >
                 <Animated.View style={[styles.pulseDot, { backgroundColor: colors.primary, marginRight: 8 }, animatedPulse]} />
                 <View style={[styles.iconBoxSmall, { backgroundColor: colors.primary + '15', marginRight: 12 }]}>
-                   <WebIcon name="bus" size={18} color={colors.primary} />
+                   <WebIcon name="bus" size= {18} color={colors.primary} />
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={[styles.liveLabel, { color: colors.primary, fontSize: liveLabelSize }]} numberOfLines={1}>
@@ -404,7 +404,7 @@ export default function Home() {
                 </View>
                 <View style={styles.liveMeta}>
                    <Text style={[styles.liveTime, { color: colors.textSecondary }]}>{new Date(recentRides[0].date || Date.now()).toLocaleDateString()}</Text>
-                   <WebIcon name="chevron-forward" size={16} color={colors.primary} />
+                   <WebIcon name="chevron-forward" size= {16} color={colors.primary} />
                 </View>
               </TouchableOpacity>
             ) : (
@@ -424,7 +424,7 @@ export default function Home() {
                   </Text>
                   <Text style={[styles.liveText, { color: colors.text, fontSize: liveTextSize }]} numberOfLines={1}>{translatedReportText || latestReport.message}</Text>
                 </View>
-                <WebIcon name="chevron-forward" size={16} color={colors.primary} />
+                <WebIcon name="chevron-forward" size= {16} color={colors.primary} />
               </TouchableOpacity>
             </Animated.View>
           )}
@@ -433,14 +433,14 @@ export default function Home() {
             <Animated.View entering={FadeInDown} exiting={FadeInUp} style={[styles.inAppAlert, { backgroundColor: colors.surface, borderColor: colors.primary }]}>
               <TouchableOpacity style={styles.inAppAlertContent} onPress={() => { setShowInAppAlert(null); router.push("/(root)/(tabs)/communitypost"); }}>
                 <View style={[styles.iconBoxSmall, { backgroundColor: colors.primary + '20' }]}>
-                  <WebIcon name="chatbubble-ellipses" size={18} color={colors.primary} />
+                  <WebIcon name="chatbubble-ellipses" size= {18} color={colors.primary} />
                 </View>
                 <View style={{ flex: 1, marginLeft: 12 }}>
                   <Text style={[styles.alertTitle, { color: colors.text }]}>{showInAppAlert.title}</Text>
                   <Text style={[styles.alertMessage, { color: colors.textSecondary }]} numberOfLines={1}>{showInAppAlert.message}</Text>
                 </View>
                 <TouchableOpacity onPress={() => setShowInAppAlert(null)}>
-                  <WebIcon name="close" size={20} color={colors.textSecondary} />
+                  <WebIcon name="close" size= {20} color={colors.textSecondary} />
                 </TouchableOpacity>
               </TouchableOpacity>
             </Animated.View>
@@ -458,7 +458,7 @@ export default function Home() {
                   onPress={() => router.push("/(root)/city-pulse-list")}
                 >
                   <Text style={{ color: colors.primary, fontSize: 12, fontWeight: "800", textTransform: 'uppercase', letterSpacing: 0.5 }}>{t('view_all', 'View All')}</Text>
-                  <WebIcon name="chevron-forward" size={14} color={colors.primary} />
+                  <WebIcon name="chevron-forward" size= {14} color={colors.primary} />
                 </TouchableOpacity>
               )}
             </View>
@@ -471,7 +471,7 @@ export default function Home() {
                 showsButtons={Platform.OS === 'web'} 
                 loop={true}
                 bounces={true}
-                height={Platform.OS === 'web' ? 300 : 280} 
+                height= {Platform.OS === 'web' ? 300 : 280} 
                 dot={<View style={{ backgroundColor: 'rgba(255,255,255,0.6)', width: 12, height: 6, borderRadius: 3, marginHorizontal: 4, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: 2, elevation: 3 }} />}
                 activeDot={<View style={{ backgroundColor: colors.primary, width: 32, height: 6, borderRadius: 3, marginHorizontal: 4, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: 2, elevation: 3 }} />}
                 paginationStyle={{ top: 16, right: 16, bottom: undefined, left: undefined, alignItems: 'flex-start' }}
@@ -511,7 +511,7 @@ export default function Home() {
                              onPress={() => Linking.openURL(item.url)}
                            >
                               <Text style={styles.readMorePillText}>{t('read_more')}</Text>
-                              <WebIcon name="arrow-forward" size={16} color="#fff" />
+                              <WebIcon name="arrow-forward" size= {16} color="#fff" />
                            </TouchableOpacity>
                         </View>
                       </View>
@@ -530,7 +530,7 @@ export default function Home() {
         <View style={[StyleSheet.absoluteFill, { zIndex: 1000 }]} pointerEvents="box-none">
           <View style={styles.modalOverlay}>
             <Animated.View entering={FadeInUp} style={[styles.welcomeModal, { backgroundColor: colors.surface }]}>
-              <LinearGradient colors={[colors.primary, colors.primary + 'CC']} style={styles.modalHeaderGradient}><WebIcon name="information-circle-outline" size={48} color="#fff" /></LinearGradient>
+              <LinearGradient colors={[colors.primary, colors.primary + 'CC']} style={styles.modalHeaderGradient}><WebIcon name="information-circle-outline" size= {48} color="#fff" /></LinearGradient>
               <View style={styles.modalTextContainer}>
                 <Text style={[styles.modalTitle, { color: colors.text }]}>{t('tutorial_popup_title')}</Text>
                 <Text style={[styles.modalDesc, { color: colors.textSecondary }]}>{t('tutorial_popup_desc')}</Text>
@@ -561,7 +561,7 @@ export default function Home() {
             <Animated.View entering={FadeInUp.springify().damping(15)} style={[styles.welcomeModal, { backgroundColor: colors.surface }]}>
               <LinearGradient colors={[colors.primary, colors.primary + 'CC']} style={[styles.modalHeaderGradient, { height: 120 }]}>
                 <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: 'rgba(255,255,255,0.2)', justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: 'rgba(255,255,255,0.4)' }}>
-                  <WebIcon name="share-outline" size={32} color="#fff" />
+                  <WebIcon name="share-outline" size= {32} color="#fff" />
                 </View>
               </LinearGradient>
               <View style={styles.modalTextContainer}>
@@ -575,7 +575,7 @@ export default function Home() {
                     <Text style={{ flex: 1, fontSize: 15, fontWeight: '600', color: colors.textSecondary }}>
                       Tap the <Text style={{ fontWeight: '800', color: colors.text }}>Share</Text> icon below
                     </Text>
-                    <WebIcon name="share-outline" size={24} color={colors.primary} />
+                    <WebIcon name="share-outline" size= {24} color={colors.primary} />
                   </View>
 
                   <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', padding: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.border }}>
@@ -585,7 +585,7 @@ export default function Home() {
                     <Text style={{ flex: 1, fontSize: 15, fontWeight: '600', color: colors.textSecondary }}>
                       Select <Text style={{ fontWeight: '800', color: colors.text }}>Add to Home Screen</Text>
                     </Text>
-                    <WebIcon name="add-square-outline" size={24} color={colors.primary} />
+                    <WebIcon name="add-square-outline" size= {24} color={colors.primary} />
                   </View>
                 </View>
 
@@ -606,7 +606,7 @@ export default function Home() {
             <Animated.View entering={FadeInUp.springify().damping(15)} style={[styles.welcomeModal, { backgroundColor: colors.surface }]}>
               <LinearGradient colors={[colors.primary, colors.primary + 'CC']} style={[styles.modalHeaderGradient, { height: 120 }]}>
                 <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: 'rgba(255,255,255,0.2)', justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: 'rgba(255,255,255,0.4)' }}>
-                  <WebIcon name="ellipsis-vertical" size={32} color="#fff" />
+                  <WebIcon name="ellipsis-vertical" size= {32} color="#fff" />
                 </View>
               </LinearGradient>
               <View style={styles.modalTextContainer}>
@@ -620,7 +620,7 @@ export default function Home() {
                     <Text style={{ flex: 1, fontSize: 15, fontWeight: '600', color: colors.textSecondary }}>
                       Tap the <Text style={{ fontWeight: '800', color: colors.text }}>Menu</Text> icon above
                     </Text>
-                    <WebIcon name="ellipsis-vertical" size={24} color={colors.primary} />
+                    <WebIcon name="ellipsis-vertical" size= {24} color={colors.primary} />
                   </View>
 
                   <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc', padding: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.border }}>
@@ -630,7 +630,7 @@ export default function Home() {
                     <Text style={{ flex: 1, fontSize: 15, fontWeight: '600', color: colors.textSecondary }}>
                       Select <Text style={{ fontWeight: '800', color: colors.text }}>Install app</Text>
                     </Text>
-                    <WebIcon name="download-outline" size={24} color={colors.primary} />
+                    <WebIcon name="download-outline" size= {24} color={colors.primary} />
                   </View>
 
                   <View style={{ marginTop: 8, marginBottom: 4, flexDirection: 'row', alignItems: 'center' }}>
@@ -643,7 +643,7 @@ export default function Home() {
                     style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#10B981', padding: 16, borderRadius: 16, justifyContent: 'center', gap: 12, elevation: 4 }}
                     onPress={() => Linking.openURL('https://expo.dev/artifacts/eas/PdmETQdkqhniYTf9zvRWRxXUqZ3ltzEgGFQ0zGuSHYE.apk')}
                   >
-                    <WebIcon name="logo-android" size={24} color="#fff" />
+                    <WebIcon name="logo-android" size= {24} color="#fff" />
                     <Text style={{ fontSize: 16, fontWeight: '900', color: '#fff' }}>Download native APK</Text>
                   </TouchableOpacity>
                 </View>

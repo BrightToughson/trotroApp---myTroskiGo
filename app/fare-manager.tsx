@@ -47,7 +47,7 @@ const CustomDropdown = ({ label, value, options, onSelect, onAddCustom, isCustom
             <Text style={{ color: value ? colors.text : colors.textSecondary, fontSize: 16, fontWeight: value ? '600' : '400' }}>
               {value || `Select ${label}...`}
             </Text>
-            <WebIcon name={isOpen ? "chevron-up" : "chevron-down"} size={20} color={colors.textSecondary} />
+            <WebIcon name={isOpen ? "chevron-up" : "chevron-down"} size= {20} color={colors.textSecondary} />
           </TouchableOpacity>
 
           {isOpen && (
@@ -68,7 +68,7 @@ const CustomDropdown = ({ label, value, options, onSelect, onAddCustom, isCustom
                     <Text style={{ color: value === opt.value ? colors.primary : colors.text, fontSize: 15, fontWeight: value === opt.value ? '700' : '500' }}>
                       {opt.label}
                     </Text>
-                    {value === opt.value && <WebIcon name="checkmark" size={18} color={colors.primary} />}
+                    {value === opt.value && <WebIcon name="checkmark" size= {18} color={colors.primary} />}
                   </TouchableOpacity>
                 ))}
                 {options.length === 0 && (
@@ -223,7 +223,7 @@ export default function FareManager() {
     return (
       <View style={[styles.container, { backgroundColor: colors.background, justifyContent: 'center', alignItems: 'center' }]}>
         <Stack.Screen options={{ title: 'Access Denied', headerStyle: { backgroundColor: colors.card }, headerTintColor: colors.text }} />
-        <WebIcon name="lock-closed" size={64} color={colors.primary} />
+        <WebIcon name="lock-closed" size= {64} color={colors.primary} />
         <Text style={{ color: colors.text, fontSize: 24, fontWeight: '900', marginTop: 20 }}>Access Denied</Text>
         <Text style={{ color: colors.textSecondary, marginTop: 10, fontSize: 16 }}>Admin privileges required.</Text>
       </View>
@@ -243,7 +243,7 @@ export default function FareManager() {
            style={[{ padding: 20, paddingTop: Platform.OS === 'ios' ? 60 : 30, borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flexDirection: 'row', alignItems: 'center' }, Platform.OS === 'web' && { backdropFilter: 'blur(20px)' }]}
         >
           <TouchableOpacity onPress={() => router.push('/admin')} activeOpacity={0.7} style={[styles.backBtn, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.04)' }]}>
-             <WebIcon name="arrow-back" size={24} color={colors.text} />
+             <WebIcon name="arrow-back" size= {24} color={colors.text} />
           </TouchableOpacity>
           <View style={{ marginLeft: 16 }}>
             <Text style={{ fontSize: 24, fontWeight: '900', color: colors.text, letterSpacing: -0.5 }}>Fare Dashboard</Text>
@@ -263,7 +263,7 @@ export default function FareManager() {
             }]}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
                 <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: colors.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: 12 }}>
-                  <WebIcon name={editingId ? "create" : "add"} size={22} color={colors.primary} />
+                  <WebIcon name={editingId ? "create" : "add"} size= {22} color={colors.primary} />
                 </View>
                 <Text style={[styles.sectionTitle, { color: colors.text }]}>
                   {editingId ? 'Edit Route Fare' : 'Add New Route Fare'}
@@ -274,7 +274,7 @@ export default function FareManager() {
                 <View style={styles.inputContainer}>
                   <Text style={[styles.label, { color: colors.textSecondary }]}>Origin (Optional)</Text>
                   <View style={styles.inputWrapper}>
-                    <WebIcon name="location-outline" size={18} color={colors.textSecondary} style={styles.inputIcon} />
+                    <WebIcon name="location-outline" size= {18} color={colors.textSecondary} style={styles.inputIcon} />
                     <TextInput style={[styles.inputWithIcon, { color: colors.text, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}
                       value={origin} onChangeText={setOrigin} placeholder="e.g. Lapaz" placeholderTextColor={colors.textSecondary} />
                   </View>
@@ -282,7 +282,7 @@ export default function FareManager() {
                 <View style={styles.inputContainer}>
                   <Text style={[styles.label, { color: colors.textSecondary }]}>Destination *</Text>
                   <View style={styles.inputWrapper}>
-                    <WebIcon name="flag-outline" size={18} color={colors.textSecondary} style={styles.inputIcon} />
+                    <WebIcon name="flag-outline" size= {18} color={colors.textSecondary} style={styles.inputIcon} />
                     <TextInput style={[styles.inputWithIcon, { color: colors.text, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}
                       value={destination} onChangeText={setDestination} placeholder="e.g. Madina" placeholderTextColor={colors.textSecondary} />
                   </View>
@@ -293,7 +293,7 @@ export default function FareManager() {
                 <View style={styles.inputContainer}>
                   <Text style={[styles.label, { color: colors.textSecondary }]}>Min Price (GHS)</Text>
                   <View style={styles.inputWrapper}>
-                    <WebIcon name="cash-outline" size={18} color={colors.textSecondary} style={styles.inputIcon} />
+                    <WebIcon name="cash-outline" size= {18} color={colors.textSecondary} style={styles.inputIcon} />
                     <TextInput style={[styles.inputWithIcon, { color: colors.text, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}
                       value={minPrice} 
                       onChangeText={(text) => {
@@ -316,7 +316,7 @@ export default function FareManager() {
                 <View style={styles.inputContainer}>
                   <Text style={[styles.label, { color: colors.textSecondary }]}>Max Price (GHS)</Text>
                   <View style={styles.inputWrapper}>
-                    <WebIcon name="cash" size={18} color={colors.textSecondary} style={styles.inputIcon} />
+                    <WebIcon name="cash" size= {18} color={colors.textSecondary} style={styles.inputIcon} />
                     <TextInput style={[styles.inputWithIcon, { color: colors.text, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}
                       value={maxPrice} 
                       onChangeText={(text) => {
@@ -382,7 +382,7 @@ export default function FareManager() {
                     end={{ x: 1, y: 0 }}
                     style={styles.saveButton}
                   >
-                    <WebIcon name={editingId ? "save" : "add-circle"} size={20} color="#fff" style={{ marginRight: 8 }} />
+                    <WebIcon name={editingId ? "save" : "add-circle"} size= {20} color="#fff" style={{ marginRight: 8 }} />
                     <Text style={[styles.buttonText, { color: '#fff' }]}>{editingId ? 'Update Fare' : 'Save New Fare'}</Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -395,13 +395,13 @@ export default function FareManager() {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
                <Text style={[styles.sectionTitle, { color: colors.text, marginBottom: 0 }]}>Database ({dbFares.length})</Text>
                <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.primary + '15', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12 }}>
-                 <WebIcon name="server" size={14} color={colors.primary} style={{ marginRight: 6 }} />
+                 <WebIcon name="server" size= {14} color={colors.primary} style={{ marginRight: 6 }} />
                  <Text style={{ color: colors.primary, fontWeight: '800', fontSize: 13 }}>Live Sync</Text>
                </View>
             </View>
             
             <View style={[styles.searchBox, { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#fff', borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}>
-              <WebIcon name="search" size={20} color={colors.textSecondary} style={{ marginRight: 12 }} />
+              <WebIcon name="search" size= {20} color={colors.textSecondary} style={{ marginRight: 12 }} />
               <TextInput 
                 style={{ flex: 1, color: colors.text, fontSize: 16, fontWeight: '500', height: 50, outlineStyle: 'none' } as any}
                 placeholder="Search by origin, destination or town..."
@@ -411,7 +411,7 @@ export default function FareManager() {
               />
               {searchQuery.length > 0 && (
                 <TouchableOpacity onPress={() => setSearchQuery('')}>
-                  <WebIcon name="close-circle" size={20} color={colors.textSecondary} />
+                  <WebIcon name="close-circle" size= {20} color={colors.textSecondary} />
                 </TouchableOpacity>
               )}
             </View>
@@ -431,7 +431,7 @@ export default function FareManager() {
                        <View style={{ flex: 1 }}>
                          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
                            <View style={[styles.routeBadge, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : '#f1f5f9' }]}>
-                             <WebIcon name="navigate" size={12} color={colors.textSecondary} />
+                             <WebIcon name="navigate" size= {12} color={colors.textSecondary} />
                            </View>
                            <Text style={[styles.fareRoute, { color: colors.text }]} numberOfLines={1}>
                              {fare.origin ? <Text style={{ color: colors.textSecondary }}>{fare.origin} → </Text> : null}
@@ -441,13 +441,13 @@ export default function FareManager() {
                          
                          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
                            <View style={[styles.priceBadge, { backgroundColor: '#10b98115' }]}>
-                             <WebIcon name="cash" size={14} color="#10b981" />
+                             <WebIcon name="cash" size= {14} color="#10b981" />
                              <Text style={{ color: '#10b981', fontWeight: '800', marginLeft: 4, fontSize: 14 }}>
                                GHS {fare.min_price} - {fare.max_price}
                              </Text>
                            </View>
                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                             <WebIcon name="location" size={12} color={colors.textSecondary} />
+                             <WebIcon name="location" size= {12} color={colors.textSecondary} />
                              <Text style={{ color: colors.textSecondary, fontSize: 13, marginLeft: 4, fontWeight: '600' }}>
                                {fare.town}, {fare.region}
                              </Text>
@@ -457,10 +457,10 @@ export default function FareManager() {
 
                        <View style={{ flexDirection: 'row', gap: 8, paddingLeft: 12, borderLeftWidth: 1, borderLeftColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}>
                          <TouchableOpacity activeOpacity={0.7} onPress={() => handleEdit(fare)} style={[styles.actionBtn, { backgroundColor: colors.primary + '15' }]}>
-                            <WebIcon name="create-outline" size={18} color={colors.primary} />
+                            <WebIcon name="create-outline" size= {18} color={colors.primary} />
                          </TouchableOpacity>
                          <TouchableOpacity activeOpacity={0.7} onPress={() => handleDelete(fare.id)} style={[styles.actionBtn, { backgroundColor: '#EF444415' }]}>
-                            <WebIcon name="trash-outline" size={18} color="#EF4444" />
+                            <WebIcon name="trash-outline" size= {18} color="#EF4444" />
                          </TouchableOpacity>
                        </View>
                      </View>
@@ -468,7 +468,7 @@ export default function FareManager() {
                  ))}
                  {filteredFares.length === 0 && (
                    <View style={{ padding: 40, alignItems: 'center' }}>
-                     <WebIcon name="search-outline" size={48} color={isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)'} />
+                     <WebIcon name="search-outline" size= {48} color={isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)'} />
                      <Text style={{ color: colors.textSecondary, fontSize: 16, fontWeight: '600', marginTop: 16 }}>No fares match your search</Text>
                    </View>
                  )}

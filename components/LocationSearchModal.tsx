@@ -99,7 +99,7 @@ const ResultItem = React.memo(({
       >
         <WebIcon
           name={getStopIcon()}
-          size={20}
+          size= {20}
           color={item.isVerified ? '#3b82f6' : (isAnyStation ? accentColor : colors.textSecondary)}
         />
       </View>
@@ -112,7 +112,7 @@ const ResultItem = React.memo(({
                 <View style={[styles.verifiedBadge, { backgroundColor: isBusStation ? '#10b98120' : (isPickupStation ? '#3b82f620' : '#64748b20') }]}>
                     <WebIcon 
                         name={isBusStation ? "business" : (isPickupStation ? "git-branch" : "bus")} 
-                        size={12} 
+                        size= {12} 
                         color={isBusStation ? "#10b981" : (isPickupStation ? "#3b82f6" : "#64748b")} 
                         style={{ marginRight: 4 }} 
                     />
@@ -311,7 +311,7 @@ export const LocationSearchModal = ({
                         <Text style={[styles.subtitle, { color: colors.textSecondary }]}>{t('browse_regions')}</Text>
                     </View>
                     <TouchableOpacity onPress={onClose} style={[styles.closeButton, { backgroundColor: colors.surface }]}>
-                        <WebIcon name="close" size={24} color={colors.text} />
+                        <WebIcon name="close" size= {24} color={colors.text} />
                     </TouchableOpacity>
                 </View>
  
@@ -324,7 +324,7 @@ export const LocationSearchModal = ({
                 >
                     <WebIcon
                         name={isPickup ? "navigate" : "flag"}
-                        size={20}
+                        size= {20}
                         color={accentColor}
                         style={styles.searchIcon}
                     />
@@ -338,12 +338,12 @@ export const LocationSearchModal = ({
                         returnKeyType="search"
                     />
                     {loading ? (
-                        <ActivityIndicator size="small" color={accentColor} style={styles.clearButton} />
+                        <ActivityIndicator size= "small" color={accentColor} style={styles.clearButton} />
                     ) : query.length > 0 ? (
                         <TouchableOpacity onPress={() => setQuery("")} style={styles.clearButton}>
                             <WebIcon
                                 name="close-circle"
-                                size={20}
+                                size= {20}
                                 color={colors.textSecondary}
                             />
                         </TouchableOpacity>
@@ -407,7 +407,7 @@ export const LocationSearchModal = ({
                                         }}
                                     >
                                         <View style={[styles.currentIconBox, { backgroundColor: accentColor }]}>
-                                            {loading ? <ActivityIndicator size="small" color="#fff" /> : <WebIcon name="navigate" size={20} color="#fff" />}
+                                            {loading ? <ActivityIndicator size= "small" color="#fff" /> : <WebIcon name="navigate" size={20} color="#fff" />}
                                         </View>
                                         <View style={{ flex: 1 }}>
                                             <Text style={[styles.currentLocationText, { color: colors.text }]}>
@@ -417,7 +417,7 @@ export const LocationSearchModal = ({
                                                 {currentSnap ? t('snapping_to_nearest') : t('find_closest_hub')}
                                             </Text>
                                         </View>
-                                        <WebIcon name="chevron-forward" size={18} color={accentColor} opacity={0.5} />
+                                        <WebIcon name="chevron-forward" size= {18} color={accentColor} opacity={0.5} />
                                     </TouchableOpacity>
                                 )}
 
@@ -434,7 +434,7 @@ export const LocationSearchModal = ({
                                     onPress={() => setIsMapPickerVisible(true)}
                                 >
                                     <View style={[styles.currentIconBox, { backgroundColor: accentColor }]}>
-                                        <WebIcon name="map" size={20} color="#fff" />
+                                        <WebIcon name="map" size= {20} color="#fff" />
                                     </View>
                                     <View style={{ flex: 1 }}>
                                         <Text style={[styles.currentLocationText, { color: colors.text }]}>
@@ -444,15 +444,15 @@ export const LocationSearchModal = ({
                                             {t('pinpoint_location', 'Pinpoint exact location')}
                                         </Text>
                                     </View>
-                                    <WebIcon name="chevron-forward" size={18} color={accentColor} opacity={0.5} />
+                                    <WebIcon name="chevron-forward" size= {18} color={accentColor} opacity={0.5} />
                                 </TouchableOpacity>
 
                                 {isPickup && (nearbyLoading || nearbyStops.length > 0) && (
                                     <View style={styles.nearbySection}>
                                         <View style={styles.nearbyHeader}>
-                                            <WebIcon name="bus" size={16} color={accentColor} />
+                                            <WebIcon name="bus" size= {16} color={accentColor} />
                                             <Text style={[styles.nearbyTitle, { color: colors.text }]}>{t('nearby_hubs')}</Text>
-                                            {nearbyLoading && <ActivityIndicator size="small" color={accentColor} style={{ marginLeft: 8 }} />}
+                                            {nearbyLoading && <ActivityIndicator size= "small" color={accentColor} style={{ marginLeft: 8 }} />}
                                         </View>
                                         <View style={styles.nearbyGrid}>
                                             {nearbyStops.map((stop, i) => {
@@ -467,7 +467,7 @@ export const LocationSearchModal = ({
                                                         </Text>
                                                         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4, gap: 6, flexWrap: 'wrap' }}>
                                                             <View style={[styles.distanceLabel, { backgroundColor: accentColor + '15' }]}>
-                                                                <WebIcon name="navigate-circle" size={10} color={accentColor} style={{ marginRight: 4 }} />
+                                                                <WebIcon name="navigate-circle" size= {10} color={accentColor} style={{ marginRight: 4 }} />
                                                                 <Text style={[styles.distanceLabelText, { color: accentColor }]}>{stop.address?.replace('km away', 'km') || "Nearby"}</Text>
                                                             </View>
                                                         </View>
@@ -480,7 +480,7 @@ export const LocationSearchModal = ({
 
                                 <View style={styles.explorerContainer}>
                                   <View style={styles.nearbyHeader}>
-                                      <WebIcon name="map" size={16} color={accentColor} />
+                                      <WebIcon name="map" size= {16} color={accentColor} />
                                       <Text style={[styles.nearbyTitle, { color: colors.text }]}>{t('choose_region')}</Text>
                                   </View>
                                   
@@ -531,7 +531,7 @@ export const LocationSearchModal = ({
                         ListEmptyComponent={
                             !loading ? (
                                 <View style={styles.emptyContainer}>
-                                    <WebIcon name="search-outline" size={48} color={colors.border} />
+                                    <WebIcon name="search-outline" size= {48} color={colors.border} />
                                     <Text style={[styles.emptyText, { color: colors.textSecondary }]}>No exact matches found.</Text>
                                     <Text style={[styles.emptySubtext, { color: colors.textSecondary }]}>Try searching for a broader neighborhood.</Text>
                                 </View>

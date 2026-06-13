@@ -28,11 +28,11 @@ export function ProcessingModal({ visible, message = "Processing...", isSuccess 
         >
           {isSuccess ? (
             <View style={styles.iconContainer}>
-              <Ionicons name="checkmark-circle" size={50} color="#10b981" />
+              <Ionicons name="checkmark-circle" size= {50} color="#10b981" />
             </View>
           ) : (
             <View style={styles.iconContainer}>
-              <ActivityIndicator size="large" color={colors.primary} />
+              <ActivityIndicator size= "large" color={colors.primary} />
             </View>
           )}
           <Text style={[styles.message, { color: colors.text }]}>

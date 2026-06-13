@@ -95,7 +95,7 @@ const Index = () => {
         <View style={styles.content}>
           <Animated.View style={[styles.iconContainer, animatedIconStyle]}>
             <View style={styles.iconCircle}>
-              <WebIcon name="bus" size={60} color="#F9FAFB" />
+              <WebIcon name="bus" size= {60} color="#F9FAFB" />
             </View>
           </Animated.View>
           

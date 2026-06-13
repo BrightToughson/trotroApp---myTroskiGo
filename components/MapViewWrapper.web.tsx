@@ -795,8 +795,8 @@ const MapView = React.forwardRef((props: any, ref: any) => {
         <iframe
           ref={iframeRef}
           title="Map View"
-          width="100%"
-          height="100%"
+          width= "100%"
+          height= "100%"
           srcDoc={srcDoc}
           frameBorder="0"
         />

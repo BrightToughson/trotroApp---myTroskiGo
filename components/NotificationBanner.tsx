@@ -108,7 +108,7 @@ export function NotificationBanner() {
         ]}
       >
         <View style={[styles.iconContainer, { backgroundColor: activeNotification.color || colors.primary }]}>
-          <WebIcon name={activeNotification.icon || 'notifications'} size={24} color="#ffffff" />
+          <WebIcon name={activeNotification.icon || 'notifications'} size= {24} color="#ffffff" />
         </View>
         
         <View style={styles.textContainer}>
@@ -121,7 +121,7 @@ export function NotificationBanner() {
         </View>
 
         <TouchableOpacity onPress={handleDismiss} style={styles.closeButton}>
-          <WebIcon name="close" size={20} color={colors.textSecondary} />
+          <WebIcon name="close" size= {20} color={colors.textSecondary} />
         </TouchableOpacity>
       </TouchableOpacity>
     </Animated.View>

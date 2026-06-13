@@ -40,7 +40,7 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({ color = '#3b82
           },
         ]}
       >
-        <WebIcon name="chevron-down-outline" size={24} color={color} />
+        <WebIcon name="chevron-down-outline" size= {24} color={color} />
       </Animated.View>
     </View>
   );

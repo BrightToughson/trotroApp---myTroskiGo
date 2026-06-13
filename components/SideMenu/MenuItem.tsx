@@ -33,7 +33,7 @@ export const MenuItem = React.memo(({
         {iconElement ? (
           <View style={{ width: 24, alignItems: 'center' }}>{iconElement}</View>
         ) : (
-          <WebIcon name={icon as any} size={24} color={colors.textSecondary} />
+          <WebIcon name={icon as any} size= {24} color={colors.textSecondary} />
         )}
         <Text style={[styles.menuItemText, { color: colors.text }]}>
           {label}
@@ -44,7 +44,7 @@ export const MenuItem = React.memo(({
       ) : (
         <WebIcon
           name="chevron-forward"
-          size={20}
+          size= {20}
           color={colors.textSecondary}
         />
       )}

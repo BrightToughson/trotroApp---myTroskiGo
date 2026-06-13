@@ -130,7 +130,7 @@ export default function ContributionsManager() {
           </Text>
           {p.journey_type === 'transfer' && p.transfer_location && !p.trotros && (
             <Text style={[styles.cardText, { color: colors.textSecondary, fontSize: 13, marginTop: 4 }]}>
-              <WebIcon name="git-commit" size={12} color={colors.textSecondary} /> Transfer at: {p.transfer_location}
+              <WebIcon name="git-commit" size= {12} color={colors.textSecondary} /> Transfer at: {p.transfer_location}
             </Text>
           )}
           {p.trotros && p.trotros.length > 0 && (
@@ -157,7 +157,7 @@ export default function ContributionsManager() {
           )}
           {p.tracked_path && (
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
-              <WebIcon name="location" size={14} color={colors.primary} />
+              <WebIcon name="location" size= {14} color={colors.primary} />
               <Text style={{ color: colors.primary, fontSize: 12, fontWeight: '600', marginLeft: 4 }}>
                 Includes Live GPS Track
               </Text>
@@ -174,7 +174,7 @@ export default function ContributionsManager() {
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={() => router.push('/admin')}>
-          <WebIcon name="arrow-back" size={24} color={colors.text} />
+          <WebIcon name="arrow-back" size= {24} color={colors.text} />
         </TouchableOpacity>
         <Text style={[styles.title, { color: colors.text }]}>Contributions</Text>
       </View>
@@ -239,10 +239,10 @@ export default function ContributionsManager() {
         }
       >
         {isLoading ? (
-          <ActivityIndicator size="large" color={colors.primary} style={{ marginTop: 40 }} />
+          <ActivityIndicator size= "large" color={colors.primary} style={{ marginTop: 40 }} />
         ) : filteredData.length === 0 ? (
           <View style={styles.emptyState}>
-            <WebIcon name="checkmark-circle-outline" size={64} color={colors.textSecondary} />
+            <WebIcon name="checkmark-circle-outline" size= {64} color={colors.textSecondary} />
             <Text style={[styles.emptyText, { color: colors.textSecondary }]}>All caught up!</Text>
           </View>
         ) : (
@@ -253,7 +253,7 @@ export default function ContributionsManager() {
             return (
               <View key={typeKey} style={{ marginBottom: 24 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16, marginLeft: 4 }}>
-                  <WebIcon name={groupStyleInfo.icon} size={20} color={groupStyleInfo.color} />
+                  <WebIcon name={groupStyleInfo.icon} size= {20} color={groupStyleInfo.color} />
                   <Text style={{ fontSize: 18, fontWeight: '800', color: colors.text, marginLeft: 8, letterSpacing: -0.5 }}>
                     {groupStyleInfo.label}s ({items.length})
                   </Text>
@@ -265,13 +265,13 @@ export default function ContributionsManager() {
                     <View key={item.id} style={[styles.card, { backgroundColor: colors.surface }]}>
                       <View style={styles.cardHeader}>
                         <View style={styles.typeTag}>
-                          <WebIcon name={styleInfo.icon} size={14} color={styleInfo.color} />
+                          <WebIcon name={styleInfo.icon} size= {14} color={styleInfo.color} />
                           <Text style={[styles.typeText, { color: styleInfo.color }]}>{styleInfo.label}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                           <Text style={[styles.dateText, { color: colors.textSecondary, marginRight: 12 }]}>{formatDate(item.created_at)}</Text>
                           <TouchableOpacity onPress={() => handleDelete(item.id, item.type)}>
-                            <WebIcon name="trash-outline" size={18} color="#ef4444" />
+                            <WebIcon name="trash-outline" size= {18} color="#ef4444" />
                           </TouchableOpacity>
                         </View>
                       </View>

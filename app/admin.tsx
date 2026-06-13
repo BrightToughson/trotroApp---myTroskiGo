@@ -40,7 +40,7 @@ export default function AdminDashboard() {
     >
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={() => router.push('/')}>
-          <WebIcon name="arrow-back" size={24} color={colors.text} />
+          <WebIcon name="arrow-back" size= {24} color={colors.text} />
         </TouchableOpacity>
         <Text style={[styles.title, { color: colors.text }]}>Admin Dashboard</Text>
       </View>
@@ -64,14 +64,14 @@ export default function AdminDashboard() {
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
               >
-                <WebIcon name={card.icon} size={28} color="#fff" />
+                <WebIcon name={card.icon} size= {28} color="#fff" />
               </LinearGradient>
               <Text style={[styles.cardTitle, { color: colors.text }]}>{card.title}</Text>
               <Text style={[styles.cardDesc, { color: colors.textSecondary }]}>{card.description}</Text>
               
               <View style={[styles.actionRow, { borderTopColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }]}>
                 <Text style={{ color: card.gradient[0], fontWeight: '600' }}>Manage</Text>
-                <WebIcon name="chevron-forward" size={16} color={card.gradient[0]} />
+                <WebIcon name="chevron-forward" size= {16} color={card.gradient[0]} />
               </View>
             </TouchableOpacity>
           ))}

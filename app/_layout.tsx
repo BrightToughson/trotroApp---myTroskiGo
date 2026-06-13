@@ -128,7 +128,7 @@ function DesktopWrapper({ children }: { children: React.ReactNode }) {
   );
   
   // Apply a 44px top padding if running as PWA and no safe area insets are automatically applied.
-  const webPaddingTop = isStandalone && insets.top === 0 ? 44 : 0;
+  const webPaddingTop = isStandalone && insets.top= == 0 ? 44 : 0;
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background, alignItems: 'center', width: '100%', overflow: 'hidden' }}>
@@ -211,7 +211,7 @@ export default function RootLayout() {
               {Platform.OS === 'web' && (
                 <Head>
                   <title>myTroski Go</title>
-                  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
+                  <meta name="viewport" content="width= device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
                   <meta name="apple-mobile-web-app-capable" content="yes" />
                   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
                 </Head>

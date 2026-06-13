@@ -243,7 +243,7 @@ export default function SignUpScreen() {
             style={{ position: 'absolute', top: 40, left: 40, zIndex: 100, flexDirection: 'row', alignItems: 'center' }}
             onPress={() => window.location.href = __DEV__ ? 'http://localhost:5173/' : 'https://mytroski-go-website.vercel.app/'}
           >
-            <WebIcon name="arrow-back" size={24} color={colors.text} />
+            <WebIcon name="arrow-back" size= {24} color={colors.text} />
             <Text style={{ marginLeft: 8, color: colors.text, fontWeight: '600', fontSize: 16 }}>Back to Website</Text>
           </TouchableOpacity>
         )}

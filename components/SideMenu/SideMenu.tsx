@@ -204,10 +204,10 @@ const SideMenu: React.FC<SideMenuProps> = ({ isVisible, onClose, onShowTutorial 
               <Text style={[styles.sectionHeader, { color: colors.textSecondary }]}>{t('shareConnect')}</Text>
               <View style={styles.socialRow}>
                 <TouchableOpacity style={[styles.socialButton, { backgroundColor: colors.primary }]} onPress={handleShare}>
-                  <WebIcon name="share-social" size={24} color="#fff" />
+                  <WebIcon name="share-social" size= {24} color="#fff" />
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.socialButton, { backgroundColor: "#25D366" }]} onPress={handleWhatsApp}>
-                  <WebIcon name="logo-whatsapp" size={24} color="#fff" />
+                  <WebIcon name="logo-whatsapp" size= {24} color="#fff" />
                 </TouchableOpacity>
               </View>
             </ScrollView>

@@ -201,7 +201,7 @@ export default function VerifyEmail() {
           }
         }}
       >
-        <WebIcon name="close" size={24} color={colors.text} />
+        <WebIcon name="close" size= {24} color={colors.text} />
       </TouchableOpacity>
 
       <ScrollView
