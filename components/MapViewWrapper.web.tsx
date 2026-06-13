@@ -115,17 +115,17 @@ const MapView = React.forwardRef((props: any, ref: any) => {
         <link rel="dns-prefetch" href="https://api.mapbox.com" />
         <link rel="dns-prefetch" href="https://events.mapbox.com" />
         <style>
-          html, body { margin: 0; padding: 0; width: ms(100)%; height: ms(100)%; overflow: hidden; background: ${cfg.isDark ? '#111827' : '#ffffff'}; }
-          #map { height: ms(100)%; width: ms(100)%; }
+          html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: ${cfg.isDark ? '#111827' : '#ffffff'}; }
+          #map { height: 100%; width: 100%; }
           .marker-label {
             position: absolute;
-            top: ms(100)%;
-            left: ms(50)%;
+            top: 100%;
+            left: 50%;
             transform: translateX(-50%);
-            margin-top: ms(4)px;
+            margin-top: 4px;
             background-color: ${cfg.isDark ? '#1e293b' : '#ffffff'};
             color: ${cfg.isDark ? '#f8fafc' : '#0f172a'};
-            padding: ms(2)px 6px;
+            padding: 2px 6px;
             border-radius: 6px;
             font-size: 11px;
             font-family: system-ui, -apple-system, sans-serif;
@@ -136,15 +136,15 @@ const MapView = React.forwardRef((props: any, ref: any) => {
             z-index: 10;
             pointer-events: none;
           }
-          .marker-origin { width: ms(22)px; height: ms(22)px; background-color: #10b981; border: 4.5px solid white; border-radius: 50%; box-shadow: 0 0 10px rgba(0,0,0,0.3); position: relative; }
-          .marker-dest { width: ms(22)px; height: ms(22)px; background-color: #ef4444; border: 4.5px solid white; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.3); position: relative; }
+          .marker-origin { width: 22px; height: 22px; background-color: #10b981; border: 4.5px solid white; border-radius: 50%; box-shadow: 0 0 10px rgba(0,0,0,0.3); position: relative; }
+          .marker-dest { width: 22px; height: 22px; background-color: #ef4444; border: 4.5px solid white; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.3); position: relative; }
           .marker-dest-inner { display: none; }
-          .marker-transfer { width: ms(19)px; height: ms(19)px; background-color: var(--color); border: 4px solid white; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: relative; }
-          .marker-hub { width: ms(12)px; height: ms(12)px; background-color: var(--color); border: 2.5px solid white; border-radius: 50%; box-shadow: 0 1.5px 5px rgba(0,0,0,0.15); }
-          .marker-stop { width: ms(10)px; height: ms(10)px; background-color: white; border: 3px solid var(--color); border-radius: 50%; }
+          .marker-transfer { width: 19px; height: 19px; background-color: var(--color); border: 4px solid white; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: relative; }
+          .marker-hub { width: 12px; height: 12px; background-color: var(--color); border: 2.5px solid white; border-radius: 50%; box-shadow: 0 1.5px 5px rgba(0,0,0,0.15); }
+          .marker-stop { width: 10px; height: 10px; background-color: white; border: 3px solid var(--color); border-radius: 50%; }
           .marker-user {
-            width: ms(16)px;
-            height: ms(16)px;
+            width: 16px;
+            height: 16px;
             background-color: #3b82f6;
             border: 2.5px solid white;
             border-radius: 50%;
@@ -154,10 +154,10 @@ const MapView = React.forwardRef((props: any, ref: any) => {
           .marker-user::after {
             content: '';
             position: absolute;
-            top: ms(-2.5)px;
-            left: ms(-2.5)px;
-            width: ms(16)px;
-            height: ms(16)px;
+            top: -2.5px;
+            left: -2.5px;
+            width: 16px;
+            height: 16px;
             border: 2.5px solid #3b82f6;
             border-radius: 50%;
             animation: user-pulse 2s infinite ease-out;
@@ -166,10 +166,10 @@ const MapView = React.forwardRef((props: any, ref: any) => {
           }
           .marker-user-heading {
             position: absolute;
-            top: ms(-15)px;
-            left: ms(-15)px;
-            width: ms(46)px;
-            height: ms(46)px;
+            top: -15px;
+            left: -15px;
+            width: 46px;
+            height: 46px;
             pointer-events: none;
             display: flex;
             align-items: center;
@@ -179,9 +179,9 @@ const MapView = React.forwardRef((props: any, ref: any) => {
           .marker-user-cone {
             width: 0;
             height: 0;
-            border-left: ms(10)px solid transparent;
-            border-right: ms(10)px solid transparent;
-            border-bottom: ms(22)px solid rgba(59, 130, 246, 0.4);
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 22px solid rgba(59, 130, 246, 0.4);
             filter: drop-shadow(0 0 3px rgba(59, 130, 246, 0.5));
             transform: translateY(-11px);
           }

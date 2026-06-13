@@ -3,9 +3,8 @@ import { Dimensions, Platform } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 // Cap the width and height for Web/Tablets so the UI doesn't become gigantic
-// By capping at 375, we ensure the app never scales UP (getting too big), only DOWN for small phones.
-// On Web, we can even cap it at 350 to keep things nice and compact.
-const MAX_WIDTH = Platform.OS === 'web' ? 350 : 375; 
+// On Web, we cap it at 320 to keep texts and UI elements crisp and compact like a real phone screen.
+const MAX_WIDTH = Platform.OS === 'web' ? 320 : 375; 
 const scaleWidth = Math.min(width, MAX_WIDTH);
 
 // Guideline sizes are based on standard ~5" screen mobile device (iPhone 11)
@@ -15,9 +14,11 @@ const guidelineBaseHeight = 812;
 export const scale = (size: number) => scaleWidth / guidelineBaseWidth * size;
 export const verticalScale = (size: number) => height / guidelineBaseHeight * size;
 
-// moderateScale gives a nice middle ground. The factor controls how aggressively it scales.
-// factor = 0.5 means it will be halfway between the raw size and the fully scaled size.
-export const moderateScale = (size: number, factor = 0.5) => size + (scale(size) - size) * factor;
+// moderateScale gives a nice middle ground.
+// On Web, we use a factor of 0.8 to scale down more aggressively, solving the "large text" feel on desktop browsers.
+export const moderateScale = (size: number, factor = Platform.OS === 'web' ? 0.85 : 0.5) => {
+  return size + (scale(size) - size) * factor;
+};
 
 // Shortcut for the most commonly used metric
 export const ms = moderateScale;
