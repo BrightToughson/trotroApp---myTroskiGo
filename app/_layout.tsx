@@ -128,7 +128,7 @@ function DesktopWrapper({ children }: { children: React.ReactNode }) {
   );
   
   // Apply a 44px top padding if running as PWA and no safe area insets are automatically applied.
-  const webPaddingTop = isStandalone && insets.top= == 0 ? 44 : 0;
+  const webPaddingTop = isStandalone && insets.top === 0 ? 44 : 0;
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background, alignItems: 'center', width: '100%', overflow: 'hidden' }}>
