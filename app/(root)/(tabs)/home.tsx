@@ -77,17 +77,17 @@ export default function Home() {
   const searchMarginBottom = isSmallScreen ? 20 : 32;
   const taglineMarginBottom = isSmallScreen ? 4 : 8;
   const paddingVerticalSmall = isSmallScreen ? 10 : 12;
-  const searchMinHeight = isSmallScreen ? 64 : 76;
-  const headingSize = isSmallScreen ? 16 : 18;
-  const sectionTitleSize = isSmallScreen ? 20 : 24;
-  const tickerMarginTop = isSmallScreen ? 16 : 24;
+  const searchMinHeight = ms(isSmallScreen ? 64 : 76);
+  const headingSize = ms(isSmallScreen ? 14 : 16);
+  const sectionTitleSize = ms(isSmallScreen ? 16 : 18);
+  const tickerMarginTop = ms(isSmallScreen ? 16 : 24);
   
   // Dynamic font sizes for small screens
-  const userNameSize = isSmallScreen ? 14 : 16;
-  const taglineSize = isSmallScreen ? 12 : 14;
-  const searchSubSize = isSmallScreen ? 10 : 11.5;
-  const liveLabelSize = isSmallScreen ? 13 : 14;
-  const liveTextSize = isSmallScreen ? 14 : 16;
+  const userNameSize = ms(isSmallScreen ? 14 : 16);
+  const taglineSize = ms(isSmallScreen ? 11 : 13);
+  const searchSubSize = ms(isSmallScreen ? 9 : 10);
+  const liveLabelSize = ms(isSmallScreen ? 12 : 13);
+  const liveTextSize = ms(isSmallScreen ? 13 : 14);
   
   const [recentRides, setRecentRides] = useState<Ride[]>([]);
   const [latestReport, setLatestReport] = useState<Notification | null>(null);

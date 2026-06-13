@@ -178,22 +178,7 @@ const UserLocationMarker = memo(function UserLocationMarker({ location, colors }
       anchor={{ x: 0.5, y: 0.5 }}
     >
       <View style={{ alignItems: 'center', justifyContent: 'center', width: ms(50), height: ms(50) }}>
-        {/* Heading Cone */}
-        <Animated.View style={[
-          {
-            position: 'absolute',
-            width: ms(46), height: ms(46), alignItems: 'center', justifyContent: 'center',
-          },
-          animatedHeadingStyle
-        ]}>
-          <View style={{
-            width: 0, height: 0,
-            borderLeftWidth: 10, borderRightWidth: 10, borderBottomWidth: 22,
-            borderLeftColor: 'transparent', borderRightColor: 'transparent',
-            borderBottomColor: 'rgba(59, 130, 246, 0.4)',
-            transform: [{ translateY: -11 }]
-          }} />
-        </Animated.View>
+
         
         {/* Core Dot */}
         <View style={{

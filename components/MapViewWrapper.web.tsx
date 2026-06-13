@@ -616,16 +616,6 @@ const MapView = React.forwardRef((props: any, ref: any) => {
                   const el = document.createElement('div');
                   if (m.isUserLocation || m.identifier === 'user') {
                     el.className = 'marker-user';
-                    
-                    const headingContainer = document.createElement('div');
-                    headingContainer.className = 'marker-user-heading';
-                    headingContainer.id = m.id + '-heading';
-                    
-                    const cone = document.createElement('div');
-                    cone.className = 'marker-user-cone';
-                    headingContainer.appendChild(cone);
-                    
-                    el.appendChild(headingContainer);
                   } else if (m.identifier === 'origin') {
                     el.className = 'marker-origin';
                   } else if (m.identifier === 'destination') {
