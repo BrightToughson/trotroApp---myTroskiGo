@@ -119,8 +119,7 @@ export default function Home() {
   const [showAndroidInstall, setShowAndroidInstall] = useState(false);
   const [isOfficialModalVisible, setIsOfficialModalVisible] = useState(false);
   const [unreadOfficialCount, setUnreadOfficialCount] = useState(0);
-  const [showGreeting, setShowGreeting] = useState(true);
-  const [swiperIndex, setSwiperIndex] = useState(0);
+    const [showGreeting, setShowGreeting] = useState(true);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -493,7 +492,6 @@ export default function Home() {
                 loop={true}
                 bounces={true}
                 height= {Platform.OS === 'web' ? 300 : 280} 
-                onIndexChanged={(index) => setSwiperIndex(index)}
                 paginationStyle={{ top: ms(16), right: ms(16), bottom: undefined, left: undefined, alignItems: 'flex-start' }}
                 removeClippedSubviews={false}
                 dot={<View style={{ backgroundColor: 'rgba(255,255,255,0.6)', width: ms(12), height: ms(6), borderRadius: ms(3), marginHorizontal: ms(4), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: ms(2), elevation: 3 }} />}
