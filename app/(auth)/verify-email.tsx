@@ -2,7 +2,7 @@ import { ms } from '../../lib/metrics';
 import { CodeInput } from "@/components/CodeInput";
 import { CustomButton } from "@/components/customButton";
 import { useTheme, LightColors } from "@/context/ThemeContext";
-import { useSignUp } from "@clerk/clerk-expo";
+import { useSignUp } from "@clerk/expo";
 import { WebIcon } from "@/components/WebIcon";
 import { useTranslation } from "react-i18next";
 import { LinearGradient } from "expo-linear-gradient";

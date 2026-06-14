@@ -10,7 +10,7 @@ import { WebIcon } from "./WebIcon";
 import { LocationSearchModal } from "./LocationSearchModal";
 import * as ExpoLocation from "expo-location";
 import MapViewWrapper, { Polyline } from "./MapViewWrapper";
-import { useUser } from "@clerk/clerk-expo";
+import { useUser } from "@clerk/expo";
 import { useTranslation } from
 "react-i18next";
 

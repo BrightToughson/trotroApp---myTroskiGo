@@ -10,7 +10,7 @@ import {
   Platform,
   Alert,
 } from 'react-native';
-import { useUser } from '@clerk/clerk-expo';
+import { useUser } from '@clerk/expo';
 import { WebIcon } from './WebIcon';
 import { useTheme, LightColors } from '../context/ThemeContext';
 import { Notification, NotificationService } from '../lib/NotificationService';

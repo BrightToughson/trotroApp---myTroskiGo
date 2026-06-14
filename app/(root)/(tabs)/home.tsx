@@ -1,5 +1,5 @@
 import { ms } from '../../../lib/metrics';
-import { useUser } from "@clerk/clerk-expo";
+import { useUser } from "@clerk/expo";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";

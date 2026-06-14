@@ -11,7 +11,7 @@
     "build": "npx expo export"
   },
   "dependencies": {
-    "@clerk/clerk-expo": "2.19.11",
+    "@clerk/expo": "^3.4.2",
     "@expo-google-fonts/inter": "^0.4.2",
     "@expo-google-fonts/plus-jakarta-sans": "^0.4.2",
     "@expo/vector-icons": "^15.0.3",

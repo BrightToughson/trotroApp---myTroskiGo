@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Platform, Alert, KeyboardAvoidingView, Image } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { useTheme } from '../context/ThemeContext';
-import { useUser } from '@clerk/clerk-expo';
+import { useUser } from '@clerk/expo';
 import { isAdminUser } from '../constants/admins';
 import { WebIcon } from '../components/WebIcon';
 import { LinearGradient } from 'expo-linear-gradient';

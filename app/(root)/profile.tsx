@@ -1,5 +1,5 @@
 import { ms } from '../../lib/metrics';
-import { useAuth, useUser } from "@clerk/clerk-expo";
+import { useAuth, useUser } from "@clerk/expo";
 import { useTranslation } from "react-i18next";
 import { WebIcon } from "../../components/WebIcon";
 import * as ImagePicker from "expo-image-picker";

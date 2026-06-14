@@ -5,7 +5,7 @@ import InputField from "@/components/InputField";
 import OAuth from "@/components/OAuth";
 import { ProcessingModal } from "@/components/ProcessingModal";
 import { useTheme, LightColors } from "@/context/ThemeContext";
-import { useSignIn } from "@clerk/clerk-expo";
+import { useSignIn } from "@clerk/expo";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link, useRouter } from "expo-router";
 import React, { useState } from "react";

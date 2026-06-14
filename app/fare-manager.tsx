@@ -4,7 +4,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Platfo
 import { Stack, useRouter } from 'expo-router';
 import { useTheme } from '../context/ThemeContext';
 import { supabase } from '../lib/supabase';
-import { useUser } from '@clerk/clerk-expo';
+import { useUser } from '@clerk/expo';
 import { isAdminUser } from '../constants/admins';
 import { WebIcon } from '../components/WebIcon';
 import { LinearGradient } from 'expo-linear-gradient';

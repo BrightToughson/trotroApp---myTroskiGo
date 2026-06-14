@@ -5,7 +5,7 @@ import OAuth from "@/components/OAuth";
 import { ProcessingModal } from "@/components/ProcessingModal";
 import { WebIcon } from "@/components/WebIcon";
 import { useTheme, LightColors } from "@/context/ThemeContext";
-import { useSignUp } from "@clerk/clerk-expo";
+import { useSignUp } from "@clerk/expo";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link, useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";

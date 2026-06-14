@@ -1,5 +1,5 @@
 import { ms } from '../lib/metrics';
-import { useAuth } from "@clerk/clerk-expo";
+import { useAuth } from "@clerk/expo";
 import { Redirect } from "expo-router";
 import { SecureStoreWrapper as SecureStore } from "../lib/SecureStoreWrapper";
 import React, { useEffect, useState } from "react";

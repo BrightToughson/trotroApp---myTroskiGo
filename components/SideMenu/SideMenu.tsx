@@ -28,7 +28,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "../../context/ThemeContext";
 import { styles, width } from "./styles";
 import { MenuItem } from "./MenuItem";
-import { useUser } from "@clerk/clerk-expo";
+import { useUser } from "@clerk/expo";
 import { isAdminUser } from
 "../../constants/admins";
 

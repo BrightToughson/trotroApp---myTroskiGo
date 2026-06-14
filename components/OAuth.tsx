@@ -2,7 +2,7 @@ import { ms } from '../lib/metrics';
 import { useTheme, LightColors } from "../context/ThemeContext";
 import { WebIcon } from "./WebIcon";
 import { useWarmUpBrowser } from "../hooks/useWarmUpBrowser";
-import { useOAuth, useSignIn, useSignUp } from "@clerk/clerk-expo";
+import { useOAuth, useSignIn, useSignUp } from "@clerk/expo";
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
 import { router } from "expo-router";

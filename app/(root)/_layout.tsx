@@ -1,4 +1,4 @@
-import { useAuth } from "@clerk/clerk-expo";
+import { useAuth } from "@clerk/expo";
 import { router, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useTheme, LightColors } from "../../context/ThemeContext";
