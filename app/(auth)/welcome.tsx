@@ -242,6 +242,7 @@ const Welcome = () => {
         <Swiper
           ref={swiperRef}
           loop={false}
+          paginationStyle={styles.paginationStyle}
           dotStyle={styles.dotStyle}
           activeDotStyle={[
             styles.activeDotStyle,
@@ -420,18 +421,26 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
 
+  paginationStyle: {
+    bottom: '45%',
+  },
   dotStyle: {
-    backgroundColor: "#CBD5E1",
-    marginHorizontal: ms(5),
-    width: ms(10),
-    height: ms(6),
+    backgroundColor: "rgba(148, 163, 184, 0.4)",
+    marginHorizontal: ms(6),
+    width: ms(8),
+    height: ms(8),
     borderRadius: ms(4),
   },
   activeDotStyle: {
-    marginHorizontal: ms(5),
-    width: ms(36),
-    height: ms(6),
+    marginHorizontal: ms(6),
+    width: ms(24),
+    height: ms(8),
     borderRadius: ms(4),
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 2,
   },
 
   slide: {

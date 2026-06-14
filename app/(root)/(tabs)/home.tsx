@@ -59,6 +59,24 @@ const MOCK_NEWS = [
     image_url: "https://cdn.ghanaweb.com/imagelib/pics/838/83884814.jpg",
     color: "#3B82F6",
     url: "https://www.ghanaweb.com/GhanaHomePage/NewsArchive/Accra-Kumasi-Expressway-begins-as-military-clear-17-75km-land-for-project-2033030"
+  },
+  {
+    id: "fares",
+    tag: "transport",
+    title: "Transport Ministry to meet GRTCC, GPRTU over proposed 20% fare increase",
+    excerpt: "The Ministry of Transport will engage the leadership of the transport unions over the proposed transport fare increment.",
+    image_url: "https://cdn.ghanaweb.com/imagelib/pics/869/86950294.jpg",
+    color: "#FBBF24",
+    url: "https://www.ghanaweb.com/"
+  },
+  {
+    id: "brt",
+    tag: "transit",
+    title: "New BRT buses arrive to ease traffic congestion in Accra",
+    excerpt: "Government has procured 100 new buses to augment the fleet of the Metro Mass Transit.",
+    image_url: "https://cdn.ghanaweb.com/imagelib/pics/156/15643445.jpg",
+    color: "#10B981",
+    url: "https://www.ghanaweb.com/"
   }
 ];
 
@@ -102,6 +120,7 @@ export default function Home() {
   const [isOfficialModalVisible, setIsOfficialModalVisible] = useState(false);
   const [unreadOfficialCount, setUnreadOfficialCount] = useState(0);
   const [showGreeting, setShowGreeting] = useState(true);
+  const [swiperIndex, setSwiperIndex] = useState(0);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -451,8 +470,8 @@ export default function Home() {
           <Animated.View entering={FadeInUp.delay(550).duration(600)} style={[styles.section, { marginTop: sectionMarginTop * 1.5 }]}>
             <View style={styles.sectionHeader}>
               <View>
-                <Text style={[styles.sectionTitle, { color: colors.text, fontSize: sectionTitleSize }]}>{t('city_pulse')}</Text>
-                <Text style={{ fontSize: ms(13), color: colors.textSecondary, fontWeight: '600', marginTop: ms(-4) }}>{t('stay_informed_city')}</Text>
+                <Text style={[styles.sectionTitle, { color: colors.text, fontSize: sectionTitleSize }]}>{t('transit_updates', 'Transit Updates')}</Text>
+                <Text style={{ fontSize: ms(13), color: colors.textSecondary, fontWeight: '600', marginTop: ms(-4) }}>{t('stay_informed_transit', 'Stay informed with the latest transit news')}</Text>
               </View>
               {cityPulses.length > 3 && (
                 <TouchableOpacity 
@@ -474,10 +493,11 @@ export default function Home() {
                 loop={true}
                 bounces={true}
                 height= {Platform.OS === 'web' ? 300 : 280} 
-                dot={<View style={{ backgroundColor: 'rgba(255,255,255,0.6)', width: ms(12), height: ms(6), borderRadius: ms(3), marginHorizontal: ms(4), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: ms(2), elevation: 3 }} />}
-                activeDot={<View style={{ backgroundColor: colors.primary, width: ms(32), height: ms(6), borderRadius: ms(3), marginHorizontal: ms(4), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: ms(2), elevation: 3 }} />}
+                onIndexChanged={(index) => setSwiperIndex(index)}
                 paginationStyle={{ top: ms(16), right: ms(16), bottom: undefined, left: undefined, alignItems: 'flex-start' }}
                 removeClippedSubviews={false}
+                dot={<View style={{ backgroundColor: 'rgba(255,255,255,0.6)', width: ms(12), height: ms(6), borderRadius: ms(3), marginHorizontal: ms(4), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: ms(2), elevation: 3 }} />}
+                activeDot={<View style={{ backgroundColor: colors.primary, width: ms(32), height: ms(6), borderRadius: ms(3), marginHorizontal: ms(4), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: ms(2), elevation: 3 }} />}
               >
                 {(cityPulses.length > 0 ? cityPulses.slice(0, 3) : (MOCK_NEWS as CityPulse[]).slice(0, 3)).map((item) => (
                   <View 
