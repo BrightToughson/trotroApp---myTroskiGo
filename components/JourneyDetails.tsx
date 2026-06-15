@@ -31,7 +31,7 @@ import { ScrollIndicator } from "./ScrollIndicator";
 import { WebIcon } from
 "./WebIcon";
 
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
+const SCREEN_HEIGHT = Dimensions?.get?.("window")?.height || 812;
 
 const LoadingState = ({ isDark, colors }: any) => {
   const { t } = useTranslation();

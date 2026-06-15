@@ -33,7 +33,7 @@ import Animated, {
   FadeInRight,
 } from "react-native-reanimated";
 
-const { width } = Dimensions.get('window');
+const width = Dimensions?.get?.('window')?.width || 375;
 
 const LEG_COLORS = ["#3b82f6", "#f59e0b", "#10b981", "#8b5cf6", "#ec4899"];
 

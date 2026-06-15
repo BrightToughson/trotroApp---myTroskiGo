@@ -5,14 +5,16 @@ const guidelineBaseWidth = 375;
 const guidelineBaseHeight = 812;
 
 export const scale = (size: number) => {
-  const { width } = Dimensions.get('window');
+  if (!Dimensions || !Dimensions.get) return size;
+  const { width } = Dimensions.get('window') || { width: 375 };
   const MAX_WIDTH = Platform.OS === 'web' ? 320 : 375; 
   const scaleWidth = Math.min(width, MAX_WIDTH);
   return (scaleWidth / guidelineBaseWidth) * size;
 };
 
 export const verticalScale = (size: number) => {
-  const { height } = Dimensions.get('window');
+  if (!Dimensions || !Dimensions.get) return size;
+  const { height } = Dimensions.get('window') || { height: 812 };
   return (height / guidelineBaseHeight) * size;
 };
 
