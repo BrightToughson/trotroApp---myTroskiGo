@@ -1,11 +1,11 @@
 import * as ExpoLocation from "expo-location";
 import { Platform } from "react-native";
-import { Location, StopType, TransitLeg, TripDetails, ActiveLeg } from "../constants/types";
-import { RouteCacheService } from "./RouteCacheService";
-import { supabase } from "./supabase";
+import { Location, StopType, TransitLeg, TripDetails, ActiveLeg } from "../../constants/types";
+import { RouteCacheService } from "../RouteCacheService";
+import { supabase } from "../supabase";
 // Removed heavy unused ANCHOR_ROUTES payload
 
-const osmStopsData = require('../osrm routes/allStops.json');
+const osmStopsData = require('../../osrm routes/allStops.json');
 
 export const OSM_STOPS: Location[] = osmStopsData.features.map((f: any) => {
   const isGeneric = !f.properties.name || f.properties.name === "OpenStreetMap Stop";

@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Platform, Alert } from "react-native";
 import * as Device from "expo-device";
 import Constants from "expo-constants";
-import { NotificationsWrapper } from "./NotificationsWrapper";
+import { NotificationsWrapper } from "../NotificationsWrapper";
 
 export interface Notification {
   id: string;

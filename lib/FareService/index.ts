@@ -1,6 +1,6 @@
-import { FARE_CONSTANTS } from "./LocationService";
-import { supabase } from "./supabase";
-import localFaresBackup from "../constants/fares.json";
+import { FARE_CONSTANTS } from "../LocationService";
+import { supabase } from "../supabase";
+import localFaresBackup from "../../constants/fares.json";
 
 export interface ManualFareRule {
   origin?: string;      // Optional: Specific starting point name

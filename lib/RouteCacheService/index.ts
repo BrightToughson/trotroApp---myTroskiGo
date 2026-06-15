@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ActiveLeg, TripDetails, Location } from "./LocationService";
+import { ActiveLeg, TripDetails, Location } from "../LocationService";
 const TRANSIT_DATA_VERSION = "2.0.1";
 
 const CACHE_KEY_PREFIX = "@trotro_cache_v2_";

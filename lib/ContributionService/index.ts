@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { supabase } from '../supabase';
 
 export type ContributionType = 'price' | 'route' | 'stop' | 'general';
 export type ContributionStatus = 'pending' | 'approved' | 'rejected';
