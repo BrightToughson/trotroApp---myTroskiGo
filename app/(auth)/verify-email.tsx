@@ -80,12 +80,13 @@ export default function VerifyEmail() {
     setLoading(true);
 
     try {
-      const attempt = await signUp!.attemptEmailAddressVerification({
+      const attempt = await signUp!.verifications.verifyEmailCode({
         code,
       });
+      if (attempt.error) throw attempt.error;
 
-      if (attempt.status === "complete") {
-        await setActive!({ session: attempt.createdSessionId });
+      if (signUp!.status === "complete") {
+        await signUp!.finalize();
         router.replace({ pathname: "/(root)/(tabs)/home", params: { signup: "true" } });
       } else {
         Alert.alert(t('error', 'Error'), t('verification_failed', 'Verification failed. Please try again.'));

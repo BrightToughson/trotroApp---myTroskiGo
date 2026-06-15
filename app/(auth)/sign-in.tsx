@@ -157,15 +157,15 @@ export default function SignIn() {
     if (!isLoaded) return;
     setLoading(true);
     try {
-      const attempt = await signIn!.attemptFirstFactor({
-        strategy: "email_code",
+      const attempt = await signIn!.emailCode.verifyCode({
         code,
       });
+      if (attempt.error) throw attempt.error;
 
-      if (attempt.status === "complete") {
+      if (signIn!.status === "complete") {
         setSuccessMessage(t('login_success', 'Verification Successful!'));
         setTimeout(async () => {
-          await setActive!({ session: attempt.createdSessionId });
+          await signIn!.finalize();
           router.replace({ pathname: "/(root)/(tabs)/home", params: { login: "true" } });
         }, 100);
       } else {
