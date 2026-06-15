@@ -1,4 +1,4 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   Modal,
@@ -11,14 +11,13 @@ import {
   Alert,
 } from 'react-native';
 import { useUser } from '@clerk/expo';
-import { WebIcon } from './WebIcon';
-import { useTheme, LightColors } from '../context/ThemeContext';
-import { Notification, NotificationService } from '../lib/NotificationService';
+import { WebIcon } from '../WebIcon';
+import { useTheme, LightColors } from '../../context/ThemeContext';
+import { Notification, NotificationService } from '../../lib/NotificationService';
 import { useTranslation } from 'react-i18next';
 import Animated, { FadeInDown, SlideInDown, SlideOutDown, FadeIn, FadeOut } from 'react-native-reanimated';
-import { translateText } from '../lib/translate';
-import { isAdminUser } from
-'../constants/admins';
+import { translateText } from '../../lib/translate';
+import { isAdminUser } from '../../constants/admins';
 
 interface Props {
   isVisible: boolean;

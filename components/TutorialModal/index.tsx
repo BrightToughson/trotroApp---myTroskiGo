@@ -1,10 +1,10 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React, { useRef, useState, useEffect } from 'react';
 import { Modal, View, Text, StyleSheet, TouchableOpacity, Platform, ScrollView, Dimensions } from 'react-native';
 import { Image } from 'expo-image';
 import { useTranslation } from 'react-i18next';
-import { useTheme, LightColors } from '../context/ThemeContext';
-import { WebIcon } from './WebIcon';
+import { useTheme, LightColors } from '../../context/ThemeContext';
+import { WebIcon } from '../WebIcon';
 import Swiper from 'react-native-swiper';
 import Animated, { 
   FadeInDown, 
@@ -18,11 +18,10 @@ import Animated, {
   runOnJS
 } from 'react-native-reanimated';
 import { BlurView } from 'expo-blur';
-import { CustomButton } from './customButton';
+import { CustomButton } from '../customButton';
 import * as Haptics from 'expo-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import LanguageSelector from
-'./LanguageSelector';
+import LanguageSelector from '../LanguageSelector';
 
 type SpotlightFeature = {
   image: any;
@@ -42,30 +41,30 @@ type TutorialSlideData = {
 const getTutorialSlides = (t: any): TutorialSlideData[] => [
   {
     mainTitle: t('tutorialTitle1') || 'Welcome to myTroski Go',
-    mainImage: require('../assets/images/tutorial_image/homescreen_tutorial/home_screen.png'),
+    mainImage: require('../../assets/images/tutorial_image/homescreen_tutorial/home_screen.png'),
     features: [
       {
-        image: require('../assets/images/tutorial_image/homescreen_tutorial/search destination.png'),
+        image: require('../../assets/images/tutorial_image/homescreen_tutorial/search destination.png'),
         title: t('tutorial_step_1_title') || 'Find Your Ride',
         description: t('tutorial_step_1_desc') || 'Search for any destination in the city easily.',
       },
       {
-        image: require('../assets/images/tutorial_image/homescreen_tutorial/live_update.png'),
+        image: require('../../assets/images/tutorial_image/homescreen_tutorial/live_update.png'),
         title: t('tutorial_step_3_title') || 'Live Update',
         description: t('tutorial_step_3_desc') || 'See live news about road conditions from other travelers.',
       },
       {
-        image: require('../assets/images/tutorial_image/homescreen_tutorial/home screen header.png'),
+        image: require('../../assets/images/tutorial_image/homescreen_tutorial/home screen header.png'),
         title: t('tutorialFeatureDashboardTitle') || 'Dashboard',
         description: t('tutorialFeatureDashboardDesc') || 'Quickly see where you are and where you\'re going.',
       },
       {
-        image: require('../assets/images/tutorial_image/homescreen_tutorial/home, history and notification button.png'),
+        image: require('../../assets/images/tutorial_image/homescreen_tutorial/home, history and notification button.png'),
         title: t('tutorialFeatureEasyNavTitle') || 'Easy Navigation',
         description: t('tutorialFeatureEasyNavDesc') || 'Switch between home, history, and alerts with one tap.',
       },
       {
-        image: require('../assets/images/tutorial_image/homescreen_tutorial/recent journey.png'),
+        image: require('../../assets/images/tutorial_image/homescreen_tutorial/recent journey.png'),
         title: t('tutorialFeatureRecentTripsTitle') || 'Recent Trips',
         description: t('tutorialFeatureRecentTripsDesc') || 'Quickly jump back into your most frequent routes.',
       }
@@ -73,16 +72,16 @@ const getTutorialSlides = (t: any): TutorialSlideData[] => [
   },
   {
     mainTitle: t('tutorialFindSearchTitle') || 'Find Your Ride',
-    mainImage: require('../assets/images/tutorial_image/findridescreen_tutorials/find_search_start/find_ride.png'),
+    mainImage: require('../../assets/images/tutorial_image/findridescreen_tutorials/find_search_start/find_ride.png'),
     mainDescription: t('tutorialFindSearchDesc') || 'Search for any destination in the city easily.',
     features: [
       {
-        image: require('../assets/images/tutorial_image/findridescreen_tutorials/find_search_start/search.png'),
+        image: require('../../assets/images/tutorial_image/findridescreen_tutorials/find_search_start/search.png'),
         title: t('tutorialFeatureSearchTitle') || 'Search',
         description: t('tutorialFeatureSearchDesc') || 'Easily look up any terminal or stop.',
       },
       {
-        image: require('../assets/images/tutorial_image/findridescreen_tutorials/find_search_start/automatic starting point.png'),
+        image: require('../../assets/images/tutorial_image/findridescreen_tutorials/find_search_start/automatic starting point.png'),
         title: t('tutorialFeatureAutoDetectTitle') || 'Auto Detect',
         description: t('tutorialFeatureAutoDetectDesc') || 'Let us find your location automatically.',
       }
@@ -90,26 +89,26 @@ const getTutorialSlides = (t: any): TutorialSlideData[] => [
   },
   {
     mainTitle: t('tutorialStartingPointTitle') || 'Set Your Starting Point',
-    mainImage: require('../assets/images/tutorial_image/findridescreen_tutorials/starting point/starting_point_screen.png'),
+    mainImage: require('../../assets/images/tutorial_image/findridescreen_tutorials/starting point/starting_point_screen.png'),
     mainDescription: t('tutorialStartingPointDesc') || 'Choose exactly where your journey begins.',
     features: [
       {
-        image: require('../assets/images/tutorial_image/findridescreen_tutorials/find_search_start/starting point.png'),
+        image: require('../../assets/images/tutorial_image/findridescreen_tutorials/find_search_start/starting point.png'),
         title: t('tutorialFeatureSetStartTitle') || 'Set Start',
         description: t('tutorialFeatureSetStartDesc') || 'Quickly set where your journey begins.',
       },
       {
-        image: require('../assets/images/tutorial_image/findridescreen_tutorials/starting point/nearby starting point.png'),
+        image: require('../../assets/images/tutorial_image/findridescreen_tutorials/starting point/nearby starting point.png'),
         title: t('tutorialFeatureNearbyTitle') || 'Nearby Stations',
         description: t('tutorialFeatureNearbyDesc') || 'See all the verified hubs around you.',
       },
       {
-        image: require('../assets/images/tutorial_image/findridescreen_tutorials/starting point/type starting point.png'),
+        image: require('../../assets/images/tutorial_image/findridescreen_tutorials/starting point/type starting point.png'),
         title: t('tutorialFeatureManualSearchTitle') || 'Manual Search',
         description: t('tutorialFeatureManualSearchDesc') || 'Type any location to start from there.',
       },
       {
-        image: require('../assets/images/tutorial_image/findridescreen_tutorials/starting point/nearest starting point.png'),
+        image: require('../../assets/images/tutorial_image/findridescreen_tutorials/starting point/nearest starting point.png'),
         title: t('tutorialFeatureNearestStopTitle') || 'Nearest Stop',
         description: t('tutorialFeatureNearestStopDesc') || 'We will suggest the absolute closest stop to your location.',
       }
@@ -117,21 +116,21 @@ const getTutorialSlides = (t: any): TutorialSlideData[] => [
   },
   {
     mainTitle: t('tutorialDestinationTitle') || 'Choose Your Destination',
-    mainImage: require('../assets/images/tutorial_image/findridescreen_tutorials/destination/destination_screen.png'),
+    mainImage: require('../../assets/images/tutorial_image/findridescreen_tutorials/destination/destination_screen.png'),
     mainDescription: t('tutorialDestinationDesc') || 'Pick your final stop and see all available routes.',
     features: [
       {
-        image: require('../assets/images/tutorial_image/findridescreen_tutorials/destination/choose destination.png'),
+        image: require('../../assets/images/tutorial_image/findridescreen_tutorials/destination/choose destination.png'),
         title: t('tutorialFeatureSelectStopTitle') || 'Select Stop',
         description: t('tutorialFeatureSelectStopDesc') || 'Pick the exact stop where you want to end.',
       },
       {
-        image: require('../assets/images/tutorial_image/findridescreen_tutorials/destination/choose region.png'),
+        image: require('../../assets/images/tutorial_image/findridescreen_tutorials/destination/choose region.png'),
         title: t('tutorialFeatureBrowseRegionsTitle') || 'Browse Regions',
         description: t('tutorialFeatureBrowseRegionsDesc') || 'Explore different city regions for destinations.',
       },
       {
-        image: require('../assets/images/tutorial_image/findridescreen_tutorials/destination/final destination.png'),
+        image: require('../../assets/images/tutorial_image/findridescreen_tutorials/destination/final destination.png'),
         title: t('tutorialFeatureConfirmedTitle') || 'Confirmed',
         description: t('tutorialFeatureConfirmedDesc') || 'Lock in your destination and get ready to go.',
       }
@@ -139,21 +138,21 @@ const getTutorialSlides = (t: any): TutorialSlideData[] => [
   },
   {
     mainTitle: t('tutorialMapDisplayTitle') || 'Track on Map',
-    mainImage: require('../assets/images/tutorial_image/map display/map_screen.png'),
+    mainImage: require('../../assets/images/tutorial_image/map display/map_screen.png'),
     mainDescription: t('tutorialMapDisplayDesc') || 'Follow your journey live on our beautiful interactive map and never miss a stop.',
     features: [
       {
-        image: require('../assets/images/tutorial_image/map display/details_screen.png'),
+        image: require('../../assets/images/tutorial_image/map display/details_screen.png'),
         title: t('tutorialFeatureRouteDetailsTitle') || 'Route Details',
         description: t('tutorialFeatureRouteDetailsDesc') || 'See the full path and every stop along the way.',
       },
       {
-        image: require('../assets/images/tutorial_image/map display/journey details display.png'),
+        image: require('../../assets/images/tutorial_image/map display/journey details display.png'),
         title: t('tutorialFeatureLiveInfoTitle') || 'Live Info',
         description: t('tutorialFeatureLiveInfoDesc') || 'View fares, time, and distance in one place.',
       },
       {
-        image: require('../assets/images/tutorial_image/map display/route.png'),
+        image: require('../../assets/images/tutorial_image/map display/route.png'),
         title: t('tutorialFeatureLiveMapTitle') || 'Live Map',
         description: t('tutorialFeatureLiveMapDesc') || 'Follow the blue line to your destination.',
       }
@@ -161,15 +160,15 @@ const getTutorialSlides = (t: any): TutorialSlideData[] => [
   },
   {
     mainTitle: t('tutorialTitle4') || 'Stay Updated',
-    mainImage: require('../assets/images/tutorial_image/updatescreen_tutorial/update_screen.png'),
+    mainImage: require('../../assets/images/tutorial_image/updatescreen_tutorial/update_screen.png'),
     features: [
       {
-        image: require('../assets/images/tutorial_image/updatescreen_tutorial/communtify and official updates.png'),
+        image: require('../../assets/images/tutorial_image/updatescreen_tutorial/communtify and official updates.png'),
         title: t('tutorial_step_4_title') || 'Community Updates',
         description: t('tutorial_step_4_desc') || 'Read the latest road conditions reported by others.',
       },
       {
-        image: require('../assets/images/tutorial_image/updatescreen_tutorial/make a post.png'),
+        image: require('../../assets/images/tutorial_image/updatescreen_tutorial/make a post.png'),
         title: t('tutorialFeatureMakePostTitle') || 'Make a Post',
         description: t('tutorialFeatureMakePostDesc') || 'Share your own travel updates with the community.',
       }
@@ -177,13 +176,13 @@ const getTutorialSlides = (t: any): TutorialSlideData[] => [
   },
   {
     mainTitle: t('tutorialTitle6') || 'Quick Access Menu',
-    mainImage: require('../assets/images/tutorial_image/sidemenu_tutorials/sidemeun_screen.png'),
+    mainImage: require('../../assets/images/tutorial_image/sidemenu_tutorials/sidemeun_screen.png'),
     mainDescription: t('tutorialDesc6') || 'Swipe to access your profile, history, settings, and other important features directly from the side menu.',
     features: []
   },
   {
     mainTitle: t('tutorialTitle5') || 'Install the App',
-    mainImage: require('../assets/logo/mytroski_display.png'),
+    mainImage: require('../../assets/logo/mytroski_display.png'),
     mainDescription: t('tutorialDesc5') || 'Add myTroski Go to your home screen for quick access.',
     features: [],
     isInstallList: true

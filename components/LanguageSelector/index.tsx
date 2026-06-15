@@ -1,8 +1,8 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useTheme, LightColors } from '../context/ThemeContext';
+import { useTheme, LightColors } from '../../context/ThemeContext';
 import { Image } from
 'expo-image';
 

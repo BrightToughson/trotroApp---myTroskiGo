@@ -1,7 +1,7 @@
-import { ms } from '../lib/metrics';
-import { WebIcon } from "./WebIcon";
-import { CustomButton } from "./customButton";
-import MapPickerModal from "./MapPickerModal";
+import { ms } from '../../lib/metrics';
+import { WebIcon } from "../WebIcon";
+import { CustomButton } from "../customButton";
+import MapPickerModal from "../MapPickerModal";
 import { useTranslation } from "react-i18next";
 import React, { useEffect, useState, useMemo } from "react";
 import * as ExpoLocation from "expo-location";
@@ -23,7 +23,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-native-reanimated";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../../context/ThemeContext";
 import {
     getCurrentUserLocation,
     searchLocations,
@@ -31,9 +31,8 @@ import {
     getNearbyStops,
     OSM_STOPS,
     Location,
-} from "../lib/LocationService";
-import { FareService } from
-"../lib/FareService";
+} from "../../lib/LocationService";
+import { FareService } from "../../lib/FareService";
 
 
 

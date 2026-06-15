@@ -1,14 +1,14 @@
-import { ms } from '../lib/metrics';
-import { useTheme, LightColors } from "../context/ThemeContext";
-import { WebIcon } from "./WebIcon";
-import { useWarmUpBrowser } from "../hooks/useWarmUpBrowser";
+import { ms } from '../../lib/metrics';
+import { useTheme, LightColors } from "../../context/ThemeContext";
+import { WebIcon } from "../WebIcon";
+import { useWarmUpBrowser } from "../../hooks/useWarmUpBrowser";
 import { useOAuth, useSignIn, useSignUp, useAuth } from "@clerk/expo";
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
 import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { Alert, Image, StyleSheet, View, Platform } from "react-native";
-import { CustomButton } from "./customButton";
+import { CustomButton } from "../customButton";
 import { useTranslation } from
 "react-i18next";
 

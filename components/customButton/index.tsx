@@ -1,4 +1,4 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import * as Haptics from "expo-haptics";
 import React from "react";
 import {
@@ -17,8 +17,7 @@ import Animated, {
     useSharedValue,
     withSpring,
 } from "react-native-reanimated";
-import { useTheme, LightColors } from
-"../context/ThemeContext";
+import { useTheme, LightColors } from "../../context/ThemeContext";
 
 interface CustomButtonProps {
   onPress: () => void;

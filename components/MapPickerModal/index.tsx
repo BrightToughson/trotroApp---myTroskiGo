@@ -1,11 +1,11 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, Modal, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
-import { WebIcon } from './WebIcon';
-import MapViewWrapper from './MapViewWrapper';
-import { useTheme } from '../context/ThemeContext';
-import { reverseGeocode, Location, getCurrentUserLocation } from '../lib/LocationService';
-import { CustomButton } from './customButton';
+import { WebIcon } from '../WebIcon';
+import MapViewWrapper from '../MapViewWrapper';
+import { useTheme } from '../../context/ThemeContext';
+import { reverseGeocode, Location, getCurrentUserLocation } from '../../lib/LocationService';
+import { CustomButton } from '../customButton';
 
 interface MapPickerModalProps {
   isVisible: boolean;

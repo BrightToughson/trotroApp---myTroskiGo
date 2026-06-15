@@ -1,7 +1,7 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React from 'react';
 import { Modal, View, Text, ActivityIndicator, StyleSheet } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 import Animated, { FadeIn, FadeOut } from
 'react-native-reanimated';

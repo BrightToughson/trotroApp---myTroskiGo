@@ -1,15 +1,15 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React, { useState, useRef } from "react";
 import { Modal, StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, Alert, ScrollView, PanResponder, Dimensions } from "react-native";
 import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
-import { useTheme } from "../context/ThemeContext";
-import InputField from "./InputField";
-import { CustomButton } from "./customButton";
-import { ContributionService } from "../lib/ContributionService";
-import { WebIcon } from "./WebIcon";
-import { LocationSearchModal } from "./LocationSearchModal";
+import { useTheme } from "../../context/ThemeContext";
+import InputField from "../InputField";
+import { CustomButton } from "../customButton";
+import { ContributionService } from "../../lib/ContributionService";
+import { WebIcon } from "../WebIcon";
+import { LocationSearchModal } from "../LocationSearchModal";
 import * as ExpoLocation from "expo-location";
-import MapViewWrapper, { Polyline } from "./MapViewWrapper";
+import MapViewWrapper, { Polyline } from "../MapViewWrapper";
 import { useUser } from "@clerk/expo";
 import { useTranslation } from
 "react-i18next";

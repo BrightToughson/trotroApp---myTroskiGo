@@ -1,5 +1,5 @@
-import { ms } from '../lib/metrics';
-import { WebIcon } from "./WebIcon";
+import { ms } from '../../lib/metrics';
+import { WebIcon } from "../WebIcon";
 import React, { useEffect } from "react";
 import { View, StyleSheet, Text } from
 "react-native";

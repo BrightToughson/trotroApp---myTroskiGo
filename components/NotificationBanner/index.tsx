@@ -1,4 +1,4 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Platform } from 'react-native';
 import Animated, { 
@@ -10,7 +10,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NotificationService, Notification } from '@/lib/NotificationService';
-import { WebIcon } from './WebIcon';
+import { WebIcon } from '../WebIcon';
 import { useRouter } from 'expo-router';
 import { useTheme } from
 '@/context/ThemeContext';

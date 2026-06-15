@@ -1,10 +1,9 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React, { createContext, useContext, useEffect, useState, useMemo, useRef, useImperativeHandle } from "react";
 import { View, StyleSheet } from "react-native";
-import { useTheme } from
-"../context/ThemeContext";
+import { useTheme } from "../../context/ThemeContext";
 
-const osmStopsGeoJSON = require('../osrm routes/allStops.json');
+const osmStopsGeoJSON = require('../../osrm routes/allStops.json');
 
 const MapContext = createContext<{
   registerItem: (id: string, type: "marker" | "polyline", data: any) => void;

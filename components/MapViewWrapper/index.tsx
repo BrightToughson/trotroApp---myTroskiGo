@@ -1,9 +1,8 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapboxGL from '@rnmapbox/maps';
-import { useTheme } from
-'../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 const MAPBOX_TOKEN = process.env.EXPO_PUBLIC_MAPBOX_KEY || '';
 MapboxGL.setAccessToken(MAPBOX_TOKEN);
@@ -16,7 +15,7 @@ export type MarkerProps = any;
 export type PolylineProps = any;
 export type UrlTileProps = any;
 
-const osmStopsGeoJSON = require('../osrm routes/allStops.json');
+const osmStopsGeoJSON = require('../../osrm routes/allStops.json');
 
 export const OSMStopsLayer = React.memo((props: any) => {
   const { colors, visible } = props;

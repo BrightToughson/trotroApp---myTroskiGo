@@ -1,4 +1,4 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React, { ReactNode } from "react";
 import {
     StyleProp,
@@ -17,8 +17,7 @@ import Animated, {
     useSharedValue,
     withTiming,
 } from "react-native-reanimated";
-import { useTheme, LightColors } from
-"../context/ThemeContext";
+import { useTheme, LightColors } from "../../context/ThemeContext";
 
 // Extending TextInputProps allows us to use all standard props like placeholder, secureTextEntry, etc.
 type InputFieldProps = TextInputProps & {

@@ -1,4 +1,4 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -25,11 +25,10 @@ import Animated, {
   withTiming,
   withSpring,
 } from "react-native-reanimated";
-import { useTheme } from "../context/ThemeContext";
-import { Location, ActiveLeg, TripDetails } from "../constants/types";
-import { ScrollIndicator } from "./ScrollIndicator";
-import { WebIcon } from
-"./WebIcon";
+import { useTheme } from "../../context/ThemeContext";
+import { Location, ActiveLeg, TripDetails } from "../../constants/types";
+import { ScrollIndicator } from "../ScrollIndicator";
+import { WebIcon } from "../WebIcon";
 
 const SCREEN_HEIGHT = Dimensions?.get?.("window")?.height || 812;
 
