@@ -1,10 +1,10 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Platform, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 import { router } from 'expo-router';
-import { WebIcon } from '../components/WebIcon';
+import { WebIcon } from '../../components/WebIcon';
 import { LinearGradient } from
 'expo-linear-gradient';
 

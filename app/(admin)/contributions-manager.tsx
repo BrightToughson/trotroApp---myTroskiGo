@@ -1,12 +1,12 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../../lib/metrics';
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView, Platform, StatusBar, RefreshControl, Alert, ActivityIndicator } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 import { router } from 'expo-router';
-import { WebIcon } from '../components/WebIcon';
-import { CustomButton } from '../components/customButton';
-import { ContributionService, Contribution } from '../lib/ContributionService';
-import ContributionModal from '../components/ContributionModal';
+import { WebIcon } from '../../components/WebIcon';
+import { CustomButton } from '../../components/customButton';
+import { ContributionService, Contribution } from '../../lib/ContributionService';
+import ContributionModal from '../../components/ContributionModal';
 import { useTranslation } from
 'react-i18next';
 
