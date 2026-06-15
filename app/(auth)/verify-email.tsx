@@ -2,7 +2,7 @@ import { ms } from '../../lib/metrics';
 import { CodeInput } from "@/components/CodeInput";
 import { CustomButton } from "@/components/customButton";
 import { useTheme, LightColors } from "@/context/ThemeContext";
-import { useSignUp } from "@clerk/expo";
+import { useSignUp, useAuth, useClerk } from "@clerk/expo";
 import { WebIcon } from "@/components/WebIcon";
 import { useTranslation } from "react-i18next";
 import { LinearGradient } from "expo-linear-gradient";
@@ -34,7 +34,9 @@ import Animated, {
  */
 export default function VerifyEmail() {
   const { t } = useTranslation();
-  const { isLoaded, signUp, setActive } = useSignUp();
+  const { isLoaded } = useAuth();
+  const { signUp } = useSignUp();
+  const { setActive } = useClerk();
   const router = useRouter();
   const { colors, isDark } = useTheme();
   const insets = useSafeAreaInsets();
@@ -71,19 +73,20 @@ export default function VerifyEmail() {
     if (code.length === 6 && !loading) {
       onVerifyPress();
     }
-  }, [code]);
+  }, [code, loading]);
 
   const onVerifyPress = async () => {
     if (!isLoaded) return;
     setLoading(true);
 
     try {
-      const signUpAttempt = await signUp.attemptEmailAddressVerification({
+      const attempt = await signUp!.verifications.verifyEmailCode({
         code,
       });
+      if (attempt.error) throw attempt.error;
 
-      if (signUpAttempt.status === "complete") {
-        await setActive({ session: signUpAttempt.createdSessionId });
+      if (signUp!.status === "complete") {
+        await setActive!({ session: signUp!.createdSessionId });
         router.replace({ pathname: "/(root)/(tabs)/home", params: { signup: "true" } });
       } else {
         Alert.alert(t('error', 'Error'), t('verification_failed', 'Verification failed. Please try again.'));

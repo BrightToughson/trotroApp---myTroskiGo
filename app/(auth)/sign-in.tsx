@@ -5,7 +5,7 @@ import InputField from "@/components/InputField";
 import OAuth from "@/components/OAuth";
 import { ProcessingModal } from "@/components/ProcessingModal";
 import { useTheme, LightColors } from "@/context/ThemeContext";
-import { useSignIn } from "@clerk/expo";
+import { useSignIn, useAuth, useClerk } from "@clerk/expo";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link, useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -24,7 +24,9 @@ import Animated, {
 
 export default function SignIn() {
   const { t } = useTranslation();
-  const { signIn, setActive, isLoaded } = useSignIn();
+  const { signIn } = useSignIn();
+  const { setActive } = useClerk();
+  const { isLoaded } = useAuth();
   const router = useRouter();
   const { colors, isDark } = useTheme();
   const insets = useSafeAreaInsets();
@@ -78,18 +80,18 @@ export default function SignIn() {
     setLoading(true);
 
     try {
-      const signInAttempt = await signIn.create({
+      const result = await signIn!.create({
         identifier: form.identifier,
       });
+      if (result.error) throw result.error;
 
-      if (signInAttempt.status === "needs_first_factor") {
-        const emailCodeFactor = signInAttempt.supportedFirstFactors?.find(
+      if (signIn!.status === "needs_first_factor") {
+        const emailCodeFactor = signIn!.supportedFirstFactors?.find(
           (factor: any) => factor.strategy === "email_code",
         ) as any;
 
         if (emailCodeFactor) {
-          await signIn.prepareFirstFactor({ 
-            strategy: "email_code", 
+          await signIn!.emailCode.sendCode({ 
             emailAddressId: emailCodeFactor.emailAddressId 
           });
           setNeedsOtp(true);
@@ -98,14 +100,14 @@ export default function SignIn() {
           Alert.alert(t('error', 'Error'), t('no_email_strategy', 'No email verification strategy found for this user.'));
           setLoading(false);
         }
-      } else if (signInAttempt.status === "complete") {
+      } else if (signIn!.status === "complete") {
         setSuccessMessage(t('login_success', 'Sign In Successful!'));
         setTimeout(async () => {
-          await setActive({ session: signInAttempt.createdSessionId });
+          await setActive!({ session: signIn!.createdSessionId });
           router.replace({ pathname: "/(root)/(tabs)/home", params: { login: "true" } });
         }, 100);
       } else {
-        console.error(JSON.stringify(signInAttempt, null, 2));
+        console.error(JSON.stringify(signIn, null, 2));
         Alert.alert(t('error', 'Error'), t('unable_passwordless', 'Unable to start passwordless sign-in.'));
         setLoading(false);
       }
@@ -155,19 +157,19 @@ export default function SignIn() {
     if (!isLoaded) return;
     setLoading(true);
     try {
-      const attempt = await signIn.attemptFirstFactor({
-        strategy: "email_code",
+      const attempt = await signIn!.emailCode.verifyCode({
         code,
       });
+      if (attempt.error) throw attempt.error;
 
-      if (attempt.status === "complete") {
+      if (signIn!.status === "complete") {
         setSuccessMessage(t('login_success', 'Verification Successful!'));
         setTimeout(async () => {
-          await setActive({ session: attempt.createdSessionId });
+          await setActive!({ session: signIn!.createdSessionId });
           router.replace({ pathname: "/(root)/(tabs)/home", params: { login: "true" } });
         }, 100);
       } else {
-        console.error(JSON.stringify(attempt, null, 2));
+        console.error(JSON.stringify(signIn, null, 2));
         Alert.alert(t('error', 'Error'), t('mfa_failed', 'MFA Verification failed.'));
         setLoading(false);
       }

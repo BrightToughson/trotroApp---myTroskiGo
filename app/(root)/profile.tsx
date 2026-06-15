@@ -97,6 +97,7 @@ const Profile = () => {
       try {
         setUpdating(true);
         await user?.delete();
+        await signOut(); // Clear local session to prevent "No session was found" crash
         router.replace("/(auth)/sign-in");
       } catch (e: any) {
         setUpdating(false);

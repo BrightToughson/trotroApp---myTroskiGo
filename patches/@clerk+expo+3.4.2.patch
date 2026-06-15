@@ -1,0 +1,13 @@
+diff --git a/node_modules/@clerk/expo/dist/specs/NativeClerkModule.js b/node_modules/@clerk/expo/dist/specs/NativeClerkModule.js
+index 0bf37a8..3c7b914 100644
+--- a/node_modules/@clerk/expo/dist/specs/NativeClerkModule.js
++++ b/node_modules/@clerk/expo/dist/specs/NativeClerkModule.js
+@@ -1,7 +1,7 @@
+ let react_native = require("react-native");
+ 
+ //#region src/specs/NativeClerkModule.ts
+-var NativeClerkModule_default = react_native.TurboModuleRegistry.get("ClerkExpo");
++var NativeClerkModule_default = react_native.TurboModuleRegistry ? react_native.TurboModuleRegistry.get("ClerkExpo") : null;
+ 
+ //#endregion
+ module.exports = NativeClerkModule_default;

@@ -151,31 +151,7 @@ export const ContributionService = {
     return data;
   },
 
-  /**
-   * Delete a contribution permanently from the database.
-   */
-  async deleteContribution(id: string, type: ContributionType) {
-    const tableMap: Record<ContributionType, string> = {
-      price: 'price_contributions',
-      route: 'route_contributions',
-      stop: 'stop_contributions',
-      general: 'general_contributions',
-    };
 
-    const tableName = tableMap[type];
-
-    const { error } = await supabase
-      .from(tableName)
-      .delete()
-      .eq('id', id);
-
-    if (error) {
-      console.error(`Error deleting ${type} contribution:`, error);
-      throw error;
-    }
-
-    return true;
-  },
 
   /**
    * Approves a contribution and ingests its payload into the corresponding live tables.

@@ -2,7 +2,7 @@ import { ms } from '../lib/metrics';
 import { useTheme, LightColors } from "../context/ThemeContext";
 import { WebIcon } from "./WebIcon";
 import { useWarmUpBrowser } from "../hooks/useWarmUpBrowser";
-import { useOAuth, useSignIn, useSignUp } from "@clerk/expo";
+import { useOAuth, useSignIn, useSignUp, useAuth } from "@clerk/expo";
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
 import { router } from "expo-router";
@@ -25,8 +25,9 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
   const { t } = useTranslation();
   useWarmUpBrowser();
   const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
-  const { signIn, isLoaded: signInLoaded } = useSignIn();
-  const { signUp, isLoaded: signUpLoaded } = useSignUp();
+  const { isLoaded } = useAuth();
+  const { signIn } = useSignIn();
+  const { signUp } = useSignUp();
   const { colors, isDark } = useTheme();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -36,27 +37,7 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       setIsLoading(true);
       onOAuthLoading?.(true);
 
-      if (Platform.OS === 'web') {
-        if (!signInLoaded || !signUpLoaded) return;
-        
-        const redirectUrl = window.location.href; 
-        const redirectUrlComplete = window.location.origin + (authMode === "sign-up" ? "/home?signup=true" : "/home?login=true");
 
-        if (authMode === "sign-in") {
-          await signIn?.authenticateWithRedirect({
-            strategy: "oauth_google",
-            redirectUrl,
-            redirectUrlComplete,
-          });
-        } else {
-          await signUp?.authenticateWithRedirect({
-            strategy: "oauth_google",
-            redirectUrl,
-            redirectUrlComplete,
-          });
-        }
-        return; // Execution stops here because the browser navigates away
-      }
 
       // Create a robust redirect URL that works across all platforms (web, native, pwa)
       const redirectUrl = Linking.createURL("/", { scheme: "trotroapp" });
@@ -137,6 +118,17 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
         return;
       }
 
+      // If the user already has an account but tried to sign up with Google, let's gracefully send them to sign in
+      const errCode = errObj?.code;
+      if (errCode === 'form_identifier_exists' || errCode === 'external_account_exists') {
+        Alert.alert(
+          t('account_exists', "Account Exists"),
+          t('account_exists_desc', "You already have an account associated with this email. We are redirecting you to sign in."),
+          [{ text: "OK", onPress: () => router.replace("/(auth)/sign-in") }]
+        );
+        return;
+      }
+
       let finalMessage = errorMessage;
       
       // Provide specific advice for common environment issues
@@ -152,7 +144,7 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       setIsLoading(false);
       onOAuthLoading?.(false);
     }
-  }, [startOAuthFlow, signIn, signUp, signInLoaded, signUpLoaded, authMode, disabled, onOAuthLoading]);
+  }, [startOAuthFlow, signIn, signUp, isLoaded, authMode, disabled, onOAuthLoading]);
 
   return (
     <View style={styles.groupContainer}>

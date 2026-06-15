@@ -111,6 +111,24 @@ export default function Home() {
   const [latestReport, setLatestReport] = useState<Notification | null>(null);
   const [translatedReportText, setTranslatedReportText] = useState<string>("");
   const [cityPulses, setCityPulses] = useState<CityPulse[]>([]);
+  const [activeNewsIndex, setActiveNewsIndex] = useState(0);
+
+  const handleNewsScroll = (e: any) => {
+    const offsetX = e.nativeEvent.contentOffset.x;
+    const width = e.nativeEvent.layoutMeasurement.width;
+    if (width > 0) {
+      // Swiper with loop=true duplicates slides. Index 0 is at offset = width.
+      let index = Math.round(offsetX / width) - 1;
+      const total = cityPulses.length > 0 ? Math.min(3, cityPulses.length) : 3;
+      if (index < 0) index = total - 1;
+      if (index >= total) index = 0;
+      
+      if (index !== activeNewsIndex) {
+        setActiveNewsIndex(index);
+      }
+    }
+  };
+
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isTutorialVisible, setTutorialVisible] = useState(false);
   const [showTutorialPopup, setShowTutorialPopup] = useState(false);
@@ -487,15 +505,40 @@ export default function Home() {
                 key={`swiper-${cityPulses.length}`}
                 autoplay={true}
                 autoplayTimeout={5} 
-                showsPagination={true} 
+                showsPagination={false} 
                 showsButtons={Platform.OS === 'web'} 
                 loop={true}
                 bounces={true}
-                height= {Platform.OS === 'web' ? 300 : 280} 
-                paginationStyle={{ top: ms(16), right: ms(16), bottom: undefined, left: undefined, alignItems: 'flex-start' }}
+                height={Platform.OS === 'web' ? 300 : 280} 
                 removeClippedSubviews={false}
-                dot={<View style={{ backgroundColor: 'rgba(255,255,255,0.6)', width: ms(12), height: ms(6), borderRadius: ms(3), marginHorizontal: ms(4), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: ms(2), elevation: 3 }} />}
-                activeDot={<View style={{ backgroundColor: colors.primary, width: ms(32), height: ms(6), borderRadius: ms(3), marginHorizontal: ms(4), shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.8, shadowRadius: ms(2), elevation: 3 }} />}
+                onScroll={handleNewsScroll}
+                scrollEventThrottle={16}
+                renderPagination={(index, total, swiper) => {
+                  return (
+                    <View style={{ position: 'absolute', top: ms(16), right: ms(16), flexDirection: 'row', alignItems: 'center' }} pointerEvents="none">
+                      {Array.from({ length: total }).map((_, i) => {
+                        const isActive = i === activeNewsIndex;
+                        return (
+                          <Animated.View
+                            key={i}
+                            style={{
+                              backgroundColor: isActive ? colors.primary : 'rgba(255,255,255,0.6)',
+                              width: withTiming(isActive ? ms(32) : ms(12), { duration: 300 }),
+                              height: ms(6),
+                              borderRadius: ms(3),
+                              marginHorizontal: ms(4),
+                              shadowColor: '#000',
+                              shadowOffset: { width: 0, height: 1 },
+                              shadowOpacity: 0.8,
+                              shadowRadius: ms(2),
+                              elevation: 3,
+                            }}
+                          />
+                        );
+                      })}
+                    </View>
+                  );
+                }}
               >
                 {(cityPulses.length > 0 ? cityPulses.slice(0, 3) : (MOCK_NEWS as CityPulse[]).slice(0, 3)).map((item) => (
                   <View 

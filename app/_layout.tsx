@@ -1,3 +1,4 @@
+import "@/lib/polyfills";
 import { ClerkProvider, ClerkLoaded, useAuth } from "@clerk/expo";
 import { Stack, usePathname } from "expo-router";
 import Head from "expo-router/head";
@@ -36,18 +37,12 @@ import { FareService } from "@/lib/FareService";
 import { NotificationService } from "@/lib/NotificationService";
 import { RouteCacheService } from "@/lib/RouteCacheService";
 import { NotificationBanner } from "@/components/NotificationBanner";
+import LanguageSelector from "@/components/LanguageSelector";
+import { ms } from "@/lib/metrics";
 
 
 
 
-/* Polyfill setImmediate for web compatibility (fixes react-native-swiper error) */
-if (Platform.OS === "web") {
-  if (typeof globalThis !== "undefined" && typeof (globalThis as any).setImmediate === "undefined") {
-    (globalThis as any).setImmediate = function (fn: any) {
-      return setTimeout(fn, 0);
-    };
-  }
-}
 
 if (
   Platform.OS === 'android' &&
@@ -218,6 +213,9 @@ export default function RootLayout() {
               )}
               <DesktopWrapper>
                 <RootStack />
+                <View style={{ position: 'absolute', bottom: ms(100), right: ms(20), zIndex: 9999, elevation: 10 }}>
+                  <LanguageSelector />
+                </View>
                 <NotificationBanner />
               </DesktopWrapper>
             </ClerkLoaded>
@@ -244,5 +242,28 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-
 });
+
+import { ErrorBoundaryProps } from "expo-router";
+
+export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
+  const isClerkError = error?.message?.includes('failed_to_load_clerk_js') || error?.message?.includes('Clerk JS');
+  
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20, backgroundColor: '#ffffff' }}>
+      <Ionicons name={isClerkError ? "cloud-offline-outline" : "alert-circle-outline"} size={64} color="#FF3B30" />
+      <Text style={{ fontSize: 20, fontFamily: 'PlusJakartaSans-Bold', marginTop: 20, textAlign: 'center', color: '#000' }}>
+        {isClerkError ? "Connection Issue" : "Something went wrong"}
+      </Text>
+      <Text style={{ fontSize: 16, fontFamily: 'PlusJakartaSans-Regular', color: '#666', marginTop: 10, textAlign: 'center', marginBottom: 30 }}>
+        {isClerkError 
+          ? "We couldn't connect to the authentication server. Please check your internet connection. If you are using an ad blocker, it might be blocking the login service."
+          : error?.message || "An unexpected error occurred."}
+      </Text>
+      <CustomButton 
+        title="Try Again" 
+        onPress={retry} 
+      />
+    </View>
+  );
+}

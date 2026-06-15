@@ -29,6 +29,22 @@ import { useTheme, LightColors } from
  * Welcome Screen: A premium multi-slide onboarding experience.
  * Uses a Swiper with custom animated transitions to introduce the app's features.
  */
+
+const PaginationDot = ({ isActive, primaryColor }: { isActive: boolean; primaryColor: string }) => {
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      width: withTiming(isActive ? ms(24) : ms(8), { duration: 300 }),
+      backgroundColor: withTiming(
+        isActive ? primaryColor : "rgba(148, 163, 184, 0.4)",
+        { duration: 300 }
+      ),
+    };
+  });
+
+  return (
+    <Animated.View style={[styles.dotStyle, isActive && styles.activeDotStyle, animatedStyle]} />
+  );
+};
 const Welcome = () => {
   const swiperRef = useRef<Swiper>(null);
   const [activeIndex, setActiveIndex] = useState(0); // Tracks current slide
@@ -129,6 +145,20 @@ const Welcome = () => {
     },
   ];
 
+  /**
+   * Manual scroll handler to reliably track swiping on Web and all platforms
+   */
+  const handleScroll = (e: any) => {
+    const offsetX = e.nativeEvent.contentOffset.x;
+    const width = e.nativeEvent.layoutMeasurement.width;
+    if (width > 0) {
+      const index = Math.round(offsetX / width);
+      if (index !== activeIndex && index >= 0 && index < slides.length) {
+        setActiveIndex(index);
+      }
+    }
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <LinearGradient
@@ -227,6 +257,19 @@ const Welcome = () => {
             </TouchableOpacity>
           </Animated.View>
 
+          {/* Custom Pagination Dots in the Header */}
+          <View style={styles.topPaginationContainer}>
+            {slides.map((_, index) => {
+              return (
+                <PaginationDot
+                  key={index}
+                  isActive={index === activeIndex}
+                  primaryColor={colors.primary}
+                />
+              );
+            })}
+          </View>
+
           {/* Skip button to bypass onboarding */}
           <TouchableOpacity
             onPress={completeWelcome}
@@ -242,13 +285,11 @@ const Welcome = () => {
         <Swiper
           ref={swiperRef}
           loop={false}
-          paginationStyle={styles.paginationStyle}
-          dotStyle={styles.dotStyle}
-          activeDotStyle={[
-            styles.activeDotStyle,
-            { backgroundColor: colors.primary },
-          ]}
+          showsPagination={false}
           onIndexChanged={(index) => setActiveIndex(index)}
+          onMomentumScrollEnd={(e, state, context) => setActiveIndex(state.index)}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
           showsButtons={false}
           scrollEnabled={true} // Enabled for all platforms to allow natural navigation
         >
@@ -421,8 +462,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
 
-  paginationStyle: {
-    bottom: '45%',
+  topPaginationContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
   dotStyle: {
     backgroundColor: "rgba(148, 163, 184, 0.4)",

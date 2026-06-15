@@ -5,7 +5,7 @@ import OAuth from "@/components/OAuth";
 import { ProcessingModal } from "@/components/ProcessingModal";
 import { WebIcon } from "@/components/WebIcon";
 import { useTheme, LightColors } from "@/context/ThemeContext";
-import { useSignUp } from "@clerk/expo";
+import { useSignUp, useAuth } from "@clerk/expo";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link, useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
@@ -33,7 +33,8 @@ import Animated, {
 
 export default function SignUpScreen() {
   const { t } = useTranslation();
-  const { isLoaded, signUp } = useSignUp();
+  const { isLoaded } = useAuth();
+  const { signUp } = useSignUp();
   const router = useRouter();
   const { colors, isDark } = useTheme();
 
@@ -98,15 +99,14 @@ export default function SignUpScreen() {
     setLoading(true);
 
     try {
-      await signUp.create({
+      const result = await signUp!.create({
         username: form.username,
         emailAddress: form.email,
       });
+      if (result.error) throw result.error;
 
       // Fire and forget email verification to cut perceived loading time in half
-      signUp
-        .prepareEmailAddressVerification({ strategy: "email_code" })
-        .catch(console.error);
+      signUp!.verifications.sendEmailCode().catch(console.error);
 
       setSuccessMessage(t('account_created', 'Account Created!'));
       setTimeout(() => {
