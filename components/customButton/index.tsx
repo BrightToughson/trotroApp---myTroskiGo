@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import * as Haptics from "expo-haptics";
 import React from "react";
 import {

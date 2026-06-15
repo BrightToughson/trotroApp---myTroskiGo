@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../../lib/utils/metrics';
 import { useTheme } from "../../../context/ThemeContext";
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Platform } from "react-native";
@@ -9,7 +9,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ContributionModal from "../../../components/ContributionModal";
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/expo";
-import { ContributionService, Contribution as ContributionType } from "../lib/contributions/ContributionService";
+import { ContributionService, Contribution as ContributionType } from "../../../lib/contributions/ContributionService";
 import { ActivityIndicator, Alert } from
 "react-native";
 

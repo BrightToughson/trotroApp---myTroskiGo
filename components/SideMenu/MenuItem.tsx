@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";

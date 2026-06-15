@@ -1,4 +1,4 @@
-import "@/lib/polyfills";
+import "@/lib/utils/polyfills";
 import { ClerkProvider, ClerkLoaded, useAuth } from "@clerk/expo";
 import { Stack, usePathname } from "expo-router";
 import Head from "expo-router/head";
@@ -7,9 +7,9 @@ import React, { useEffect } from "react";
 import { Image, Platform, StyleSheet, View, UIManager, Text, TextInput } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemeProvider, useTheme, LightColors } from "@/context/ThemeContext";
-import { tokenCache } from "@/lib/auth";
-import { NotificationsWrapper as Notifications } from "@/lib/NotificationsWrapper";
-import "@/lib/i18n";
+import { tokenCache } from "@/lib/auth/auth";
+import { NotificationsWrapper as Notifications } from "@/lib/notifications/NotificationsWrapper";
+import "@/lib/i18n/i18n";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
 import { 
@@ -33,12 +33,12 @@ import Animated, {
   Easing,
   FadeIn,
 } from "react-native-reanimated";
-import { FareService } from "@/lib/FareService";
-import { NotificationService } from "@/lib/NotificationService";
-import { RouteCacheService } from "@/lib/RouteCacheService";
+import { FareService } from "@/lib/fares/FareService";
+import { NotificationService } from "@/lib/notifications/NotificationService";
+import { RouteCacheService } from "@/lib/location/RouteCacheService";
 import { NotificationBanner } from "@/components/NotificationBanner";
 import LanguageSelector from "@/components/LanguageSelector";
-import { ms } from "@/lib/metrics";
+import { ms } from "@/lib/utils/metrics";
 
 
 
@@ -144,7 +144,7 @@ function DesktopWrapper({ children }: { children: React.ReactNode }) {
   );
 }
 
-import { setClerkTokenGetter } from "@/lib/supabase";
+import { setClerkTokenGetter } from "@/lib/auth/supabase";
 import { useTranslation } from "react-i18next";
 
 function SupabaseTokenSync() {

@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   Modal,
@@ -13,10 +13,10 @@ import {
 import { useUser } from '@clerk/expo';
 import { WebIcon } from '../WebIcon';
 import { useTheme, LightColors } from '../../context/ThemeContext';
-import { Notification, NotificationService } from '../lib/notifications/NotificationService';
+import { Notification, NotificationService } from '../../lib/notifications/NotificationService';
 import { useTranslation } from 'react-i18next';
 import Animated, { FadeInDown, SlideInDown, SlideOutDown, FadeIn, FadeOut } from 'react-native-reanimated';
-import { translateText } from '../lib/i18n/translate';
+import { translateText } from '../../lib/i18n/translate';
 import { isAdminUser } from '../../constants/admins';
 
 interface Props {

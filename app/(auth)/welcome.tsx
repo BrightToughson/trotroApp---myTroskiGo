@@ -1,9 +1,9 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import { WebIcon } from '../../components/WebIcon';
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { BlurView } from "expo-blur";
-import { SecureStoreWrapper as SecureStore } from "../lib/auth/SecureStoreWrapper";
+import { SecureStoreWrapper as SecureStore } from "../../lib/auth/SecureStoreWrapper";
 import { useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Platform, Modal, ScrollView } from "react-native";
 import { Image } from "expo-image";

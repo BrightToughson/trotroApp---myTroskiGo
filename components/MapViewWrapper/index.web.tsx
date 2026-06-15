@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import React, { createContext, useContext, useEffect, useState, useMemo, useRef, useImperativeHandle } from "react";
 import { View, StyleSheet } from "react-native";
 import { useTheme } from "../../context/ThemeContext";

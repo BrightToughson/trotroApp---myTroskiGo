@@ -1,9 +1,9 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Platform, Alert, KeyboardAvoidingView } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { useTheme } from '../../context/ThemeContext';
-import { supabase } from '../lib/auth/supabase';
+import { supabase } from '../../lib/auth/supabase';
 import { useUser } from '@clerk/expo';
 import { isAdminUser } from '../../constants/admins';
 import { WebIcon } from '../../components/WebIcon';

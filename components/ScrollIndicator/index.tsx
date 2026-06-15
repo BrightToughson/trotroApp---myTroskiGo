@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import { WebIcon } from '../WebIcon';
 import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet, View } from

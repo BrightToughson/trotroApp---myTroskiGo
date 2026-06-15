@@ -1,10 +1,10 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../../lib/utils/metrics';
 import { Tabs } from "expo-router";
 import { StyleSheet, TouchableOpacity, View, useWindowDimensions, Platform } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "@/context/ThemeContext";
 import React, { useState, useEffect } from "react";
-import { NotificationService } from "@/lib/NotificationService";
+import { NotificationService } from "@/lib/notifications/NotificationService";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,

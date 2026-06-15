@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import { WebIcon } from "../WebIcon";
 import { CustomButton } from "../customButton";
 import MapPickerModal from "../MapPickerModal";
@@ -31,8 +31,8 @@ import {
     getNearbyStops,
     OSM_STOPS,
     Location,
-} from "../lib/location/LocationService";
-import { FareService } from "../lib/fares/FareService";
+} from "../../lib/location/LocationService";
+import { FareService } from "../../lib/fares/FareService";
 
 
 

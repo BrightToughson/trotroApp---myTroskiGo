@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../../lib/utils/metrics';
 import { WebIcon } from "../../../components/WebIcon";
 import { LinearGradient } from "expo-linear-gradient";
 import { router, useFocusEffect } from "expo-router";
@@ -18,7 +18,7 @@ import Animated, {
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme, LightColors } from "../../../context/ThemeContext";
 import { HistoryService, Ride } from
-"../lib/history/HistoryService";
+"../../../lib/history/HistoryService";
 
 export default function History() {
   const { t } = useTranslation();

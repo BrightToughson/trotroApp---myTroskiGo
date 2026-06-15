@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import React from "react";
 import { StyleSheet, Platform, Dimensions } from
 "react-native";

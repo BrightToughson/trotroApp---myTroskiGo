@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import { WebIcon } from "../../components/WebIcon";
 import { Location } from "../../constants/types";
 import { router, useLocalSearchParams } from "expo-router";
@@ -19,7 +19,7 @@ import MapView, {
 import { useTheme } from "../../context/ThemeContext";
 import { useRideLogic } from "../../hooks/useRideLogic";
 import { calculateDistance } from
-"../lib/location/LocationService";
+"../../lib/location/LocationService";
 import Animated, { 
   useAnimatedStyle, 
   useSharedValue, 

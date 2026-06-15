@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import React, { useRef } from 'react';
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Platform } from 'react-native';
 import { useTheme, LightColors } from

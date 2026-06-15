@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../../lib/utils/metrics';
 import { useUser } from "@clerk/expo";
 
 import { LinearGradient } from "expo-linear-gradient";
@@ -37,18 +37,18 @@ import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context"
 import Swiper from "react-native-swiper";
 import SideMenu from "../../../components/SideMenu";
 import { useTheme } from "../../../context/ThemeContext";
-import { HistoryService, Ride } from "../lib/history/HistoryService";
-import { Notification, NotificationService } from "../lib/notifications/NotificationService";
+import { HistoryService, Ride } from "../../../lib/history/HistoryService";
+import { Notification, NotificationService } from "../../../lib/notifications/NotificationService";
 import LanguageSelector from "../../../components/LanguageSelector";
 import TutorialModal from "../../../components/TutorialModal";
 import { WebIcon } from "../../../components/WebIcon";
 import { useTranslation } from "react-i18next";
 import NetInfo from "@react-native-community/netinfo";
-import { translateText } from "../lib/i18n/translate";
+import { translateText } from "../../../lib/i18n/translate";
 import { useInstallPrompt } from "../../../hooks/useInstallPrompt";
 import OfficialAnnouncementsModal from "../../../components/OfficialAnnouncementsModal";
 import { PulseService, CityPulse } from
-"../lib/pulse/PulseService";
+"../../../lib/pulse/PulseService";
 
 const MOCK_NEWS = [
   {

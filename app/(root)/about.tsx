@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import { useTranslation } from "react-i18next";
 import { WebIcon } from "../../components/WebIcon";
 import { router } from "expo-router";

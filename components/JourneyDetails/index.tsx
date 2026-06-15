@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";

@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import { useTheme, LightColors } from "../../context/ThemeContext";
 import { WebIcon } from "../WebIcon";
 import { useWarmUpBrowser } from "../../hooks/useWarmUpBrowser";

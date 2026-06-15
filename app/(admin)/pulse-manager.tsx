@@ -1,4 +1,4 @@
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Platform, Alert, KeyboardAvoidingView, Image } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
@@ -8,7 +8,7 @@ import { isAdminUser } from '../../constants/admins';
 import { WebIcon } from '../../components/WebIcon';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeInDown, Layout, SlideInDown } from 'react-native-reanimated';
-import { PulseService, CityPulse } from '../lib/pulse/PulseService';
+import { PulseService, CityPulse } from '../../lib/pulse/PulseService';
 import * as ImagePicker from
 'expo-image-picker';
 

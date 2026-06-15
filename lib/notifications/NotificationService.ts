@@ -1,4 +1,4 @@
-import { supabase, SUPABASE_URL } from "@/lib/supabase";
+import { supabase, SUPABASE_URL } from "@/lib/auth/supabase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Platform, Alert } from "react-native";
 import * as Device from "expo-device";
