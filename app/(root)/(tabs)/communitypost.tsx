@@ -1,7 +1,7 @@
-import { ms } from '../../../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import { WebIcon } from "../../../components/WebIcon";
 import { LinearGradient } from "expo-linear-gradient";
-import { NotificationsWrapper as Notifications } from "../../../lib/NotificationsWrapper";
+import { NotificationsWrapper as Notifications } from "../lib/notifications/NotificationsWrapper";
 import { useTranslation } from "react-i18next";
 import { useFocusEffect, router } from "expo-router";
 import React, { useState, useCallback } from "react";
@@ -43,8 +43,8 @@ import { useUser } from "@clerk/expo";
 import {
     Notification,
     NotificationService,
-} from "../../../lib/NotificationService";
-import { translateText } from "../../../lib/translate";
+} from "../lib/notifications/NotificationService";
+import { translateText } from "../lib/i18n/translate";
 import SideMenu from "../../../components/SideMenu";
 import TutorialModal from "../../../components/TutorialModal";
 import OfficialAnnouncementsModal from "../../../components/OfficialAnnouncementsModal";

@@ -1,4 +1,4 @@
-import { ms } from '../../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import { useAuth, useUser } from "@clerk/expo";
 import { useTranslation } from "react-i18next";
 import { WebIcon } from "../../components/WebIcon";

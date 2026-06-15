@@ -1,4 +1,4 @@
-import { ms } from '../../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import React, { useRef, useState, useEffect } from 'react';
 import { Modal, View, Text, StyleSheet, TouchableOpacity, Platform, ScrollView, Dimensions } from 'react-native';
 import { Image } from 'expo-image';

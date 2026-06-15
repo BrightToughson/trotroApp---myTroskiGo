@@ -1,4 +1,4 @@
-import { ms } from '../../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Platform } from 'react-native';
 import Animated, { 

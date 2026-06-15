@@ -1,5 +1,5 @@
-import { FARE_CONSTANTS } from "../LocationService";
-import { supabase } from "../supabase";
+import { FARE_CONSTANTS } from "../location/LocationService";
+import { supabase } from "../auth/supabase";
 import localFaresBackup from "../../constants/fares.json";
 
 export interface ManualFareRule {

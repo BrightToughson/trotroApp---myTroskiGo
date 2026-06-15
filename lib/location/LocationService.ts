@@ -1,8 +1,8 @@
 import * as ExpoLocation from "expo-location";
 import { Platform } from "react-native";
 import { Location, StopType, TransitLeg, TripDetails, ActiveLeg } from "../../constants/types";
-import { RouteCacheService } from "../RouteCacheService";
-import { supabase } from "../supabase";
+import { RouteCacheService } from "../location/RouteCacheService";
+import { supabase } from "../auth/supabase";
 // Removed heavy unused ANCHOR_ROUTES payload
 
 const osmStopsData = require('../../osrm routes/allStops.json');

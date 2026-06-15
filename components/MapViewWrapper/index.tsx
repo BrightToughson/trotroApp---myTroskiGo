@@ -1,4 +1,4 @@
-import { ms } from '../../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapboxGL from '@rnmapbox/maps';

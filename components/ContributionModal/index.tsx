@@ -1,11 +1,11 @@
-import { ms } from '../../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import React, { useState, useRef } from "react";
 import { Modal, StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, Alert, ScrollView, PanResponder, Dimensions } from "react-native";
 import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
 import { useTheme } from "../../context/ThemeContext";
 import InputField from "../InputField";
 import { CustomButton } from "../customButton";
-import { ContributionService } from "../../lib/ContributionService";
+import { ContributionService } from "../lib/contributions/ContributionService";
 import { WebIcon } from "../WebIcon";
 import { LocationSearchModal } from "../LocationSearchModal";
 import * as ExpoLocation from "expo-location";

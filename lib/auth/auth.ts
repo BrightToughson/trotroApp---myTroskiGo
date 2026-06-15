@@ -1,4 +1,4 @@
-import { SecureStoreWrapper as SecureStorage } from '../SecureStoreWrapper';
+import { SecureStoreWrapper as SecureStorage } from '../auth/SecureStoreWrapper';
 
 
 export const tokenCache = {

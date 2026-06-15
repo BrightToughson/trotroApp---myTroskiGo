@@ -1,4 +1,4 @@
-import { ms } from '../../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import { CodeInput } from "@/components/CodeInput";
 import { CustomButton } from "@/components/customButton";
 import { useTheme, LightColors } from "@/context/ThemeContext";

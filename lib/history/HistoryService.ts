@@ -1,4 +1,4 @@
-import { supabase } from "../supabase";
+import { supabase } from "../auth/supabase";
 
 export interface Ride {
   id: string;

@@ -1,4 +1,4 @@
-import { ms } from '../../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import { CustomButton } from "@/components/customButton";
 import InputField from "@/components/InputField";
 import OAuth from "@/components/OAuth";

@@ -1,7 +1,7 @@
-import { ms } from '../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import { useAuth } from "@clerk/expo";
 import { Redirect } from "expo-router";
-import { SecureStoreWrapper as SecureStore } from "../lib/SecureStoreWrapper";
+import { SecureStoreWrapper as SecureStore } from "../lib/auth/SecureStoreWrapper";
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Platform, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";

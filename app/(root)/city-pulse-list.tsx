@@ -1,4 +1,4 @@
-import { ms } from '../../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import React, { useEffect, useState } from "react";
 import { 
   View, 
@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTranslation } from "react-i18next";
-import { PulseService, CityPulse } from "../../lib/PulseService";
+import { PulseService, CityPulse } from "../lib/pulse/PulseService";
 import { useTheme } from "../../context/ThemeContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { WebIcon } from "../../components/WebIcon";

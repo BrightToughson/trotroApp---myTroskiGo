@@ -1,4 +1,4 @@
-import { ms } from '../../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import { WebIcon } from "../WebIcon";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";

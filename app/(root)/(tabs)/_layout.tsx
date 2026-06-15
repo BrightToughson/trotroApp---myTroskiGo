@@ -1,4 +1,4 @@
-import { ms } from '../../../lib/metrics';
+import { ms } from '../lib/utils/metrics';
 import { Tabs } from "expo-router";
 import { StyleSheet, TouchableOpacity, View, useWindowDimensions, Platform } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
