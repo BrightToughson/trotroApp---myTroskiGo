@@ -1,5 +1,5 @@
 import * as SecureStore from 'expo-secure-store';
-import { tokenCache } from '../lib/auth';
+import { tokenCache } from '../lib/auth/auth';
 
 // Mock expo-secure-store
 jest.mock('expo-secure-store', () => ({

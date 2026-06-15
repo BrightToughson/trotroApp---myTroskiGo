@@ -2,9 +2,9 @@ import { router } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { Platform } from "react-native";
 import Mapbox from "../components/MapViewWrapper";
-import { HistoryService } from "../lib/HistoryService";
-import { FareService } from "../lib/FareService";
-import { RouteCacheService } from "../lib/RouteCacheService";
+import { HistoryService } from "../lib/history/HistoryService";
+import { FareService } from "../lib/fares/FareService";
+import { RouteCacheService } from "../lib/location/RouteCacheService";
 import {
     FARE_CONSTANTS,
     Location,
@@ -22,9 +22,9 @@ import {
     resolveLocation,
     ActiveLeg,
     TripDetails,
-} from "../lib/LocationService";
+} from "../lib/location/LocationService";
 import { WalkingService, WALKING_CONFIG } from "../constants/WalkingService";
-import { LOCAL_STOPS } from "../lib/LocationService";
+import { LOCAL_STOPS } from "../lib/location/LocationService";
 
 
 

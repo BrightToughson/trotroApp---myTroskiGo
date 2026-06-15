@@ -70,7 +70,10 @@ function getAllFiles(dirPath, arrayOfFiles) {
 const allFilesToUpdate = [
     ...getAllFiles(path.join(rootDir, 'app')),
     ...getAllFiles(path.join(rootDir, 'components')),
-    ...getAllFiles(path.join(rootDir, 'lib'))
+    ...getAllFiles(path.join(rootDir, 'lib')),
+    ...(fs.existsSync(path.join(rootDir, 'hooks')) ? getAllFiles(path.join(rootDir, 'hooks')) : []),
+    ...(fs.existsSync(path.join(rootDir, 'constants')) ? getAllFiles(path.join(rootDir, 'constants')) : []),
+    ...(fs.existsSync(path.join(rootDir, '__tests__')) ? getAllFiles(path.join(rootDir, '__tests__')) : [])
 ];
 
 const moduleNames = Object.keys(mapping).join('|');

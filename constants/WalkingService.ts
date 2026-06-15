@@ -1,5 +1,5 @@
 import { Location } from "./types";
-import { getRoute, calculateDistance, FARE_CONSTANTS } from "../lib/LocationService";
+import { getRoute, calculateDistance, FARE_CONSTANTS } from "../lib/location/LocationService";
 
 /**
  * Walking Service
