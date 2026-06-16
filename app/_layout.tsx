@@ -37,7 +37,7 @@ import { FareService } from "@/lib/fares/FareService";
 import { NotificationService } from "@/lib/notifications/NotificationService";
 import { RouteCacheService } from "@/lib/location/RouteCacheService";
 import { NotificationBanner } from "@/components/NotificationBanner";
-import LanguageSelector from "@/components/LanguageSelector";
+
 import { ms } from "@/lib/utils/metrics";
 
 
@@ -213,9 +213,7 @@ export default function RootLayout() {
               )}
               <DesktopWrapper>
                 <RootStack />
-                <View style={{ position: 'absolute', bottom: ms(100), right: ms(20), zIndex: 9999, elevation: 10 }}>
-                  <LanguageSelector />
-                </View>
+
                 <NotificationBanner />
               </DesktopWrapper>
             </ClerkLoaded>
