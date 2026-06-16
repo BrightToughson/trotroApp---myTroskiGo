@@ -117,7 +117,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ isVisible, onClose, onShowTutorial 
           <Animated.View style={[styles.drawer, animatedDrawerStyle, { backgroundColor: colors.background }]}>
             <View style={styles.header}>
               <ImageBackground
-                source={require("../../assets/images/sidemenu/sidebar-image.jpg")}
+                source={require("../../assets/images/sidemenu/sidebar-image.webp")}
                 style={styles.headerImageBackground}
                 resizeMode="cover"
               >

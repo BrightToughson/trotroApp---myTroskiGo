@@ -13,7 +13,7 @@ export default function AuthRoutesLayout() {
       <Stack.Screen name="welcome" />
       <Stack.Screen name="sign-in" />
       <Stack.Screen name="sign-up" />
-      <Stack.Screen name="forgot" options={{ presentation: 'modal' }} />
+      {/* <Stack.Screen name="forgot" options={{ presentation: 'modal' }} /> */}
       <Stack.Screen name="verify-email" options={{ presentation: 'modal' }} />
     </Stack>
   )

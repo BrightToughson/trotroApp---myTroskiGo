@@ -114,32 +114,32 @@ const Welcome = () => {
   // Content for the onboarding slides
   const slides = [
     {
-      image: require("../../assets/images/welcome_images/welcome_welcome.png"),
+      image: require("../../assets/images/welcome_images/welcome_welcome.webp"),
       title: t('welcome_onboard_title', 'Welcome to myTroski Go'),
       description: t('welcome_onboard_desc', 'Experience the smartest way to navigate your city with premium transit features.'),
     },
     {
-      image: require("../../assets/images/welcome_images/welcome_search_destination.png"),
+      image: require("../../assets/images/welcome_images/welcome_search_destination.webp"),
       title: t('search_onboard_title', 'Find Your Ride'),
       description: t('search_onboard_desc', 'Easily search for destinations and find the best Trotro routes to get you there.'),
     },
     {
-      image: require("../../assets/images/welcome_images/welcome_estimated_fare.png"),
+      image: require("../../assets/images/welcome_images/welcome_estimated_fare.webp"),
       title: t('fare_onboard_title', 'Fare Estimation'),
       description: t('fare_onboard_desc', 'Get accurate fare calculations and optimize your commute before you travel.'),
     },
     {
-      image: require("../../assets/images/welcome_images/welcome_Journey_details.png"),
+      image: require("../../assets/images/welcome_images/welcome_Journey_details.webp"),
       title: t('stops_onboard_title', 'Nearest Trotro Stops'),
       description: t('stops_onboard_desc', 'Easily find and navigate to the closest verified Trotro hubs and stops.'),
     },
     {
-      image: require("../../assets/images/welcome_images/welcome_community.png"),
+      image: require("../../assets/images/welcome_images/welcome_community.webp"),
       title: t('community_onboard_title', 'Community Updates'),
       description: t('community_onboard_desc', 'Join the network. Share and receive live traffic info, fare updates, and more.'),
     },
     {
-      image: require("../../assets/images/welcome_images/welcome_get_started.png"),
+      image: require("../../assets/images/welcome_images/welcome_get_started.webp"),
       title: t('start_onboard_title', 'Get Started'),
       description: t('start_onboard_desc', 'You are all set! Let us start your journey and find your next ride.'),
     },
