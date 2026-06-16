@@ -185,10 +185,10 @@ export default function RootLayout() {
     }
   }, [fontsLoaded, fontError]);
 
-  if (!publishableKey) {
+  if (!publishableKey || publishableKey === 'dummy_clerk_key') {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>{t('error_clerk_key', 'Clerk Key Missing')}</Text>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "white" }}>
+        <Text style={{ color: "red", fontSize: 20, fontWeight: "bold" }}>{t('error_clerk_key', 'Clerk Key Missing in Vercel Environment Variables')}</Text>
       </View>
     );
   }
