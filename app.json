@@ -62,7 +62,7 @@
         "expo-splash-screen",
         {
           "image": "./assets/logo/mytroskigo_splashscreen.png",
-          "imageWidth": 180,
+          "imageWidth": 120,
           "resizeMode": "contain",
           "backgroundColor": "#111827",
           "dark": {
