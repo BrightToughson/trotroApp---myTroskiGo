@@ -1,6 +1,6 @@
 import { ms } from '../../lib/utils/metrics';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Platform } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Platform, Image } from 'react-native';
 import Animated, { 
   useAnimatedStyle, 
   useSharedValue, 
@@ -109,8 +109,12 @@ export function NotificationBanner() {
           }
         ]}
       >
-        <View style={[styles.iconContainer, { backgroundColor: activeNotification.color || colors.primary }]}>
-          <WebIcon name={activeNotification.icon || 'notifications'} size= {24} color="#ffffff" />
+        <View style={[styles.iconContainer, { backgroundColor: activeNotification.color || colors.primary, overflow: 'hidden' }]}>
+          {activeNotification.icon?.startsWith('http') ? (
+            <Image source={{ uri: activeNotification.icon }} style={{ width: '100%', height: '100%', borderRadius: 999 }} />
+          ) : (
+            <WebIcon name={activeNotification.icon || 'notifications'} size= {24} color="#ffffff" />
+          )}
         </View>
         
         <View style={styles.textContainer}>
