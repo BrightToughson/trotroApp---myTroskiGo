@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest",
-    "build": "npx expo export"
+    "build": "npx expo export",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@clerk/expo": "^3.4.2",
