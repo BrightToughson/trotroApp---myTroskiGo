@@ -138,7 +138,35 @@
         visibility: hidden;
         pointer-events: none;
       }
+    <style>
+      #global-error-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: red;
+        color: white;
+        z-index: 999999;
+        padding: 20px;
+        font-family: monospace;
+        overflow-y: auto;
+      }
     </style>
+    <script>
+      window.addEventListener('error', function(e) {
+        var overlay = document.getElementById('global-error-overlay');
+        if (overlay) {
+          overlay.style.display = 'block';
+          overlay.innerHTML += '<p><strong>Error:</strong> ' + e.message + '<br/>' + e.filename + ':' + e.lineno + '</p>';
+        }
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        var overlay = document.getElementById('global-error-overlay');
+        if (overlay) {
+          overlay.style.display = 'block';
+          overlay.innerHTML += '<p><strong>Promise Rejection:</strong> ' + (e.reason && e.reason.message ? e.reason.message : e.reason) + '</p>';
+        }
+      });
+    </script>
     <script>
       // Automatically hide splash once the app is ready
       window.addEventListener('load', function() {
@@ -159,6 +187,7 @@
     </script>
   </head>
   <body>
+    <div id="global-error-overlay"></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="pwa-splash">
       <div class="splash-content">
