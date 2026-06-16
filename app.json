@@ -4,7 +4,7 @@
     "slug": "TrotroApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo/mytroskigo.png",
+    "icon": "./assets/logo/mytroskigo_apk.png",
     "scheme": "trotroapp",
     "userInterfaceStyle": "automatic",
     "ios": {
@@ -23,9 +23,7 @@
       "softwareKeyboardLayoutMode": "resize",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/logo/mytroski_foreground.png",
-        "backgroundImage": "./assets/logo/mytroski_background.png",
-        "monochromeImage": "./assets/logo/mytroski_monochrome.png"
+        "foregroundImage": "./assets/logo/mytroskigo_apk.png"
       },
       "permissions": [
         "android.permission.ACCESS_COARSE_LOCATION",
@@ -63,7 +61,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/logo/mytroskigo.png",
+          "image": "./assets/logo/mytroskigo_splashscreen.png",
           "imageWidth": 120,
           "resizeMode": "contain",
           "backgroundColor": "#111827",

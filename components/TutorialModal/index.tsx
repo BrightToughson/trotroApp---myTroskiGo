@@ -281,6 +281,22 @@ const FeatureSpotlightView = ({ features, isActiveSlide, fallbackDescription }: 
   );
 };
 
+const PaginationDot = ({ isActive, primaryColor }: { isActive: boolean; primaryColor: string }) => {
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      width: withTiming(isActive ? ms(24) : ms(8), { duration: 300 }),
+      backgroundColor: withTiming(
+        isActive ? primaryColor : "rgba(148, 163, 184, 0.4)",
+        { duration: 300 }
+      ),
+    };
+  });
+
+  return (
+    <Animated.View style={[styles.dotStyle, isActive && styles.activeDotStyle, animatedStyle]} />
+  );
+};
+
 interface TutorialModalProps {
   isVisible: boolean;
   onClose: () => void;
@@ -328,6 +344,17 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
     setActiveIndex(index);
     if (Platform.OS !== 'web') {
       Haptics.selectionAsync();
+    }
+  };
+
+  const handleScroll = (e: any) => {
+    const offsetX = e.nativeEvent.contentOffset.x;
+    const width = e.nativeEvent.layoutMeasurement.width;
+    if (width > 0) {
+      const index = Math.round(offsetX / width);
+      if (index !== activeIndex && index >= 0 && index < slides.length) {
+        setActiveIndex(index);
+      }
     }
   };
 
@@ -388,11 +415,17 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
                 <View style={{ width: ms(44) }} />
               )}
               <LanguageSelector />
-              
-              <View style={[styles.stepCounter, { backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.7)" }]}>
-                <Text style={[styles.stepCounterText, { color: colors.text }]}>{activeIndex + 1} / {slides.length}</Text>
-              </View>
             </Animated.View>
+
+            <View style={styles.topPaginationContainer}>
+              {slides.map((_, index) => (
+                <PaginationDot
+                  key={index}
+                  isActive={index === activeIndex}
+                  primaryColor={colors.primary}
+                />
+              ))}
+            </View>
 
             <Animated.View entering={FadeInRight.duration(600)} style={{ flexDirection: 'row', alignItems: 'center', gap: ms(12) }}>
               {activeIndex < slides.length - 1 && (
@@ -419,6 +452,8 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isVisible, onClose }) => 
             onIndexChanged={handleIndexChange}
             showsPagination={false}
             scrollEnabled={true}
+            onScroll={handleScroll}
+            scrollEventThrottle={16}
           >
             {slides.map((slide, index) => (
               <View key={index} style={[styles.slide, isWeb && styles.webSlide]}>
@@ -743,6 +778,29 @@ const styles = StyleSheet.create({
   skipButtonText: {
     fontSize: ms(15),
     fontWeight: '700',
+  },
+  topPaginationContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  dotStyle: {
+    backgroundColor: "rgba(148, 163, 184, 0.4)",
+    marginHorizontal: ms(4),
+    width: ms(8),
+    height: ms(8),
+    borderRadius: ms(4),
+  },
+  activeDotStyle: {
+    marginHorizontal: ms(4),
+    width: ms(24),
+    height: ms(8),
+    borderRadius: ms(4),
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 2,
   },
 
 });
