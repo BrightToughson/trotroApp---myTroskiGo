@@ -39,6 +39,15 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Bypass Clerk, Supabase, and Mapbox APIs to prevent CORS cache issues
+  if (
+    event.request.url.includes('clerk') || 
+    event.request.url.includes('supabase.co') ||
+    event.request.url.includes('api.mapbox.com')
+  ) {
+    return; // Fallback to network naturally
+  }
+
   // 1. Network First for HTML and Navigation (Always get the latest app structure)
   if (event.request.mode === 'navigate' || event.request.headers.get('accept').includes('text/html')) {
     event.respondWith(
