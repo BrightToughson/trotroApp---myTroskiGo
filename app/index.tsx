@@ -144,19 +144,23 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     marginBottom: ms(24),
+    borderRadius: ms(36),
+    justifyContent: "center",
+    alignItems: "center",
     shadowColor: "#FBBF24",
     shadowOffset: {
       width: 0,
-      height: ms(10),
+      height: 0,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: ms(30),
-    elevation: 15,
+    shadowOpacity: 0.4,
+    shadowRadius: ms(40),
+    elevation: 20,
   },
   logoImage: {
     width: ms(120),
     height: ms(120),
-    borderRadius: ms(30),
+    borderRadius: ms(36),
+    resizeMode: "contain",
   },
   title: {
     fontFamily: "PlusJakartaSans-ExtraBold",

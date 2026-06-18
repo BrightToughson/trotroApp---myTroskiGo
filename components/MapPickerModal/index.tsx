@@ -63,8 +63,14 @@ export default function MapPickerModal({ isVisible, onClose, onSelectLocation, i
     const address = await reverseGeocode(centerCoord.latitude, centerCoord.longitude);
     setIsLoading(false);
     
+    let parts = address.split(',').map(p => p.trim());
+    let locName = parts[0] || "Selected Location";
+    if (/^\d+$/.test(locName) && parts.length > 1) {
+      locName = parts[0] + ' ' + parts[1];
+    }
+    
     const newLoc: Location = {
-      name: address.split(',')[0] || "Selected Location",
+      name: locName,
       coordinate: centerCoord,
       address: address,
       type: "station" as any,

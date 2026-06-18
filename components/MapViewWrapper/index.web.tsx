@@ -509,6 +509,18 @@ const MapView = React.forwardRef((props: any, ref: any) => {
               map.on('dragstart', () => {
                 window.parent.postMessage({ type: 'MAP_GESTURE' }, '*');
               });
+              map.on('move', () => {
+                const center = map.getCenter();
+                window.parent.postMessage({
+                  type: 'CAMERA_CHANGED',
+                  properties: {
+                    center: [center.lng, center.lat],
+                    zoom: map.getZoom(),
+                    heading: map.getBearing(),
+                    pitch: map.getPitch()
+                  }
+                }, '*');
+              });
               map.on('zoomstart', (e) => {
                 if (e.originalEvent) {
                   window.parent.postMessage({ type: 'MAP_GESTURE' }, '*');
@@ -745,6 +757,10 @@ const MapView = React.forwardRef((props: any, ref: any) => {
       } else if (data && data.type === 'MAP_ROTATE') {
         if (props.onBearingChange) {
           props.onBearingChange(data.bearing);
+        }
+      } else if (data && data.type === 'CAMERA_CHANGED') {
+        if (props.onCameraChanged) {
+          props.onCameraChanged({ properties: data.properties });
         }
       } else if (data && data.type === 'MAP_GESTURE') {
         if (props.onPanDrag) {

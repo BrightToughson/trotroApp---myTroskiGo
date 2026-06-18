@@ -522,7 +522,6 @@ export default function NotificationsScreen() {
       NotificationService.markCategoryAsRead('community'); // Clear badge on visit
       
       const unsubscribe = NotificationService.subscribe(loadNotifications);
-      const channel = NotificationService.initRealtime();
       
       const unsubscribeComments = NotificationService.subscribeToComments((newComment, isDelete) => {
         setPostComments(prev => {
@@ -593,7 +592,6 @@ export default function NotificationsScreen() {
       
       return () => {
         unsubscribe();
-        if (channel) channel();
         unsubscribeComments();
         unsubscribeReactions();
       };

@@ -33,7 +33,8 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLocationSearchVisible, setIsLocationSearchVisible] = useState(false);
-  const [activeSearchField, setActiveSearchField] = useState<'origin' | 'destination' | 'stop' | 'transfer' | null>(null);
+  const [activeSearchField, setActiveSearchField] = useState<'origin' | 'destination' | 'stop' | 'transfer' | 'missing_stop' | null>(null);
+  const [stopCoordinate, setStopCoordinate] = useState<{latitude: number, longitude: number} | null>(null);
   const [routeStops, setRouteStops] = useState<{name: string, coordinate: {latitude: number, longitude: number}}[]>([]);
   const [isTracking, setIsTracking] = useState(false);
   const [trackedCoords, setTrackedCoords] = useState<{latitude: number, longitude: number}[]>([]);
@@ -122,12 +123,12 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
     }
   };
 
-  const openLocationSearch = (field: 'origin' | 'destination' | 'stop' | 'transfer') => {
+  const openLocationSearch = (field: 'origin' | 'destination' | 'stop' | 'transfer' | 'missing_stop') => {
     setActiveSearchField(field);
     setIsLocationSearchVisible(true);
   };
 
-  const handleLocationSelect = (location: any, fieldOverride?: 'origin' | 'destination' | 'stop' | 'transfer') => {
+  const handleLocationSelect = (location: any, fieldOverride?: 'origin' | 'destination' | 'stop' | 'transfer' | 'missing_stop') => {
     const fieldToUpdate = fieldOverride || activeSearchField;
     if (fieldToUpdate === 'origin') {
       setField1(location.name);
@@ -141,6 +142,9 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
       } else {
         Alert.alert("Duplicate Stop", "You have already added this stop to the route.");
       }
+    } else if (fieldToUpdate === 'missing_stop') {
+      setField1(location.name);
+      setStopCoordinate(location.coordinate);
     }
     setIsLocationSearchVisible(false);
   };
@@ -177,6 +181,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
       setTempManualFare("");
       setTempTransferStop("");
       setTempTransferFare("");
+      setStopCoordinate(null);
       setIsSuccess(false);
       setErrorMessage("");
     }, 300);
@@ -275,6 +280,9 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
     } else if (type === "stop") {
       payload.stop_name = field1;
       payload.route_name = `${field2} to ${field3}`;
+      if (stopCoordinate) {
+        payload.coordinate = stopCoordinate;
+      }
     } else if (type === 'general') {
       payload.message = field1;
     }
@@ -762,6 +770,8 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               value={field1}
               onChangeText={setField1}
               placeholder={t('name_of_trotro_stop', 'Name of the trotro stop')}
+              icon={<WebIcon name="map-outline" size={20} color={colors.primary} />}
+              onIconPress={() => openLocationSearch('missing_stop')}
             />
             <View style={{ marginTop: ms(8) }}>
               <Text style={{ color: colors.textSecondary, marginBottom: ms(8), fontSize: ms(14), fontWeight: '600' }}>Which route is this stop on?</Text>
@@ -935,9 +945,11 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                 ? "Select Destination" 
                 : activeSearchField === 'transfer'
                   ? "Select Transfer Location"
-                  : "Add Stop"
+                  : activeSearchField === 'missing_stop'
+                    ? "Select Stop Location"
+                    : "Add Stop"
           }
-          activeField={activeSearchField}
+          activeField={activeSearchField as any}
         />
     </Modal>
   );

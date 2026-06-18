@@ -758,7 +758,11 @@ export const NotificationService = {
     }
   },
   registerForPushNotificationsAsync: async () => {
-    if (Platform.OS === 'web') return;
+    if (Platform.OS === 'web') {
+      // iOS Safari will throw an error if you prompt for permissions without a user gesture.
+      console.log("Web Push: Registration should be tied to a user gesture button.");
+      return;
+    }
     
     if (Device.isDevice) {
       const { status: existingStatus } = await NotificationsWrapper.getPermissionsAsync();

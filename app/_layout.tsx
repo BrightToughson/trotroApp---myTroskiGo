@@ -175,6 +175,11 @@ export default function RootLayout() {
     RouteCacheService.clearAll();
     FareService.init();
     NotificationService.registerForPushNotificationsAsync();
+    const unsubscribeChannel = NotificationService.initRealtime();
+    
+    return () => {
+      if (unsubscribeChannel) unsubscribeChannel();
+    };
   }, []);
 
   useEffect(() => {
