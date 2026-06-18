@@ -311,7 +311,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               label="Origin (Start Location)"
               value={field1}
               onChangeText={setField1}
-              placeholder="Where did you board?"
+              placeholder="Where did you board? (or choose on map)"
               icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
               onIconPress={() => openLocationSearch('origin')}
             />
@@ -319,7 +319,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               label="Destination (End Location)"
               value={field2}
               onChangeText={setField2}
-              placeholder="Where did you alight?"
+              placeholder="Where did you alight? (or choose on map)"
               icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
               onIconPress={() => openLocationSearch('destination')}
             />
@@ -396,7 +396,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               label={journeyType === "transfer" ? "Overall Origin (Start Location)" : "Origin (Start Location)"}
               value={field1}
               onChangeText={setField1}
-              placeholder="Where does the route start?"
+              placeholder="Where does the route start? (or choose on map)"
               icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
               onIconPress={() => openLocationSearch('origin')}
             />
@@ -425,7 +425,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               label={journeyType === "transfer" ? "Overall Destination (End Location)" : "Destination (End Location)"}
               value={field2}
               onChangeText={setField2}
-              placeholder="Where does it end?"
+              placeholder="Where does it end? (or choose on map)"
               icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
               onIconPress={() => openLocationSearch('destination')}
             />
@@ -543,13 +543,13 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                     label="Origin"
                     value={tempManualOrigin}
                     onChangeText={setTempManualOrigin}
-                    placeholder={t('where_board_trotro', 'Where do you board this trotro?')}
+                    placeholder={t('where_board_trotro', 'Where do you board this trotro? (or choose on map)')}
                   />
                   <InputField
                     label="Destination"
                     value={tempManualDestination}
                     onChangeText={setTempManualDestination}
-                    placeholder={t('where_get_off', 'Where do you get off?')}
+                    placeholder={t('where_get_off', 'Where do you get off? (or choose on map)')}
                   />
                   <InputField
                     label="Fare (GHS)"
@@ -769,7 +769,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
               label="Missing Stop Name"
               value={field1}
               onChangeText={setField1}
-              placeholder={t('name_of_trotro_stop', 'Name of the trotro stop')}
+              placeholder={t('name_of_trotro_stop', 'Name of the trotro stop (or choose on map)')}
               icon={<WebIcon name="map-outline" size={20} color={colors.primary} />}
               onIconPress={() => openLocationSearch('missing_stop')}
             />
@@ -779,7 +779,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                 label="Origin"
                 value={field2}
                 onChangeText={setField2}
-                placeholder="Where does the route start?"
+                placeholder="Where does the route start? (or choose on map)"
                 icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
                 onIconPress={() => openLocationSearch('origin')}
               />
@@ -787,7 +787,7 @@ export default function ContributionModal({ isVisible, onClose, type, initialDat
                 label="Destination"
                 value={field3}
                 onChangeText={setField3}
-                placeholder="Where does it end?"
+                placeholder="Where does it end? (or choose on map)"
                 icon={<WebIcon name="map-outline" size= {20} color={colors.primary} />}
                 onIconPress={() => openLocationSearch('destination')}
               />

@@ -205,7 +205,7 @@ const resources = {
       choose_region: 'Explore Areas',
       start: 'Start',
       browse_regions: 'Browse Regions',
-      search_placeholder: 'Search for stops, stations...',
+      search_placeholder: 'Search for stops, stations... (or choose on map)',
       use_current_location: 'Use Current Location',
       snapping_to_nearest: 'Finding the closest stop...',
       find_closest_hub: 'Find closest station',
