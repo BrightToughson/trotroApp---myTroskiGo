@@ -3,7 +3,7 @@ import { ClerkProvider, ClerkLoaded, useAuth } from "@clerk/expo";
 import { Stack, usePathname } from "expo-router";
 import Head from "expo-router/head";
 import * as SplashScreen from "expo-splash-screen";
-import React, { useEffect, Component, ReactNode } from "react";
+import React, { useEffect } from "react";
 import { Image, Platform, StyleSheet, View, UIManager, Text, TextInput } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemeProvider, useTheme, LightColors } from "@/context/ThemeContext";
@@ -206,77 +206,34 @@ export default function RootLayout() {
     );
   }
 
-class RootErrorBoundary extends Component<{children: ReactNode}, {hasError: boolean, error: Error | null}> {
-  constructor(props: any) {
-    super(props);
-    this.state = { hasError: false, error: null };
-  }
-
-  static getDerivedStateFromError(error: Error) {
-    return { hasError: true, error };
-  }
-
-  componentDidCatch(error: Error, errorInfo: any) {
-    console.error("RootErrorBoundary caught error:", error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      const isScriptError = this.state.error?.message?.includes('Script error');
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20, backgroundColor: '#ffffff' }}>
-          <Ionicons name={isScriptError ? "cloud-offline-outline" : "alert-circle-outline"} size={64} color="#FF3B30" />
-          <Text style={{ fontSize: 20, fontFamily: 'PlusJakartaSans-Bold', marginTop: 20, textAlign: 'center', color: '#000' }}>
-            {isScriptError ? "Network Issue" : "Something went wrong"}
-          </Text>
-          <Text style={{ fontSize: 16, fontFamily: 'PlusJakartaSans-Regular', color: '#666', marginTop: 10, textAlign: 'center', marginBottom: 30 }}>
-            {isScriptError 
-              ? "We couldn't connect to a required service. This can happen on slow connections or if a service is blocked."
-              : this.state.error?.message || "An unexpected error occurred."}
-          </Text>
-          <CustomButton 
-            title="Reload App" 
-            onPress={() => {
-              if (typeof window !== 'undefined') window.location.reload();
-            }} 
-          />
-        </View>
-      );
-    }
-    return this.props.children;
-  }
-}
-
   return (
-    <RootErrorBoundary>
-      <GestureHandlerRootView style={{ flex: 1, width: '100%', overflow: 'hidden' }}>
-        <ThemeProvider>
-          <SafeAreaProvider style={{ flex: 1, width: '100%', overflow: 'hidden' }}>
-            <ClerkProvider
-              publishableKey={publishableKey}
-              tokenCache={Platform.OS !== "web" ? tokenCache : undefined}
-            >
-              <SupabaseTokenSync />
-              <ClerkLoaded>
-                {Platform.OS === 'web' && (
-                  <Head>
-                    <title>myTroski Go</title>
-                    <meta name="viewport" content="width= device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
-                    <meta name="apple-mobile-web-app-capable" content="yes" />
-                    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-                  </Head>
-                )}
-                <DesktopWrapper>
-                  <RootStack />
+    <GestureHandlerRootView style={{ flex: 1, width: '100%', overflow: 'hidden' }}>
+      <ThemeProvider>
+        <SafeAreaProvider style={{ flex: 1, width: '100%', overflow: 'hidden' }}>
+          <ClerkProvider
+            publishableKey={publishableKey}
+            tokenCache={Platform.OS !== "web" ? tokenCache : undefined}
+          >
+            <SupabaseTokenSync />
+            <ClerkLoaded>
+              {Platform.OS === 'web' && (
+                <Head>
+                  <title>myTroski Go</title>
+                  <meta name="viewport" content="width= device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
+                  <meta name="apple-mobile-web-app-capable" content="yes" />
+                  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+                </Head>
+              )}
+              <DesktopWrapper>
+                <RootStack />
 
-                  <NotificationBanner />
-                </DesktopWrapper>
-              </ClerkLoaded>
-            </ClerkProvider>
-          </SafeAreaProvider>
-        </ThemeProvider>
-      </GestureHandlerRootView>
-    </RootErrorBoundary>
+                <NotificationBanner />
+              </DesktopWrapper>
+            </ClerkLoaded>
+          </ClerkProvider>
+        </SafeAreaProvider>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
 

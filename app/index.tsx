@@ -1,6 +1,6 @@
 import { ms } from '../lib/utils/metrics';
 import { useAuth } from "@clerk/expo";
-import { Redirect } from "expo-router";
+import { Redirect, usePathname } from "expo-router";
 import { SecureStoreWrapper as SecureStore } from "../lib/auth/SecureStoreWrapper";
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Platform, Image } from "react-native";
@@ -27,6 +27,7 @@ const SPLASH_MIN_DURATION = 5000;
  * Displays an advanced animated splash screen while checking session status.
  */
 const Index = () => {
+  const pathname = usePathname();
   const { t } = useTranslation();
   const { isSignedIn, isLoaded } = useAuth();
   const [hasSeenWelcome, setHasSeenWelcome] = useState<boolean | null>(null);
@@ -34,7 +35,6 @@ const Index = () => {
 
   const scale = useSharedValue(0.5);
   const opacity = useSharedValue(0);
-  const loaderWidth = useSharedValue(0);
 
   useEffect(() => {
     if (Platform.OS !== 'web') {
@@ -51,12 +51,6 @@ const Index = () => {
       });
 
       opacity.value = withTiming(1, { duration: 800 });
-      
-      // Simulate loading progress bar filling over the duration of the splash
-      loaderWidth.value = withTiming(200, { 
-        duration: SPLASH_MIN_DURATION, 
-        easing: Easing.bezier(0.25, 0.1, 0.25, 1) 
-      });
     }
   }, []);
 
@@ -64,12 +58,6 @@ const Index = () => {
     return {
       transform: [{ scale: scale.value }],
       opacity: opacity.value,
-    };
-  });
-
-  const animatedLoaderStyle = useAnimatedStyle(() => {
-    return {
-      width: loaderWidth.value,
     };
   });
 
@@ -108,16 +96,14 @@ const Index = () => {
             <Text style={styles.subtitle}>{t('app_subtitle', 'Smart Transit for the City')}</Text>
           </Animated.View>
         </View>
-
-        <View style={styles.footer}>
-          <View style={styles.loaderTrack}>
-            <Animated.View style={[styles.loaderFill, animatedLoaderStyle]} />
-          </View>
-        </View>
       </View>
     );
   }
   
+  if (pathname !== "/") {
+    return null;
+  }
+
   if (isSignedIn) {
     return <Redirect href="/(root)/(tabs)/home" />;
   }
@@ -179,18 +165,6 @@ const styles = StyleSheet.create({
   footer: {
     paddingBottom: ms(60),
     alignItems: "center",
-  },
-  loaderTrack: {
-    width: ms(200),
-    height: ms(4),
-    backgroundColor: "#374151",
-    borderRadius: ms(2),
-    overflow: "hidden",
-  },
-  loaderFill: {
-    height: "100%",
-    backgroundColor: "#F9FAFB",
-    borderRadius: ms(2),
   },
 });
 

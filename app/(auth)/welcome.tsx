@@ -374,54 +374,55 @@ const Welcome = () => {
           ))}
         </Swiper>
 
-        {/* Language Selection Overlay */}
-        {isLanguageModalVisible && (
-          <View style={[StyleSheet.absoluteFill, { zIndex: 9999, elevation: 9999 }]}>
-            <View style={styles.modalOverlay}>
-              <BlurView intensity={Platform.OS === 'ios' ? 40 : 80} tint={isDark ? "dark" : "light"} style={StyleSheet.absoluteFill} />
-              <Animated.View entering={FadeInUp.springify()} style={[styles.modalContent, { backgroundColor: isDark ? "#1e293b" : "#ffffff" }]}>
-                <Text style={[styles.modalTitle, { color: colors.text }]}>{t('selectLanguage')}</Text>
-                <Text style={[styles.modalSubtitle, { color: colors.textSecondary }]}>{t('select_language_subtitle')}</Text>
-                
-                <TouchableOpacity 
-                  style={[styles.languageOption, { borderColor: i18n.language.startsWith('en') ? colors.primary : (isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)") }]}
-                  onPress={() => {
-                    i18n.changeLanguage('en');
-                    setIsLanguageModalVisible(false);
-                  }}
-                  activeOpacity={0.7}
-                >
-                  <Text style={styles.flagEmoji}>🇬🇧</Text>
-                  <View style={styles.languageTextContainer}>
-                    <Text style={[styles.languageName, { color: colors.text }]}>{t('english')}</Text>
-                    <Text style={[styles.languageRegion, { color: colors.textSecondary }]}>{t('language_region_global')}</Text>
-                  </View>
-                  {i18n.language.startsWith('en') && (
-                    <WebIcon name="checkmark-circle" size={24} color={colors.primary} />
-                  )}
-                </TouchableOpacity>
+        {/* Language Selection Modal */}
+        <Modal
+          visible={isLanguageModalVisible}
+          transparent={true}
+          animationType="fade"
+          onRequestClose={() => setIsLanguageModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <BlurView intensity={Platform.OS === 'ios' ? 40 : 80} tint={isDark ? "dark" : "light"} style={StyleSheet.absoluteFill} />
+            <Animated.View entering={FadeInUp.springify()} style={[styles.modalContent, { backgroundColor: isDark ? "#1e293b" : "#ffffff" }]}>
+              <Text style={[styles.modalTitle, { color: colors.text }]}>{t('selectLanguage')}</Text>
+              <Text style={[styles.modalSubtitle, { color: colors.textSecondary }]}>{t('select_language_subtitle')}</Text>
+              
+              <TouchableOpacity 
+                style={[styles.languageOption, { borderColor: i18n.language.startsWith('en') ? colors.primary : (isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)") }]}
+                onPress={() => {
+                  i18n.changeLanguage('en');
+                  setIsLanguageModalVisible(false);
+                }}
+              >
+                <Text style={styles.flagEmoji}>🇬🇧</Text>
+                <View style={styles.languageTextContainer}>
+                  <Text style={[styles.languageName, { color: colors.text }]}>{t('english')}</Text>
+                  <Text style={[styles.languageRegion, { color: colors.textSecondary }]}>{t('language_region_global')}</Text>
+                </View>
+                {i18n.language.startsWith('en') && (
+                  <WebIcon name="checkmark-circle" size= {24} color={colors.primary} />
+                )}
+              </TouchableOpacity>
 
-                <TouchableOpacity 
-                  style={[styles.languageOption, { borderColor: i18n.language.startsWith('fr') ? colors.primary : (isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)") }]}
-                  onPress={() => {
-                    i18n.changeLanguage('fr');
-                    setIsLanguageModalVisible(false);
-                  }}
-                  activeOpacity={0.7}
-                >
-                  <Text style={styles.flagEmoji}>🇫🇷</Text>
-                  <View style={styles.languageTextContainer}>
-                    <Text style={[styles.languageName, { color: colors.text }]}>{t('french')}</Text>
-                    <Text style={[styles.languageRegion, { color: colors.textSecondary }]}>{t('language_region_french')}</Text>
-                  </View>
-                  {i18n.language.startsWith('fr') && (
-                    <WebIcon name="checkmark-circle" size={24} color={colors.primary} />
-                  )}
-                </TouchableOpacity>
-              </Animated.View>
-            </View>
+              <TouchableOpacity 
+                style={[styles.languageOption, { borderColor: i18n.language.startsWith('fr') ? colors.primary : (isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)") }]}
+                onPress={() => {
+                  i18n.changeLanguage('fr');
+                  setIsLanguageModalVisible(false);
+                }}
+              >
+                <Text style={styles.flagEmoji}>🇫🇷</Text>
+                <View style={styles.languageTextContainer}>
+                  <Text style={[styles.languageName, { color: colors.text }]}>{t('french')}</Text>
+                  <Text style={[styles.languageRegion, { color: colors.textSecondary }]}>{t('language_region_french')}</Text>
+                </View>
+                {i18n.language.startsWith('fr') && (
+                  <WebIcon name="checkmark-circle" size= {24} color={colors.primary} />
+                )}
+              </TouchableOpacity>
+            </Animated.View>
           </View>
-        )}
+        </Modal>
       </SafeAreaView>
     </View>
   );
