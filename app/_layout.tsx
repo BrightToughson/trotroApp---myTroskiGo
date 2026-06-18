@@ -186,6 +186,14 @@ export default function RootLayout() {
     if (fontsLoaded || fontError) {
       if (Platform.OS !== "web") {
         SplashScreen.hideAsync();
+      } else {
+        const splash = typeof document !== 'undefined' ? document.getElementById('web-splash') : null;
+        if (splash) {
+          splash.style.opacity = '0';
+          setTimeout(() => {
+            splash.style.display = 'none';
+          }, 500);
+        }
       }
     }
   }, [fontsLoaded, fontError]);

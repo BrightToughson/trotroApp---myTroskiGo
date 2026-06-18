@@ -114,6 +114,25 @@ export default function Root({ children }: PropsWithChildren) {
         {/* Add any additional <head> elements that you want globally available on web... */}
       </head>
       <body>
+        <div id="web-splash" style={{
+          position: 'fixed',
+          top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: '#111827',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 99999,
+          transition: 'opacity 0.5s ease-out'
+        }}>
+          <img src="/logo/mytroskigo.png" style={{ width: '120px', height: 'auto', animation: 'pulse 2s infinite' }} alt="Loading..." />
+          <style dangerouslySetInnerHTML={{__html: `
+            @keyframes pulse {
+              0% { transform: scale(1); opacity: 1; }
+              50% { transform: scale(1.05); opacity: 0.8; }
+              100% { transform: scale(1); opacity: 1; }
+            }
+          `}} />
+        </div>
         {children}
         {/* Service Worker Registration */}
         <script

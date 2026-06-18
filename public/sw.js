@@ -81,6 +81,7 @@ self.addEventListener('fetch', (event) => {
         return networkResponse;
       }).catch((err) => {
         console.log('Network fetch failed, serving from cache only.', err);
+        throw err;
       });
 
       // Return the cached response immediately if available, while network fetch happens in background
