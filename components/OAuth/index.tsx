@@ -45,7 +45,7 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       if (Platform.OS === 'web') {
         const provider = authMode === 'sign-up' ? signUp : signIn;
         if (provider) {
-          await provider.authenticateWithRedirect({
+          await (provider as any).authenticateWithRedirect({
             strategy: 'oauth_google',
             redirectUrl: typeof window !== 'undefined' ? window.location.href : redirectUrl,
             redirectUrlComplete: '/home',
