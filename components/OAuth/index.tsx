@@ -39,8 +39,20 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
 
 
 
-      // Create a robust redirect URL that works across all platforms (web, native, pwa)
+      // Create a robust redirect URL that works across all platforms
       const redirectUrl = Linking.createURL("/", { scheme: "trotroapp" });
+
+      if (Platform.OS === 'web') {
+        const provider = authMode === 'sign-up' ? signUp : signIn;
+        if (provider) {
+          await provider.authenticateWithRedirect({
+            strategy: 'oauth_google',
+            redirectUrl: typeof window !== 'undefined' ? window.location.href : redirectUrl,
+            redirectUrlComplete: '/home',
+          });
+          return;
+        }
+      }
       
       const { createdSessionId, setActive, signUp: su, signIn: si } =
         await startOAuthFlow({
@@ -134,12 +146,18 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       // Provide specific advice for common environment issues
       if (errorMessage.includes("development") || errorMessage.includes("localhost")) {
         finalMessage = "Clerk configuration error: Ensure your redirect URLs are allowed in the Clerk Dashboard for this environment.";
+      } else if (errorMessage.toLowerCase().includes("not enabled") || errorMessage.toLowerCase().includes("strategy")) {
+        finalMessage = "Google Sign-In is not enabled in your Clerk Production Dashboard. You need to configure a Google Client ID in Clerk to use this feature on the live site.";
       }
 
-      Alert.alert(
-        t('auth_error', "Authentication Error"),
-        `${finalMessage}\n\n${t('try_alternative', 'If Google sign-in persists in failing, please try using the email method instead.')}`,
-      );
+      if (Platform.OS === 'web') {
+        window.alert(`Authentication Error: ${finalMessage}`);
+      } else {
+        Alert.alert(
+          t('auth_error', "Authentication Error"),
+          `${finalMessage}\n\n${t('try_alternative', 'If Google sign-in persists in failing, please try using the email method instead.')}`,
+        );
+      }
     } finally {
       setIsLoading(false);
       onOAuthLoading?.(false);
