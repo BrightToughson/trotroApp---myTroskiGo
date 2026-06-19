@@ -42,18 +42,6 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       // Create a robust redirect URL that works across all platforms
       const redirectUrl = Linking.createURL("/", { scheme: "trotroapp" });
 
-      if (Platform.OS === 'web') {
-        const provider = authMode === 'sign-up' ? signUp : signIn;
-        if (provider) {
-          await (provider as any).authenticateWithRedirect({
-            strategy: 'oauth_google',
-            redirectUrl: typeof window !== 'undefined' ? window.location.href : redirectUrl,
-            redirectUrlComplete: '/home',
-          });
-          return;
-        }
-      }
-      
       const { createdSessionId, setActive, signUp: su, signIn: si } =
         await startOAuthFlow({
           redirectUrl,
