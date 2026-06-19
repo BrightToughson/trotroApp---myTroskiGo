@@ -457,8 +457,7 @@ export default function FindRide() {
             pitch: targetPitch
           }, { duration: 300 });
         } else {
-          // @ts-ignore
-          const camera = await mapRef.current.getCamera();
+          const camera = await (mapRef.current as any).getCamera();
           if (camera) {
             const newZoom = Math.min((camera.zoom || 15) + 1, 20);
             const targetPitch = getPitchForZoom(newZoom);
@@ -485,8 +484,7 @@ export default function FindRide() {
             pitch: targetPitch
           }, { duration: 300 });
         } else {
-          // @ts-ignore
-          const camera = await mapRef.current.getCamera();
+          const camera = await (mapRef.current as any).getCamera();
           if (camera) {
             const newZoom = Math.max((camera.zoom || 15) - 1, 2);
             const targetPitch = getPitchForZoom(newZoom);
@@ -909,8 +907,7 @@ export default function FindRide() {
                     shadowOpacity: 0.1,
                     shadowRadius: ms(10),
                     elevation: 6,
-                    // @ts-ignore
-                    backdropFilter: "blur(20px)",
+                    ...(Platform.OS === 'web' ? { backdropFilter: "blur(20px)" } : {}),
                   }}>
                     <TouchableOpacity 
                       activeOpacity={0.7} 

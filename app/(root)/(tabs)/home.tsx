@@ -5,20 +5,17 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import React, { useCallback, useState } from "react";
 import {
-    FlatList,
-    ImageBackground,
     ScrollView,
     StyleSheet,
     Text,
     TouchableOpacity,
     View,
     Platform,
-    Linking,
     Modal,
     RefreshControl,
     useWindowDimensions,
 } from "react-native";
-import { Image } from 'expo-image';
+import { Image, ImageBackground } from 'expo-image';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Animated, {
     FadeInDown,
@@ -34,7 +31,6 @@ import Animated, {
     FadeOut,
 } from "react-native-reanimated";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
-import Swiper from "react-native-swiper";
 import SideMenu from "../../../components/SideMenu";
 import { useTheme } from "../../../context/ThemeContext";
 import { HistoryService, Ride } from "../../../lib/history/HistoryService";
@@ -47,38 +43,14 @@ import NetInfo from "@react-native-community/netinfo";
 import { translateText } from "../../../lib/i18n/translate";
 import { useInstallPrompt } from "../../../hooks/useInstallPrompt";
 import OfficialAnnouncementsModal from "../../../components/OfficialAnnouncementsModal";
-import { PulseService, CityPulse } from
-"../../../lib/pulse/PulseService";
-
-const MOCK_NEWS = [
-  {
-    id: "expressway",
-    tag: "highway",
-    title: "Accra-Kumasi Expressway begins as military clear 17.75km land for project",
-    excerpt: "The military has commenced clearing of the 17.75km land for the Accra-Kumasi Expressway project.",
-    image_url: "https://cdn.ghanaweb.com/imagelib/pics/838/83884814.jpg",
-    color: "#3B82F6",
-    url: "https://www.ghanaweb.com/GhanaHomePage/NewsArchive/Accra-Kumasi-Expressway-begins-as-military-clear-17-75km-land-for-project-2033030"
-  },
-  {
-    id: "fares",
-    tag: "transport",
-    title: "Transport Ministry to meet GRTCC, GPRTU over proposed 20% fare increase",
-    excerpt: "The Ministry of Transport will engage the leadership of the transport unions over the proposed transport fare increment.",
-    image_url: "https://cdn.ghanaweb.com/imagelib/pics/869/86950294.jpg",
-    color: "#FBBF24",
-    url: "https://www.ghanaweb.com/"
-  },
-  {
-    id: "brt",
-    tag: "transit",
-    title: "New BRT buses arrive to ease traffic congestion in Accra",
-    excerpt: "Government has procured 100 new buses to augment the fleet of the Metro Mass Transit.",
-    image_url: "https://cdn.ghanaweb.com/imagelib/pics/156/15643445.jpg",
-    color: "#10B981",
-    url: "https://www.ghanaweb.com/"
-  }
-];
+import { PulseService, CityPulse } from "../../../lib/pulse/PulseService";
+import {
+    GreetingComponent,
+    RecentJourneyComponent,
+    CommunityUpdateComponent,
+    TransitUpdatesComponent,
+    InstallPromptComponent
+} from "../../../components/Home";
 
 export default function Home() {
   const { signup, login } = useLocalSearchParams();
@@ -205,7 +177,6 @@ export default function Home() {
   const drift4 = useSharedValue(0);
   const scrollY = useSharedValue(0);
   const bounce = useSharedValue(0);
-  const pulseScale = useSharedValue(1);
 
   React.useEffect(() => {
     if (Platform.OS !== 'web') {
@@ -214,42 +185,18 @@ export default function Home() {
       drift3.value = withRepeat(withTiming(40, { duration: 15000 }), -1, true);
       drift4.value = withRepeat(withTiming(-35, { duration: 18000 }), -1, true);
       bounce.value = withRepeat(withSequence(withTiming(10, { duration: 800 }), withTiming(0, { duration: 800 })), -1, true);
-      pulseScale.value = withRepeat(withSequence(withTiming(1.5, { duration: 600 }), withTiming(1, { duration: 600 })), -1, true);
     }
 
     const unsubscribe = NetInfo.addEventListener(state => {
       setIsOnline(state.isConnected ?? true);
     });
     return () => unsubscribe();
-  }, [bounce, drift1, drift2, drift3, drift4, pulseScale]);
-
-  const renderGreetingWithFlag = () => {
-    const hours = new Date().getHours();
-    let textKey = "goodMorning";
-    if (hours < 12) textKey = "goodMorning";
-    else if (hours < 17) textKey = "goodAfternoon";
-    else textKey = "goodEvening";
-
-    const greetingText = t(textKey) || (hours < 12 ? "Good Morning" : hours < 17 ? "Good Afternoon" : "Good Evening");
-
-    return (
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Text style={[styles.greeting, { color: colors.textSecondary }]}>{greetingText}, </Text>
-        {Platform.OS === 'web' ? (
-          <Image source={{ uri: 'https://flagcdn.com/w40/gh.png' }} style={{ width: ms(22), height: ms(16), marginLeft: ms(4), borderRadius: ms(2) }} />
-        ) : (
-          <Text style={styles.greeting}>🇬🇭</Text>
-        )}
-      </View>
-    );
-  };
+  }, [bounce, drift1, drift2, drift3, drift4]);
 
   const animatedBounce = useAnimatedStyle(() => ({
     transform: [{ translateY: bounce.value }],
     opacity: withTiming(scrollY.value > 50 ? 0 : 1, { duration: 300 }),
   }));
-
-  const animatedPulse = useAnimatedStyle(() => ({ transform: [{ scale: pulseScale.value }] }));
 
   const animatedDrift1 = useAnimatedStyle(() => ({ transform: [{ translateX: drift1.value }, { translateY: drift2.value }] }));
   const animatedDrift2 = useAnimatedStyle(() => ({ transform: [{ translateX: drift2.value }, { translateY: drift3.value }] }));
@@ -329,7 +276,7 @@ export default function Home() {
               </TouchableOpacity>
               {showGreeting && (
                 <Animated.View exiting={FadeOut.duration(800)} style={{ marginLeft: ms(16), flex: 1 }}>
-                  {renderGreetingWithFlag()}
+                  <GreetingComponent userName={user?.firstName || t('traveler')} />
                   <Text style={[styles.userName, { color: colors.text, fontSize: userNameSize }]} numberOfLines={1}>{user?.firstName || t('traveler')} 👋</Text>
                 </Animated.View>
               )}
@@ -391,199 +338,44 @@ export default function Home() {
             </TouchableOpacity>
           </Animated.View>
 
-          {isInstallable && (
-            <Animated.View entering={FadeInDown.delay(300).duration(600)} style={[styles.section, { marginTop: sectionMarginTop }]}>
-              <TouchableOpacity onPress={handleInstallClick} style={[styles.liveTicker, { backgroundColor: colors.primary + '15', borderColor: colors.primary + '40', paddingVertical: paddingVerticalSmall }]}>
-                <View style={[styles.searchIconBox, { backgroundColor: colors.primary, marginRight: ms(12) }]}>
-                  <WebIcon name="download-outline" size= {18} color="#fff" />
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={[styles.liveLabel, { color: colors.primary, fontSize: liveLabelSize }]}>{t('install_app')}</Text>
-                  <Text style={[styles.liveText, { color: colors.text, fontSize: liveTextSize, opacity: 0.9 }]} numberOfLines={2}>
-                    {t('install_app_desc')}
-                  </Text>
-                </View>
-                <WebIcon name="add-circle" size= {24} color={colors.primary} />
-              </TouchableOpacity>
-            </Animated.View>
-          )}
+          <InstallPromptComponent
+            isInstallable={isInstallable}
+            handleInstallClick={handleInstallClick}
+            liveLabelSize={liveLabelSize}
+            liveTextSize={liveTextSize}
+            isSmallScreen={isSmallScreen}
+          />
 
 
 
-          <Animated.View entering={FadeInUp.delay(350).duration(600)} style={[styles.section, { marginTop: sectionMarginTop }]}>
-            <View style={styles.sectionHeader}>
-              <Text style={[styles.sectionTitle, { color: colors.text, fontSize: sectionTitleSize }]}>{t('recent_journey', 'Recent Journey')}</Text>
-              {recentRides.length > 0 && (
-                <TouchableOpacity 
-                  style={[styles.viewAllBtn, { backgroundColor: colors.primary + '15', flexDirection: 'row', alignItems: 'center', gap: ms(4) }]}
-                  onPress={() => router.push("/(root)/(tabs)/history")}
-                >
-                  <WebIcon name="time" size= {16} color={colors.primary} />
-                  <Text style={{ color: colors.primary, fontSize: ms(12), fontWeight: "800", textTransform: 'uppercase', letterSpacing: 0.5 }}>{t('history')}</Text>
-                </TouchableOpacity>
-              )}
-            </View>
-            {recentRides.length > 0 ? (
-              <TouchableOpacity 
-                onPress={() => router.push({ pathname: "/(root)/find-ride", params: recentRides[0] as Record<string, any> })}
-                style={[styles.liveTicker, { backgroundColor: isDark ? "rgba(30, 41, 59, 0.5)" : "rgba(255, 255, 255, 0.7)", borderColor: colors.primary + '20' }]}
-              >
-                <Animated.View style={[styles.pulseDot, { backgroundColor: colors.primary, marginRight: ms(8) }, animatedPulse]} />
-                <View style={[styles.iconBoxSmall, { backgroundColor: colors.primary + '15', marginRight: ms(12) }]}>
-                   <WebIcon name="bus" size= {18} color={colors.primary} />
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={[styles.liveLabel, { color: colors.primary, fontSize: liveLabelSize }]} numberOfLines={1}>
-                    {recentRides[0].destination}
-                  </Text>
-                  <Text style={[styles.liveText, { color: colors.text, fontSize: liveTextSize }]} numberOfLines={1}>
-                    {t('from')} {recentRides[0].origin}
-                  </Text>
-                </View>
-                <View style={styles.liveMeta}>
-                   <Text style={[styles.liveTime, { color: colors.textSecondary }]}>{new Date(recentRides[0].date || Date.now()).toLocaleDateString()}</Text>
-                   <WebIcon name="chevron-forward" size= {16} color={colors.primary} />
-                </View>
-              </TouchableOpacity>
-            ) : (
-              <View style={[styles.emptyRides, { backgroundColor: isDark ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.4)", borderColor: colors.border }]}>
-                <Text style={{ color: colors.textSecondary, textAlign: "center" }}>{t('no_trips')}</Text>
-              </View>
-            )}
-          </Animated.View>
+          <RecentJourneyComponent
+            recentRides={recentRides}
+            isDark={isDark}
+            liveLabelSize={liveLabelSize}
+            liveTextSize={liveTextSize}
+            sectionMarginTop={sectionMarginTop}
+          />
 
-          {latestReport && (
-            <Animated.View entering={FadeInUp.delay(450).duration(600)} style={[styles.section, { marginTop: tickerMarginTop }]}>
-              <TouchableOpacity onPress={() => router.push("/(root)/(tabs)/communitypost")} style={[styles.liveTicker, { backgroundColor: colors.primary + '10', borderColor: colors.primary + '30', paddingVertical: paddingVerticalSmall }]}>
-                <Animated.View style={[styles.pulseDot, { backgroundColor: colors.primary }, animatedPulse]} />
-                <View style={{ flex: 1 }}>
-                  <Text style={[styles.liveLabel, { color: colors.primary, fontSize: liveLabelSize }]} numberOfLines={1}>
-                    {`${latestReport.title} (@${latestReport.username || latestReport.title.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()})`} • {t('live_update')}
-                  </Text>
-                  <Text style={[styles.liveText, { color: colors.text, fontSize: liveTextSize }]} numberOfLines={1}>{translatedReportText || latestReport.message}</Text>
-                </View>
-                <WebIcon name="chevron-forward" size= {16} color={colors.primary} />
-              </TouchableOpacity>
-            </Animated.View>
-          )}
+          <CommunityUpdateComponent
+            latestReport={latestReport}
+            translatedReportText={translatedReportText}
+            showInAppAlert={showInAppAlert}
+            setShowInAppAlert={setShowInAppAlert}
+            isDark={isDark}
+            liveLabelSize={liveLabelSize}
+            liveTextSize={liveTextSize}
+            tickerMarginTop={tickerMarginTop}
+            paddingVerticalSmall={paddingVerticalSmall}
+          />
 
-          {showInAppAlert && (
-            <Animated.View entering={FadeInDown} exiting={FadeInUp} style={[styles.inAppAlert, { backgroundColor: colors.surface, borderColor: colors.primary }]}>
-              <TouchableOpacity style={styles.inAppAlertContent} onPress={() => { setShowInAppAlert(null); router.push("/(root)/(tabs)/communitypost"); }}>
-                <View style={[styles.iconBoxSmall, { backgroundColor: colors.primary + '20' }]}>
-                  <WebIcon name="chatbubble-ellipses" size= {18} color={colors.primary} />
-                </View>
-                <View style={{ flex: 1, marginLeft: ms(12) }}>
-                  <Text style={[styles.alertTitle, { color: colors.text }]}>{showInAppAlert.title}</Text>
-                  <Text style={[styles.alertMessage, { color: colors.textSecondary }]} numberOfLines={1}>{showInAppAlert.message}</Text>
-                </View>
-                <TouchableOpacity onPress={() => setShowInAppAlert(null)}>
-                  <WebIcon name="close" size= {20} color={colors.textSecondary} />
-                </TouchableOpacity>
-              </TouchableOpacity>
-            </Animated.View>
-          )}
-
-          <Animated.View entering={FadeInUp.delay(550).duration(600)} style={[styles.section, { marginTop: sectionMarginTop * 1.5 }]}>
-            <View style={styles.sectionHeader}>
-              <View>
-                <Text style={[styles.sectionTitle, { color: colors.text, fontSize: sectionTitleSize }]}>{t('transit_updates', 'Transit Updates')}</Text>
-                <Text style={{ fontSize: ms(13), color: colors.textSecondary, fontWeight: '600', marginTop: ms(-4) }}>{t('stay_informed_transit', 'Stay informed with the latest transit news')}</Text>
-              </View>
-              {cityPulses.length > 3 && (
-                <TouchableOpacity 
-                  style={[styles.viewAllBtn, { backgroundColor: colors.primary + '15', flexDirection: 'row', alignItems: 'center', gap: ms(4) }]}
-                  onPress={() => router.push("/(root)/city-pulse-list")}
-                >
-                  <Text style={{ color: colors.primary, fontSize: ms(12), fontWeight: "800", textTransform: 'uppercase', letterSpacing: 0.5 }}>{t('view_all', 'View All')}</Text>
-                  <WebIcon name="chevron-forward" size= {14} color={colors.primary} />
-                </TouchableOpacity>
-              )}
-            </View>
-            <View style={[styles.swiperContainer, { height: Platform.OS === 'web' ? 300 : 280 }]}>
-              <Swiper 
-                key={`swiper-${cityPulses.length}`}
-                autoplay={true}
-                autoplayTimeout={5} 
-                showsPagination={false} 
-                showsButtons={Platform.OS === 'web'} 
-                loop={true}
-                bounces={true}
-                height={Platform.OS === 'web' ? 300 : 280} 
-                removeClippedSubviews={false}
-                onScroll={handleNewsScroll}
-                scrollEventThrottle={16}
-                renderPagination={(index, total, swiper) => {
-                  return (
-                    <View style={{ position: 'absolute', top: ms(16), right: ms(16), flexDirection: 'row', alignItems: 'center' }} pointerEvents="none">
-                      {Array.from({ length: total }).map((_, i) => {
-                        const isActive = i === activeNewsIndex;
-                        return (
-                          <Animated.View
-                            key={i}
-                            style={{
-                              backgroundColor: isActive ? colors.primary : 'rgba(255,255,255,0.6)',
-                              width: withTiming(isActive ? ms(32) : ms(12), { duration: 300 }),
-                              height: ms(6),
-                              borderRadius: ms(3),
-                              marginHorizontal: ms(4),
-                              shadowColor: '#000',
-                              shadowOffset: { width: 0, height: 1 },
-                              shadowOpacity: 0.8,
-                              shadowRadius: ms(2),
-                              elevation: 3,
-                            }}
-                          />
-                        );
-                      })}
-                    </View>
-                  );
-                }}
-              >
-                {(cityPulses.length > 0 ? cityPulses.slice(0, 3) : (MOCK_NEWS as CityPulse[]).slice(0, 3)).map((item) => (
-                  <View 
-                    key={item.id} 
-                    style={[styles.newsCard, { borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)" }]}
-                    pointerEvents="box-none"
-                  >
-                    <ImageBackground source={{ uri: item.image_url }} style={{ width: '100%', height: '100%' }} resizeMode="cover">
-                      <LinearGradient 
-                        colors={["rgba(0,0,0,0.2)", "rgba(0,0,0,0.7)", isDark ? "rgba(2, 6, 23, 1)" : "rgba(15, 23, 42, 0.98)"]} 
-                        style={StyleSheet.absoluteFill} 
-                      />
-                      <View style={styles.newsTopRow} pointerEvents="none">
-                        <View style={[styles.newsGlassTag, { backgroundColor: item.color + 'CC', borderColor: 'rgba(255,255,255,0.3)' }]}>
-                          <Text style={styles.newsTagText}>{t(`news_tag_${item.tag.toLowerCase()}`, { defaultValue: item.tag }) as string}</Text>
-                        </View>
-                      </View>
-                      
-                      <View style={styles.newsContentOverlay} pointerEvents="box-none">
-                        <Text style={styles.newsTitlePremium} numberOfLines={2}>{item.title}</Text>
-                        <Text style={styles.newsExcerptPremium} numberOfLines={2}>{item.excerpt}</Text>
-                        
-                        <View style={styles.newsFooter} pointerEvents="box-none">
-                           <View style={styles.newsAuthorRow}>
-                              <View style={[styles.authorAvatar, { backgroundColor: item.color }]}>
-                                 <Text style={styles.authorInitial}>M</Text>
-                              </View>
-                              <Text style={styles.authorName}>myTroski News</Text>
-                           </View>
-                           <TouchableOpacity 
-                             style={styles.readMorePill} 
-                             activeOpacity={0.8}
-                             onPress={() => Linking.openURL(item.url)}
-                           >
-                              <Text style={styles.readMorePillText}>{t('read_more')}</Text>
-                              <WebIcon name="arrow-forward" size= {16} color="#fff" />
-                           </TouchableOpacity>
-                        </View>
-                      </View>
-                    </ImageBackground>
-                  </View>
-                ))}
-              </Swiper>
-            </View>
-          </Animated.View>
+          <TransitUpdatesComponent
+            cityPulses={cityPulses}
+            activeNewsIndex={activeNewsIndex}
+            handleNewsScroll={handleNewsScroll}
+            isDark={isDark}
+            sectionMarginTop={sectionMarginTop}
+            sectionTitleSize={sectionTitleSize}
+          />
         </ScrollView>
       </View>
 

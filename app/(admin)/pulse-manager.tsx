@@ -424,8 +424,7 @@ const styles = StyleSheet.create({
   glassCard: {
     padding: ms(24), borderRadius: ms(28), borderWidth: 1,
     shadowColor: '#000', shadowOffset: { width: 0, height: ms(10) }, shadowOpacity: 0.1, shadowRadius: ms(20), elevation: 8,
-    // @ts-ignore
-    backdropFilter: 'blur(20px)'
+    ...(Platform.OS === 'web' ? { backdropFilter: 'blur(20px)' } : {})
   },
   sectionTitle: { fontSize: ms(22), fontWeight: '900', letterSpacing: -0.5, marginBottom: 0 },
   formRow: { flexDirection: 'column', gap: ms(16), marginBottom: ms(20) },

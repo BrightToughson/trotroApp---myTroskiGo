@@ -240,8 +240,6 @@ export default function FareManager() {
       <View style={{ zIndex: 10 }}>
         <LinearGradient
            colors={isDark ? ["rgba(15, 23, 42, 0.95)", "rgba(15, 23, 42, 0.8)"] : ["rgba(255, 255, 255, 0.95)", "rgba(255, 255, 255, 0.8)"]}
-           style={{ padding: ms(20), paddingTop: Platform.OS === 'ios' ? 60 : 30, borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flexDirection: 'row', alignItems: 'center' }}
-           // @ts-ignore
            style={[{ padding: ms(20), paddingTop: Platform.OS === 'ios' ? 60 : 30, borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)', flexDirection: 'row', alignItems: 'center' }, Platform.OS === 'web' && { backdropFilter: 'blur(20px)' }]}
         >
           <TouchableOpacity onPress={() => router.push('/admin')} activeOpacity={0.7} style={[styles.backBtn, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.04)' }]}>
@@ -508,8 +506,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: ms(20),
     elevation: 8,
-    // @ts-ignore
-    backdropFilter: 'blur(20px)',
+    ...(Platform.OS === 'web' ? { backdropFilter: 'blur(20px)' } : {}),
   },
   sectionTitle: {
     fontSize: ms(22),

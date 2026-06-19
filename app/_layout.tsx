@@ -12,6 +12,8 @@ import { NotificationsWrapper as Notifications } from "@/lib/notifications/Notif
 import "@/lib/i18n/i18n";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
+import { registerServiceWorker } from "@/lib/serviceWorker/serviceWorkerRegistration";
+import { webPerformance } from "@/lib/web/WebPerformance";
 import { 
   PlusJakartaSans_400Regular, 
   PlusJakartaSans_500Medium, 
@@ -52,19 +54,16 @@ if (
 }
 
 if (Platform.OS !== "web") {
-  // @ts-ignore
-  if (Text.defaultProps == null) Text.defaultProps = {};
-  // @ts-ignore
-  Text.defaultProps.style = { fontFamily: 'PlusJakartaSans-Regular' };
-  // @ts-ignore
-  Text.defaultProps.allowFontScaling = false;
+  // Properly extend React Native default props with custom styles
+  const TextAny = Text as any;
+  if (TextAny.defaultProps == null) TextAny.defaultProps = {};
+  TextAny.defaultProps.style = { fontFamily: 'PlusJakartaSans-Regular' };
+  TextAny.defaultProps.allowFontScaling = false;
   
-  // @ts-ignore
-  if (TextInput.defaultProps == null) TextInput.defaultProps = {};
-  // @ts-ignore
-  TextInput.defaultProps.style = { fontFamily: 'PlusJakartaSans-Regular' };
-  // @ts-ignore
-  TextInput.defaultProps.allowFontScaling = false;
+  const TextInputAny = TextInput as any;
+  if (TextInputAny.defaultProps == null) TextInputAny.defaultProps = {};
+  TextInputAny.defaultProps.style = { fontFamily: 'PlusJakartaSans-Regular' };
+  TextInputAny.defaultProps.allowFontScaling = false;
 }
 
 /* Prevent splash screen from hiding until app is ready */
@@ -147,6 +146,45 @@ function DesktopWrapper({ children }: { children: React.ReactNode }) {
 import { setClerkTokenGetter } from "@/lib/auth/supabase";
 import { useTranslation } from "react-i18next";
 
+// Clerk Error Fallback - ensures app continues to work even if Clerk fails
+function ClerkErrorFallback() {
+  const { isLoaded, isSignedIn } = useAuth();
+  const { colors } = useTheme();
+
+  useEffect(() => {
+    if (!isLoaded) {
+      console.warn('[ClerkErrorFallback] Clerk not loaded - app running in limited mode');
+    }
+  }, [isLoaded]);
+
+  // If Clerk is loaded successfully, render nothing
+  if (isLoaded) {
+    return null;
+  }
+
+  // If Clerk fails to load, show a subtle indicator but let app continue
+  return (
+    <>
+      {Platform.OS === 'web' && (
+        <div style={{
+          position: 'fixed',
+          bottom: 10,
+          right: 10,
+          backgroundColor: 'rgba(245, 158, 11, 0.2)',
+          color: colors.text,
+          padding: '8px 12px',
+          borderRadius: '8px',
+          fontSize: '12px',
+          zIndex: 9999,
+          pointerEvents: 'none'
+        }}>
+          Authentication limited
+        </div>
+      )}
+    </>
+  );
+}
+
 function SupabaseTokenSync() {
   const { getToken } = useAuth();
   
@@ -176,7 +214,27 @@ export default function RootLayout() {
     FareService.init();
     NotificationService.registerForPushNotificationsAsync();
     const unsubscribeChannel = NotificationService.initRealtime();
-    
+
+    // Register service worker for PWA support
+    if (Platform.OS === 'web') {
+      registerServiceWorker();
+
+      // Initialize web performance monitoring
+      webPerformance.setupLazyLoading();
+
+      // Track performance metrics periodically
+      const performanceInterval = setInterval(() => {
+        webPerformance.trackMemoryUsage();
+      }, 30000); // Every 30 seconds
+
+      // Clean up performance monitoring on unmount
+      return () => {
+        if (unsubscribeChannel) unsubscribeChannel();
+        clearInterval(performanceInterval);
+        webPerformance.cleanup();
+      };
+    }
+
     return () => {
       if (unsubscribeChannel) unsubscribeChannel();
     };
@@ -215,21 +273,56 @@ export default function RootLayout() {
             tokenCache={Platform.OS !== "web" ? tokenCache : undefined}
           >
             <SupabaseTokenSync />
-            <ClerkLoaded>
               {Platform.OS === 'web' && (
                 <Head>
-                  <title>myTroski Go</title>
-                  <meta name="viewport" content="width= device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
+                  <title>myTroski Go - Smart City Commuting in Ghana</title>
+                  <meta name="description" content="Navigate your city with ease. Real-time trotro routing, community updates, and smart commuting solutions for Accra and beyond." />
+                  <meta name="keywords" content="trotro, Ghana, Accra, public transport, commuting, bus routes, navigation, smart city" />
+
+                  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover" />
+                  <meta name="theme-color" content="#0286FF" />
                   <meta name="apple-mobile-web-app-capable" content="yes" />
                   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+                  <meta name="apple-mobile-web-app-title" content="myTroski Go" />
+
+                  <meta name="application-name" content="myTroski Go" />
+                  <meta name="mobile-web-app-capable" content="yes" />
+
+                  <link rel="manifest" href="/manifest.json" />
+                  <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo/mytroskigo_apk.png" />
+                  <link rel="apple-touch-icon" sizes="192x192" href="/assets/logo/mytroskigo_apk.png" />
+                  <link rel="icon" type="image/png" sizes="512x512" href="/assets/logo/mytroskigo_favicon.png" />
+
+                  <meta name="robots" content="index, follow" />
+                  <meta name="googlebot" content="index, follow" />
+                  <meta name="author" content="myTroski Go Team" />
+                  <meta name="copyright" content="© 2026 myTroski Go" />
+
+                  <meta property="og:title" content="myTroski Go - Smart City Commuting" />
+                  <meta property="og:description" content="Navigate your city with ease. Real-time trotro routing, community updates, and smart commuting solutions for Ghana." />
+                  <meta property="og:type" content="website" />
+                  <meta property="og:url" content="https://mytroski.com" />
+                  <meta property="og:image" content="/assets/logo/mytroskigo_display.png" />
+                  <meta property="og:locale" content="en_US" />
+                  <meta property="og:site_name" content="myTroski Go" />
+
+                  <meta name="twitter:card" content="summary_large_image" />
+                  <meta name="twitter:title" content="myTroski Go - Smart City Commuting" />
+                  <meta name="twitter:description" content="Navigate your city with ease. Real-time trotro routing, community updates, and smart commuting solutions for Ghana." />
+                  <meta name="twitter:image" content="/assets/logo/mytroskigo_display.png" />
+                  <meta name="twitter:site" content="@mytroskigo" />
+
+                  <meta name="msapplication-TileColor" content="#0286FF" />
+                  <meta name="msapplication-TileImage" content="/assets/logo/mytroskigo_apk.png" />
+
+                  <meta name="format-detection" content="telephone=no" />
+                  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
                 </Head>
               )}
-              <DesktopWrapper>
-                <RootStack />
-
-                <NotificationBanner />
-              </DesktopWrapper>
-            </ClerkLoaded>
+                <DesktopWrapper>
+                  <RootStack />
+                  <NotificationBanner />
+                </DesktopWrapper>
           </ClerkProvider>
         </SafeAreaProvider>
       </ThemeProvider>
@@ -257,23 +350,27 @@ const styles = StyleSheet.create({
 
 import { ErrorBoundaryProps } from "expo-router";
 
+// This is specifically for expo-router errors
 export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   const isClerkError = error?.message?.includes('failed_to_load_clerk_js') || error?.message?.includes('Clerk JS');
-  
+  const isRouteError = error?.message?.includes('route') || error?.message?.includes('navigation');
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20, backgroundColor: '#ffffff' }}>
-      <Ionicons name={isClerkError ? "cloud-offline-outline" : "alert-circle-outline"} size={64} color="#FF3B30" />
+      <Ionicons name={isClerkError ? "cloud-offline-outline" : isRouteError ? "navigate-outline" : "alert-circle-outline"} size={64} color="#FF3B30" />
       <Text style={{ fontSize: 20, fontFamily: 'PlusJakartaSans-Bold', marginTop: 20, textAlign: 'center', color: '#000' }}>
-        {isClerkError ? "Connection Issue" : "Something went wrong"}
+        {isClerkError ? "Connection Issue" : isRouteError ? "Navigation Error" : "Something went wrong"}
       </Text>
       <Text style={{ fontSize: 16, fontFamily: 'PlusJakartaSans-Regular', color: '#666', marginTop: 10, textAlign: 'center', marginBottom: 30 }}>
-        {isClerkError 
+        {isClerkError
           ? "We couldn't connect to the authentication server. Please check your internet connection. If you are using an ad blocker, it might be blocking the login service."
+          : isRouteError
+          ? "There was an error navigating to this page. Please try again."
           : error?.message || "An unexpected error occurred."}
       </Text>
-      <CustomButton 
-        title="Try Again" 
-        onPress={retry} 
+      <CustomButton
+        title="Try Again"
+        onPress={retry}
       />
     </View>
   );

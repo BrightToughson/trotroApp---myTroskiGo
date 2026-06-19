@@ -814,8 +814,8 @@ export const NotificationService = {
         if (registration) {
           registration.showNotification(notification.title, {
             body: notification.message,
-            icon: '/logo/mytroskigo.png',
-            badge: '/logo/mytroskigo_favicon.png',
+            icon: '/assets/logo/mytroskigo.png',
+            badge: '/assets/logo/mytroskigo_favicon.png',
             data: { url: '/(tabs)/communitypost', id: notification.id },
             vibrate: [200, 100, 200],
             tag: 'community-alert'
@@ -830,7 +830,7 @@ export const NotificationService = {
     // Fallback to simple Notification if SW is not ready or fails
     new Notification(notification.title, {
       body: notification.message,
-      icon: '/logo/mytroskigo.png',
+      icon: '/assets/logo/mytroskigo.png',
     });
   },
 

@@ -13,34 +13,6 @@ export default function Root({ children }: PropsWithChildren) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width= device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
 
-        {/* Suppress harmless Script error. :0 from showing a RedBox in PWAs */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.addEventListener('error', function(e) {
-                if (e.message === 'Script error.' || (e.error && e.error.message === 'Script error.')) {
-                  e.stopImmediatePropagation();
-                  e.preventDefault();
-                  return true;
-                }
-              }, true);
-              window.addEventListener('unhandledrejection', function(e) {
-                if (e.reason && e.reason.message === 'Script error.') {
-                  e.stopImmediatePropagation();
-                  e.preventDefault();
-                }
-              }, true);
-              
-              const originalError = console.error;
-              console.error = function(...args) {
-                if (typeof args[0] === 'string' && args[0].includes('Script error.')) return;
-                if (args[0] && args[0].message === 'Script error.') return;
-                originalError.apply(console, args);
-              };
-            `
-          }}
-        />
-
         {/* Preconnect to Mapbox CDN to load map tiles up to 400ms faster! */}
         <link rel="preconnect" href="https://api.mapbox.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://events.mapbox.com" crossOrigin="anonymous" />
@@ -113,7 +85,7 @@ export default function Root({ children }: PropsWithChildren) {
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="myTroski Go" />
         <link rel="apple-touch-icon" href="/logo/mytroskigo.png" />
-        
+
         {/* Splash screen image for iOS (optional but recommended for a native feel) */}
         <link rel="apple-touch-startup-image" href="/logo/mytroskigo.png" />
 

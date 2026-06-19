@@ -63,8 +63,12 @@ const Index = () => {
 
   useEffect(() => {
     const checkWelcome = async () => {
-      const value = await SecureStore.getItemAsync("hasSeenWelcome");
-      setHasSeenWelcome(value === "true");
+      try {
+        const value = await SecureStore.getItemAsync("hasSeenWelcome");
+        setHasSeenWelcome(value === "true");
+      } catch (e) {
+        setHasSeenWelcome(false);
+      }
     };
     checkWelcome();
   }, []);
@@ -79,7 +83,7 @@ const Index = () => {
   }, []);
 
   // Show splash until all data loads and the minimum splash duration has elapsed
-  if (!isLoaded || hasSeenWelcome === null || !splashFinished) {
+  if ((!isLoaded && !splashFinished) || hasSeenWelcome === null || !splashFinished) {
     return (
       <View style={[styles.container, { backgroundColor: "#111827" }]}>
         <View style={styles.content}>
@@ -100,10 +104,6 @@ const Index = () => {
     );
   }
   
-  if (pathname !== "/") {
-    return null;
-  }
-
   if (isSignedIn) {
     return <Redirect href="/(root)/(tabs)/home" />;
   }

@@ -625,10 +625,10 @@ export default function JourneyDetails({
             borderBottomLeftRadius: isDesktop ? 32 : 0,
             borderBottomRightRadius: isDesktop ? 32 : 0,
             borderWidth: isDesktop ? 1 : styles.searchCard.borderTopWidth,
-            // @ts-ignore
-            backdropFilter: "blur(20px)",
-            // @ts-ignore
-            WebkitBackdropFilter: "blur(20px)",
+            ...(isDesktop ? {
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+            } : {}),
           },
         ]}
       >
