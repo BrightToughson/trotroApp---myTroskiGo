@@ -9,10 +9,7 @@ import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { Alert, Image, StyleSheet, View, Platform } from "react-native";
 import { CustomButton } from "../customButton";
-import { useTranslation } from
-"react-i18next";
-
-WebBrowser.maybeCompleteAuthSession();
+import { useTranslation } from "react-i18next";
 
 // Accept a mode so we know which screen called the OAuth button
 interface OAuthProps {

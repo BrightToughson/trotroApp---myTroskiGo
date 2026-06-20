@@ -3,6 +3,7 @@ import { ClerkProvider, ClerkLoaded, useAuth } from "@clerk/expo";
 import { Stack, usePathname } from "expo-router";
 import Head from "expo-router/head";
 import * as SplashScreen from "expo-splash-screen";
+import * as WebBrowser from "expo-web-browser";
 import React, { useEffect } from "react";
 import { Image, Platform, StyleSheet, View, UIManager, Text, TextInput } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -43,6 +44,11 @@ import { NetworkErrorBoundary } from "@/components/ErrorBoundary/NetworkErrorBou
 
 import { ms } from "@/lib/utils/metrics";
 
+
+// Ensure OAuth popups close correctly on the web
+if (Platform.OS === 'web') {
+  WebBrowser.maybeCompleteAuthSession();
+}
 
 if (Platform.OS === 'web' && typeof window !== 'undefined') {
   // Suppress generic cross-origin "Script error." from showing the red screen
