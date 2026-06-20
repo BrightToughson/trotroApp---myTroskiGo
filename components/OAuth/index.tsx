@@ -138,14 +138,10 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
         finalMessage = "Google Sign-In is not enabled in your Clerk Production Dashboard. You need to configure a Google Client ID in Clerk to use this feature on the live site.";
       }
 
-      if (Platform.OS === 'web') {
-        window.alert(`Authentication Error: ${finalMessage}`);
-      } else {
-        Alert.alert(
-          t('auth_error', "Authentication Error"),
-          `${finalMessage}\n\n${t('try_alternative', 'If Google sign-in persists in failing, please try using the email method instead.')}`,
-        );
-      }
+      Alert.alert(
+        t('auth_error', "Authentication Error"),
+        `${finalMessage}\n\n${t('try_alternative', 'If Google sign-in persists in failing, please try using the email method instead.')}`,
+      );
     } finally {
       setIsLoading(false);
       onOAuthLoading?.(false);

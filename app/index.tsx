@@ -83,7 +83,7 @@ const Index = () => {
   }, []);
 
   // Show splash until all data loads and the minimum splash duration has elapsed
-  if ((!isLoaded && !splashFinished) || hasSeenWelcome === null || !splashFinished) {
+  if (!isLoaded || hasSeenWelcome === null || !splashFinished) {
     return (
       <View style={[styles.container, { backgroundColor: "#111827" }]}>
         <View style={styles.content}>

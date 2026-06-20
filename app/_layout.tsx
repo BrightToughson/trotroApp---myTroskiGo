@@ -39,10 +39,28 @@ import { FareService } from "@/lib/fares/FareService";
 import { NotificationService } from "@/lib/notifications/NotificationService";
 import { RouteCacheService } from "@/lib/location/RouteCacheService";
 import { NotificationBanner } from "@/components/NotificationBanner";
+import { NetworkErrorBoundary } from "@/components/ErrorBoundary/NetworkErrorBoundary";
 
 import { ms } from "@/lib/utils/metrics";
 
 
+if (Platform.OS === 'web' && typeof window !== 'undefined') {
+  // Suppress generic cross-origin "Script error." from showing the red screen
+  window.addEventListener('error', (event) => {
+    if (event.message === 'Script error.' || (event.message && event.message.includes('Script error.'))) {
+      console.warn('Ignored cross-origin script error.');
+      event.preventDefault(); // Prevents the default error overlay
+    }
+  });
+
+  window.addEventListener('unhandledrejection', (event) => {
+    const msg = event.reason?.message || event.reason;
+    if (typeof msg === 'string' && msg.includes('Script error.')) {
+      console.warn('Ignored unhandled promise rejection script error.');
+      event.preventDefault(); // Prevents the default error overlay
+    }
+  });
+}
 
 
 
@@ -268,62 +286,64 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1, width: '100%', overflow: 'hidden' }}>
       <ThemeProvider>
         <SafeAreaProvider style={{ flex: 1, width: '100%', overflow: 'hidden' }}>
-          <ClerkProvider
-            publishableKey={publishableKey}
-            tokenCache={Platform.OS !== "web" ? tokenCache : undefined}
-          >
-            <SupabaseTokenSync />
-              {Platform.OS === 'web' && (
-                <Head>
-                  <title>myTroski Go - Smart City Commuting in Ghana</title>
-                  <meta name="description" content="Navigate your city with ease. Real-time trotro routing, community updates, and smart commuting solutions for Accra and beyond." />
-                  <meta name="keywords" content="trotro, Ghana, Accra, public transport, commuting, bus routes, navigation, smart city" />
+          <NetworkErrorBoundary>
+            <ClerkProvider
+              publishableKey={publishableKey}
+              tokenCache={Platform.OS !== "web" ? tokenCache : undefined}
+            >
+              <SupabaseTokenSync />
+                {Platform.OS === 'web' && (
+                  <Head>
+                    <title>myTroski Go - Smart City Commuting in Ghana</title>
+                    <meta name="description" content="Navigate your city with ease. Real-time trotro routing, community updates, and smart commuting solutions for Accra and beyond." />
+                    <meta name="keywords" content="trotro, Ghana, Accra, public transport, commuting, bus routes, navigation, smart city" />
 
-                  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover" />
-                  <meta name="theme-color" content="#0286FF" />
-                  <meta name="apple-mobile-web-app-capable" content="yes" />
-                  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-                  <meta name="apple-mobile-web-app-title" content="myTroski Go" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover" />
+                    <meta name="theme-color" content="#0286FF" />
+                    <meta name="apple-mobile-web-app-capable" content="yes" />
+                    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+                    <meta name="apple-mobile-web-app-title" content="myTroski Go" />
 
-                  <meta name="application-name" content="myTroski Go" />
-                  <meta name="mobile-web-app-capable" content="yes" />
+                    <meta name="application-name" content="myTroski Go" />
+                    <meta name="mobile-web-app-capable" content="yes" />
 
-                  <link rel="manifest" href="/manifest.json" />
-                  <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo/mytroskigo_apk.png" />
-                  <link rel="apple-touch-icon" sizes="192x192" href="/assets/logo/mytroskigo_apk.png" />
-                  <link rel="icon" type="image/png" sizes="512x512" href="/assets/logo/mytroskigo_favicon.png" />
+                    <link rel="manifest" href="/manifest.json" />
+                    <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo/mytroskigo_apk.png" />
+                    <link rel="apple-touch-icon" sizes="192x192" href="/assets/logo/mytroskigo_apk.png" />
+                    <link rel="icon" type="image/png" sizes="512x512" href="/assets/logo/mytroskigo_favicon.png" />
 
-                  <meta name="robots" content="index, follow" />
-                  <meta name="googlebot" content="index, follow" />
-                  <meta name="author" content="myTroski Go Team" />
-                  <meta name="copyright" content="© 2026 myTroski Go" />
+                    <meta name="robots" content="index, follow" />
+                    <meta name="googlebot" content="index, follow" />
+                    <meta name="author" content="myTroski Go Team" />
+                    <meta name="copyright" content="© 2026 myTroski Go" />
 
-                  <meta property="og:title" content="myTroski Go - Smart City Commuting" />
-                  <meta property="og:description" content="Navigate your city with ease. Real-time trotro routing, community updates, and smart commuting solutions for Ghana." />
-                  <meta property="og:type" content="website" />
-                  <meta property="og:url" content="https://mytroski.com" />
-                  <meta property="og:image" content="/assets/logo/mytroskigo_display.png" />
-                  <meta property="og:locale" content="en_US" />
-                  <meta property="og:site_name" content="myTroski Go" />
+                    <meta property="og:title" content="myTroski Go - Smart City Commuting" />
+                    <meta property="og:description" content="Navigate your city with ease. Real-time trotro routing, community updates, and smart commuting solutions for Ghana." />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://mytroski.com" />
+                    <meta property="og:image" content="/assets/logo/mytroskigo_display.png" />
+                    <meta property="og:locale" content="en_US" />
+                    <meta property="og:site_name" content="myTroski Go" />
 
-                  <meta name="twitter:card" content="summary_large_image" />
-                  <meta name="twitter:title" content="myTroski Go - Smart City Commuting" />
-                  <meta name="twitter:description" content="Navigate your city with ease. Real-time trotro routing, community updates, and smart commuting solutions for Ghana." />
-                  <meta name="twitter:image" content="/assets/logo/mytroskigo_display.png" />
-                  <meta name="twitter:site" content="@mytroskigo" />
+                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta name="twitter:title" content="myTroski Go - Smart City Commuting" />
+                    <meta name="twitter:description" content="Navigate your city with ease. Real-time trotro routing, community updates, and smart commuting solutions for Ghana." />
+                    <meta name="twitter:image" content="/assets/logo/mytroskigo_display.png" />
+                    <meta name="twitter:site" content="@mytroskigo" />
 
-                  <meta name="msapplication-TileColor" content="#0286FF" />
-                  <meta name="msapplication-TileImage" content="/assets/logo/mytroskigo_apk.png" />
+                    <meta name="msapplication-TileColor" content="#0286FF" />
+                    <meta name="msapplication-TileImage" content="/assets/logo/mytroskigo_apk.png" />
 
-                  <meta name="format-detection" content="telephone=no" />
-                  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-                </Head>
-              )}
-                <DesktopWrapper>
-                  <RootStack />
-                  <NotificationBanner />
-                </DesktopWrapper>
-          </ClerkProvider>
+                    <meta name="format-detection" content="telephone=no" />
+                    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+                  </Head>
+                )}
+                  <DesktopWrapper>
+                    <RootStack />
+                    <NotificationBanner />
+                  </DesktopWrapper>
+            </ClerkProvider>
+          </NetworkErrorBoundary>
         </SafeAreaProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
