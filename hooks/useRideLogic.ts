@@ -401,9 +401,17 @@ export const useRideLogic = (
 
     try {
         // 1. Identify Pickup & Dropoff
-        // We no longer snap to nearest registered stations because the user can board the Trotro anywhere along the route!
         let rawHub1 = start;
         let rawHub2 = end;
+
+        if (start.type !== 'station') {
+            const nearest = await findNearestStop(start.coordinate.latitude, start.coordinate.longitude);
+            if (nearest) rawHub1 = nearest;
+        }
+        if (end.type !== 'station') {
+            const nearest = await findNearestStop(end.coordinate.latitude, end.coordinate.longitude);
+            if (nearest) rawHub2 = nearest;
+        }
 
         let walkStartCoord = start.coordinate;
         
