@@ -20,7 +20,8 @@ interface OAuthProps {
 
 const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuthProps) => {
   const { t } = useTranslation();
-  useWarmUpBrowser();
+  // useWarmUpBrowser(); // Removed: Causes OAuth to fail/hang on older Android and iOS (iPhone 4-7)
+
   const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
   const { isLoaded } = useAuth();
   const { signIn } = useSignIn();
@@ -36,8 +37,8 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
 
 
 
-      // Create a robust redirect URL that works across all platforms
-      const redirectUrl = Linking.createURL("/", { scheme: "trotroapp" });
+      // Create a robust redirect URL that works across all platforms and older devices
+      const redirectUrl = Linking.createURL("/oauth-native-callback", { scheme: "trotroapp" });
 
       const { createdSessionId, setActive, signUp: su, signIn: si } =
         await startOAuthFlow({
