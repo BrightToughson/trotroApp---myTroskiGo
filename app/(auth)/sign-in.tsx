@@ -169,12 +169,16 @@ export default function SignIn() {
         }, 100);
       } else {
         console.error(JSON.stringify(signIn, null, 2));
-        Alert.alert(t('error', 'Error'), t('mfa_failed', 'MFA Verification failed.'));
         setLoading(false);
+        setTimeout(() => {
+          Alert.alert(t('error', 'Error'), t('mfa_failed', 'MFA Verification failed.'));
+        }, 500);
       }
     } catch (err: any) {
-       Alert.alert(t('error', 'Error'), err.errors ? err.errors[0].message : t('mfa_failed', 'MFA Verification failed.'));
        setLoading(false);
+       setTimeout(() => {
+         Alert.alert(t('error', 'Error'), err.errors ? err.errors[0].message : t('mfa_failed', 'MFA Verification failed.'));
+       }, 500);
     }
   };
 

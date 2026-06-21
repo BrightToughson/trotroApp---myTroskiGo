@@ -90,17 +90,21 @@ export default function VerifyEmail() {
         await setActive({ session: signUp!.createdSessionId });
         router.replace({ pathname: "/(root)/(tabs)/home", params: { signup: "true" } });
       } else {
-        Alert.alert(t('error', 'Error'), t('verification_failed', 'Verification failed. Please try again.'));
+        setLoading(false);
+        setTimeout(() => {
+          Alert.alert(t('error', 'Error'), t('verification_failed', 'Verification failed. Please try again.'));
+        }, 500);
       }
     } catch (err: any) {
-      Alert.alert(
-        t('error', 'Error'),
-        err.errors
-          ? err.errors[0].message
-          : t('verification_error', 'An error occurred during verification'),
-      );
-    } finally {
       setLoading(false);
+      setTimeout(() => {
+        Alert.alert(
+          t('error', 'Error'),
+          err.errors
+            ? err.errors[0].message
+            : t('verification_error', 'An error occurred during verification'),
+        );
+      }, 500);
     }
   };
 

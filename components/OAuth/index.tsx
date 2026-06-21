@@ -42,10 +42,7 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       // Create a robust redirect URL that works across all platforms and older devices
       const redirectUrl = Linking.createURL("/oauth-native-callback", { scheme: "trotroapp" });
 
-      // Ensure any stuck browser sessions on iOS are cleared before attempting to open a new one
-      if (Platform.OS === 'ios') {
-        void WebBrowser.coolDownAsync().catch(() => {});
-      }
+
 
       const { createdSessionId, setActive, signUp: su, signIn: si } = await startOAuthFlow({ redirectUrl });
 
