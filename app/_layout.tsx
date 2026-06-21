@@ -4,8 +4,8 @@ import { Stack, usePathname } from "expo-router";
 import Head from "expo-router/head";
 import * as SplashScreen from "expo-splash-screen";
 import * as WebBrowser from "expo-web-browser";
-import React, { useEffect } from "react";
-import { Image, Platform, StyleSheet, View, UIManager, Text, TextInput } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Image, Platform, StyleSheet, View, UIManager, Text, TextInput, LogBox } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemeProvider, useTheme, LightColors } from "@/context/ThemeContext";
 import { tokenCache } from "@/lib/auth/auth";
@@ -44,6 +44,14 @@ import { NetworkErrorBoundary } from "@/components/ErrorBoundary/NetworkErrorBou
 
 import { ms } from "@/lib/utils/metrics";
 
+LogBox.ignoreLogs([
+  'Script error.',
+  'failed_to_load_clerk_js',
+  'Failed to load Clerk JS'
+]);
+
+
+let globalFatalErrorCallback: ((msg: string) => void) | null = null;
 
 // Ensure OAuth popups close correctly on the web
 if (Platform.OS === 'web') {
@@ -56,16 +64,20 @@ if (Platform.OS === 'web' && typeof window !== 'undefined') {
     if (event.message === 'Script error.' || (event.message && event.message.includes('Script error.'))) {
       console.warn('Ignored cross-origin script error.');
       event.preventDefault(); // Prevents the default error overlay
+      event.stopImmediatePropagation();
+      if (globalFatalErrorCallback) globalFatalErrorCallback("A network script failed to load.");
     }
-  });
+  }, true); // Use capture phase to intercept before Metro runtime
 
   window.addEventListener('unhandledrejection', (event) => {
     const msg = event.reason?.message || String(event.reason);
     if (typeof msg === 'string' && (msg.includes('Script error.') || msg.includes('failed_to_load_clerk_js') || msg.includes('Failed to load Clerk JS'))) {
       console.warn('Ignored unhandled promise rejection script error for Clerk/Cross-origin.');
       event.preventDefault(); // Prevents the default error overlay
+      event.stopImmediatePropagation();
+      if (globalFatalErrorCallback) globalFatalErrorCallback("Connection to authentication server failed.");
     }
-  });
+  }, true);
 }
 
 
@@ -221,6 +233,17 @@ function SupabaseTokenSync() {
 
 export default function RootLayout() {
   const { t } = useTranslation();
+  const [fatalError, setFatalError] = useState<string | null>(null);
+
+  useEffect(() => {
+    globalFatalErrorCallback = (msg) => {
+      setFatalError(msg);
+    };
+    return () => {
+      globalFatalErrorCallback = null;
+    };
+  }, []);
+
   const [fontsLoaded, fontError] = useFonts({
     ...Ionicons.font,
     'PlusJakartaSans-Regular': PlusJakartaSans_400Regular,
@@ -279,6 +302,24 @@ export default function RootLayout() {
       }
     }
   }, [fontsLoaded, fontError]);
+
+  if (fatalError) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20, backgroundColor: '#ffffff' }}>
+        <WebIcon name="cloud-offline-outline" size={80} color="#FF3B30" />
+        <Text style={{ fontSize: 20, fontFamily: 'PlusJakartaSans-Bold', marginTop: 20, textAlign: 'center', color: '#000' }}>
+          Connection Issue
+        </Text>
+        <Text style={{ fontSize: 16, fontFamily: 'PlusJakartaSans-Regular', color: '#666', marginTop: 10, textAlign: 'center', marginBottom: 30 }}>
+          {fatalError} Please check your internet connection and try again.
+        </Text>
+        <CustomButton
+          title="Reload App"
+          onPress={() => typeof window !== 'undefined' && window.location.reload()}
+        />
+      </View>
+    );
+  }
 
   if (!publishableKey || publishableKey === 'dummy_clerk_key') {
     return (
