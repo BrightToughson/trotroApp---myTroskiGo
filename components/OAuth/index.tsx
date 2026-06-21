@@ -29,21 +29,28 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
   const { colors, isDark } = useTheme();
   const [isLoading, setIsLoading] = useState(false);
 
+  const isProcessingRef = React.useRef(false);
+
   const handleGoogleSignIn = useCallback(async () => {
-    if (disabled) return;
+    if (disabled || isProcessingRef.current) return;
+    
     try {
+      isProcessingRef.current = true;
       setIsLoading(true);
       onOAuthLoading?.(true);
-
-
 
       // Create a robust redirect URL that works across all platforms and older devices
       const redirectUrl = Linking.createURL("/oauth-native-callback", { scheme: "trotroapp" });
 
-      // Add a 15-second timeout to prevent infinite loading if the browser fails to open on older devices
+      // Add an 8-second timeout to prevent infinite loading if the browser fails to open on older devices
       const timeoutPromise = new Promise<any>((_, reject) =>
-        setTimeout(() => reject(new Error("Browser timeout: Google Sign-In could not open. Please try again or use email.")), 15000)
+        setTimeout(() => reject(new Error("Browser timeout: Google Sign-In could not open. Please try again or use email.")), 8000)
       );
+
+      // Ensure any stuck browser sessions on iOS are cleared before attempting to open a new one
+      if (Platform.OS === 'ios') {
+        void WebBrowser.coolDownAsync().catch(() => {});
+      }
 
       const { createdSessionId, setActive, signUp: su, signIn: si } =
         await Promise.race([
@@ -148,6 +155,7 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       );
     } finally {
       setIsLoading(false);
+      isProcessingRef.current = false;
       onOAuthLoading?.(false);
     }
   }, [startOAuthFlow, signIn, signUp, isLoaded, authMode, disabled, onOAuthLoading]);

@@ -60,6 +60,7 @@ export const TransitUpdatesComponent: React.FC<TransitUpdatesComponentProps> = (
 }) => {
   const { colors } = useTheme();
   const { t } = useTranslation();
+  const [containerWidth, setContainerWidth] = React.useState(0);
 
   const displayItems = cityPulses.length > 0 ? cityPulses.slice(0, 3) : (MOCK_NEWS as CityPulse[]).slice(0, 3);
 
@@ -80,53 +81,58 @@ export const TransitUpdatesComponent: React.FC<TransitUpdatesComponentProps> = (
           </TouchableOpacity>
         )}
       </View>
-      <View style={[styles.swiperContainer, { height: Platform.OS === 'web' ? 300 : 280 }]}>
-        <Swiper
-          key={`swiper-${cityPulses.length}`}
-          autoplay={true}
-          autoplayTimeout={5}
-          showsPagination={false}
-          showsButtons={false}
-          loop={true}
-          bounces={true}
-          height={Platform.OS === 'web' ? 300 : 280}
-          removeClippedSubviews={false}
-          onScroll={handleNewsScroll}
-          scrollEventThrottle={16}
-          renderPagination={(index, total, swiper) => {
-            return (
-              <View style={{ position: 'absolute', top: ms(16), right: ms(16), flexDirection: 'row', alignItems: 'center' }} pointerEvents="none">
-                {Array.from({ length: total }).map((_, i) => {
-                  const isActive = i === activeNewsIndex;
-                  return (
-                    <Animated.View
-                      key={i}
-                      style={{
-                        backgroundColor: isActive ? colors.primary : 'rgba(255,255,255,0.6)',
-                        width: withTiming(isActive ? ms(32) : ms(12), { duration: 300 }),
-                        height: ms(6),
-                        borderRadius: ms(3),
-                        marginHorizontal: ms(4),
-                        shadowColor: '#000',
-                        shadowOffset: { width: 0, height: 1 },
-                        shadowOpacity: 0.8,
-                        shadowRadius: ms(2),
-                        elevation: 3,
-                      }}
-                    />
-                  );
-                })}
-              </View>
-            );
-          }}
-        >
-          {displayItems.map((item) => (
-            <View
-              key={item.id}
-              style={[styles.newsCard, { borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)" }]}
-              pointerEvents="box-none"
-            >
-              <ImageBackground source={{ uri: item.image_url }} style={{ width: '100%', height: '100%' }} resizeMode="cover">
+      <View 
+        style={[styles.swiperContainer, { height: Platform.OS === 'web' ? 300 : 280 }]}
+        onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
+      >
+        {containerWidth > 0 && (
+          <Swiper
+            key={`swiper-${cityPulses.length}`}
+            autoplay={true}
+            autoplayTimeout={5}
+            showsPagination={false}
+            showsButtons={false}
+            loop={true}
+            bounces={true}
+            width={containerWidth}
+            height={Platform.OS === 'web' ? 300 : 280}
+            removeClippedSubviews={false}
+            onScroll={handleNewsScroll}
+            scrollEventThrottle={16}
+            renderPagination={(index, total, swiper) => {
+              return (
+                <View style={{ position: 'absolute', top: ms(16), right: ms(16), flexDirection: 'row', alignItems: 'center' }} pointerEvents="none">
+                  {Array.from({ length: total }).map((_, i) => {
+                    const isActive = i === activeNewsIndex;
+                    return (
+                      <Animated.View
+                        key={i}
+                        style={{
+                          backgroundColor: isActive ? colors.primary : 'rgba(255,255,255,0.6)',
+                          width: withTiming(isActive ? ms(32) : ms(12), { duration: 300 }),
+                          height: ms(6),
+                          borderRadius: ms(3),
+                          marginHorizontal: ms(4),
+                          shadowColor: '#000',
+                          shadowOffset: { width: 0, height: 1 },
+                          shadowOpacity: 0.8,
+                          shadowRadius: ms(2),
+                          elevation: 3,
+                        }}
+                      />
+                    );
+                  })}
+                </View>
+              );
+            }}
+          >
+            {displayItems.map((item) => (
+              <View
+                key={item.id}
+                style={[styles.newsCard, { flex: 1, borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)" }]}
+                pointerEvents="box-none"
+              >
+                <Image source={{ uri: item.image_url }} style={StyleSheet.absoluteFill} contentFit="cover" />
                 <LinearGradient
                   colors={["rgba(0,0,0,0.2)", "rgba(0,0,0,0.7)", isDark ? "rgba(2, 6, 23, 1)" : "rgba(15, 23, 42, 0.98)"]}
                   style={StyleSheet.absoluteFill}
@@ -158,10 +164,10 @@ export const TransitUpdatesComponent: React.FC<TransitUpdatesComponentProps> = (
                      </TouchableOpacity>
                   </View>
                 </View>
-              </ImageBackground>
-            </View>
-          ))}
-        </Swiper>
+              </View>
+            ))}
+          </Swiper>
+        )}
       </View>
     </Animated.View>
   );

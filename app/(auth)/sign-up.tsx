@@ -80,7 +80,6 @@ export default function SignUpScreen() {
 
   const [loading, setLoading] = React.useState(false);
   const [successMessage, setSuccessMessage] = React.useState("");
-  const [isOAuthLoading, setIsOAuthLoading] = React.useState(false);
 
   const validate = () => {
     if (!form.email || !form.username) {
@@ -162,7 +161,7 @@ export default function SignUpScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <ProcessingModal 
-        visible={loading || isOAuthLoading || !!successMessage} 
+        visible={loading || !!successMessage} 
         message={successMessage || t('creating_account', 'Creating Account...')} 
         isSuccess={!!successMessage} 
       />
@@ -335,7 +334,7 @@ export default function SignUpScreen() {
             title={t("sign_up_btn")}
             onPress={onSignUpPress}
             containerStyle={styles.button}
-            disabled={isOAuthLoading}
+            loading={loading}
           />
 
           <View style={styles.dividerContainer}>
@@ -367,7 +366,6 @@ export default function SignUpScreen() {
           <OAuth
             authMode="sign-up"
             disabled={loading}
-            onOAuthLoading={setIsOAuthLoading}
           />
 
           <View style={styles.footer}>

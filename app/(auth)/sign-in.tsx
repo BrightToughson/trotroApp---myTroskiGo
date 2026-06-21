@@ -71,7 +71,6 @@ export default function SignIn() {
   });
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-  const [isOAuthLoading, setIsOAuthLoading] = useState(false);
   const [code, setCode] = useState("");
   const [needsOtp, setNeedsOtp] = useState(false);
 
@@ -182,7 +181,7 @@ export default function SignIn() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <ProcessingModal 
-        visible={loading || isOAuthLoading || !!successMessage} 
+        visible={loading || !!successMessage} 
         message={successMessage || t('signing_in', 'Signing you in...')} 
         isSuccess={!!successMessage} 
       />
@@ -367,7 +366,7 @@ export default function SignIn() {
                   title={t('sign_in_btn')}
                   onPress={onSignInPress}
                   containerStyle={styles.button}
-                  disabled={isOAuthLoading}
+                  loading={loading}
                 />
               </Animated.View>
             </>
@@ -399,7 +398,7 @@ export default function SignIn() {
             />
           </View>
  
-          <OAuth authMode="sign-in" disabled={loading} onOAuthLoading={setIsOAuthLoading} />
+          <OAuth authMode="sign-in" disabled={loading} />
  
           <View style={styles.footer}>
             <Text style={[styles.footerText, { color: colors.textSecondary }]}>
