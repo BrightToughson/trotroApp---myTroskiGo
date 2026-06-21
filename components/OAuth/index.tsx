@@ -35,12 +35,19 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
     if (disabled || isProcessingRef.current) return;
     
     try {
+      const startTime = Date.now();
       isProcessingRef.current = true;
       setIsLoading(true);
       onOAuthLoading?.(true);
 
       // Force dismiss keyboard because ASWebAuthenticationSession can fail to present on iOS 15 if keyboard is active
       Keyboard.dismiss();
+      
+      // Wait for keyboard dismissal animation to complete before presenting the browser.
+      // Presenting a View Controller during a layout animation causes silent failures on older iOS.
+      if (Platform.OS === 'ios') {
+        await new Promise(resolve => setTimeout(resolve, 400));
+      }
 
       // Create a robust redirect URL that works across all platforms and older devices
       const redirectUrl = Linking.createURL("/oauth-native-callback", { scheme: "trotroapp" });
@@ -107,8 +114,16 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
     } catch (err: any) {
       console.error("OAuth error", err);
 
-      // If the user cancels the flow, we don't need to show an error alert
+      // If the user cancels the flow, we don't need to show an error alert,
+      // EXCEPT if it happened instantly (< 2 seconds), which means the browser failed to present!
       if (err.errors?.[0]?.code === "oauth_cancelled") {
+        const timeElapsed = Date.now() - startTime;
+        if (timeElapsed < 2000) {
+          Alert.alert(
+            "Browser Error", 
+            "The browser failed to open. This happens on some devices if the system is busy. Please try again."
+          );
+        }
         return;
       }
 
