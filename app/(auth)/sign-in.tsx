@@ -260,6 +260,7 @@ export default function SignIn() {
       <ScrollView
         contentContainerStyle={styles.container}
         showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
       >
         {Platform.OS === 'web' && (
           <TouchableOpacity 

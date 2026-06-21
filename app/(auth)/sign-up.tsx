@@ -239,6 +239,7 @@ export default function SignUpScreen() {
       <ScrollView
         contentContainerStyle={styles.container}
         showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
       >
         {Platform.OS === 'web' && (
           <TouchableOpacity 

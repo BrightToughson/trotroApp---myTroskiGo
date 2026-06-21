@@ -7,7 +7,7 @@ import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
 import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
-import { Alert, Image, StyleSheet, View, Platform } from "react-native";
+import { Alert, Image, StyleSheet, View, Platform, TouchableWithoutFeedback } from "react-native";
 import { CustomButton } from "../customButton";
 import { useTranslation } from "react-i18next";
 
@@ -30,11 +30,27 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
   const [isLoading, setIsLoading] = useState(false);
 
   const isProcessingRef = React.useRef(false);
+  const timeoutRejectRef = React.useRef<((reason?: any) => void) | undefined>(undefined);
+  const clickCountRef = React.useRef(0);
+
+  const handleHiddenTap = () => {
+    if (isLoading) {
+      clickCountRef.current += 1;
+      if (clickCountRef.current >= 2) { // 3 clicks total (1 to start + 2 while loading)
+        if (timeoutRejectRef.current) {
+          timeoutRejectRef.current(new Error("Browser timeout: User aborted the Sign-In process. Please try again or use email."));
+          timeoutRejectRef.current = undefined;
+          clickCountRef.current = 0;
+        }
+      }
+    }
+  };
 
   const handleGoogleSignIn = useCallback(async () => {
     if (disabled || isProcessingRef.current) return;
     
     try {
+      clickCountRef.current = 0; // reset
       isProcessingRef.current = true;
       setIsLoading(true);
       onOAuthLoading?.(true);
@@ -42,10 +58,12 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       // Create a robust redirect URL that works across all platforms and older devices
       const redirectUrl = Linking.createURL("/oauth-native-callback", { scheme: "trotroapp" });
 
-      // Add an 8-second timeout to prevent infinite loading if the browser fails to open on older devices
-      const timeoutPromise = new Promise<any>((_, reject) =>
-        setTimeout(() => reject(new Error("Browser timeout: Google Sign-In could not open. Please try again or use email.")), 8000)
-      );
+      // Add an 8-second timeout, but also expose the reject function so we can manually abort
+      let timeoutId: ReturnType<typeof setTimeout> | undefined = undefined;
+      const timeoutPromise = new Promise<any>((_, reject) => {
+        timeoutRejectRef.current = reject;
+        timeoutId = setTimeout(() => reject(new Error("Browser timeout: Google Sign-In could not open. Please try again or use email.")), 8000);
+      });
 
       // Ensure any stuck browser sessions on iOS are cleared before attempting to open a new one
       if (Platform.OS === 'ios') {
@@ -57,6 +75,9 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
           startOAuthFlow({ redirectUrl }),
           timeoutPromise
         ]);
+        
+      // Clear timeout if the OAuth flow succeeded before 8 seconds
+      if (typeof timeoutId !== 'undefined') clearTimeout(timeoutId);
 
       if (createdSessionId) {
         if (setActive) {
@@ -156,34 +177,36 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
     } finally {
       setIsLoading(false);
       isProcessingRef.current = false;
+      timeoutRejectRef.current = undefined;
       onOAuthLoading?.(false);
     }
   }, [startOAuthFlow, signIn, signUp, isLoaded, authMode, disabled, onOAuthLoading]);
-
   return (
     <View style={styles.groupContainer}>
-      <CustomButton
-        title={t('google_sign_in')}
-        onPress={handleGoogleSignIn}
-        loading={isLoading}
-        disabled={disabled}
-        IconLeft={() => (
-          <WebIcon
-            name="logo-google"
-            size= {20}
-            color="#fff" // Color is ignored for the multi-colored logo-google
-            style={styles.googleIcon}
-          />
-        )}
-        containerStyle={[
-          styles.googleButtonContainer,
-          {
-            backgroundColor: isDark ? colors.surface : "#ffffff",
-            borderColor: colors.border,
-          },
-        ]}
-        textStyle={[styles.googleButtonText, { color: colors.text }]}
-      />
+      <View>
+        <CustomButton
+          title={t('google_sign_in')}
+          onPress={handleGoogleSignIn}
+          loading={isLoading}
+          disabled={disabled}
+          IconLeft={() => (
+            <WebIcon
+              name="logo-google"
+              size= {20}
+              color="#fff" // Color is ignored for the multi-colored logo-google
+              style={styles.googleIcon}
+            />
+          )}
+          containerStyle={[
+            styles.googleButtonContainer,
+            {
+              backgroundColor: isDark ? colors.surface : "#ffffff",
+              borderColor: colors.border,
+            },
+          ]}
+          textStyle={[styles.googleButtonText, { color: colors.text }]}
+        />
+      </View>
     </View>
   );
 };
