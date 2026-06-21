@@ -145,20 +145,6 @@ const Welcome = () => {
     },
   ];
 
-  /**
-   * Manual scroll handler to reliably track swiping on Web and all platforms
-   */
-  const handleScroll = (e: any) => {
-    const offsetX = e.nativeEvent.contentOffset.x;
-    const width = e.nativeEvent.layoutMeasurement.width;
-    if (width > 0) {
-      const index = Math.round(offsetX / width);
-      if (index !== activeIndex && index >= 0 && index < slides.length) {
-        setActiveIndex(index);
-      }
-    }
-  };
-
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <LinearGradient
@@ -288,8 +274,6 @@ const Welcome = () => {
           showsPagination={false}
           onIndexChanged={(index) => setActiveIndex(index)}
           onMomentumScrollEnd={(e, state, context) => setActiveIndex(state.index)}
-          onScroll={handleScroll}
-          scrollEventThrottle={16}
           showsButtons={false}
           scrollEnabled={true} // Enabled for all platforms to allow natural navigation
         >
@@ -298,8 +282,7 @@ const Welcome = () => {
               {/* Slide Visual Content with Animation */}
               <View style={styles.imageContainer}>
                 <Animated.View 
-                  key={`image-${activeIndex === index}`}
-                  entering={index === activeIndex ? FadeInUp.delay(200).duration(1000).springify() : undefined}
+                  entering={FadeInUp.delay(200).duration(1000).springify()}
                   style={[styles.imageWrapper, floatingStyle]}
                 >
                   <Image
@@ -314,8 +297,7 @@ const Welcome = () => {
               {/* Slide Text Content with Animation */}
               <View style={styles.textContainer}>
                 <Animated.View
-                  key={`text-${activeIndex === index}`}
-                  entering={index === activeIndex ? FadeInUp.delay(400).duration(1000).springify() : undefined}
+                  entering={FadeInUp.delay(400).duration(1000).springify()}
                   style={{ width: "100%" }}
                 >
                   <BlurView 
@@ -331,14 +313,14 @@ const Welcome = () => {
                   >
                     <ScrollView style={{ maxHeight: ms(200) }} showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
                       <Animated.Text
-                        entering={index === activeIndex ? FadeInLeft.delay(600).duration(1000).springify() : undefined}
+                        entering={FadeInLeft.delay(600).duration(1000).springify()}
                         style={[styles.slideTitle, { color: colors.text }]}
                       >
                         {slide.title}
                       </Animated.Text>
                       <View style={[styles.titleSeparator, { backgroundColor: colors.primary }]} />
                       <Animated.Text
-                        entering={index === activeIndex ? FadeInRight.delay(800).duration(1000).springify() : undefined}
+                        entering={FadeInRight.delay(800).duration(1000).springify()}
                         style={[
                           styles.slideDescription,
                           { color: colors.textSecondary },
@@ -350,7 +332,7 @@ const Welcome = () => {
 
                     {/* Slide Control Button inside the container */}
                     <Animated.View
-                      entering={index === activeIndex ? FadeInUp.delay(1000).duration(1000).springify() : undefined}
+                      entering={FadeInUp.delay(1000).duration(1000).springify()}
                       style={styles.buttonInsideWrapper}
                     >
                       <CustomButton
