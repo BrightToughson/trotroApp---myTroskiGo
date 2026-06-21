@@ -318,7 +318,7 @@ export default function RootLayout() {
           myTroski Go is optimizing for your home screen. Please tap the button below to finish setup and launch the app.
         </Text>
         <CustomButton
-          title="Launch App"
+          title="Refresh"
           onPress={() => typeof window !== 'undefined' && window.location.reload()}
         />
       </View>
