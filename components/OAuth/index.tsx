@@ -30,27 +30,11 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
   const [isLoading, setIsLoading] = useState(false);
 
   const isProcessingRef = React.useRef(false);
-  const timeoutRejectRef = React.useRef<((reason?: any) => void) | undefined>(undefined);
-  const clickCountRef = React.useRef(0);
-
-  const handleHiddenTap = () => {
-    if (isLoading) {
-      clickCountRef.current += 1;
-      if (clickCountRef.current >= 2) { // 3 clicks total (1 to start + 2 while loading)
-        if (timeoutRejectRef.current) {
-          timeoutRejectRef.current(new Error("Browser timeout: User aborted the Sign-In process. Please try again or use email."));
-          timeoutRejectRef.current = undefined;
-          clickCountRef.current = 0;
-        }
-      }
-    }
-  };
 
   const handleGoogleSignIn = useCallback(async () => {
     if (disabled || isProcessingRef.current) return;
     
     try {
-      clickCountRef.current = 0; // reset
       isProcessingRef.current = true;
       setIsLoading(true);
       onOAuthLoading?.(true);
@@ -58,26 +42,12 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       // Create a robust redirect URL that works across all platforms and older devices
       const redirectUrl = Linking.createURL("/oauth-native-callback", { scheme: "trotroapp" });
 
-      // Add an 8-second timeout, but also expose the reject function so we can manually abort
-      let timeoutId: ReturnType<typeof setTimeout> | undefined = undefined;
-      const timeoutPromise = new Promise<any>((_, reject) => {
-        timeoutRejectRef.current = reject;
-        timeoutId = setTimeout(() => reject(new Error("Browser timeout: Google Sign-In could not open. Please try again or use email.")), 8000);
-      });
-
       // Ensure any stuck browser sessions on iOS are cleared before attempting to open a new one
       if (Platform.OS === 'ios') {
         void WebBrowser.coolDownAsync().catch(() => {});
       }
 
-      const { createdSessionId, setActive, signUp: su, signIn: si } =
-        await Promise.race([
-          startOAuthFlow({ redirectUrl }),
-          timeoutPromise
-        ]);
-        
-      // Clear timeout if the OAuth flow succeeded before 8 seconds
-      if (typeof timeoutId !== 'undefined') clearTimeout(timeoutId);
+      const { createdSessionId, setActive, signUp: su, signIn: si } = await startOAuthFlow({ redirectUrl });
 
       if (createdSessionId) {
         if (setActive) {
@@ -153,11 +123,13 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       // If the user already has an account but tried to sign up with Google, let's gracefully send them to sign in
       const errCode = errObj?.code;
       if (errCode === 'form_identifier_exists' || errCode === 'external_account_exists') {
-        Alert.alert(
-          t('account_exists', "Account Exists"),
-          t('account_exists_desc', "You already have an account associated with this email. We are redirecting you to sign in."),
-          [{ text: "OK", onPress: () => router.replace("/(auth)/sign-in") }]
-        );
+        setTimeout(() => {
+          Alert.alert(
+            t('account_exists', "Account Exists"),
+            t('account_exists_desc', "You already have an account associated with this email. We are redirecting you to sign in."),
+            [{ text: "OK", onPress: () => router.replace("/(auth)/sign-in") }]
+          );
+        }, 500);
         return;
       }
 
@@ -170,14 +142,15 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
         finalMessage = "Google Sign-In is not enabled in your Clerk Production Dashboard. You need to configure a Google Client ID in Clerk to use this feature on the live site.";
       }
 
-      Alert.alert(
-        t('auth_error', "Authentication Error"),
-        `${finalMessage}\n\n${t('try_alternative', 'If Google sign-in persists in failing, please try using the email method instead.')}`,
-      );
+      setTimeout(() => {
+        Alert.alert(
+          t('auth_error', "Authentication Error"),
+          `${finalMessage}\n\n${t('try_alternative', 'If Google sign-in persists in failing, please try using the email method instead.')}`,
+        );
+      }, 500);
     } finally {
       setIsLoading(false);
       isProcessingRef.current = false;
-      timeoutRejectRef.current = undefined;
       onOAuthLoading?.(false);
     }
   }, [startOAuthFlow, signIn, signUp, isLoaded, authMode, disabled, onOAuthLoading]);
