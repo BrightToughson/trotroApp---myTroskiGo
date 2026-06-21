@@ -71,6 +71,7 @@ export default function SignIn() {
   });
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [isOAuthLoading, setIsOAuthLoading] = useState(false);
   const [code, setCode] = useState("");
   const [needsOtp, setNeedsOtp] = useState(false);
 
@@ -200,10 +201,11 @@ export default function SignIn() {
 
       {/* Background Decorative Elements */}
       <View
-        style={[StyleSheet.absoluteFill, { alignItems: "center", zIndex: -1 }]}
+        style={[StyleSheet.absoluteFill, { alignItems: "center" }]}
         pointerEvents="none"
       >
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift1,
@@ -232,6 +234,7 @@ export default function SignIn() {
           ]}
         />
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift3,
@@ -403,7 +406,7 @@ export default function SignIn() {
             />
           </View>
  
-          <OAuth authMode="sign-in" disabled={loading} />
+          <OAuth authMode="sign-in" disabled={loading} onOAuthLoading={setIsOAuthLoading} />
  
           <View style={styles.footer}>
             <Text style={[styles.footerText, { color: colors.textSecondary }]}>

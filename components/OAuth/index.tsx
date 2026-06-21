@@ -7,7 +7,7 @@ import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
 import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
-import { Alert, Image, StyleSheet, View, Platform, TouchableWithoutFeedback } from "react-native";
+import { Alert, Image, StyleSheet, View, Platform, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { CustomButton } from "../customButton";
 import { useTranslation } from "react-i18next";
 
@@ -38,6 +38,9 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       isProcessingRef.current = true;
       setIsLoading(true);
       onOAuthLoading?.(true);
+
+      // Force dismiss keyboard because ASWebAuthenticationSession can fail to present on iOS 15 if keyboard is active
+      Keyboard.dismiss();
 
       // Create a robust redirect URL that works across all platforms and older devices
       const redirectUrl = Linking.createURL("/oauth-native-callback", { scheme: "trotroapp" });

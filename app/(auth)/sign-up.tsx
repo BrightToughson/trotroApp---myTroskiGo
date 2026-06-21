@@ -80,6 +80,7 @@ export default function SignUpScreen() {
 
   const [loading, setLoading] = React.useState(false);
   const [successMessage, setSuccessMessage] = React.useState("");
+  const [isOAuthLoading, setIsOAuthLoading] = React.useState(false);
 
   const validate = () => {
     if (!form.email || !form.username) {
@@ -175,10 +176,11 @@ export default function SignUpScreen() {
       />
 
       <View
-        style={[StyleSheet.absoluteFill, { alignItems: "center", zIndex: -1 }]}
+        style={[StyleSheet.absoluteFill, { alignItems: "center" }]}
         pointerEvents="none"
       >
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift1,
@@ -193,6 +195,7 @@ export default function SignUpScreen() {
           ]}
         />
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift2,
@@ -367,6 +370,7 @@ export default function SignUpScreen() {
           <OAuth
             authMode="sign-up"
             disabled={loading}
+            onOAuthLoading={setIsOAuthLoading}
           />
 
           <View style={styles.footer}>

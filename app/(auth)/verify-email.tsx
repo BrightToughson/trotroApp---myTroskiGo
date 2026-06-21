@@ -124,6 +124,7 @@ export default function VerifyEmail() {
         pointerEvents="none"
       >
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift1,
@@ -136,6 +137,7 @@ export default function VerifyEmail() {
           ]}
         />
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift2,
@@ -150,6 +152,7 @@ export default function VerifyEmail() {
           ]}
         />
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift1,
@@ -164,6 +167,7 @@ export default function VerifyEmail() {
           ]}
         />
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift2,
@@ -178,6 +182,7 @@ export default function VerifyEmail() {
           ]}
         />
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift1,
@@ -220,6 +225,7 @@ export default function VerifyEmail() {
           { paddingTop: Math.max(insets.top + 60, 80) }
         ]}
         showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
       >
         <Animated.View
           entering={FadeInDown.duration(1000).springify()}
