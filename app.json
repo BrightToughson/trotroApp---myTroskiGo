@@ -30,7 +30,8 @@
         "android.permission.ACCESS_FINE_LOCATION",
         "android.permission.CAMERA",
         "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.WRITE_EXTERNAL_STORAGE"
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.RECORD_AUDIO"
       ]
     },
     "web": {
@@ -100,9 +101,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "ea8f1eed-c610-407c-be8e-0523e4c2c3aa"
+        "projectId": "81d628c8-d22e-40d8-8c38-d88eaaad7519"
       }
     },
-    "owner": "toughson"
+    "owner": "teamproject"
   }
 }

@@ -61,7 +61,7 @@ export class WebPushManager {
       const registration = await navigator.serviceWorker.ready;
       const subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: this.getApplicationServerKey(),
+        applicationServerKey: this.getApplicationServerKey() as any,
       });
 
       this.subscription = subscription;

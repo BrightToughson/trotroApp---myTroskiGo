@@ -397,18 +397,6 @@ export const useRideLogic = (
     const requestId = ++currentRequestId.current;
     lastRequestTime.current = Date.now();
     
-    if (isMounted.current) {
-        setActiveLegs([]);
-        setIntermediateStops([]);
-        setWalkingCoordinates([]);
-        setWalkingCoordinates2([]);
-        setTransferWalkingCoordinates([]);
-        setPriceEstimate(null);
-        setTripDetails(null);
-        setPickupPoint(null);
-        setDropoffPoint(null);
-    }
-    
     setLoading(true);
 
     try {
@@ -567,8 +555,15 @@ export const useRideLogic = (
             setIsManualFare(isAnyManualFare);
         } else {
             // No transit route found
-            setPriceEstimate("No Route Found");
-            setIsManualFare(false);
+            if (isMounted.current) {
+                setActiveLegs([]);
+                setIntermediateStops([]);
+                setWalkingCoordinates([]);
+                setWalkingCoordinates2([]);
+                setTransferWalkingCoordinates([]);
+                setPriceEstimate("No Route Found");
+                setIsManualFare(false);
+            }
         }
 
         setTripDetails({
@@ -579,42 +574,20 @@ export const useRideLogic = (
             waitTimeMins: Math.round(totalWaitMins),
         });
 
-        // Fit map to show the entire route
-        const allPoints = [
-           ...finalWalkCoords,
-           ...(newActiveLegs || []).flatMap(l => l.coordinates),
-           end.coordinate
-        ].filter(p => p && typeof p.latitude === 'number' && typeof p.longitude === 'number' && !isNaN(p.latitude) && !isNaN(p.longitude));
-
-        if (allPoints.length > 0 && mapRef.current && Platform.OS !== 'web' && !isMapAnimating.current) {
-            try {
-                isMapAnimating.current = true;
-                let minLat = Infinity, maxLat = -Infinity, minLon = Infinity, maxLon = -Infinity;
-                for (const p of allPoints) {
-                    if (p.latitude < minLat) minLat = p.latitude;
-                    if (p.latitude > maxLat) maxLat = p.latitude;
-                    if (p.longitude < minLon) minLon = p.longitude;
-                    if (p.longitude > maxLon) maxLon = p.longitude;
-                }
-                const minDelta = 0.005;
-                if (maxLat - minLat < minDelta) { maxLat += minDelta/2; minLat -= minDelta/2; }
-                if (maxLon - minLon < minDelta) { maxLon += minDelta/2; minLon -= minDelta/2; }
-                
-                mapRef.current.fitBounds(
-                    [maxLon, maxLat],
-                    [minLon, minLat],
-                    [100, 50, 300, 50],
-                    1000
-                );
-                setTimeout(() => { isMapAnimating.current = false; }, 1000);
-            } catch (e) {
-               isMapAnimating.current = false;
-            }
-        }
+        // The map centering logic has been removed from here to prevent conflicting
+        // animations with find-ride.tsx's useEffect.
 
         setLoading(false);
     } catch (err) {
       console.error("Routing Error", err);
+      // Clear route state on error
+      if (isMounted.current) {
+          setActiveLegs([]);
+          setWalkingCoordinates([]);
+          setWalkingCoordinates2([]);
+          setTransferWalkingCoordinates([]);
+          setPriceEstimate("Error finding route");
+      }
     } finally {
       if (isMounted.current) setLoading(false);
     }

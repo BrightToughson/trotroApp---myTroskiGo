@@ -334,7 +334,7 @@ export default function FindRide() {
         });
       }
     }
-  }, [activeLegs, walkingCoordinates, walkingCoordinates2, transferWalkingCoordinates, originLocation, destinationLocation, isNavigationMode, insets.top, mapRef]);
+  }, [activeLegs, walkingCoordinates, walkingCoordinates2, transferWalkingCoordinates, isNavigationMode, insets.top, mapRef]);
 
   // Auto-center on startup GPS detection
   const hasCenteredOnUser = useRef(false);

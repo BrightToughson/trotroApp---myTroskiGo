@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Switch, Platform, Alert } from 'react-native';
 import { useTheme } from '../../context/ThemeContext';
-import { ms } from '../lib/utils/metrics';
+import { ms } from '../../lib/utils/metrics';
 import { useWebPushNotifications } from '../../hooks/useWebPushNotifications';
 import { WebIcon } from '../WebIcon';
 

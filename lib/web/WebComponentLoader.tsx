@@ -4,29 +4,29 @@ import { Platform } from 'react-native';
 
 // Web-specific lazy loaded components
 export const LazyMapView = Platform.OS === 'web' ? lazy(() =>
-  import('../components/MapViewWrapper/index.web').then(module => ({
-    default: module.MapViewWrapper
+  import('../../components/MapViewWrapper/index.web').then(module => ({
+    default: module.default
   }))
 ) : lazy(() =>
-  import('../components/MapViewWrapper/index').then(module => ({
-    default: module.MapViewWrapper
+  import('../../components/MapViewWrapper/index').then(module => ({
+    default: module.default
   }))
 );
 
 export const LazySideMenu = lazy(() =>
-  import('../components/SideMenu').then(module => ({
+  import('../../components/SideMenu').then(module => ({
     default: module.default
   }))
 );
 
 export const LazyTutorialModal = lazy(() =>
-  import('../components/TutorialModal').then(module => ({
+  import('../../components/TutorialModal').then(module => ({
     default: module.default
   }))
 );
 
 export const LazyOfficialAnnouncementsModal = lazy(() =>
-  import('../components/OfficialAnnouncementsModal').then(module => ({
+  import('../../components/OfficialAnnouncementsModal').then(module => ({
     default: module.default
   }))
 );
@@ -42,7 +42,7 @@ export const WebLoadingFallback = () => (
 // Higher-order component for web-specific lazy loading
 export const withWebLazyLoad = <P extends object>(
   Component: React.ComponentType<P>,
-  fallback: React.ComponentType = WebLoadingFallback
+  FallbackComponent: React.ComponentType = WebLoadingFallback
 ) => {
   return (props: P) => {
     if (Platform.OS !== 'web') {
@@ -50,7 +50,7 @@ export const withWebLazyLoad = <P extends object>(
     }
 
     return (
-      <Suspense fallback={<fallback />}>
+      <Suspense fallback={<FallbackComponent />}>
         <Component {...props} />
       </Suspense>
     );
@@ -63,7 +63,7 @@ export const preloadCriticalComponents = () => {
     // Preload map component when idle
     if ('requestIdleCallback' in window) {
       (window as any).requestIdleCallback(() => {
-        import('../components/MapViewWrapper/index.web');
+        import('../../components/MapViewWrapper/index.web');
       });
     }
   }
