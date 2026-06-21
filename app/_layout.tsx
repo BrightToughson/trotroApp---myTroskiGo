@@ -60,9 +60,9 @@ if (Platform.OS === 'web' && typeof window !== 'undefined') {
   });
 
   window.addEventListener('unhandledrejection', (event) => {
-    const msg = event.reason?.message || event.reason;
-    if (typeof msg === 'string' && msg.includes('Script error.')) {
-      console.warn('Ignored unhandled promise rejection script error.');
+    const msg = event.reason?.message || String(event.reason);
+    if (typeof msg === 'string' && (msg.includes('Script error.') || msg.includes('failed_to_load_clerk_js') || msg.includes('Failed to load Clerk JS'))) {
+      console.warn('Ignored unhandled promise rejection script error for Clerk/Cross-origin.');
       event.preventDefault(); // Prevents the default error overlay
     }
   });

@@ -375,6 +375,14 @@ export const useRideLogic = (
           fetchWalkPath(liveLocation, originLocation).then(coords => {
             if (isMounted.current && coords && coords.length > 0) {
               setPreTripWalkCoords(coords);
+              if (originLocation.type === 'gps') {
+                let walkDist = 0;
+                for (let i = 0; i < coords.length - 1; i++) {
+                  walkDist += calculateDistance(coords[i], coords[i+1]);
+                }
+                const walkMins = Math.max(1, Math.round((walkDist / FARE_CONSTANTS.WALKING_SPEED_KMPH) * 60));
+                setTripDetails(prev => prev ? { ...prev, walkMins1: walkMins } : prev);
+              }
             } else if (isMounted.current) {
               setPreTripWalkCoords([]);
             }
@@ -382,6 +390,9 @@ export const useRideLogic = (
         }
       } else if (calculateDistance(liveLocation.coordinate, originLocation.coordinate) <= 0.01) {
         setPreTripWalkCoords([]);
+        if (originLocation.type === 'gps') {
+          setTripDetails(prev => prev ? { ...prev, walkMins1: 0 } : prev);
+        }
       }
     } else {
       setPreTripWalkCoords([]);
@@ -414,6 +425,9 @@ export const useRideLogic = (
         }
 
         let walkStartCoord = start.coordinate;
+        if (start.type === 'gps' && liveLocation) {
+            walkStartCoord = liveLocation.coordinate;
+        }
         
         // 2. Find Transit Path via Anchors (using exact coordinates)
         const transitLegs = await findTransitPath(rawHub1, rawHub2);
