@@ -306,15 +306,15 @@ export default function RootLayout() {
   if (fatalError) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20, backgroundColor: '#ffffff' }}>
-        <WebIcon name="cloud-offline-outline" size={80} color="#FF3B30" />
-        <Text style={{ fontSize: 20, fontFamily: 'PlusJakartaSans-Bold', marginTop: 20, textAlign: 'center', color: '#000' }}>
-          Connection Issue
+        <WebIcon name="apps-outline" size={80} color="#0286FF" />
+        <Text style={{ fontSize: 22, fontFamily: 'PlusJakartaSans-Bold', marginTop: 24, textAlign: 'center', color: '#000' }}>
+          Almost Ready!
         </Text>
-        <Text style={{ fontSize: 16, fontFamily: 'PlusJakartaSans-Regular', color: '#666', marginTop: 10, textAlign: 'center', marginBottom: 30 }}>
-          {fatalError} Please check your internet connection and try again.
+        <Text style={{ fontSize: 16, fontFamily: 'PlusJakartaSans-Regular', color: '#666', marginTop: 12, textAlign: 'center', marginBottom: 32, lineHeight: 24 }}>
+          myTroski Go is optimizing for your home screen. Please tap the button below to finish setup and launch the app.
         </Text>
         <CustomButton
-          title="Reload App"
+          title="Launch App"
           onPress={() => typeof window !== 'undefined' && window.location.reload()}
         />
       </View>
