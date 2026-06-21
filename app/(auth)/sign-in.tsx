@@ -220,6 +220,7 @@ export default function SignIn() {
           ]}
         />
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift2,
@@ -249,6 +250,7 @@ export default function SignIn() {
           ]}
         />
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift4,

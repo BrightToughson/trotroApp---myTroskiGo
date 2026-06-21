@@ -210,6 +210,7 @@ export default function SignUpScreen() {
           ]}
         />
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift3,
@@ -224,6 +225,7 @@ export default function SignUpScreen() {
           ]}
         />
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.decorativeCircle,
             animatedDrift4,
