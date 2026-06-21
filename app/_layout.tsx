@@ -53,10 +53,8 @@ LogBox.ignoreLogs([
 
 let globalFatalErrorCallback: ((msg: string) => void) | null = null;
 
-// Ensure OAuth popups close correctly on the web
-if (Platform.OS === 'web') {
-  WebBrowser.maybeCompleteAuthSession();
-}
+// Ensure OAuth popups close correctly on the web and older Android devices
+WebBrowser.maybeCompleteAuthSession();
 
 if (Platform.OS === 'web' && typeof window !== 'undefined') {
   // Suppress generic cross-origin "Script error." from showing the red screen

@@ -111,6 +111,17 @@ const Welcome = () => {
     }
   };
 
+  const handleScroll = (e: any) => {
+    const offsetX = e.nativeEvent.contentOffset.x;
+    const width = e.nativeEvent.layoutMeasurement.width;
+    if (width > 0) {
+      const index = Math.round(offsetX / width);
+      if (index !== activeIndex && index >= 0 && index < slides.length) {
+        setActiveIndex(index);
+      }
+    }
+  };
+
   // Content for the onboarding slides
   const slides = [
     {
@@ -276,6 +287,8 @@ const Welcome = () => {
           onMomentumScrollEnd={(e, state, context) => setActiveIndex(state.index)}
           showsButtons={false}
           scrollEnabled={true} // Enabled for all platforms to allow natural navigation
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
         >
           {slides.map((slide, index) => (
             <View key={index} style={styles.slide}>

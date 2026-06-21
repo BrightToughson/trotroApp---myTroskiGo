@@ -86,7 +86,7 @@ export const TransitUpdatesComponent: React.FC<TransitUpdatesComponentProps> = (
           autoplay={true}
           autoplayTimeout={5}
           showsPagination={false}
-          showsButtons={Platform.OS === 'web'}
+          showsButtons={false}
           loop={true}
           bounces={true}
           height={Platform.OS === 'web' ? 300 : 280}
