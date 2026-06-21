@@ -175,7 +175,7 @@ export default function SignUpScreen() {
       />
 
       <View
-        style={[StyleSheet.absoluteFill, { alignItems: "center" }]}
+        style={[StyleSheet.absoluteFill, { alignItems: "center", zIndex: -1 }]}
         pointerEvents="none"
       >
         <Animated.View

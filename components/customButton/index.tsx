@@ -33,6 +33,8 @@ interface CustomButtonProps {
   textVariant?: "primary" | "secondary" | "danger" | "default";
 }
 
+const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
+
 export const CustomButton: React.FC<CustomButtonProps> = ({
   onPress,
   title,
@@ -55,7 +57,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   const handlePressIn = () => {
     scale.value = withSpring(0.96);
     if (Platform.OS !== "web") {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
     }
   };
 
@@ -100,40 +102,38 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   const spinnerColor = bgVariant === "outline" ? colors.primary : "#fff";
 
   return (
-    <Animated.View style={animatedStyle}>
-      <TouchableOpacity
-        style={finalContainerStyle}
-        onPress={onPress}
-        onPressIn={handlePressIn}
-        onPressOut={handlePressOut}
-        disabled={disabled || loading}
-        activeOpacity={0.7}
-        accessibilityLabel={title}
-        accessibilityRole="button"
-        accessibilityState={{ disabled: disabled || loading }}
-      >
-        {loading ? (
-          // Show Activity Indicator when loading
-          <ActivityIndicator color={spinnerColor} size= "small" />
-        ) : (
-          // Wrapper View for horizontal layout of icon and text
-          <View style={styles.contentContainer}>
-            {/* Render the Icon if provided */}
-            {IconLeft && IconLeft()}
+    <AnimatedTouchableOpacity
+      style={[finalContainerStyle, animatedStyle]}
+      onPress={onPress}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
+      disabled={disabled || loading}
+      activeOpacity={0.7}
+      accessibilityLabel={title}
+      accessibilityRole="button"
+      accessibilityState={{ disabled: disabled || loading }}
+    >
+      {loading ? (
+        // Show Activity Indicator when loading
+        <ActivityIndicator color={spinnerColor} size= "small" />
+      ) : (
+        // Wrapper View for horizontal layout of icon and text
+        <View style={styles.contentContainer}>
+          {/* Render the Icon if provided */}
+          {IconLeft && IconLeft()}
 
-            {/* Render the Text, wrapped in <Text> component */}
-            <Text
-              style={[styles.baseText, { color: getTextColor() }, textStyle]}
-            >
-              {title}
-            </Text>
+          {/* Render the Text, wrapped in <Text> component */}
+          <Text
+            style={[styles.baseText, { color: getTextColor() }, textStyle]}
+          >
+            {title}
+          </Text>
 
-            {/* Render the Right Icon if provided */}
-            {IconRight && IconRight()}
-          </View>
-        )}
-      </TouchableOpacity>
-    </Animated.View>
+          {/* Render the Right Icon if provided */}
+          {IconRight && IconRight()}
+        </View>
+      )}
+    </AnimatedTouchableOpacity>
   );
 };
 

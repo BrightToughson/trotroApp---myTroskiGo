@@ -196,7 +196,7 @@ export default function SignIn() {
 
       {/* Background Decorative Elements */}
       <View
-        style={[StyleSheet.absoluteFill, { alignItems: "center" }]}
+        style={[StyleSheet.absoluteFill, { alignItems: "center", zIndex: -1 }]}
         pointerEvents="none"
       >
         <Animated.View
