@@ -20,7 +20,7 @@ interface OAuthProps {
 
 const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuthProps) => {
   const { t } = useTranslation();
-  // useWarmUpBrowser(); // Removed: Causes OAuth to fail/hang on older Android and iOS (iPhone 4-7)
+  useWarmUpBrowser(); // Re-enabled for Android to fix hanging on older devices
 
   const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
   const { isLoaded } = useAuth();
@@ -40,10 +40,16 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       // Create a robust redirect URL that works across all platforms and older devices
       const redirectUrl = Linking.createURL("/oauth-native-callback", { scheme: "trotroapp" });
 
+      // Add a 15-second timeout to prevent infinite loading if the browser fails to open on older devices
+      const timeoutPromise = new Promise<any>((_, reject) =>
+        setTimeout(() => reject(new Error("Browser timeout: Google Sign-In could not open. Please try again or use email.")), 15000)
+      );
+
       const { createdSessionId, setActive, signUp: su, signIn: si } =
-        await startOAuthFlow({
-          redirectUrl,
-        });
+        await Promise.race([
+          startOAuthFlow({ redirectUrl }),
+          timeoutPromise
+        ]);
 
       if (createdSessionId) {
         if (setActive) {

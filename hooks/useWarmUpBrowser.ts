@@ -8,7 +8,7 @@ import { Platform } from "react-native";
  */
 export const useWarmUpBrowser = () => {
   useEffect(() => {
-    if (Platform.OS !== "web") {
+    if (Platform.OS === "android") {
       try {
         void WebBrowser.warmUpAsync().catch(() => {});
       } catch (e) {
