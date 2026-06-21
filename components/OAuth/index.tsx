@@ -34,8 +34,8 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
   const handleGoogleSignIn = useCallback(async () => {
     if (disabled || isProcessingRef.current) return;
     
+    let startTime = Date.now();
     try {
-      const startTime = Date.now();
       isProcessingRef.current = true;
       setIsLoading(true);
       onOAuthLoading?.(true);
