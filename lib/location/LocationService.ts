@@ -1131,11 +1131,19 @@ export const getCurrentUserLocation = async (): Promise<Location | null> => {
     let { status } = await ExpoLocation.requestForegroundPermissionsAsync();
     if (status !== "granted") return null;
 
-    // STABILITY FIX: Use 'High' instead of 'Highest' to prevent 
-    // hanging/crashes on some Android devices with weak GPS.
-    let location = await ExpoLocation.getCurrentPositionAsync({
-      accuracy: ExpoLocation.Accuracy.High,
-    });
+    let location: ExpoLocation.LocationObject | null = null;
+    try {
+      // Use Balanced accuracy on Android for much faster initial resolution, High can hang.
+      location = await Promise.race([
+        ExpoLocation.getCurrentPositionAsync({
+          accuracy: Platform.OS === 'android' ? ExpoLocation.Accuracy.Balanced : ExpoLocation.Accuracy.High,
+        }),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 6000))
+      ]) as ExpoLocation.LocationObject;
+    } catch (e) {
+      console.log("getCurrentPositionAsync failed or timed out, trying last known position");
+      location = await ExpoLocation.getLastKnownPositionAsync();
+    }
 
     if (location) {
       // Find the nearest verified stop to name our current location

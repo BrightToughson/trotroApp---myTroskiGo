@@ -251,8 +251,9 @@ export default function Home() {
   }, [loadData]);
 
   return (
-    <Animated.View entering={FadeInDown.duration(800)} style={[styles.container, { backgroundColor: colors.background }]}>
-      <LinearGradient colors={[colors.background, isDark ? "#0f172a" : "#f0f4ff", isDark ? "#020617" : "#e0e7ff"]} style={StyleSheet.absoluteFill} />
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={StyleSheet.absoluteFill}>
+        <LinearGradient colors={[colors.background, isDark ? "#0f172a" : "#f0f4ff", isDark ? "#020617" : "#e0e7ff"]} style={StyleSheet.absoluteFill} />
       
       <View style={StyleSheet.absoluteFill} pointerEvents="none">
         <Animated.View style={[styles.decorativeCircle, animatedDrift1, { backgroundColor: colors.primary, top: ms(-150), right: ms(-50), width: ms(400), height: ms(400), opacity: isDark ? 0.3 : 0.15 }]} />
@@ -513,7 +514,8 @@ export default function Home() {
           </View>
         </View>
       )}
-    </Animated.View>
+      </View>
+    </View>
   );
 }
 

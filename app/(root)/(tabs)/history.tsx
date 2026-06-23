@@ -202,6 +202,7 @@ export default function History() {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={StyleSheet.absoluteFill}>
       <LinearGradient
         colors={[
           colors.background,
@@ -333,6 +334,7 @@ export default function History() {
             itemLayoutAnimation={Layout.springify()}
           />
         )}
+      </View>
       </View>
     </View>
   );

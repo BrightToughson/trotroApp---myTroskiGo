@@ -426,7 +426,6 @@ export default function JourneyDetails({
   }, []);
 
   const setDetailsVisibleInternal = React.useCallback((visible: boolean) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setIsDetailsVisible(visible);
   }, []);
 
@@ -441,7 +440,6 @@ export default function JourneyDetails({
   }, [isNavigationMode, activeLegs.length, setDetailsVisibleInternal]);
 
   const toggleDetails = React.useCallback(() => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setIsDetailsVisible((prev) => !prev);
   }, []);
 
@@ -463,7 +461,6 @@ export default function JourneyDetails({
   }, [toggleDetails, setDetailsVisibleInternal]);
 
   const toggleLegExpansion = (idx: number) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setExpandedLegIndex(expandedLegIndex === idx ? null : idx);
   };
 
@@ -818,7 +815,6 @@ export default function JourneyDetails({
               {/* START LOCATION ROW */}
               <TouchableOpacity 
                 onPress={() => {
-                   setDetailsVisibleInternal(true);
                    openSearch("origin");
                 }}
                 style={{ flexDirection: "row", alignItems: "center", paddingVertical: ms(18) }}
@@ -838,7 +834,6 @@ export default function JourneyDetails({
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => {
-                   setDetailsVisibleInternal(true);
                    openSearch("destination");
                 }}
                 style={{ flexDirection: "row", alignItems: "center", paddingVertical: ms(18) }}
@@ -857,6 +852,7 @@ export default function JourneyDetails({
         {isDetailsVisible && (
           <ScrollView
             showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
             style={styles.itineraryContainer}
             contentContainerStyle={{
               paddingHorizontal: ms(16),

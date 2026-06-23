@@ -91,7 +91,8 @@ export default function SignIn() {
         ) as any;
 
         if (emailCodeFactor) {
-          await signIn!.emailCode.sendCode({ 
+          await (signIn as any).prepareFirstFactor({ 
+            strategy: "email_code",
             emailAddressId: emailCodeFactor.emailAddressId 
           });
           setNeedsOtp(true);
@@ -138,11 +139,30 @@ export default function SignIn() {
           );
         }
       } else {
-        Alert.alert(
-          t('error', 'Error'),
-          err.errors ? err.errors[0].message : t('error_occurred', 'An error occurred'),
-        );
+        Alert.alert(t('error', 'Error'), err.errors?.[0]?.longMessage || err.errors?.[0]?.message || err.message || t('error_occurred', 'An error occurred'));
       }
+      setLoading(false);
+    }
+  };
+
+  const handleResendCode = async () => {
+    if (!isLoaded) return;
+    setLoading(true);
+    try {
+      const emailCodeFactor = signIn!.supportedFirstFactors?.find(
+        (factor: any) => factor.strategy === "email_code",
+      ) as any;
+
+      if (emailCodeFactor) {
+        await (signIn as any).prepareFirstFactor({
+          strategy: "email_code",
+          emailAddressId: emailCodeFactor.emailAddressId,
+        });
+        Alert.alert(t('success', 'Success'), t('code_resent', 'A new verification code has been sent.'));
+      }
+    } catch (err: any) {
+      Alert.alert(t('error', 'Error'), err.errors?.[0]?.longMessage || err.errors?.[0]?.message || err.message || t('error_occurred', 'An error occurred'));
+    } finally {
       setLoading(false);
     }
   };
@@ -157,7 +177,8 @@ export default function SignIn() {
     if (!isLoaded) return;
     setLoading(true);
     try {
-      const attempt = await signIn!.emailCode.verifyCode({
+      const attempt = await (signIn as any).attemptFirstFactor({
+        strategy: "email_code",
         code,
       });
       if (attempt.error) throw attempt.error;
@@ -354,6 +375,9 @@ export default function SignIn() {
                 containerStyle={{ backgroundColor: "transparent", borderWidth: 1, borderColor: colors.border, marginTop: 8 }}
                 textStyle={{ color: colors.text }}
               />
+              <TouchableOpacity onPress={handleResendCode} style={{ marginTop: 20 }}>
+                <Text style={{ textAlign: "center", color: colors.primary, fontWeight: "600" }}>{t('resend_code', 'Resend Code')}</Text>
+              </TouchableOpacity>
             </Animated.View>
           ) : (
             <>

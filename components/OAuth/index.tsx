@@ -50,7 +50,9 @@ const OAuth = ({ authMode = "sign-up", disabled = false, onOAuthLoading }: OAuth
       }
 
       // Create a robust redirect URL that works across all platforms and older devices
-      const redirectUrl = Linking.createURL("/oauth-native-callback", { scheme: "trotroapp" });
+      // Point back to the current screen so the component doesn't unmount when the deep link is handled
+      const redirectPath = authMode === "sign-up" ? "/(auth)/sign-up" : "/(auth)/sign-in";
+      const redirectUrl = Linking.createURL(redirectPath, { scheme: "trotroapp" });
 
 
 

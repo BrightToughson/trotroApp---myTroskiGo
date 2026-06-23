@@ -15,6 +15,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
+  Text,
 } from "react-native";
 import { useSafeAreaInsets } from
 "react-native-safe-area-context";
@@ -67,6 +68,7 @@ export default function VerifyEmail() {
 
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
+  const [resending, setResending] = useState(false);
 
   // Auto-submit verification code when it reaches 6 digits
   React.useEffect(() => {
@@ -80,7 +82,7 @@ export default function VerifyEmail() {
     setLoading(true);
 
     try {
-      const attempt = await signUp!.verifications.verifyEmailCode({
+      const attempt = await (signUp as any).attemptEmailAddressVerification({
         code,
       });
       if (attempt.error) throw attempt.error;
@@ -105,6 +107,27 @@ export default function VerifyEmail() {
             : t('verification_error', 'An error occurred during verification'),
         );
       }, 500);
+    }
+  };
+
+  const onResendPress = async () => {
+    if (!isLoaded || resending) return;
+    setResending(true);
+
+    try {
+      await (signUp as any).prepareEmailAddressVerification({ strategy: "email_code" });
+      setTimeout(() => {
+        Alert.alert(t('success', 'Success'), t('code_resent', 'A new verification code has been sent to your email.'));
+      }, 500);
+    } catch (err: any) {
+      setTimeout(() => {
+        Alert.alert(
+          t('error', 'Error'),
+          err.errors ? err.errors[0].message : t('resend_failed', 'Failed to resend code')
+        );
+      }, 500);
+    } finally {
+      setResending(false);
     }
   };
 
@@ -288,6 +311,17 @@ export default function VerifyEmail() {
             loading={loading}
             containerStyle={styles.button}
           />
+          
+          <TouchableOpacity 
+            onPress={onResendPress} 
+            disabled={resending}
+            style={{ marginTop: ms(20), padding: ms(10), alignItems: 'center' }}
+          >
+            <Text style={{ color: colors.primary, fontSize: ms(16), fontWeight: '600' }}>
+              {resending ? t('resending', 'Sending...') : t('resend_code', 'Send code again')}
+            </Text>
+          </TouchableOpacity>
+
           {loading && (
             <Animated.Text 
               entering={FadeInDown.duration(400)}

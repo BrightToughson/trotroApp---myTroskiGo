@@ -9,7 +9,16 @@
       "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_ZGFyaW5nLXNhaWxmaXNoLTkuY2xlcmsuYWNjb3VudHMuZGV2JA",
+        "EXPO_PUBLIC_GOOGLE_MAPS_API_KEY": "AIzaSyCiZ6tHYSCdmNwdbxbTTVmh-rDxK1--pLg",
+        "EXPO_PUBLIC_SUPABASE_URL": "https://jbwnxotdfqedcksscvno.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_g2-n1wKFYiBZU9OA84fUGQ_ZaZnbfMI",
+        "EXPO_PUBLIC_MAPBOX_KEY": "pk.eyJ1IjoidG91Z2hzb24iLCJhIjoiY21wZnBqOThpMDJ0azJzczg4NGUydnI2ayJ9.LTLYUhsab2DuE-mzMTtjgg",
+        "EXPO_PUBLIC_MAPBOX_SECRET_KEY": "sk.eyJ1IjoidG91Z2hzb24iLCJhIjoiY21wZnIxanM0MGpxajJwcXdzMDFsdDRnayJ9.JcuE3cQBwD6u9-X49bDCUw",
+        "RNMAPBOX_MAPS_DOWNLOAD_TOKEN": "sk.eyJ1IjoidG91Z2hzb24iLCJhIjoiY21wZnIxanM0MGpxajJwcXdzMDFsdDRnayJ9.JcuE3cQBwD6u9-X49bDCUw"
+      }
     },
     "production": {
       "autoIncrement": true

@@ -15,8 +15,11 @@ import Animated, {
     ZoomIn,
     useAnimatedStyle,
     useSharedValue,
+    useDerivedValue,
     withRepeat,
     withTiming,
+    interpolateColor,
+    type SharedValue,
 } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Swiper from "react-native-swiper";
@@ -30,14 +33,18 @@ import { useTheme, LightColors } from
  * Uses a Swiper with custom animated transitions to introduce the app's features.
  */
 
-const PaginationDot = ({ isActive, primaryColor }: { isActive: boolean; primaryColor: string }) => {
+const PaginationDot = ({ index, isActive, activeIndexShared, primaryColor }: { index: number; isActive: boolean; activeIndexShared: SharedValue<number>; primaryColor: string }) => {
+  // Pre-calculate metric sizes on the JS thread so they are available to the UI thread worklet
+  const activeWidth = ms(24);
+  const inactiveWidth = ms(8);
+  const inactiveColor = "rgba(148, 163, 184, 0.4)";
+
   const animatedStyle = useAnimatedStyle(() => {
+    const isDotActive = activeIndexShared.value === index;
+    const targetWidth = isDotActive ? activeWidth : inactiveWidth;
     return {
-      width: withTiming(isActive ? ms(24) : ms(8), { duration: 300 }),
-      backgroundColor: withTiming(
-        isActive ? primaryColor : "rgba(148, 163, 184, 0.4)",
-        { duration: 300 }
-      ),
+      width: withTiming(targetWidth, { duration: 300 }),
+      backgroundColor: withTiming(isDotActive ? primaryColor : inactiveColor, { duration: 300 }),
     };
   });
 
@@ -48,9 +55,14 @@ const PaginationDot = ({ isActive, primaryColor }: { isActive: boolean; primaryC
 const Welcome = () => {
   const swiperRef = useRef<Swiper>(null);
   const [activeIndex, setActiveIndex] = useState(0); // Tracks current slide
+  const activeIndexShared = useSharedValue(0);
   const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(true);
   const { t, i18n } = useTranslation();
   const { colors, isDark } = useTheme();
+
+  useEffect(() => {
+    activeIndexShared.value = activeIndex;
+  }, [activeIndex]);
 
   // Shared values for background animations
   const drift1 = useSharedValue(0);
@@ -78,10 +90,13 @@ const Welcome = () => {
     transform: [{ translateY: floatY.value }],
   }));
 
-  const backButtonAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: withTiming(activeIndex === 0 ? 0 : 1, { duration: 300 }),
-    transform: [{ scale: withTiming(activeIndex === 0 ? 0.8 : 1, { duration: 300 }) }],
-  }));
+  const backButtonAnimatedStyle = useAnimatedStyle(() => {
+    const isFirst = activeIndexShared.value === 0;
+    return {
+      opacity: withTiming(isFirst ? 0 : 1, { duration: 300 }),
+      transform: [{ scale: withTiming(isFirst ? 0.8 : 1, { duration: 300 }) }],
+    };
+  });
 
   /**
    * Marks the welcome flow as completed in persistent storage and navigates to Sign Up
@@ -260,7 +275,9 @@ const Welcome = () => {
               return (
                 <PaginationDot
                   key={index}
+                  index={index}
                   isActive={index === activeIndex}
+                  activeIndexShared={activeIndexShared}
                   primaryColor={colors.primary}
                 />
               );

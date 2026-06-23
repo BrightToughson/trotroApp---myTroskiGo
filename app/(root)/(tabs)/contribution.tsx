@@ -128,11 +128,12 @@ export default function Contribution() {
   ];
 
   return (
-    <Animated.View entering={FadeInDown.duration(800).springify()} style={[styles.container, { backgroundColor: colors.background }]}>
-      <LinearGradient 
-        colors={[colors.background, isDark ? "#0f172a" : "#f0f4ff"]} 
-        style={StyleSheet.absoluteFill} 
-      />
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <Animated.View entering={FadeInDown.duration(800).springify()} style={StyleSheet.absoluteFill}>
+        <LinearGradient 
+          colors={[colors.background, isDark ? "#0f172a" : "#f0f4ff"]} 
+          style={StyleSheet.absoluteFill} 
+        />
 
       <ScrollView 
         showsVerticalScrollIndicator={false} 
@@ -293,7 +294,8 @@ export default function Contribution() {
         type={selectedType} 
         initialData={editingContribution}
       />
-    </Animated.View>
+      </Animated.View>
+    </View>
   );
 }
 

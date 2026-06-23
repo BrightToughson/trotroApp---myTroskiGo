@@ -50,14 +50,19 @@ function CustomTabBar({ state, descriptors, navigation, unreadCount }: any) {
     });
   }, [state.index, TAB_WIDTH]);
 
+  // Pre-calculate metric sizes and simple string values so they can be captured by the UI thread worklet safely
+  const shadowHeight = ms(8);
+  const shadowRadius = ms(12);
+  const primaryColor = colors.primary;
+
   const animatedPillStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
     width: PILL_WIDTH,
-    backgroundColor: colors.primary,
-    shadowColor: colors.primary,
-    shadowOffset: { width: 0, height: ms(8) },
+    backgroundColor: primaryColor,
+    shadowColor: primaryColor,
+    shadowOffset: { width: 0, height: shadowHeight },
     shadowOpacity: 0.4,
-    shadowRadius: ms(12),
+    shadowRadius: shadowRadius,
   }));
 
   return (

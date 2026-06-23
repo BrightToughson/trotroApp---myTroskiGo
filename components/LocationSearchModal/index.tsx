@@ -287,10 +287,9 @@ export const LocationSearchModal = ({
                     styles.modalContent, 
                     { 
                         backgroundColor: colors.background, 
-                        height: (Platform.OS !== 'web' || width < 600) ? '100%' : SCREEN_HEIGHT * 0.85,
-                        marginTop: (Platform.OS !== 'web' || width < 600) ? 0 : SCREEN_HEIGHT * 0.15,
-                        borderTopLeftRadius: (Platform.OS !== 'web' || width < 600) ? 0 : 32,
-                        borderTopRightRadius: (Platform.OS !== 'web' || width < 600) ? 0 : 32,
+                        height: (Platform.OS !== 'web' || width < 600) ? '92%' : SCREEN_HEIGHT * 0.85,
+                        borderTopLeftRadius: 32,
+                        borderTopRightRadius: 32,
                     },
                     Platform.OS === 'web' && width >= 600 && { maxWidth: ms(600), alignSelf: 'center', width: '100%', borderLeftWidth: 1, borderRightWidth: 1, borderColor: colors.border }
                 ]}

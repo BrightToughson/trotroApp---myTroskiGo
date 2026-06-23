@@ -106,7 +106,7 @@ export default function SignUpScreen() {
       if (result.error) throw result.error;
 
       // Fire and forget email verification to cut perceived loading time in half
-      signUp!.verifications.sendEmailCode().catch(console.error);
+      (signUp as any).prepareEmailAddressVerification({ strategy: "email_code" }).catch(console.error);
 
       setSuccessMessage(t('account_created', 'Account Created!'));
       setTimeout(() => {
@@ -150,9 +150,7 @@ export default function SignUpScreen() {
       } else {
         Alert.alert(
           t("error", "Error"),
-          err.errors
-            ? err.errors[0].message
-            : t("generic_signup_error", "An error occurred during sign up"),
+          err.errors?.[0]?.longMessage || err.errors?.[0]?.message || err.message || t("generic_signup_error", "An error occurred during sign up")
         );
       }
       setLoading(false);
